@@ -9,13 +9,23 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "next": "12.0.0",
+    "@chakra-ui/icons": "^1.0.16",
+    "@chakra-ui/react": "^1.6.10",
+    "@emotion/react": "^11.5.0",
+    "@emotion/styled": "^11.3.0",
+    "atropos": "^1.0.1",
+    "dotenv": "^10.0.0",
+    "framer": "^2.0.0-beta.13",
+    "framer-motion": "^4.1.17",
+    "next": "^12.0.0",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "react-icons": "^4.3.1"
   },
   "devDependencies": {
     "@types/node": "16.11.6",
-    "@types/react": "17.0.33",
+    "@types/react": "^17.0.34",
+    "@types/react-dom": "^17.0.11",
     "eslint": "7",
     "eslint-config-next": "12.0.0",
     "typescript": "4.4.4"
