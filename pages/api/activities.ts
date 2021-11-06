@@ -6,26 +6,29 @@ import { definitions } from '../../type/supabase';
 type params = {
   query: string;
   id: string;
+  season: string;
 }
 
 export default async function (
   req: NextApiRequest,
   res: NextApiResponse<any>
 ) {
-  const { query, id } = req.query as params;
+  const { query, id, season } = req.query as params;
   let result;
-
-  console.log(query, id)
-
+  let supabaseBase = supabase.from<definitions["activity"]>("activity").select("*");
   if (id) {
-    result = await supabase.from<definitions["activity"]>("activity").select("*").eq('id', id).single();
-  } else if (query) {
-    result = await supabase
-      .from<definitions["activity"]>("activity")
-      .select("*")
-      .ilike("name", `%${query}%`);
+    result = await supabaseBase.eq('id', id).single();
+  } else if (query || season) {
+    if (query) {
+      supabaseBase.ilike("name", `%${query}%`)
+    }
+    if (season) {
+      supabaseBase.contains("seasons", [season])
+    }
+    result = await supabaseBase;
+    console.log(result)
   } else {
-    result = await supabase.from<definitions["activity"]>("activity").select("*");
+    result = await supabaseBase;
   }
   res.statusCode = result.status;
   res.setHeader('Content-Type', 'application/json');
