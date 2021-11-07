@@ -225,7 +225,9 @@ export default function Activities(props: GetServerSideProps["props"]) {
 }
 
 function searchApi(queryParam: QueryParam): string {
-    const apiUrl = new URL("http://localhost:3000/api/activities");
+    const host = process.env.NEXT_PUBLIC_BASE_URL;
+    console.log(host);
+    const apiUrl = new URL(`${host}/api/activities`);
     Object.entries(queryParam).forEach(([key, value]) =>
         apiUrl.searchParams.append(key, value)
     );

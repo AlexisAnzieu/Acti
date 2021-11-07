@@ -15,7 +15,7 @@ export async function getServerSideProps(
     context: GetServerSidePropsContext
 ): Promise<GetServerSideProps> {
     const id: string = context.query.id as string;
-    return fetch(`http://localhost:3000/api/activities?id=${id}`)
+    return fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/activities?id=${id}`)
         .then((res: Response) => res.json())
         .then((activity) => {
             return {
