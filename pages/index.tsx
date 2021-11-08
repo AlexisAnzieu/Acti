@@ -69,6 +69,7 @@ function Activity(activity: definitions["activity"]) {
             href={`/activities/${activity.id}`}
         >
             <Box
+                boxShadow="lg"
                 margin="5px"
                 display="inline-block"
                 maxW="sm"
@@ -76,15 +77,23 @@ function Activity(activity: definitions["activity"]) {
                 borderRadius="lg"
                 overflow="hidden"
                 textAlign="left"
+                role="group"
             >
                 <Image
+                    transitionDuration="400ms"
+                    _groupHover={{ height: "0px" }}
                     height="200px"
                     width="300px"
                     src={activity.picture_url}
                     alt={activity.picture_url}
                 />
 
-                <Box p="5">
+                <Box
+                    height="134px"
+                    transitionDuration="400ms"
+                    p="5"
+                    _groupHover={{ height: "334px" }}
+                >
                     <Box display="flex" alignItems="baseline">
                         {(activity.seasons as string[]).map((s: string) => (
                             <Badge
