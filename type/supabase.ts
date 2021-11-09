@@ -119,7 +119,10 @@ export interface paths {
 export interface definitions {
   activity: {
     created_at?: string;
-    name: string;
+    name: {
+      en: string,
+      fr: string
+    };
     picture_url?: string;
     /**
      * Note:
@@ -162,6 +165,6 @@ export interface parameters {
   "rowFilter.activity.location": string;
 }
 
-export interface operations {}
+export interface operations { }
 
-export interface external {}
+export interface external { }

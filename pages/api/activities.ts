@@ -7,20 +7,21 @@ type params = {
 	query: string;
 	id: string;
 	season: string;
+	locale: 'en' | 'fr'
 }
 
 export default async function (
 	req: NextApiRequest,
 	res: NextApiResponse<any>
 ) {
-	const { query, id, season } = req.query as params;
+	const { query, id, season, locale } = req.query as params;
 	let result;
 	let supabaseBase = supabase.from<definitions["activity"]>("activity").select("*");
 	if (id) {
 		result = await supabaseBase.eq('id', id).single();
 	} else if (query || season) {
 		if (query) {
-			supabaseBase.ilike("name", `%${query}%`)
+			supabaseBase.ilike(`name->>${locale}` as 'name', `%${query}%`);
 		}
 		if (season) {
 			supabaseBase.contains("seasons", [season])

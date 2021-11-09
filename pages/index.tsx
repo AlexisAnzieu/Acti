@@ -7,6 +7,8 @@ import {
     Icon,
     CircularProgress,
     Divider,
+    Flex,
+    Button,
 } from "@chakra-ui/react";
 import "atropos/css";
 import { definitions } from "../type/supabase";
@@ -15,31 +17,20 @@ import React, { useState } from "react";
 import { useRouter } from "next/dist/client/router";
 import Link from "next/link";
 import { BsCurrencyDollar } from "react-icons/bs";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useTranslation } from "next-i18next";
+
+export type Locale = "en" | "fr";
 
 type Seasons = {
-    [key: string]: {
-        name: string;
-        color: string;
-    };
+    [key: string]: string;
 };
 
 const seasons: Seasons = {
-    summer: {
-        name: "été",
-        color: "orange",
-    },
-    spring: {
-        name: "printemps",
-        color: "green",
-    },
-    winter: {
-        name: "hiver",
-        color: "teal",
-    },
-    autumn: {
-        name: "automne",
-        color: "red",
-    },
+    summer: "orange",
+    spring: "green",
+    winter: "teal",
+    autumn: "red",
 };
 
 type QueryParam = {
@@ -54,7 +45,9 @@ type GetServerSideProps = {
     };
 };
 
-function Activity(activity: definitions["activity"]) {
+function Activity(activity: definitions["activity"], locale: Locale) {
+    const { t } = useTranslation("common");
+
     const property = {
         beds: 3,
         baths: 2,
@@ -103,9 +96,9 @@ function Activity(activity: definitions["activity"]) {
                                 key={s}
                                 borderRadius="full"
                                 px="2"
-                                colorScheme={seasons[s].color}
+                                colorScheme={seasons[s]}
                             >
-                                {seasons[s].name}
+                                {t(`season.${s}`)}
                             </Badge>
                         ))}
                     </Box>
@@ -117,7 +110,7 @@ function Activity(activity: definitions["activity"]) {
                         lineHeight="tight"
                         isTruncated
                     >
-                        {activity.name}
+                        {activity.name[locale]}
                     </Box>
 
                     <Box>
@@ -148,13 +141,20 @@ function Activity(activity: definitions["activity"]) {
     );
 }
 
-const ActivityList = (activities: {
+const ActivityList = (props: {
     activities: GetServerSideProps["props"]["activities"];
+    locale: Locale;
 }) => {
-    if (!activities.activities?.length) {
+    if (!props.activities?.length) {
         return <h1>Aucune activité ne correspond à ces critères</h1>;
     }
-    return <>{activities?.activities.map((activity) => Activity(activity))} </>;
+    return (
+        <>
+            {props?.activities.map((activity) =>
+                Activity(activity, props.locale)
+            )}{" "}
+        </>
+    );
 };
 
 export default function Activities(props: GetServerSideProps["props"]) {
@@ -162,6 +162,22 @@ export default function Activities(props: GetServerSideProps["props"]) {
     const [activities, setActivities] = useState(props.activities);
     const [isLoading, setIsLoading] = useState(false);
     const router = useRouter();
+    const [locale, setLocale] = useState(router.locale as Locale);
+    const { t } = useTranslation("common");
+
+    function changeLocale(value: Locale) {
+        setLocale(value);
+        router.push(
+            {
+                pathname: router.pathname,
+                query: { ...router.query },
+            },
+            undefined,
+            {
+                locale: value,
+            }
+        );
+    }
 
     function paramHandler(param: string, value: string | null): void {
         setIsLoading(true);
@@ -189,7 +205,7 @@ export default function Activities(props: GetServerSideProps["props"]) {
             }
         );
 
-        fetch(searchApi(routerQuery))
+        fetch(searchApi(routerQuery, locale))
             .then((res: Response) => res.json())
             .then((result) => {
                 setActivities(result);
@@ -199,17 +215,33 @@ export default function Activities(props: GetServerSideProps["props"]) {
 
     return (
         <>
-            <Input
-                onChange={(e) => paramHandler("query", e.target.value)}
-                defaultValue={queryParam.query}
-                margin="30px 5px 10px 5px"
-                fontSize="30px"
-                variant="md"
-                placeholder="Rechercher une activité"
-            />
+            <Flex margin="30px 5px 10px 5px" w="100%">
+                <Input
+                    onChange={(e) => paramHandler("query", e.target.value)}
+                    defaultValue={queryParam.query}
+                    fontSize="30px"
+                    variant="md"
+                    placeholder={t("searchActivity")}
+                    width="90%"
+                />
+
+                <Box cursor="pointer" width="10%">
+                    {(["en", "fr"] as Locale[]).map((language: Locale) => (
+                        <Button
+                            ml="5px"
+                            onClick={() => changeLocale(language)}
+                            colorScheme="teal"
+                            variant={locale === language ? "solid" : "outline"}
+                        >
+                            {language.toUpperCase()}
+                        </Button>
+                    ))}
+                </Box>
+            </Flex>
+
             <Divider width="96%" m="0% 2% 20px 2% " />
             <Box padding="10px 15px 10px 15px">
-                {Object.entries(seasons).map(([index, { name, color }]) => (
+                {Object.entries(seasons).map(([index, color]) => (
                     <Badge
                         cursor="pointer"
                         variant={
@@ -230,7 +262,7 @@ export default function Activities(props: GetServerSideProps["props"]) {
                         px="6"
                         colorScheme={color}
                     >
-                        {name}
+                        {t(`season.${index}`)}
                     </Badge>
                 ))}
             </Box>
@@ -240,17 +272,24 @@ export default function Activities(props: GetServerSideProps["props"]) {
                         <CircularProgress isIndeterminate color="green.300" />
                     </Box>
                 ) : (
-                    <ActivityList activities={activities} />
+                    <ActivityList
+                        activities={activities}
+                        locale={locale as Locale}
+                    />
                 )}
             </Box>
         </>
     );
 }
 
-function searchApi(queryParam: QueryParam): string {
+function searchApi(queryParam: QueryParam, locale: Locale): string {
     const host = process.env.NEXT_PUBLIC_BASE_URL;
     const apiUrl = new URL(`${host}/api/activities`);
-    Object.entries(queryParam).forEach(([key, value]) =>
+    const queryParamLocaleAdded = {
+        ...queryParam,
+        locale,
+    };
+    Object.entries(queryParamLocaleAdded).forEach(([key, value]) =>
         apiUrl.searchParams.append(key, value)
     );
     return apiUrl.href;
@@ -259,11 +298,14 @@ function searchApi(queryParam: QueryParam): string {
 export async function getServerSideProps(
     context: GetServerSidePropsContext
 ): Promise<GetServerSideProps> {
-    return fetch(searchApi(context.query))
+    return fetch(searchApi(context.query, context.locale as Locale))
         .then((res: Response) => res.json())
-        .then((activities) => {
+        .then(async (activities) => {
             return {
                 props: {
+                    ...(await serverSideTranslations(context.locale as Locale, [
+                        "common",
+                    ])),
                     activities,
                     queryParam: context.query,
                 },

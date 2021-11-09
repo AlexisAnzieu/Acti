@@ -4,6 +4,7 @@ import { Box, Icon } from "@chakra-ui/react";
 import dynamic from "next/dynamic";
 import { BsArrowLeftSquare } from "react-icons/bs";
 import { useRouter } from "next/router";
+import { Locale } from "..";
 
 type GetServerSideProps = {
     props: {
@@ -13,6 +14,7 @@ type GetServerSideProps = {
 
 export default function Activity(props: GetServerSideProps["props"]) {
     const router = useRouter();
+    const locale = router.locale as Locale;
 
     const MapWithNoSSR = dynamic(() => import("../../component/Map"), {
         ssr: false,
@@ -31,7 +33,9 @@ export default function Activity(props: GetServerSideProps["props"]) {
                 />
                 <Box textAlign="center">
                     {" "}
-                    <Box fontSize="30px">{props.activity.name}</Box>{" "}
+                    <Box fontSize="30px">
+                        {props.activity.name[locale]}
+                    </Box>{" "}
                 </Box>
             </Box>
         </Box>

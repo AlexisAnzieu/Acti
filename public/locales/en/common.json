@@ -1,0 +1,9 @@
+{
+    "searchActivity": "Search an activity",
+    "season": {
+        "summer": "summer",
+        "winter": "winter",
+        "spring": "spring",
+        "autumn": "autumn"
+    }
+}
