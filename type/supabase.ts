@@ -21,6 +21,7 @@ export interface paths {
           picture_url?: parameters["rowFilter.activity.picture_url"];
           id?: parameters["rowFilter.activity.id"];
           seasons?: parameters["rowFilter.activity.seasons"];
+          location?: parameters["rowFilter.activity.location"];
           /** Filtering Columns */
           select?: parameters["select"];
           /** Ordering */
@@ -76,6 +77,7 @@ export interface paths {
           picture_url?: parameters["rowFilter.activity.picture_url"];
           id?: parameters["rowFilter.activity.id"];
           seasons?: parameters["rowFilter.activity.seasons"];
+          location?: parameters["rowFilter.activity.location"];
         };
         header: {
           /** Preference */
@@ -95,6 +97,7 @@ export interface paths {
           picture_url?: parameters["rowFilter.activity.picture_url"];
           id?: parameters["rowFilter.activity.id"];
           seasons?: parameters["rowFilter.activity.seasons"];
+          location?: parameters["rowFilter.activity.location"];
         };
         body: {
           /** activity */
@@ -124,6 +127,7 @@ export interface definitions {
      */
     id: string;
     seasons: unknown[];
+    location: unknown[];
   };
 }
 
@@ -155,6 +159,7 @@ export interface parameters {
   "rowFilter.activity.picture_url": string;
   "rowFilter.activity.id": string;
   "rowFilter.activity.seasons": string;
+  "rowFilter.activity.location": string;
 }
 
 export interface operations {}

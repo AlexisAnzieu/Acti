@@ -20,6 +20,7 @@ a {
     font-size: 50px;
 }
 
-.astropos {
-    height: 200px;
+.leaflet-container {
+    width: 30wh;
+    height: 30vh;
 }

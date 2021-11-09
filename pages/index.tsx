@@ -5,6 +5,7 @@ import {
     Badge,
     Link as ChakraLink,
     Icon,
+    CircularProgress,
 } from "@chakra-ui/react";
 import "atropos/css";
 import { definitions } from "../type/supabase";
@@ -157,9 +158,12 @@ const ActivityList = (activities: {
 export default function Activities(props: GetServerSideProps["props"]) {
     const [queryParam, setQueryParam] = useState(props?.queryParam);
     const [activities, setActivities] = useState(props.activities);
+    const [isLoading, setIsLoading] = useState(false);
     const router = useRouter();
 
     function paramHandler(param: string, value: string | null): void {
+        setIsLoading(true);
+
         if (param === "season") {
             value = value !== queryParam.season ? value : null;
         }
@@ -187,6 +191,7 @@ export default function Activities(props: GetServerSideProps["props"]) {
             .then((res: Response) => res.json())
             .then((result) => {
                 setActivities(result);
+                setIsLoading(false);
             });
     }
 
@@ -227,7 +232,13 @@ export default function Activities(props: GetServerSideProps["props"]) {
                 ))}
             </Box>
             <Box padding="15px">
-                <ActivityList activities={activities} />
+                {isLoading ? (
+                    <Box textAlign="center">
+                        <CircularProgress isIndeterminate color="green.300" />
+                    </Box>
+                ) : (
+                    <ActivityList activities={activities} />
+                )}
             </Box>
         </>
     );
