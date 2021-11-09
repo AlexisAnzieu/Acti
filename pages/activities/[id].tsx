@@ -24,6 +24,7 @@ export default function Activity(props: GetServerSideProps["props"]) {
             <Box p="2% 20% 0 5%">
                 {" "}
                 <Icon
+                    cursor="pointer"
                     onClick={() => router.back()}
                     fontSize="40px"
                     as={BsArrowLeftSquare}

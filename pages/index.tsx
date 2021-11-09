@@ -6,6 +6,7 @@ import {
     Link as ChakraLink,
     Icon,
     CircularProgress,
+    Divider,
 } from "@chakra-ui/react";
 import "atropos/css";
 import { definitions } from "../type/supabase";
@@ -70,6 +71,7 @@ function Activity(activity: definitions["activity"]) {
             href={`/activities/${activity.id}`}
         >
             <Box
+                cursor="pointer"
                 boxShadow="lg"
                 margin="5px"
                 display="inline-block"
@@ -200,15 +202,16 @@ export default function Activities(props: GetServerSideProps["props"]) {
             <Input
                 onChange={(e) => paramHandler("query", e.target.value)}
                 defaultValue={queryParam.query}
-                margin="30px 5px 40px 5px"
-                fontSize="50px"
+                margin="30px 5px 10px 5px"
+                fontSize="30px"
                 variant="md"
                 placeholder="Rechercher une activité"
             />
-
+            <Divider width="96%" m="0% 2% 20px 2% " />
             <Box padding="10px 15px 10px 15px">
                 {Object.entries(seasons).map(([index, { name, color }]) => (
                     <Badge
+                        cursor="pointer"
                         variant={
                             queryParam.season === index ? "solid" : "outline"
                         }
@@ -222,7 +225,7 @@ export default function Activities(props: GetServerSideProps["props"]) {
                         }
                         mr="2"
                         mb="1"
-                        fontSize="2em"
+                        fontSize="1.5em"
                         borderRadius="full"
                         px="6"
                         colorScheme={color}
