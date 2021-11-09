@@ -3,5 +3,6 @@ module.exports = {
         locales: ['default', 'en', 'fr'],
         defaultLocale: 'default',
         localeDetection: false,
+        localePath: path.resolve('./public/locales')
     }
 };
