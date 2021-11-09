@@ -228,6 +228,7 @@ export default function Activities(props: GetServerSideProps["props"]) {
                 <Box cursor="pointer" width="10%">
                     {(["en", "fr"] as Locale[]).map((language: Locale) => (
                         <Button
+                            key={language}
                             ml="5px"
                             onClick={() => changeLocale(language)}
                             colorScheme="teal"
