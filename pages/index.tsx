@@ -232,7 +232,7 @@ export default function Activities(props: GetServerSideProps["props"]) {
         <>
             <Flex margin="30px 5px 10px 10px" w="100%">
                 <InputGroup>
-                    {/* <InputLeftElement
+                    <InputLeftElement
                         pointerEvents="none"
                         children={
                             <Icon
@@ -241,7 +241,7 @@ export default function Activities(props: GetServerSideProps["props"]) {
                                 color="gray.700"
                             />
                         }
-                    /> */}
+                    />
                     <Input
                         onChange={(e) => paramHandler("query", e.target.value)}
                         defaultValue={queryParam.query}
