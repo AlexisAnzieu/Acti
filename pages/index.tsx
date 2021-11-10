@@ -9,6 +9,8 @@ import {
     Divider,
     Flex,
     Button,
+    InputGroup,
+    InputLeftElement,
 } from "@chakra-ui/react";
 import "atropos/css";
 import { definitions } from "../type/supabase";
@@ -16,7 +18,8 @@ import { GetServerSidePropsContext } from "next";
 import React, { useState } from "react";
 import { useRouter } from "next/dist/client/router";
 import Link from "next/link";
-import { BsCurrencyDollar } from "react-icons/bs";
+import { BsCurrencyDollar, BsSearch } from "react-icons/bs";
+import { GiEarthAmerica } from "react-icons/gi";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
 
@@ -54,7 +57,7 @@ function Activity(activity: definitions["activity"], locale: Locale) {
         title: "Modern home in city center in the heart of historic Los Angeles",
         formattedPrice: "$1,900.00",
         reviewCount: 34,
-        rating: 4,
+        rating: 2,
     };
 
     return (
@@ -93,6 +96,8 @@ function Activity(activity: definitions["activity"], locale: Locale) {
                     <Box display="flex" alignItems="baseline">
                         {(activity.seasons as string[]).map((s: string) => (
                             <Badge
+                                mr="1"
+                                variant="solid"
                                 key={s}
                                 borderRadius="full"
                                 px="2"
@@ -113,20 +118,28 @@ function Activity(activity: definitions["activity"], locale: Locale) {
                         {activity.name[locale]}
                     </Box>
 
-                    <Box>
-                        {property.formattedPrice}
-                        <Box as="span" color="gray.600" fontSize="sm">
-                            / wk
-                        </Box>
-                    </Box>
-
                     <Box display="flex" mt="2" alignItems="center">
-                        {Array(5)
+                        {Array(3)
                             .fill("")
                             .map((_, i) => (
                                 <Icon
                                     as={BsCurrencyDollar}
-                                    key={i}
+                                    key={`${i}_price`}
+                                    color={
+                                        i < property.rating
+                                            ? "teal.500"
+                                            : "gray.300"
+                                    }
+                                />
+                            ))}
+                    </Box>
+                    <Box display="flex" mt="2" alignItems="center">
+                        {Array(3)
+                            .fill("")
+                            .map((_, i) => (
+                                <Icon
+                                    key={`${i}_carbon`}
+                                    as={GiEarthAmerica}
                                     color={
                                         i < property.rating
                                             ? "teal.500"
@@ -180,9 +193,6 @@ export default function Activities(props: GetServerSideProps["props"]) {
     }
 
     function paramHandler(param: string, value: string | null): void {
-        if (isLoading) {
-            return;
-        }
         setIsLoading(true);
 
         if (param === "season") {
@@ -218,15 +228,27 @@ export default function Activities(props: GetServerSideProps["props"]) {
 
     return (
         <>
-            <Flex margin="30px 5px 10px 5px" w="100%">
-                <Input
-                    onChange={(e) => paramHandler("query", e.target.value)}
-                    defaultValue={queryParam.query}
-                    fontSize="30px"
-                    variant="md"
-                    placeholder={t("searchActivity")}
-                    width="90%"
-                />
+            <Flex margin="30px 5px 10px 10px" w="100%">
+                <InputGroup>
+                    <InputLeftElement
+                        pointerEvents="none"
+                        children={
+                            <Icon
+                                fontSize="20px"
+                                as={BsSearch}
+                                color="gray.700"
+                            />
+                        }
+                    />
+                    <Input
+                        onChange={(e) => paramHandler("query", e.target.value)}
+                        defaultValue={queryParam.query}
+                        fontSize="30px"
+                        variant="md"
+                        placeholder={t("searchActivity")}
+                        width="90%"
+                    />
+                </InputGroup>
 
                 <Box cursor="pointer" width="10%">
                     {(["en", "fr"] as Locale[]).map((language: Locale) => (
@@ -270,7 +292,7 @@ export default function Activities(props: GetServerSideProps["props"]) {
                     </Badge>
                 ))}
             </Box>
-            <Box padding="15px">
+            <Box h="100vh" padding="15px">
                 {isLoading ? (
                     <Box textAlign="center">
                         <CircularProgress isIndeterminate color="green.300" />
