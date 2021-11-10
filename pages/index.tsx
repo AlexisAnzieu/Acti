@@ -180,6 +180,9 @@ export default function Activities(props: GetServerSideProps["props"]) {
     }
 
     function paramHandler(param: string, value: string | null): void {
+        if (isLoading) {
+            return;
+        }
         setIsLoading(true);
 
         if (param === "season") {
