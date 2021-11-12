@@ -5,5 +5,8 @@
         "winter": "winter",
         "spring": "spring",
         "autumn": "autumn"
+    },
+    "documentTitle": {
+        "index": "Actï - activities in Quebec"
     }
 }

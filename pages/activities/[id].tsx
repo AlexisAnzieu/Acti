@@ -1,10 +1,11 @@
-import { GetServerSidePropsContext } from "next";
-import { definitions } from "../../type/supabase";
 import { Box, Icon, Flex } from "@chakra-ui/react";
-import dynamic from "next/dynamic";
 import { BsArrowLeftSquare } from "react-icons/bs";
-import { useRouter } from "next/router";
+import { definitions } from "../../type/supabase";
+import { GetServerSidePropsContext } from "next";
 import { Locale } from "../../component/Navbar";
+import { useRouter } from "next/router";
+import dynamic from "next/dynamic";
+import Head from "next/head";
 
 type GetServerSideProps = {
     props: {
@@ -22,6 +23,9 @@ export default function Activity(props: GetServerSideProps["props"]) {
 
     return (
         <Box>
+            <Head>
+                <title>Acti - {props.activity.name[locale]}</title>
+            </Head>
             <MapWithNoSSR location={props.activity.location} />
             <Box p="2% 5% 0 5%">
                 <Flex>

@@ -22,6 +22,7 @@ import { GiEarthAmerica } from "react-icons/gi";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
 import { Locale } from "../component/Navbar";
+import Head from "next/head";
 
 type Seasons = {
     [key: string]: string;
@@ -173,7 +174,7 @@ export default function Activities(props: GetServerSideProps["props"]) {
     const [activities, setActivities] = useState(props.activities);
     const [isLoading, setIsLoading] = useState(false);
     const router = useRouter();
-    const [locale, setLocale] = useState(router.locale as Locale);
+    const [locale] = useState(router.locale as Locale);
     const { t } = useTranslation("common");
 
     function paramHandler(param: string, value: string | null): void {
@@ -212,6 +213,9 @@ export default function Activities(props: GetServerSideProps["props"]) {
 
     return (
         <>
+            <Head>
+                <title>{t("documentTitle.index")}</title>
+            </Head>
             <Flex margin="30px 5px 10px 10px" w="100%">
                 <InputGroup>
                     <InputLeftElement
