@@ -50,15 +50,6 @@ type GetServerSideProps = {
 function Activity(activity: definitions["activity"], locale: Locale) {
     const { t } = useTranslation("common");
 
-    const property = {
-        beds: 3,
-        baths: 2,
-        title: "Modern home in city center in the heart of historic Los Angeles",
-        formattedPrice: "$1,900.00",
-        reviewCount: 34,
-        rating: 2,
-    };
-
     return (
         <ChakraLink
             as={Link}
@@ -113,6 +104,7 @@ function Activity(activity: definitions["activity"], locale: Locale) {
                         as="h4"
                         lineHeight="tight"
                         isTruncated
+                        color="gray.600"
                     >
                         {activity.name[locale]}
                     </Box>
@@ -125,9 +117,9 @@ function Activity(activity: definitions["activity"], locale: Locale) {
                                     as={BsCurrencyDollar}
                                     key={`${i}_price`}
                                     color={
-                                        i < property.rating
-                                            ? "teal.500"
-                                            : "gray.300"
+                                        i < activity.price
+                                            ? "gray.600"
+                                            : "gray.200"
                                     }
                                 />
                             ))}
@@ -140,9 +132,9 @@ function Activity(activity: definitions["activity"], locale: Locale) {
                                     key={`${i}_carbon`}
                                     as={GiEarthAmerica}
                                     color={
-                                        i < property.rating
-                                            ? "teal.500"
-                                            : "gray.300"
+                                        i < activity.carbon_footprint
+                                            ? "gray.600"
+                                            : "gray.200"
                                     }
                                 />
                             ))}

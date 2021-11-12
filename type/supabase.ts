@@ -16,9 +16,17 @@ export interface paths {
     get: {
       parameters: {
         query: {
-          created_at?: parameters["rowFilter.activity.created_at"];
           name?: parameters["rowFilter.activity.name"];
+          description?: parameters["rowFilter.activity.description"];
+          compagny?: parameters["rowFilter.activity.compagny"];
           picture_url?: parameters["rowFilter.activity.picture_url"];
+          address?: parameters["rowFilter.activity.address"];
+          city?: parameters["rowFilter.activity.city"];
+          postal_code?: parameters["rowFilter.activity.postal_code"];
+          phone?: parameters["rowFilter.activity.phone"];
+          social_media?: parameters["rowFilter.activity.social_media"];
+          price?: parameters["rowFilter.activity.price"];
+          carbon_footprint?: parameters["rowFilter.activity.carbon_footprint"];
           id?: parameters["rowFilter.activity.id"];
           seasons?: parameters["rowFilter.activity.seasons"];
           location?: parameters["rowFilter.activity.location"];
@@ -72,9 +80,17 @@ export interface paths {
     delete: {
       parameters: {
         query: {
-          created_at?: parameters["rowFilter.activity.created_at"];
           name?: parameters["rowFilter.activity.name"];
+          description?: parameters["rowFilter.activity.description"];
+          compagny?: parameters["rowFilter.activity.compagny"];
           picture_url?: parameters["rowFilter.activity.picture_url"];
+          address?: parameters["rowFilter.activity.address"];
+          city?: parameters["rowFilter.activity.city"];
+          postal_code?: parameters["rowFilter.activity.postal_code"];
+          phone?: parameters["rowFilter.activity.phone"];
+          social_media?: parameters["rowFilter.activity.social_media"];
+          price?: parameters["rowFilter.activity.price"];
+          carbon_footprint?: parameters["rowFilter.activity.carbon_footprint"];
           id?: parameters["rowFilter.activity.id"];
           seasons?: parameters["rowFilter.activity.seasons"];
           location?: parameters["rowFilter.activity.location"];
@@ -92,9 +108,17 @@ export interface paths {
     patch: {
       parameters: {
         query: {
-          created_at?: parameters["rowFilter.activity.created_at"];
           name?: parameters["rowFilter.activity.name"];
+          description?: parameters["rowFilter.activity.description"];
+          compagny?: parameters["rowFilter.activity.compagny"];
           picture_url?: parameters["rowFilter.activity.picture_url"];
+          address?: parameters["rowFilter.activity.address"];
+          city?: parameters["rowFilter.activity.city"];
+          postal_code?: parameters["rowFilter.activity.postal_code"];
+          phone?: parameters["rowFilter.activity.phone"];
+          social_media?: parameters["rowFilter.activity.social_media"];
+          price?: parameters["rowFilter.activity.price"];
+          carbon_footprint?: parameters["rowFilter.activity.carbon_footprint"];
           id?: parameters["rowFilter.activity.id"];
           seasons?: parameters["rowFilter.activity.seasons"];
           location?: parameters["rowFilter.activity.location"];
@@ -118,19 +142,30 @@ export interface paths {
 
 export interface definitions {
   activity: {
-    created_at?: string;
     name: {
       en: string,
       fr: string
     };
+    description: {
+      en: string,
+      fr: string
+    };
+    compagny?: string;
     picture_url?: string;
+    address?: string;
+    city?: string;
+    postal_code?: string;
+    phone?: string;
+    social_media?: string;
+    price: number;
+    carbon_footprint: number;
     /**
      * Note:
      * This is a Primary Key.<pk/>
      */
     id: string;
-    seasons: unknown[];
-    location: unknown[];
+    seasons?: unknown[];
+    location?: unknown[];
   };
 }
 
@@ -157,9 +192,17 @@ export interface parameters {
   limit: string;
   /** activity */
   "body.activity": definitions["activity"];
-  "rowFilter.activity.created_at": string;
   "rowFilter.activity.name": string;
+  "rowFilter.activity.description": string;
+  "rowFilter.activity.compagny": string;
   "rowFilter.activity.picture_url": string;
+  "rowFilter.activity.address": string;
+  "rowFilter.activity.city": string;
+  "rowFilter.activity.postal_code": string;
+  "rowFilter.activity.phone": string;
+  "rowFilter.activity.social_media": string;
+  "rowFilter.activity.price": string;
+  "rowFilter.activity.carbon_footprint": string;
   "rowFilter.activity.id": string;
   "rowFilter.activity.seasons": string;
   "rowFilter.activity.location": string;
