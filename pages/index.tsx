@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-
 import {
     Input,
     Image,
@@ -10,7 +8,6 @@ import {
     CircularProgress,
     Divider,
     Flex,
-    Button,
     InputGroup,
     InputLeftElement,
 } from "@chakra-ui/react";
@@ -24,8 +21,7 @@ import { BsCurrencyDollar, BsSearch } from "react-icons/bs";
 import { GiEarthAmerica } from "react-icons/gi";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
-
-export type Locale = "en" | "fr";
+import { Locale } from "../component/Navbar";
 
 type Seasons = {
     [key: string]: string;
@@ -180,20 +176,6 @@ export default function Activities(props: GetServerSideProps["props"]) {
     const [locale, setLocale] = useState(router.locale as Locale);
     const { t } = useTranslation("common");
 
-    function changeLocale(value: Locale) {
-        setLocale(value);
-        router.push(
-            {
-                pathname: router.pathname,
-                query: { ...router.query },
-            },
-            undefined,
-            {
-                locale: value,
-            }
-        );
-    }
-
     function paramHandler(param: string, value: string | null): void {
         setIsLoading(true);
 
@@ -248,26 +230,12 @@ export default function Activities(props: GetServerSideProps["props"]) {
                         fontSize="30px"
                         variant="md"
                         placeholder={t("searchActivity")}
-                        width="90%"
+                        width="30%"
                     />
                 </InputGroup>
-
-                <Box cursor="pointer" width="10%">
-                    {(["en", "fr"] as Locale[]).map((language: Locale) => (
-                        <Button
-                            key={language}
-                            ml="5px"
-                            onClick={() => changeLocale(language)}
-                            colorScheme="teal"
-                            variant={locale === language ? "solid" : "outline"}
-                        >
-                            {language.toUpperCase()}
-                        </Button>
-                    ))}
-                </Box>
             </Flex>
 
-            <Divider width="96%" m="0% 2% 20px 2% " />
+            <Divider width="30%" m="0% 2% 20px 2% " />
             <Box padding="10px 15px 10px 15px">
                 {Object.entries(seasons).map(([index, color]) => (
                     <Badge
