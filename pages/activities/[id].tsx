@@ -4,7 +4,7 @@ import { Box, Icon, Flex } from "@chakra-ui/react";
 import dynamic from "next/dynamic";
 import { BsArrowLeftSquare } from "react-icons/bs";
 import { useRouter } from "next/router";
-import { Locale } from "..";
+import { Locale } from "../../component/Navbar";
 
 type GetServerSideProps = {
     props: {
