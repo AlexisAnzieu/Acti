@@ -19,6 +19,7 @@ function Navbar() {
             undefined,
             {
                 locale: value,
+                scroll: false,
             }
         );
     };
