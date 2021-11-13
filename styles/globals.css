@@ -21,6 +21,7 @@ a {
 }
 
 .leaflet-container {
-    width: 30wh;
-    height: 30vh;
+    z-index: 50;
+    width: 100wh;
+    height: 90vh;
 }

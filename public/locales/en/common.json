@@ -8,5 +8,17 @@
     },
     "documentTitle": {
         "index": "Actï - activities in Quebec"
+    },
+    "carbonIcon": {
+        "free": "This activity has no direct ecological impact",
+        "low": "This activity has little ecological impact",
+        "medium": "This activity has a significant ecological impact",
+        "high": "This activity has a heavy ecological impact"
+    },
+    "priceIcon": {
+        "free": "This activity is free",
+        "low": "This activity cost less than 50$",
+        "medium": "This activity cost between 50$ et 150$",
+        "high": "This activity cost more than 150$"
     }
 }

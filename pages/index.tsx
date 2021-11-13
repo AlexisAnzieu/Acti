@@ -23,12 +23,14 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
 import { Locale } from "../component/Navbar";
 import Head from "next/head";
+import PriceIcon from "../component/PriceIcon";
+import CarbonIcon from "../component/CarbonIcon";
 
-type Seasons = {
+type SeasonsColor = {
     [key: string]: string;
 };
 
-const seasons: Seasons = {
+export const seasonsColor: SeasonsColor = {
     summer: "orange",
     spring: "green",
     winter: "teal",
@@ -91,7 +93,7 @@ function Activity(activity: definitions["activity"], locale: Locale) {
                                 key={s}
                                 borderRadius="full"
                                 px="2"
-                                colorScheme={seasons[s]}
+                                colorScheme={seasonsColor[s]}
                             >
                                 {t(`season.${s}`)}
                             </Badge>
@@ -110,34 +112,12 @@ function Activity(activity: definitions["activity"], locale: Locale) {
                     </Box>
 
                     <Box display="flex" mt="2" alignItems="center">
-                        {Array(3)
-                            .fill("")
-                            .map((_, i) => (
-                                <Icon
-                                    as={BsCurrencyDollar}
-                                    key={`${i}_price`}
-                                    color={
-                                        i < activity.price
-                                            ? "gray.600"
-                                            : "gray.200"
-                                    }
-                                />
-                            ))}
+                        <PriceIcon price={activity.price} />
                     </Box>
                     <Box display="flex" mt="2" alignItems="center">
-                        {Array(3)
-                            .fill("")
-                            .map((_, i) => (
-                                <Icon
-                                    key={`${i}_carbon`}
-                                    as={GiEarthAmerica}
-                                    color={
-                                        i < activity.carbon_footprint
-                                            ? "gray.600"
-                                            : "gray.200"
-                                    }
-                                />
-                            ))}
+                        <CarbonIcon
+                            carbon_footprint={activity.carbon_footprint}
+                        />
                     </Box>
                 </Box>
             </Box>
@@ -233,7 +213,7 @@ export default function Activities(props: GetServerSideProps["props"]) {
 
             <Divider width="30%" m="0% 2% 20px 2% " />
             <Box padding="10px 15px 10px 15px">
-                {Object.entries(seasons).map(([index, color]) => (
+                {Object.entries(seasonsColor).map(([index, color]) => (
                     <Badge
                         cursor="pointer"
                         variant={
