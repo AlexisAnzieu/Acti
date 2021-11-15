@@ -156,7 +156,11 @@ export interface definitions {
     city?: string;
     postal_code?: string;
     phone?: string;
-    social_media?: string;
+    social_media: {
+      facebook: string,
+      youtube: string,
+      instagram: string
+    };
     price: number;
     carbon_footprint: number;
     /**

@@ -1,4 +1,4 @@
-import { Box, Icon, Flex, Badge, Tooltip } from "@chakra-ui/react";
+import { Box, Icon, Flex, Badge } from "@chakra-ui/react";
 import { BsArrowLeftSquare } from "react-icons/bs";
 import { definitions } from "../../type/supabase";
 import { GetServerSidePropsContext } from "next";
@@ -11,6 +11,7 @@ import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import PriceIcon from "../../component/PriceIcon";
 import CarbonIcon from "../../component/CarbonIcon";
+import SocialMedia from "../../component/SocialMedia";
 
 type GetServerSideProps = {
     props: {
@@ -86,12 +87,17 @@ export default function Activity({ activity }: GetServerSideProps["props"]) {
                     <Box
                         pt="7px"
                         w="100%"
-                        h="100"
                         textAlign="center"
                         lineHeight="normal"
                         fontSize="20px"
                     >
                         {activity.description[locale]}
+                    </Box>
+
+                    <Box w="100%" textAlign="center">
+                        <SocialMedia
+                            social_media={activity.social_media}
+                        ></SocialMedia>
                     </Box>
                 </Box>
                 <Box width="50%">
