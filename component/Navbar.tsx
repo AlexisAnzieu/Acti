@@ -33,15 +33,15 @@ function Navbar() {
             top="0"
             zIndex="100"
         >
-            <Box w="50%" m="1%" fontSize="25px">
+            <Box w="40%" m="1%" fontSize="25px">
                 <ChakraLink as={Link} href="/">
                     ACTÏ
                 </ChakraLink>
             </Box>
-            <Box w="37%" pr="15px" m="1%" textAlign="right">
+            <Box w="40%" mr="15px" mt="1%" textAlign="right">
                 Qui somme nous?
             </Box>
-            <Box textAlign="right" cursor="pointer" width="10%" m="1%">
+            <Box textAlign="right" cursor="pointer" mt="1%" width="8%">
                 {(["en", "fr"] as Locale[]).map((language: Locale) => (
                     <Button
                         key={language}

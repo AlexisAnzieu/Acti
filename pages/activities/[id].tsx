@@ -13,6 +13,7 @@ import PriceIcon from "../../component/PriceIcon";
 import CarbonIcon from "../../component/CarbonIcon";
 import SocialMedia from "../../component/SocialMedia";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
+import { useMediaQuery } from "react-responsive";
 
 type GetServerSideProps = {
     props: {
@@ -24,6 +25,7 @@ export default function Activity({ activity }: GetServerSideProps["props"]) {
     const router = useRouter();
     const locale = router.locale as Locale;
     const { t } = useTranslation("common");
+    const isTabletOrMobile = useMediaQuery({ maxWidth: 1224 });
 
     const MapWithNoSSR = dynamic(() => import("../../component/Map"), {
         ssr: false,
@@ -34,10 +36,10 @@ export default function Activity({ activity }: GetServerSideProps["props"]) {
             <Head>
                 <title>Acti - {activity.name[locale]}</title>
             </Head>
-            <Flex>
-                <Box width="50%" p="2%">
+            <Flex display={isTabletOrMobile ? "inline" : "flex"}>
+                <Box width="100%" p="2%">
                     <Flex>
-                        <Box w="10%">
+                        <Box w="9%">
                             {" "}
                             <Icon
                                 cursor="pointer"
@@ -136,8 +138,7 @@ export default function Activity({ activity }: GetServerSideProps["props"]) {
                         ></SocialMedia>
                     </Box>
                 </Box>
-                <Box width="50%">
-                    {" "}
+                <Box width="100%">
                     <MapWithNoSSR location={activity.location} />
                 </Box>
             </Flex>
