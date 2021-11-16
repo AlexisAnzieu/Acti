@@ -1,4 +1,4 @@
-import { Box, Icon, Flex, Badge } from "@chakra-ui/react";
+import { Box, Icon, Flex, Badge, Link as ChakraLink } from "@chakra-ui/react";
 import { BsArrowLeftSquare } from "react-icons/bs";
 import { definitions } from "../../type/supabase";
 import { GetServerSidePropsContext } from "next";
@@ -12,6 +12,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import PriceIcon from "../../component/PriceIcon";
 import CarbonIcon from "../../component/CarbonIcon";
 import SocialMedia from "../../component/SocialMedia";
+import { ExternalLinkIcon } from "@chakra-ui/icons";
 
 type GetServerSideProps = {
     props: {
@@ -54,6 +55,17 @@ export default function Activity({ activity }: GetServerSideProps["props"]) {
                             fontSize="30px"
                         >
                             {activity.name[locale]}
+                            <Box fontSize="20px">
+                                {t("by")}{" "}
+                                <ChakraLink
+                                    href={activity.website}
+                                    isExternal
+                                    color="teal"
+                                >
+                                    {activity.compagny}{" "}
+                                    <ExternalLinkIcon mx="2px" />
+                                </ChakraLink>
+                            </Box>
                         </Box>
                     </Flex>
 
@@ -92,6 +104,30 @@ export default function Activity({ activity }: GetServerSideProps["props"]) {
                         fontSize="20px"
                     >
                         {activity.description[locale]}
+                    </Box>
+
+                    <Box
+                        fontSize="20px"
+                        w="100%"
+                        textAlign="center"
+                        lineHeight="normal"
+                        pt="40px"
+                    >
+                        <ChakraLink
+                            href={"mailto:" + activity.email}
+                            isExternal
+                            color="teal"
+                        >
+                            {activity.email}
+                            <ExternalLinkIcon mx="2px" />
+                        </ChakraLink>
+                        <br />
+                        <br />
+                        {activity.address}
+                        <br />
+                        {activity.postal_code}
+                        <br />
+                        {activity.city}
                     </Box>
 
                     <Box w="100%" textAlign="center">

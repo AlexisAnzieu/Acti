@@ -32,7 +32,7 @@ type SeasonsColor = {
 export const seasonsColor: SeasonsColor = {
     summer: "orange",
     spring: "green",
-    winter: "teal",
+    winter: "blue",
     autumn: "red",
 };
 

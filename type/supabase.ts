@@ -17,7 +17,6 @@ export interface paths {
       parameters: {
         query: {
           name?: parameters["rowFilter.activity.name"];
-          description?: parameters["rowFilter.activity.description"];
           compagny?: parameters["rowFilter.activity.compagny"];
           picture_url?: parameters["rowFilter.activity.picture_url"];
           address?: parameters["rowFilter.activity.address"];
@@ -30,6 +29,9 @@ export interface paths {
           id?: parameters["rowFilter.activity.id"];
           seasons?: parameters["rowFilter.activity.seasons"];
           location?: parameters["rowFilter.activity.location"];
+          description?: parameters["rowFilter.activity.description"];
+          email?: parameters["rowFilter.activity.email"];
+          website?: parameters["rowFilter.activity.website"];
           /** Filtering Columns */
           select?: parameters["select"];
           /** Ordering */
@@ -81,7 +83,6 @@ export interface paths {
       parameters: {
         query: {
           name?: parameters["rowFilter.activity.name"];
-          description?: parameters["rowFilter.activity.description"];
           compagny?: parameters["rowFilter.activity.compagny"];
           picture_url?: parameters["rowFilter.activity.picture_url"];
           address?: parameters["rowFilter.activity.address"];
@@ -94,6 +95,9 @@ export interface paths {
           id?: parameters["rowFilter.activity.id"];
           seasons?: parameters["rowFilter.activity.seasons"];
           location?: parameters["rowFilter.activity.location"];
+          description?: parameters["rowFilter.activity.description"];
+          email?: parameters["rowFilter.activity.email"];
+          website?: parameters["rowFilter.activity.website"];
         };
         header: {
           /** Preference */
@@ -109,7 +113,6 @@ export interface paths {
       parameters: {
         query: {
           name?: parameters["rowFilter.activity.name"];
-          description?: parameters["rowFilter.activity.description"];
           compagny?: parameters["rowFilter.activity.compagny"];
           picture_url?: parameters["rowFilter.activity.picture_url"];
           address?: parameters["rowFilter.activity.address"];
@@ -122,6 +125,9 @@ export interface paths {
           id?: parameters["rowFilter.activity.id"];
           seasons?: parameters["rowFilter.activity.seasons"];
           location?: parameters["rowFilter.activity.location"];
+          description?: parameters["rowFilter.activity.description"];
+          email?: parameters["rowFilter.activity.email"];
+          website?: parameters["rowFilter.activity.website"];
         };
         body: {
           /** activity */
@@ -170,6 +176,8 @@ export interface definitions {
     id: string;
     seasons?: unknown[];
     location?: unknown[];
+    email?: string;
+    website?: string;
   };
 }
 
@@ -197,7 +205,6 @@ export interface parameters {
   /** activity */
   "body.activity": definitions["activity"];
   "rowFilter.activity.name": string;
-  "rowFilter.activity.description": string;
   "rowFilter.activity.compagny": string;
   "rowFilter.activity.picture_url": string;
   "rowFilter.activity.address": string;
@@ -210,6 +217,9 @@ export interface parameters {
   "rowFilter.activity.id": string;
   "rowFilter.activity.seasons": string;
   "rowFilter.activity.location": string;
+  "rowFilter.activity.description": string;
+  "rowFilter.activity.email": string;
+  "rowFilter.activity.website": string;
 }
 
 export interface operations { }

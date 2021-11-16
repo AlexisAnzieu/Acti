@@ -35,11 +35,13 @@ const SocialMedia = ({
 }: Pick<definitions["activity"], "social_media">) => {
     return (
         <Box>
-            {Object.entries(social_media).map(([media, url]) => (
-                <ChakraLink as={Link} href={url}>
-                    {buildMediaButton(media)}
-                </ChakraLink>
-            ))}
+            {Object.entries(social_media)
+                .filter(([_, url]) => url)
+                .map(([media, url]) => (
+                    <ChakraLink as={Link} href={url}>
+                        {buildMediaButton(media)}
+                    </ChakraLink>
+                ))}
         </Box>
     );
 };
