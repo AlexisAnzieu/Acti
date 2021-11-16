@@ -10,6 +10,7 @@ import {
     Flex,
     InputGroup,
     InputLeftElement,
+    useMediaQuery,
 } from "@chakra-ui/react";
 import "atropos/css";
 import { definitions } from "../type/supabase";
@@ -147,6 +148,7 @@ export default function Activities(props: GetServerSideProps["props"]) {
     const router = useRouter();
     const [locale] = useState(router.locale as Locale);
     const { t } = useTranslation("common");
+    const [isTabletOrMobile] = useMediaQuery("(max-width: 1224px)");
 
     function paramHandler(param: string, value: string | null): void {
         setIsLoading(true);
@@ -205,12 +207,15 @@ export default function Activities(props: GetServerSideProps["props"]) {
                         fontSize="30px"
                         variant="md"
                         placeholder={t("searchActivity")}
-                        width="30%"
+                        width={isTabletOrMobile ? "100%" : "30%"}
                     />
                 </InputGroup>
             </Flex>
 
-            <Divider width="30%" m="0% 2% 20px 2% " />
+            <Divider
+                width={isTabletOrMobile ? "100%" : "30%"}
+                m="0% 2% 20px 2% "
+            />
             <Box padding="10px 15px 10px 15px">
                 {Object.entries(seasonsColor).map(([index, color]) => (
                     <Badge

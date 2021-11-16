@@ -1,4 +1,11 @@
-import { Box, Icon, Flex, Badge, Link as ChakraLink } from "@chakra-ui/react";
+import {
+    Box,
+    Icon,
+    Flex,
+    Badge,
+    Link as ChakraLink,
+    useMediaQuery,
+} from "@chakra-ui/react";
 import { BsArrowLeftSquare } from "react-icons/bs";
 import { definitions } from "../../type/supabase";
 import { GetServerSidePropsContext } from "next";
@@ -13,7 +20,6 @@ import PriceIcon from "../../component/PriceIcon";
 import CarbonIcon from "../../component/CarbonIcon";
 import SocialMedia from "../../component/SocialMedia";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
-import { useMediaQuery } from "react-responsive";
 
 type GetServerSideProps = {
     props: {
@@ -25,7 +31,7 @@ export default function Activity({ activity }: GetServerSideProps["props"]) {
     const router = useRouter();
     const locale = router.locale as Locale;
     const { t } = useTranslation("common");
-    const isTabletOrMobile = useMediaQuery({ maxWidth: 1224 });
+    const [isTabletOrMobile] = useMediaQuery("(max-width: 1224px)");
 
     const MapWithNoSSR = dynamic(() => import("../../component/Map"), {
         ssr: false,
@@ -115,16 +121,21 @@ export default function Activity({ activity }: GetServerSideProps["props"]) {
                         lineHeight="normal"
                         pt="40px"
                     >
-                        <ChakraLink
-                            href={"mailto:" + activity.email}
-                            isExternal
-                            color="teal"
-                        >
-                            {activity.email}
-                            <ExternalLinkIcon mx="2px" />
-                        </ChakraLink>
-                        <br />
-                        <br />
+                        {activity.email && (
+                            <Box>
+                                <ChakraLink
+                                    href={"mailto:" + activity.email}
+                                    isExternal
+                                    color="teal"
+                                >
+                                    {activity.email}
+                                    <ExternalLinkIcon mx="2px" />
+                                </ChakraLink>
+                                <br />
+                                <br />
+                            </Box>
+                        )}
+
                         {activity.address}
                         <br />
                         {activity.postal_code}
