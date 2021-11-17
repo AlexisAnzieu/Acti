@@ -81,7 +81,7 @@ export default function Activity({ activity }: GetServerSideProps["props"]) {
                         <Box textAlign="center" w="30%">
                             {(activity.seasons as string[]).map((s: string) => (
                                 <Badge
-                                    mr="1"
+                                    m="1"
                                     variant="solid"
                                     key={s}
                                     borderRadius="full"

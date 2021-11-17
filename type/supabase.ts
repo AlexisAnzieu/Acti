@@ -32,6 +32,7 @@ export interface paths {
           description?: parameters["rowFilter.activity.description"];
           email?: parameters["rowFilter.activity.email"];
           website?: parameters["rowFilter.activity.website"];
+          created_at?: parameters["rowFilter.activity.created_at"];
           /** Filtering Columns */
           select?: parameters["select"];
           /** Ordering */
@@ -98,6 +99,7 @@ export interface paths {
           description?: parameters["rowFilter.activity.description"];
           email?: parameters["rowFilter.activity.email"];
           website?: parameters["rowFilter.activity.website"];
+          created_at?: parameters["rowFilter.activity.created_at"];
         };
         header: {
           /** Preference */
@@ -128,6 +130,7 @@ export interface paths {
           description?: parameters["rowFilter.activity.description"];
           email?: parameters["rowFilter.activity.email"];
           website?: parameters["rowFilter.activity.website"];
+          created_at?: parameters["rowFilter.activity.created_at"];
         };
         body: {
           /** activity */
@@ -178,6 +181,7 @@ export interface definitions {
     location?: unknown[];
     email?: string;
     website?: string;
+    created_at?: string;
   };
 }
 
@@ -220,6 +224,7 @@ export interface parameters {
   "rowFilter.activity.description": string;
   "rowFilter.activity.email": string;
   "rowFilter.activity.website": string;
+  "rowFilter.activity.created_at": string;
 }
 
 export interface operations { }

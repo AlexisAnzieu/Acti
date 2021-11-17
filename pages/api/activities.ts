@@ -16,7 +16,7 @@ export default async function (
 ) {
 	const { query, id, season, locale } = req.query as params;
 	let result;
-	let supabaseBase = supabase.from<definitions["activity"]>("activity").select("*");
+	let supabaseBase = supabase.from<definitions["activity"]>("activity").select("*").order('created_at', { ascending: false });
 	if (id) {
 		result = await supabaseBase.eq('id', id).single();
 	} else if (query || season) {
