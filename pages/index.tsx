@@ -10,7 +10,6 @@ import {
     Flex,
     InputGroup,
     InputLeftElement,
-    useMediaQuery,
 } from "@chakra-ui/react";
 import "atropos/css";
 import { definitions } from "../type/supabase";
@@ -63,7 +62,7 @@ function Activity(activity: definitions["activity"], locale: Locale) {
                 boxShadow="lg"
                 margin="5px"
                 display="inline-block"
-                maxW="sm"
+                maxW="300px"
                 borderWidth="1px"
                 borderRadius="lg"
                 overflow="hidden"
@@ -92,7 +91,7 @@ function Activity(activity: definitions["activity"], locale: Locale) {
                                 variant="solid"
                                 key={s}
                                 borderRadius="full"
-                                px="2"
+                                px="1"
                                 colorScheme={seasonsColor[s]}
                             >
                                 {t(`season.${s}`)}
@@ -148,8 +147,6 @@ export default function Activities(props: GetServerSideProps["props"]) {
     const router = useRouter();
     const [locale] = useState(router.locale as Locale);
     const { t } = useTranslation("common");
-    const [isTabletOrMobile] = useMediaQuery("(max-width: 1224px)");
-
     function paramHandler(param: string, value: string | null): void {
         setIsLoading(true);
 
@@ -202,57 +199,62 @@ export default function Activities(props: GetServerSideProps["props"]) {
                         }
                     />
                     <Input
+                        className="search-bar"
                         onChange={(e) => paramHandler("query", e.target.value)}
                         defaultValue={queryParam.query}
                         fontSize="30px"
                         variant="md"
                         placeholder={t("searchActivity")}
-                        width={isTabletOrMobile ? "100%" : "30%"}
                     />
                 </InputGroup>
             </Flex>
 
-            <Divider
-                width={isTabletOrMobile ? "100%" : "30%"}
-                m="0% 2% 20px 2% "
-            />
-            <Box padding="10px 15px 10px 15px">
-                {Object.entries(seasonsColor).map(([index, color]) => (
-                    <Badge
-                        cursor="pointer"
-                        variant={
-                            queryParam.season === index ? "solid" : "outline"
-                        }
-                        id={index}
-                        key={index}
-                        onClick={(e) =>
-                            paramHandler(
-                                "season",
-                                (e.target as HTMLTextAreaElement).id
-                            )
-                        }
-                        mr="2"
-                        mb="1"
-                        fontSize="1.5em"
-                        borderRadius="full"
-                        px="6"
-                        colorScheme={color}
-                    >
-                        {t(`season.${index}`)}
-                    </Badge>
-                ))}
-            </Box>
-            <Box h="100vh" padding="15px">
-                {isLoading ? (
-                    <Box textAlign="center">
-                        <CircularProgress isIndeterminate color="green.300" />
-                    </Box>
-                ) : (
-                    <ActivityList
-                        activities={activities}
-                        locale={locale as Locale}
-                    />
-                )}
+            <Divider className="search-bar" width="30%" m="0% 2% 20px 2% " />
+
+            <Box className="activity-list">
+                <Box padding="10px 15px 10px 15px">
+                    {Object.entries(seasonsColor).map(([index, color]) => (
+                        <Badge
+                            cursor="pointer"
+                            variant={
+                                queryParam.season === index
+                                    ? "solid"
+                                    : "outline"
+                            }
+                            id={index}
+                            key={index}
+                            onClick={(e) =>
+                                paramHandler(
+                                    "season",
+                                    (e.target as HTMLTextAreaElement).id
+                                )
+                            }
+                            mr="2"
+                            mb="1"
+                            fontSize="1.5em"
+                            borderRadius="full"
+                            px="6"
+                            colorScheme={color}
+                        >
+                            {t(`season.${index}`)}
+                        </Badge>
+                    ))}
+                </Box>
+                <Box h="100vh" padding="15px">
+                    {isLoading ? (
+                        <Box textAlign="center">
+                            <CircularProgress
+                                isIndeterminate
+                                color="green.300"
+                            />
+                        </Box>
+                    ) : (
+                        <ActivityList
+                            activities={activities}
+                            locale={locale as Locale}
+                        />
+                    )}
+                </Box>
             </Box>
         </>
     );

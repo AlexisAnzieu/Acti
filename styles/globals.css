@@ -15,13 +15,34 @@ a {
     box-sizing: border-box;
 }
 
-#searchBar {
-    margin: 30px 5px 20px 5px;
-    font-size: 50px;
-}
-
 .leaflet-container {
     z-index: 50;
     width: 100wh;
     height: 90vh;
+}
+
+.search-bar {
+    width: 30% !important;
+}
+
+.activity-flex {
+    display: flex !important;
+}
+
+@media screen and (max-width: 1000px) {
+    .activity-flex {
+        display: inline !important;
+    }
+
+    .activity-list {
+        text-align: center !important;
+    }
+
+    .search-bar {
+        width: 100% !important;
+    }
+
+    .leaflet-container {
+        height: 30vh;
+    }
 }

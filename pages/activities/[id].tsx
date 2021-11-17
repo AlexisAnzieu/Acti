@@ -1,11 +1,4 @@
-import {
-    Box,
-    Icon,
-    Flex,
-    Badge,
-    Link as ChakraLink,
-    useMediaQuery,
-} from "@chakra-ui/react";
+import { Box, Icon, Flex, Badge, Link as ChakraLink } from "@chakra-ui/react";
 import { BsArrowLeftSquare } from "react-icons/bs";
 import { definitions } from "../../type/supabase";
 import { GetServerSidePropsContext } from "next";
@@ -31,8 +24,6 @@ export default function Activity({ activity }: GetServerSideProps["props"]) {
     const router = useRouter();
     const locale = router.locale as Locale;
     const { t } = useTranslation("common");
-    const [isTabletOrMobile] = useMediaQuery("(max-width: 1224px)");
-
     const MapWithNoSSR = dynamic(() => import("../../component/Map"), {
         ssr: false,
     });
@@ -42,7 +33,7 @@ export default function Activity({ activity }: GetServerSideProps["props"]) {
             <Head>
                 <title>Acti - {activity.name[locale]}</title>
             </Head>
-            <Flex display={isTabletOrMobile ? "inline" : "flex"}>
+            <Flex className="activity-flex">
                 <Box width="100%" p="2%">
                     <Flex>
                         <Box w="9%">
