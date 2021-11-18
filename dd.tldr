@@ -1,0 +1,158 @@
+{
+  "document": {
+    "id": "doc",
+    "name": "New Document",
+    "version": 13,
+    "pages": {
+      "page": {
+        "id": "page",
+        "name": "Page 1",
+        "childIndex": 1,
+        "shapes": {
+          "937851b8-aa51-4f1b-2056-d39428b80e1d": {
+            "id": "937851b8-aa51-4f1b-2056-d39428b80e1d",
+            "type": "rectangle",
+            "name": "Rectangle",
+            "parentId": "page",
+            "childIndex": 1,
+            "point": [
+              304.11,
+              157.31
+            ],
+            "size": [
+              106.21,
+              131.08
+            ],
+            "rotation": 0,
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1
+            }
+          },
+          "f5755b56-08d8-4d3c-09ee-988ffc980507": {
+            "id": "f5755b56-08d8-4d3c-09ee-988ffc980507",
+            "type": "rectangle",
+            "name": "Rectangle",
+            "parentId": "page",
+            "childIndex": 2,
+            "point": [
+              659.69,
+              271.04
+            ],
+            "size": [
+              78.96,
+              95.69
+            ],
+            "rotation": 0,
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1
+            }
+          },
+          "1384d092-3a85-40cf-1d08-972cc736edf2": {
+            "id": "1384d092-3a85-40cf-1d08-972cc736edf2",
+            "type": "arrow",
+            "name": "Arrow",
+            "parentId": "page",
+            "childIndex": 3,
+            "point": [
+              426.32,
+              242.26
+            ],
+            "rotation": 0,
+            "bend": 0,
+            "handles": {
+              "start": {
+                "id": "start",
+                "index": 0,
+                "point": [
+                  0,
+                  0
+                ],
+                "canBind": true,
+                "bindingId": "c5f4b7b5-104e-49fd-32ed-847f059bc7f9"
+              },
+              "end": {
+                "id": "end",
+                "index": 1,
+                "point": [
+                  217.37,
+                  61.04
+                ],
+                "canBind": true,
+                "bindingId": "932b9a94-3dea-4025-0589-8c17672860f0"
+              },
+              "bend": {
+                "id": "bend",
+                "index": 2,
+                "point": [
+                  108.69,
+                  30.52
+                ]
+              }
+            },
+            "decorations": {
+              "end": "arrow"
+            },
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1
+            }
+          }
+        },
+        "bindings": {
+          "c5f4b7b5-104e-49fd-32ed-847f059bc7f9": {
+            "id": "c5f4b7b5-104e-49fd-32ed-847f059bc7f9",
+            "type": "arrow",
+            "fromId": "1384d092-3a85-40cf-1d08-972cc736edf2",
+            "toId": "937851b8-aa51-4f1b-2056-d39428b80e1d",
+            "handleId": "start",
+            "point": [
+              0.5,
+              0.5
+            ],
+            "distance": 16
+          },
+          "932b9a94-3dea-4025-0589-8c17672860f0": {
+            "id": "932b9a94-3dea-4025-0589-8c17672860f0",
+            "type": "arrow",
+            "fromId": "1384d092-3a85-40cf-1d08-972cc736edf2",
+            "toId": "f5755b56-08d8-4d3c-09ee-988ffc980507",
+            "handleId": "end",
+            "point": [
+              0.5,
+              0.5
+            ],
+            "distance": 16
+          }
+        }
+      }
+    },
+    "pageStates": {
+      "page": {
+        "id": "page",
+        "selectedIds": [
+          "937851b8-aa51-4f1b-2056-d39428b80e1d"
+        ],
+        "camera": {
+          "point": [
+            0,
+            0
+          ],
+          "zoom": 1
+        },
+        "editingId": null
+      }
+    }
+  },
+  "assets": {}
+}
