@@ -1,54 +1,20 @@
-import {
-    Input,
-    Image,
-    Box,
-    Badge,
-    Link as ChakraLink,
-    Icon,
-    CircularProgress,
-    Divider,
-    Flex,
-    InputGroup,
-    InputLeftElement,
-} from "@chakra-ui/react";
+import { Box, Icon } from "@chakra-ui/react";
 import "atropos/css";
-import { definitions } from "../type/supabase";
 import { GetServerSidePropsContext } from "next";
-import React, { useState } from "react";
-import { useRouter } from "next/dist/client/router";
+import React from "react";
 import Link from "next/link";
-import { BsViewList, BsMap } from "react-icons/bs";
+import { BsViewList } from "react-icons/bs";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
 import { Locale } from "../component/NavbarComponent";
 import Head from "next/head";
 import dynamic from "next/dynamic";
-
-type SeasonsColor = {
-    [key: string]: string;
-};
-
-export const seasonsColor: SeasonsColor = {
-    summer: "orange",
-    spring: "green",
-    winter: "blue",
-    autumn: "red",
-};
-
-type QueryParam = {
-    query?: string;
-    season?: string;
-};
-
-type GetServerSideProps = {
-    props: {
-        activities: definitions["activity"][] | null;
-        queryParam: QueryParam;
-    };
-};
+import { GetServerSideProps, searchApi } from ".";
+import { useRouter } from "next/router";
 
 export default function Map(props: GetServerSideProps["props"]) {
     const { t } = useTranslation("common");
+    const router = useRouter();
     const MapWithNoSSR = dynamic(() => import("../component/MapComponent"), {
         ssr: false,
     });
@@ -56,7 +22,7 @@ export default function Map(props: GetServerSideProps["props"]) {
     return (
         <>
             <Head>
-                <title>{t("documentTitle.index")}</title>
+                <title>{t("documentTitle.map")}</title>
             </Head>
 
             <Box width="100%">
@@ -64,25 +30,17 @@ export default function Map(props: GetServerSideProps["props"]) {
             </Box>
 
             <Box className="floating-button">
-                <ChakraLink as={Link} href="/">
-                    <Icon h="1.5em" as={BsViewList} />
-                </ChakraLink>
+                <Link
+                    href={{
+                        pathname: "/",
+                        query: router.query,
+                    }}
+                >
+                    <Icon h="1.8em" as={BsViewList} />
+                </Link>
             </Box>
         </>
     );
-}
-
-export function searchApi(queryParam: QueryParam, locale: Locale): string {
-    const host = process.env.NEXT_PUBLIC_BASE_URL;
-    const apiUrl = new URL(`${host}/api/activities`);
-    const queryParamLocaleAdded = {
-        ...queryParam,
-        locale,
-    };
-    Object.entries(queryParamLocaleAdded).forEach(([key, value]) =>
-        apiUrl.searchParams.append(key, value)
-    );
-    return apiUrl.href;
 }
 
 export async function getServerSideProps(

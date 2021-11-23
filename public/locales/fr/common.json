@@ -7,7 +7,8 @@
         "autumn": "automne"
     },
     "documentTitle": {
-        "index": "Actï - activités au Quebec"
+        "index": "Actï - activités au Quebec",
+        "map": "Actï - Carte"
     },
     "carbonIcon": {
         "free": "Cette activité est sans impact écologique directe",

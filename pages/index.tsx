@@ -36,12 +36,12 @@ export const seasonsColor: SeasonsColor = {
     autumn: "red",
 };
 
-type QueryParam = {
+export type QueryParam = {
     query?: string;
     season?: string;
 };
 
-type GetServerSideProps = {
+export type GetServerSideProps = {
     props: {
         activities: definitions["activity"][] | null;
         queryParam: QueryParam;
@@ -257,9 +257,14 @@ export default function Activities(props: GetServerSideProps["props"]) {
                 </Box>
             </Box>
             <Box className="floating-button">
-                <ChakraLink as={Link} href="/map">
-                    <Icon h="1.5em" as={BsMap} />
-                </ChakraLink>
+                <Link
+                    href={{
+                        pathname: "/map",
+                        query: router.query,
+                    }}
+                >
+                    <Icon h="1.8em" as={BsMap} />
+                </Link>
             </Box>
         </>
     );

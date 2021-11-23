@@ -1,20 +1,46 @@
-import { MapContainer, TileLayer, Marker } from "react-leaflet";
+import { useRouter } from "next/router";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { definitions } from "../type/supabase";
+import { Locale } from "./NavbarComponent";
+import { Heading, Text, Flex, Box } from "@chakra-ui/react";
+import PriceIcon from "../component/PriceIconComponent";
+import CarbonIcon from "../component/CarbonIconComponent";
 
 const MONTREAL_LOCATION = { lat: 45.524184, lng: -73.581435 };
 
 const Markers = (props: any) => {
+    const router = useRouter();
     return props.activities.map((activity: definitions["activity"]) => (
         <Marker
             key={`marker-${activity.name.en}`}
             position={activity.location as any}
-        />
+        >
+            <Popup>
+                <Heading size="lg">
+                    {activity.name[router.locale as Locale]}
+                </Heading>
+                <Text fontSize="sm">
+                    {activity.description[router.locale as Locale]}
+                    <Flex mt="20px">
+                        <Box textAlign="center" w="50%">
+                            <PriceIcon price={activity.price} />
+                        </Box>
+
+                        <Box textAlign="center" w="50%">
+                            <CarbonIcon
+                                carbon_footprint={activity.carbon_footprint}
+                            />
+                        </Box>
+                    </Flex>
+                </Text>
+            </Popup>
+        </Marker>
     ));
 };
 
 const Map = (props: any) => {
     const isDetailPage = props.activities.length === 1;
-    const center = isDetailPage
+    const centerLocation = isDetailPage
         ? props.activities[0].location
         : MONTREAL_LOCATION;
 
@@ -22,7 +48,7 @@ const Map = (props: any) => {
     return (
         <MapContainer
             className={className}
-            center={center}
+            center={centerLocation}
             zoom={6}
             scrollWheelZoom={true}
         >
