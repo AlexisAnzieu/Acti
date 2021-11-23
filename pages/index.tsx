@@ -258,7 +258,7 @@ export default function Activities(props: GetServerSideProps["props"]) {
             </Box>
             <Box className="floating-button">
                 <ChakraLink as={Link} href="/map">
-                    <Icon as={BsMap} />
+                    <Icon h="1.5em" as={BsMap} />
                 </ChakraLink>
             </Box>
         </>

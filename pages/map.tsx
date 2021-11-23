@@ -65,7 +65,7 @@ export default function Map(props: GetServerSideProps["props"]) {
 
             <Box className="floating-button">
                 <ChakraLink as={Link} href="/">
-                    <Icon as={BsViewList} />
+                    <Icon h="1.5em" as={BsViewList} />
                 </ChakraLink>
             </Box>
         </>
