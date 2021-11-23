@@ -2,17 +2,18 @@ import { Box, Icon, Flex, Badge, Link as ChakraLink } from "@chakra-ui/react";
 import { BsArrowLeftSquare } from "react-icons/bs";
 import { definitions } from "../../type/supabase";
 import { GetServerSidePropsContext } from "next";
-import { Locale } from "../../component/Navbar";
+import { Locale } from "../../component/NavbarComponent";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
 import Head from "next/head";
 import { seasonsColor } from "..";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import PriceIcon from "../../component/PriceIcon";
-import CarbonIcon from "../../component/CarbonIcon";
-import SocialMedia from "../../component/SocialMedia";
+import PriceIcon from "../../component/PriceIconComponent";
+import CarbonIcon from "../../component/CarbonIconComponent";
+import SocialMedia from "../../component/SocialMediaComponent";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
+import _ from "lodash";
 
 type GetServerSideProps = {
     props: {
@@ -24,7 +25,7 @@ export default function Activity({ activity }: GetServerSideProps["props"]) {
     const router = useRouter();
     const locale = router.locale as Locale;
     const { t } = useTranslation("common");
-    const MapWithNoSSR = dynamic(() => import("../../component/Map"), {
+    const MapWithNoSSR = dynamic(() => import("../../component/MapComponent"), {
         ssr: false,
     });
 
@@ -141,11 +142,11 @@ export default function Activity({ activity }: GetServerSideProps["props"]) {
                     </Box>
                 </Box>
                 <Box width="100%">
-                    <MapWithNoSSR location={activity.location} />
+                    <MapWithNoSSR
+                        activities={[_.pick(activity, ["location", "name"])]}
+                    />
                 </Box>
             </Flex>
-
-            <Box p="2% 5% 0 5%"></Box>
         </Box>
     );
 }

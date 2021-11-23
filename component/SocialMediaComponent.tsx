@@ -1,6 +1,6 @@
 import { definitions } from "../type/supabase";
 import { Icon, Box, Link as ChakraLink } from "@chakra-ui/react";
-import { BsInstagram, BsYoutube, BsFacebook, BsEnvelope } from "react-icons/bs";
+import { BsInstagram, BsYoutube, BsFacebook } from "react-icons/bs";
 import Link from "next/link";
 
 const buildMediaButton = (media: string) => {
@@ -38,7 +38,11 @@ const SocialMedia = ({
             {Object.entries(social_media)
                 .filter(([_, url]) => url)
                 .map(([media, url]) => (
-                    <ChakraLink as={Link} href={url}>
+                    <ChakraLink
+                        key={`${media}-socialLink`}
+                        as={Link}
+                        href={url}
+                    >
                         {buildMediaButton(media)}
                     </ChakraLink>
                 ))}

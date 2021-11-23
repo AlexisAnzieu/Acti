@@ -17,13 +17,13 @@ import { GetServerSidePropsContext } from "next";
 import React, { useState } from "react";
 import { useRouter } from "next/dist/client/router";
 import Link from "next/link";
-import { BsSearch } from "react-icons/bs";
+import { BsSearch, BsMap } from "react-icons/bs";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
-import { Locale } from "../component/Navbar";
+import { Locale } from "../component/NavbarComponent";
 import Head from "next/head";
-import PriceIcon from "../component/PriceIcon";
-import CarbonIcon from "../component/CarbonIcon";
+import PriceIcon from "../component/PriceIconComponent";
+import CarbonIcon from "../component/CarbonIconComponent";
 
 type SeasonsColor = {
     [key: string]: string;
@@ -186,7 +186,7 @@ export default function Activities(props: GetServerSideProps["props"]) {
             <Head>
                 <title>{t("documentTitle.index")}</title>
             </Head>
-            <Flex margin="30px 5px 10px 10px" w="100%">
+            <Flex margin="30px 0px 10px 10px">
                 <InputGroup>
                     <InputLeftElement
                         pointerEvents="none"
@@ -209,7 +209,7 @@ export default function Activities(props: GetServerSideProps["props"]) {
                 </InputGroup>
             </Flex>
 
-            <Divider className="search-bar" width="30%" m="0% 2% 20px 2% " />
+            <Divider className="search-bar" m="0% 2% 20px 2% " />
 
             <Box className="activity-list">
                 <Box padding="10px 15px 10px 15px">
@@ -256,11 +256,16 @@ export default function Activities(props: GetServerSideProps["props"]) {
                     )}
                 </Box>
             </Box>
+            <Box className="floating-button">
+                <ChakraLink as={Link} href="/map">
+                    <Icon as={BsMap} />
+                </ChakraLink>
+            </Box>
         </>
     );
 }
 
-function searchApi(queryParam: QueryParam, locale: Locale): string {
+export function searchApi(queryParam: QueryParam, locale: Locale): string {
     const host = process.env.NEXT_PUBLIC_BASE_URL;
     const apiUrl = new URL(`${host}/api/activities`);
     const queryParamLocaleAdded = {

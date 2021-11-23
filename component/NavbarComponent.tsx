@@ -1,4 +1,11 @@
-import { Box, Flex, Button, Link as ChakraLink } from "@chakra-ui/react";
+import {
+    Box,
+    Flex,
+    Button,
+    Link as ChakraLink,
+    Center,
+    Spacer,
+} from "@chakra-ui/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
@@ -32,16 +39,16 @@ function Navbar() {
             w="100%"
             top="0"
             zIndex="100"
+            h="60px"
         >
-            <Box w="40%" m="1%" fontSize="25px">
+            <Center fontSize="25px" pl="10px">
                 <ChakraLink as={Link} href="/">
                     ACTÏ
                 </ChakraLink>
-            </Box>
-            <Box w="40%" mr="15px" mt="1%" textAlign="right">
-                Qui somme nous?
-            </Box>
-            <Box textAlign="right" cursor="pointer" mt="1%" width="8%">
+            </Center>
+            <Spacer />
+            <Center w="150px">Qui somme nous?</Center>
+            <Center cursor="pointer" mr="10px">
                 {(["en", "fr"] as Locale[]).map((language: Locale) => (
                     <Button
                         key={language}
@@ -53,7 +60,7 @@ function Navbar() {
                         {language.toUpperCase()}
                     </Button>
                 ))}
-            </Box>
+            </Center>
         </Flex>
     );
 }

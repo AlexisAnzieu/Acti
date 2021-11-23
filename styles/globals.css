@@ -18,7 +18,7 @@ a {
 .leaflet-container {
     z-index: 50;
     width: 100wh;
-    height: 90vh;
+    height: 95vh;
 }
 
 .search-bar {
@@ -29,7 +29,29 @@ a {
     display: flex !important;
 }
 
+.floating-button {
+    cursor: pointer;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 90px;
+    height: 90px;
+    font-size: 50px;
+    background-color: teal;
+    color: #fff;
+    border-radius: 50px;
+    text-align: center;
+    box-shadow: 2px 2px 3px #999;
+    z-index: 100;
+}
+
 @media screen and (max-width: 1000px) {
+    .floating-button {
+        width: 50px;
+        height: 50px;
+        font-size: 28px;
+    }
+
     .activity-flex {
         display: inline !important;
     }
@@ -39,10 +61,13 @@ a {
     }
 
     .search-bar {
-        width: 100% !important;
+        width: 90% !important;
     }
 
-    .leaflet-container {
-        height: 30vh;
+    .detail-map {
+        height: 30vh !important;
+    }
+    .map {
+        height: 110vh !important;
     }
 }
