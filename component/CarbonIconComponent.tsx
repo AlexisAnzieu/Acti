@@ -30,6 +30,7 @@ const CarbonIcon = ({
 }: Pick<definitions["activity"], "carbon_footprint">) => {
     return (
         <Tooltip
+            hasArrow
             label={buildTooltipDescription(carbon_footprint)}
             bg={selectColor(carbon_footprint)}
         >

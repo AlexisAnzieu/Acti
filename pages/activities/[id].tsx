@@ -142,9 +142,7 @@ export default function Activity({ activity }: GetServerSideProps["props"]) {
                     </Box>
                 </Box>
                 <Box width="100%">
-                    <MapWithNoSSR
-                        activities={[_.pick(activity, ["location", "name"])]}
-                    />
+                    <MapWithNoSSR activities={[activity]} />
                 </Box>
             </Flex>
         </Box>

@@ -19,6 +19,7 @@ const buildTooltipDescription = (price: number) => {
 const PriceIcon = ({ price }: Pick<definitions["activity"], "price">) => {
     return (
         <Tooltip
+            hasArrow
             label={buildTooltipDescription(price)}
             bg={price === 0 ? "green.600" : ""}
         >
