@@ -21,9 +21,9 @@ const Markers = (props: any) => {
             position={activity.location as any}
         >
             <Popup>
-                <Box textAlign="center" lineHeight="normal" fontSize="25px">
+                <Box textAlign="center" lineHeight="normal" fontSize="20px">
                     {activity.name[router.locale as Locale]}
-                    <Box fontSize="20px">
+                    <Box fontSize="15px">
                         {t("by")}{" "}
                         <ChakraLink
                             href={activity.website}
@@ -54,7 +54,7 @@ const Markers = (props: any) => {
                     w="100%"
                     textAlign="center"
                     lineHeight="normal"
-                    pt="20px"
+                    pt="15px"
                 >
                     {activity.email && (
                         <Box>
@@ -63,8 +63,6 @@ const Markers = (props: any) => {
                                 isExternal
                                 color="teal"
                             >
-                                <EmailIcon mr="4px" />
-                                <br />
                                 {activity.email}
                             </ChakraLink>
                             <br />
@@ -78,8 +76,6 @@ const Markers = (props: any) => {
                                 href={"tel:" + activity.phone}
                                 color="teal"
                             >
-                                <PhoneIcon mr="4px" />
-                                <br />
                                 {activity.phone}
                             </ChakraLink>
                             <br />
