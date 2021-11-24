@@ -1,10 +1,10 @@
 import { Box, Icon, Link as ChakraLink } from "@chakra-ui/react";
 import Link from "next/link";
-import { BsFacebook,BsInstagram, BsYoutube } from "react-icons/bs";
+import { BsFacebook, BsInstagram, BsYoutube } from "react-icons/bs";
 
 import { definitions } from "../type/supabase";
 
-const buildMediaButton = (media: string) => {
+const buildMediaButton = (media: string, boxSize?: number) => {
     const icons = {
         facebook: {
             icon: BsFacebook,
@@ -24,7 +24,7 @@ const buildMediaButton = (media: string) => {
         <Icon
             m={4}
             cursor="pointer"
-            boxSize={10}
+            boxSize={boxSize ?? 10}
             as={selectedIcon.icon}
             color={selectedIcon.color}
         />
@@ -33,7 +33,8 @@ const buildMediaButton = (media: string) => {
 
 const SocialMedia = ({
     social_media,
-}: Pick<definitions["activity"], "social_media">) => {
+    boxSize,
+}: Pick<definitions["activity"], "social_media"> & { boxSize?: number }) => {
     return (
         <Box>
             {Object.entries(social_media)
@@ -44,7 +45,7 @@ const SocialMedia = ({
                         as={Link}
                         href={url}
                     >
-                        {buildMediaButton(media)}
+                        {buildMediaButton(media, boxSize)}
                     </ChakraLink>
                 ))}
         </Box>

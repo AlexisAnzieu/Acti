@@ -110,12 +110,13 @@ function Activity(activity: definitions["activity"], locale: Locale) {
                         {activity.name[locale]}
                     </Box>
 
-                    <Box display="flex" mt="2" alignItems="center">
-                        <PriceIcon price={activity.price} />
+                    <Box display="flex" alignItems="center">
+                        <PriceIcon price={activity.price} fontSize="18px" />
                     </Box>
-                    <Box display="flex" mt="2" alignItems="center">
+                    <Box display="flex" alignItems="center">
                         <CarbonIcon
                             carbon_footprint={activity.carbon_footprint}
+                            fontSize="18px"
                         />
                     </Box>
                 </Box>

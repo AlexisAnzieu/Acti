@@ -1,6 +1,9 @@
-import { Box,Flex, Heading, Text } from "@chakra-ui/react";
+import { Box, Flex, Link as ChakraLink } from "@chakra-ui/react";
+import { ExternalLinkIcon, EmailIcon, PhoneIcon } from "@chakra-ui/icons";
 import { useRouter } from "next/router";
-import { MapContainer, Marker, Popup,TileLayer } from "react-leaflet";
+import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import { useTranslation } from "next-i18next";
+import SocialMedia from "./SocialMediaComponent";
 
 import CarbonIcon from "../component/CarbonIconComponent";
 import PriceIcon from "../component/PriceIconComponent";
@@ -10,6 +13,7 @@ import { Locale } from "./NavbarComponent";
 const MONTREAL_LOCATION = { lat: 45.524184, lng: -73.581435 };
 
 const Markers = (props: any) => {
+    const { t } = useTranslation("common");
     const router = useRouter();
     return props.activities.map((activity: definitions["activity"]) => (
         <Marker
@@ -17,23 +21,85 @@ const Markers = (props: any) => {
             position={activity.location as any}
         >
             <Popup>
-                <Heading size="lg">
+                <Box textAlign="center" lineHeight="normal" fontSize="25px">
                     {activity.name[router.locale as Locale]}
-                </Heading>
-                <Text fontSize="sm">
+                    <Box fontSize="20px">
+                        {t("by")}{" "}
+                        <ChakraLink
+                            href={activity.website}
+                            isExternal
+                            color="teal"
+                        >
+                            {activity.compagny} <ExternalLinkIcon mx="2px" />
+                        </ChakraLink>
+                    </Box>
+                </Box>
+                <Box mt="10px" fontSize="sm">
                     {activity.description[router.locale as Locale]}
                     <Flex mt="20px">
                         <Box textAlign="center" w="50%">
-                            <PriceIcon price={activity.price} />
+                            <PriceIcon price={activity.price} fontSize="20px" />
                         </Box>
 
                         <Box textAlign="center" w="50%">
                             <CarbonIcon
                                 carbon_footprint={activity.carbon_footprint}
+                                fontSize="20px"
                             />
                         </Box>
                     </Flex>
-                </Text>
+                </Box>
+                <Box
+                    fontSize="15px"
+                    w="100%"
+                    textAlign="center"
+                    lineHeight="normal"
+                    pt="20px"
+                >
+                    {activity.email && (
+                        <Box>
+                            <ChakraLink
+                                href={"mailto:" + activity.email}
+                                isExternal
+                                color="teal"
+                            >
+                                <EmailIcon mr="4px" />
+                                <br />
+                                {activity.email}
+                            </ChakraLink>
+                            <br />
+                            <br />
+                        </Box>
+                    )}
+
+                    {activity.phone && (
+                        <Box>
+                            <ChakraLink
+                                href={"tel:" + activity.phone}
+                                color="teal"
+                            >
+                                <PhoneIcon mr="4px" />
+                                <br />
+                                {activity.phone}
+                            </ChakraLink>
+                            <br />
+                            <br />
+                        </Box>
+                    )}
+
+                    {activity.address}
+                    <br />
+                    {activity.postal_code}
+                    <br />
+                    {activity.city}
+                </Box>
+
+                <Box w="100%" textAlign="center">
+                    <SocialMedia
+                        social_media={activity.social_media}
+                        boxSize={7}
+                    ></SocialMedia>
+                </Box>
             </Popup>
         </Marker>
     ));

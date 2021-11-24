@@ -1,6 +1,12 @@
-import { ExternalLinkIcon } from "@chakra-ui/icons";
-import { Badge, Box, Flex, Icon,Link as ChakraLink } from "@chakra-ui/react";
-import _ from "lodash";
+import { ExternalLinkIcon, EmailIcon, PhoneIcon } from "@chakra-ui/icons";
+import {
+    Badge,
+    Box,
+    Flex,
+    Icon,
+    Link as ChakraLink,
+    Center,
+} from "@chakra-ui/react";
 import { GetServerSidePropsContext } from "next";
 import dynamic from "next/dynamic";
 import Head from "next/head";
@@ -39,7 +45,6 @@ export default function Activity({ activity }: GetServerSideProps["props"]) {
                 <Box width="100%" p="2%">
                     <Flex>
                         <Box w="9%">
-                            {" "}
                             <Icon
                                 cursor="pointer"
                                 onClick={() => router.back()}
@@ -71,7 +76,7 @@ export default function Activity({ activity }: GetServerSideProps["props"]) {
                     </Flex>
 
                     <Flex mb="20px">
-                        <Box textAlign="center" w="30%">
+                        <Center w="100%">
                             {(activity.seasons as string[]).map((s: string) => (
                                 <Badge
                                     m="1"
@@ -79,22 +84,13 @@ export default function Activity({ activity }: GetServerSideProps["props"]) {
                                     key={s}
                                     borderRadius="full"
                                     px="2"
-                                    fontSize="20px"
+                                    fontSize="15px"
                                     colorScheme={seasonsColor[s]}
                                 >
                                     {t(`season.${s}`)}
                                 </Badge>
                             ))}
-                        </Box>
-                        <Box textAlign="center" w="30%">
-                            <PriceIcon price={activity.price} />
-                        </Box>
-
-                        <Box textAlign="center" w="30%">
-                            <CarbonIcon
-                                carbon_footprint={activity.carbon_footprint}
-                            />
-                        </Box>
+                        </Center>
                     </Flex>
 
                     <Box
@@ -107,12 +103,24 @@ export default function Activity({ activity }: GetServerSideProps["props"]) {
                         {activity.description[locale]}
                     </Box>
 
+                    <Flex m="30px">
+                        <Center w="50%">
+                            <PriceIcon price={activity.price} />
+                        </Center>
+
+                        <Center w="50%">
+                            <CarbonIcon
+                                carbon_footprint={activity.carbon_footprint}
+                            />
+                        </Center>
+                    </Flex>
+
                     <Box
                         fontSize="20px"
                         w="100%"
                         textAlign="center"
                         lineHeight="normal"
-                        pt="40px"
+                        pt="20px"
                     >
                         {activity.email && (
                             <Box>
@@ -121,14 +129,29 @@ export default function Activity({ activity }: GetServerSideProps["props"]) {
                                     isExternal
                                     color="teal"
                                 >
+                                    <EmailIcon mr="4px" />
+                                    <br />
                                     {activity.email}
-                                    <ExternalLinkIcon mx="2px" />
                                 </ChakraLink>
                                 <br />
                                 <br />
                             </Box>
                         )}
 
+                        {activity.phone && (
+                            <Box>
+                                <ChakraLink
+                                    href={"tel:" + activity.phone}
+                                    color="teal"
+                                >
+                                    <PhoneIcon mr="4px" />
+                                    <br />
+                                    {activity.phone}
+                                </ChakraLink>
+                                <br />
+                                <br />
+                            </Box>
+                        )}
                         {activity.address}
                         <br />
                         {activity.postal_code}

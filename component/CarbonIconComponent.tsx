@@ -28,7 +28,10 @@ const selectColor = (carbon: number): string => {
 
 const CarbonIcon = ({
     carbon_footprint,
-}: Pick<definitions["activity"], "carbon_footprint">) => {
+    fontSize,
+}: Pick<definitions["activity"], "carbon_footprint"> & {
+    fontSize?: string;
+}) => {
     return (
         <Tooltip
             hasArrow
@@ -40,7 +43,7 @@ const CarbonIcon = ({
                     .fill("")
                     .map((_, i) => (
                         <Icon
-                            fontSize="20px"
+                            fontSize={fontSize ?? "30px"}
                             key={`${i}_carbon`}
                             as={GiEarthAmerica}
                             color={

@@ -17,7 +17,10 @@ const buildTooltipDescription = (price: number) => {
     return table[price];
 };
 
-const PriceIcon = ({ price }: Pick<definitions["activity"], "price">) => {
+const PriceIcon = ({
+    price,
+    fontSize,
+}: Pick<definitions["activity"], "price"> & { fontSize?: string }) => {
     return (
         <Tooltip
             hasArrow
@@ -29,7 +32,7 @@ const PriceIcon = ({ price }: Pick<definitions["activity"], "price">) => {
                     .fill("")
                     .map((_, i) => (
                         <Icon
-                            fontSize="20px"
+                            fontSize={fontSize ?? "30px"}
                             as={BsCurrencyDollar}
                             key={`${i}_price`}
                             color={i < price ? "gray.600" : "gray.200"}
