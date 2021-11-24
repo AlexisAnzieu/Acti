@@ -14,6 +14,7 @@ import {
     ModalCloseButton,
     Image,
 } from "@chakra-ui/react";
+import { useTranslation } from "next-i18next";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
@@ -24,6 +25,7 @@ function Navbar() {
     const router = useRouter();
     const [locale, setLocale] = useState(router.locale as Locale);
     const { isOpen, onOpen, onClose } = useDisclosure();
+    const { t } = useTranslation("common");
 
     const changeLocale = (value: Locale) => {
         setLocale(value);
@@ -58,7 +60,7 @@ function Navbar() {
             <Spacer />
             <Center w="170px">
                 <Button onClick={onOpen} colorScheme="teal" variant="ghost">
-                    Qui sommes-nous?
+                    {t("whoAreWe")}
                 </Button>
 
                 <Modal size="lg" isOpen={isOpen} onClose={onClose}>
@@ -71,7 +73,7 @@ function Navbar() {
                                 <Center w="50%">
                                     <Image
                                         borderRadius="full"
-                                        h="140px"
+                                        h="150px"
                                         src="https://upduuutuduczuuhixpdp.supabase.in/storage/v1/object/public/profile/alexis.jpeg"
                                         alt="Alexis Anzieu"
                                     />
@@ -79,18 +81,18 @@ function Navbar() {
                                 <Center w="50%">
                                     <Image
                                         borderRadius="full"
-                                        h="140px"
+                                        h="150px"
                                         src="https://upduuutuduczuuhixpdp.supabase.in/storage/v1/object/public/profile/carla.jpg"
                                         alt="Carla Fabregas"
                                     />
                                 </Center>
                             </Flex>
-                            Nous sommes un jeune couple de deux ans (Alexis &
-                            Carla), arpentant le Québec à la recherche
-                            d'activités originales. <br /> Nos amis nous
-                            demandant regulièrement des retours d'expérience,
-                            l'idée nous est venue de déveloper un site web afin
-                            d'y capitaliser nos differentes trouvailles.
+                            Nous sommes un jeune couple (Alexis & Carla),
+                            arpentant le Québec à la recherche d'activités
+                            originales. <br /> Nos amis nous demandant
+                            regulièrement des retours d'expérience, l'idée nous
+                            est venue de déveloper un site web afin d'y
+                            capitaliser nos differentes trouvailles.
                         </ModalBody>
                         <ModalFooter>
                             <Button onClick={onClose} variant="ghost">
