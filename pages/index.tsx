@@ -1,5 +1,3 @@
-import "atropos/css";
-
 import {
     Badge,
     Box,
@@ -260,7 +258,7 @@ export default function Activities(props: GetServerSideProps["props"]) {
             </Box>
             <Box className="floating-button">
                 <Link
-                    passHref={{
+                    href={{
                         pathname: "/map",
                         query: router.query,
                     }}

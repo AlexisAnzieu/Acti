@@ -1,4 +1,4 @@
-import { Box,Icon, Tooltip } from "@chakra-ui/react";
+import { Box, Icon, Tooltip } from "@chakra-ui/react";
 import { useTranslation } from "next-i18next";
 import { GiEarthAmerica } from "react-icons/gi";
 
