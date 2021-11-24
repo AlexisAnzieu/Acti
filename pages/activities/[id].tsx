@@ -1,11 +1,11 @@
-import { ExternalLinkIcon, EmailIcon, PhoneIcon } from "@chakra-ui/icons";
+import { EmailIcon, ExternalLinkIcon, PhoneIcon } from "@chakra-ui/icons";
 import {
     Badge,
     Box,
+    Center,
     Flex,
     Icon,
     Link as ChakraLink,
-    Center,
 } from "@chakra-ui/react";
 import { GetServerSidePropsContext } from "next";
 import dynamic from "next/dynamic";

@@ -1,14 +1,14 @@
+import { EmailIcon, ExternalLinkIcon, PhoneIcon } from "@chakra-ui/icons";
 import { Box, Flex, Link as ChakraLink } from "@chakra-ui/react";
-import { ExternalLinkIcon, EmailIcon, PhoneIcon } from "@chakra-ui/icons";
 import { useRouter } from "next/router";
-import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import { useTranslation } from "next-i18next";
-import SocialMedia from "./SocialMediaComponent";
+import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 
 import CarbonIcon from "../component/CarbonIconComponent";
 import PriceIcon from "../component/PriceIconComponent";
 import { definitions } from "../type/supabase";
 import { Locale } from "./NavbarComponent";
+import SocialMedia from "./SocialMediaComponent";
 
 const MONTREAL_LOCATION = { lat: 45.524184, lng: -73.581435 };
 
