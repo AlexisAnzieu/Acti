@@ -2,7 +2,7 @@
     "extends": "next/core-web-vitals",
     "plugins": ["simple-import-sort"],
     "rules": {
-        "react/no-children-prop": 0,
-        "simple-import-sort/imports": "error"
+        "react/no-children-prop": "off",
+        "simple-import-sort/imports": "warn"
     }
 }
