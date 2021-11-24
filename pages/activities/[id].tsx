@@ -1,19 +1,20 @@
-import { Box, Icon, Flex, Badge, Link as ChakraLink } from "@chakra-ui/react";
-import { BsArrowLeftSquare } from "react-icons/bs";
-import { definitions } from "../../type/supabase";
+import { ExternalLinkIcon } from "@chakra-ui/icons";
+import { Badge, Box, Flex, Icon,Link as ChakraLink } from "@chakra-ui/react";
+import _ from "lodash";
 import { GetServerSidePropsContext } from "next";
-import { Locale } from "../../component/NavbarComponent";
-import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
 import Head from "next/head";
-import { seasonsColor } from "..";
+import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import PriceIcon from "../../component/PriceIconComponent";
+import { BsArrowLeftSquare } from "react-icons/bs";
+
 import CarbonIcon from "../../component/CarbonIconComponent";
+import { Locale } from "../../component/NavbarComponent";
+import PriceIcon from "../../component/PriceIconComponent";
 import SocialMedia from "../../component/SocialMediaComponent";
-import { ExternalLinkIcon } from "@chakra-ui/icons";
-import _ from "lodash";
+import { definitions } from "../../type/supabase";
+import { seasonsColor } from "..";
 
 type GetServerSideProps = {
     props: {

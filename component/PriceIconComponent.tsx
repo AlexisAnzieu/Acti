@@ -1,6 +1,7 @@
-import { Icon, Box, Tooltip } from "@chakra-ui/react";
+import { Box, Icon, Tooltip } from "@chakra-ui/react";
 import { useTranslation } from "next-i18next";
 import { BsCurrencyDollar } from "react-icons/bs";
+
 import { definitions } from "../type/supabase";
 
 const buildTooltipDescription = (price: number) => {

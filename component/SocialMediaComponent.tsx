@@ -1,7 +1,8 @@
-import { definitions } from "../type/supabase";
-import { Icon, Box, Link as ChakraLink } from "@chakra-ui/react";
-import { BsInstagram, BsYoutube, BsFacebook } from "react-icons/bs";
+import { Box, Icon, Link as ChakraLink } from "@chakra-ui/react";
 import Link from "next/link";
+import { BsFacebook,BsInstagram, BsYoutube } from "react-icons/bs";
+
+import { definitions } from "../type/supabase";
 
 const buildMediaButton = (media: string) => {
     const icons = {

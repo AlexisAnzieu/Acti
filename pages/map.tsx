@@ -1,16 +1,18 @@
-import { Box, Icon } from "@chakra-ui/react";
 import "atropos/css";
+
+import { Box, Icon } from "@chakra-ui/react";
 import { GetServerSidePropsContext } from "next";
-import React from "react";
-import Link from "next/link";
-import { BsViewList } from "react-icons/bs";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { useTranslation } from "next-i18next";
-import { Locale } from "../component/NavbarComponent";
-import Head from "next/head";
 import dynamic from "next/dynamic";
-import { GetServerSideProps, searchApi } from ".";
+import Head from "next/head";
+import Link from "next/link";
 import { useRouter } from "next/router";
+import { useTranslation } from "next-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import React from "react";
+import { BsViewList } from "react-icons/bs";
+
+import { Locale } from "../component/NavbarComponent";
+import { GetServerSideProps, searchApi } from ".";
 
 export default function Map(props: GetServerSideProps["props"]) {
     const { t } = useTranslation("common");

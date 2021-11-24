@@ -1,29 +1,31 @@
+import "atropos/css";
+
 import {
-    Input,
-    Image,
-    Box,
     Badge,
-    Link as ChakraLink,
-    Icon,
+    Box,
     CircularProgress,
     Divider,
     Flex,
+    Icon,
+    Image,
+    Input,
     InputGroup,
     InputLeftElement,
+    Link as ChakraLink,
 } from "@chakra-ui/react";
-import "atropos/css";
-import { definitions } from "../type/supabase";
 import { GetServerSidePropsContext } from "next";
-import React, { useState } from "react";
 import { useRouter } from "next/dist/client/router";
-import Link from "next/link";
-import { BsSearch, BsMap } from "react-icons/bs";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { useTranslation } from "next-i18next";
-import { Locale } from "../component/NavbarComponent";
 import Head from "next/head";
-import PriceIcon from "../component/PriceIconComponent";
+import Link from "next/link";
+import { useTranslation } from "next-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import React, { useState } from "react";
+import { BsMap, BsSearch } from "react-icons/bs";
+
 import CarbonIcon from "../component/CarbonIconComponent";
+import { Locale } from "../component/NavbarComponent";
+import PriceIcon from "../component/PriceIconComponent";
+import { definitions } from "../type/supabase";
 
 type SeasonsColor = {
     [key: string]: string;
@@ -258,7 +260,7 @@ export default function Activities(props: GetServerSideProps["props"]) {
             </Box>
             <Box className="floating-button">
                 <Link
-                    href={{
+                    passHref={{
                         pathname: "/map",
                         query: router.query,
                     }}

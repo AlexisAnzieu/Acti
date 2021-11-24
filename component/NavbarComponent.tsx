@@ -1,9 +1,9 @@
 import {
     Box,
-    Flex,
     Button,
-    Link as ChakraLink,
     Center,
+    Flex,
+    Link as ChakraLink,
     Spacer,
 } from "@chakra-ui/react";
 import Link from "next/link";

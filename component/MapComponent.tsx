@@ -1,10 +1,11 @@
+import { Box,Flex, Heading, Text } from "@chakra-ui/react";
 import { useRouter } from "next/router";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { MapContainer, Marker, Popup,TileLayer } from "react-leaflet";
+
+import CarbonIcon from "../component/CarbonIconComponent";
+import PriceIcon from "../component/PriceIconComponent";
 import { definitions } from "../type/supabase";
 import { Locale } from "./NavbarComponent";
-import { Heading, Text, Flex, Box } from "@chakra-ui/react";
-import PriceIcon from "../component/PriceIconComponent";
-import CarbonIcon from "../component/CarbonIconComponent";
 
 const MONTREAL_LOCATION = { lat: 45.524184, lng: -73.581435 };
 
