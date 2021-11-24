@@ -25,6 +25,8 @@ import { Locale } from "../component/NavbarComponent";
 import PriceIcon from "../component/PriceIconComponent";
 import { definitions } from "../type/supabase";
 
+const MAX_DESCRIPTION_LENGTH = 250;
+
 type SeasonsColor = {
     [key: string]: string;
 };
@@ -118,6 +120,15 @@ function Activity(activity: definitions["activity"], locale: Locale) {
                             carbon_footprint={activity.carbon_footprint}
                             fontSize="18px"
                         />
+                    </Box>
+                    <Box mt="15px">
+                        {activity.description[locale].length <
+                        MAX_DESCRIPTION_LENGTH
+                            ? activity.description[locale]
+                            : `${activity.description[locale].substring(
+                                  0,
+                                  MAX_DESCRIPTION_LENGTH
+                              )} [...]`}
                     </Box>
                 </Box>
             </Box>
