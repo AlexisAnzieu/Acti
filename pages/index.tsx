@@ -148,7 +148,12 @@ export default function Activities(props: GetServerSideProps["props"]) {
     const router = useRouter();
     const [locale] = useState(router.locale as Locale);
     const { t } = useTranslation("common");
+
     function paramHandler(param: string, value: string | null): void {
+        if (isLoading) {
+            return;
+        }
+
         setIsLoading(true);
 
         if (param === "season") {
