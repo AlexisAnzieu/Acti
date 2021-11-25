@@ -1,5 +1,3 @@
-import "atropos/css";
-
 import { Box, Icon } from "@chakra-ui/react";
 import { GetServerSidePropsContext } from "next";
 import dynamic from "next/dynamic";

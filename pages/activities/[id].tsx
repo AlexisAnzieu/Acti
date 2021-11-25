@@ -21,6 +21,9 @@ import PriceIcon from "../../component/PriceIconComponent";
 import SocialMedia from "../../component/SocialMediaComponent";
 import { definitions } from "../../type/supabase";
 import { seasonsColor } from "..";
+import("dayjs/locale/fr");
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
 
 type GetServerSideProps = {
     props: {
@@ -29,6 +32,7 @@ type GetServerSideProps = {
 };
 
 export default function Activity({ activity }: GetServerSideProps["props"]) {
+    dayjs.extend(relativeTime);
     const router = useRouter();
     const locale = router.locale as Locale;
     const { t } = useTranslation("common");
@@ -103,6 +107,19 @@ export default function Activity({ activity }: GetServerSideProps["props"]) {
                         {activity.description[locale]}
                     </Box>
 
+                    {activity.review?.[locale] && (
+                        <Box mt="8">
+                            <Center>
+                                <Badge variant="solid" colorScheme="teal">
+                                    Notre expérience rédigée{" "}
+                                    {dayjs(activity.created_at)
+                                        .locale(locale)
+                                        .fromNow()}
+                                </Badge>
+                            </Center>
+                            {activity.review[locale]}
+                        </Box>
+                    )}
                     <Flex m="30px">
                         <Center w="50%">
                             <PriceIcon price={activity.price} />

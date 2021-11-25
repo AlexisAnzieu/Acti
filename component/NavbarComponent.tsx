@@ -12,7 +12,7 @@ import {
     ModalFooter,
     ModalBody,
     ModalCloseButton,
-    Image,
+    Avatar,
 } from "@chakra-ui/react";
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
@@ -69,21 +69,19 @@ function Navbar() {
                         <ModalHeader>Heureux de vous accueillir!</ModalHeader>
                         <ModalCloseButton />
                         <ModalBody>
-                            <Flex mb="10px">
+                            <Flex mb="20px">
                                 <Center w="50%">
-                                    <Image
-                                        borderRadius="full"
-                                        h="150px"
-                                        src="https://upduuutuduczuuhixpdp.supabase.in/storage/v1/object/public/profile/alexis.jpeg"
-                                        alt="Alexis Anzieu"
+                                    <Avatar
+                                        size="2xl"
+                                        name="Carla Fabregas"
+                                        src="https://upduuutuduczuuhixpdp.supabase.in/storage/v1/object/public/profile/carla.jpg"
                                     />
                                 </Center>
                                 <Center w="50%">
-                                    <Image
-                                        borderRadius="full"
-                                        h="150px"
-                                        src="https://upduuutuduczuuhixpdp.supabase.in/storage/v1/object/public/profile/carla.jpg"
-                                        alt="Carla Fabregas"
+                                    <Avatar
+                                        size="2xl"
+                                        name="Alexis Anzieu"
+                                        src="https://upduuutuduczuuhixpdp.supabase.in/storage/v1/object/public/profile/alexis.jpeg"
                                     />
                                 </Center>
                             </Flex>

@@ -28,11 +28,12 @@ export interface paths {
           carbon_footprint?: parameters["rowFilter.activity.carbon_footprint"];
           id?: parameters["rowFilter.activity.id"];
           seasons?: parameters["rowFilter.activity.seasons"];
-          location?: parameters["rowFilter.activity.location"];
           description?: parameters["rowFilter.activity.description"];
           email?: parameters["rowFilter.activity.email"];
           website?: parameters["rowFilter.activity.website"];
           created_at?: parameters["rowFilter.activity.created_at"];
+          location?: parameters["rowFilter.activity.location"];
+          review?: parameters["rowFilter.activity.review"];
           /** Filtering Columns */
           select?: parameters["select"];
           /** Ordering */
@@ -95,11 +96,12 @@ export interface paths {
           carbon_footprint?: parameters["rowFilter.activity.carbon_footprint"];
           id?: parameters["rowFilter.activity.id"];
           seasons?: parameters["rowFilter.activity.seasons"];
-          location?: parameters["rowFilter.activity.location"];
           description?: parameters["rowFilter.activity.description"];
           email?: parameters["rowFilter.activity.email"];
           website?: parameters["rowFilter.activity.website"];
           created_at?: parameters["rowFilter.activity.created_at"];
+          location?: parameters["rowFilter.activity.location"];
+          review?: parameters["rowFilter.activity.review"];
         };
         header: {
           /** Preference */
@@ -126,11 +128,12 @@ export interface paths {
           carbon_footprint?: parameters["rowFilter.activity.carbon_footprint"];
           id?: parameters["rowFilter.activity.id"];
           seasons?: parameters["rowFilter.activity.seasons"];
-          location?: parameters["rowFilter.activity.location"];
           description?: parameters["rowFilter.activity.description"];
           email?: parameters["rowFilter.activity.email"];
           website?: parameters["rowFilter.activity.website"];
           created_at?: parameters["rowFilter.activity.created_at"];
+          location?: parameters["rowFilter.activity.location"];
+          review?: parameters["rowFilter.activity.review"];
         };
         body: {
           /** activity */
@@ -178,10 +181,14 @@ export interface definitions {
      */
     id: string;
     seasons?: unknown[];
-    location?: unknown[];
     email?: string;
     website?: string;
     created_at?: string;
+    location?: string;
+    review?: {
+      en: string,
+      fr: string
+    };
   };
 }
 
@@ -220,11 +227,12 @@ export interface parameters {
   "rowFilter.activity.carbon_footprint": string;
   "rowFilter.activity.id": string;
   "rowFilter.activity.seasons": string;
-  "rowFilter.activity.location": string;
   "rowFilter.activity.description": string;
   "rowFilter.activity.email": string;
   "rowFilter.activity.website": string;
   "rowFilter.activity.created_at": string;
+  "rowFilter.activity.location": string;
+  "rowFilter.activity.review": string;
 }
 
 export interface operations { }
