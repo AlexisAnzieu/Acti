@@ -1,8 +1,10 @@
 {
     "extends": "next/core-web-vitals",
-    "plugins": ["simple-import-sort"],
+    "plugins": ["simple-import-sort", "unused-imports"],
     "rules": {
         "react/no-children-prop": "off",
-        "simple-import-sort/imports": "warn"
+        "simple-import-sort/imports": "warn",
+        "no-unused-vars": "warn",
+        "unused-imports/no-unused-imports": "warn"
     }
 }

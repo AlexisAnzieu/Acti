@@ -1,22 +1,22 @@
 import {
+    Avatar,
     Button,
     Center,
     Flex,
     Link as ChakraLink,
-    Spacer,
-    useDisclosure,
     Modal,
-    ModalOverlay,
-    ModalContent,
-    ModalHeader,
-    ModalFooter,
     ModalBody,
     ModalCloseButton,
-    Avatar,
+    ModalContent,
+    ModalFooter,
+    ModalHeader,
+    ModalOverlay,
+    Spacer,
+    useDisclosure,
 } from "@chakra-ui/react";
-import { useTranslation } from "next-i18next";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useTranslation } from "next-i18next";
 import { useState } from "react";
 
 export type Locale = "en" | "fr";
