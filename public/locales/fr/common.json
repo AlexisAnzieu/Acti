@@ -23,5 +23,8 @@
         "high": "Cette activité coûte plus de 150$"
     },
     "by": "par",
-    "whoAreWe": "Qui sommes-nous?"
+    "whoAreWe": "Qui sommes-nous?",
+    "whoAreWeModal": {
+        "text": "Nous sommes un jeune couple (Alexis & Carla), arpentant le Québec à la recherche d'activités originales. \n Nos amis nous demandant regulièrement des retours d'expérience, l'idée nous est venue de déveloper un site web afin d'y capitaliser nos differentes trouvailles."
+    }
 }

@@ -85,12 +85,7 @@ function Navbar() {
                                     />
                                 </Center>
                             </Flex>
-                            Nous sommes un jeune couple (Alexis & Carla),
-                            arpentant le Québec à la recherche d'activités
-                            originales. <br /> Nos amis nous demandant
-                            regulièrement des retours d'expérience, l'idée nous
-                            est venue de déveloper un site web afin d'y
-                            capitaliser nos differentes trouvailles.
+                            {t("whoAreWeModal.text")}
                         </ModalBody>
                         <ModalFooter>
                             <Button onClick={onClose} variant="ghost">
