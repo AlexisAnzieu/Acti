@@ -278,7 +278,10 @@ export default function Activities(props: GetServerSideProps["props"]) {
     );
 }
 
-export function searchApi(queryParam: QueryParam, locale: Locale): string {
+export function searchApi(
+    queryParam: QueryParam = {},
+    locale: Locale = "en"
+): string {
     const host = process.env.NEXT_PUBLIC_BASE_URL;
     const apiUrl = new URL(`${host}/api/activities`);
     const queryParamLocaleAdded = {
