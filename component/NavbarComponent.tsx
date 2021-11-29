@@ -3,6 +3,7 @@ import {
     Button,
     Center,
     Flex,
+    Image,
     Link as ChakraLink,
     Modal,
     ModalBody,
@@ -10,10 +11,12 @@ import {
     ModalContent,
     ModalFooter,
     ModalHeader,
+    IconButton,
     ModalOverlay,
     Spacer,
     useDisclosure,
 } from "@chakra-ui/react";
+import { InfoIcon } from "@chakra-ui/icons";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
@@ -52,16 +55,37 @@ function Navbar() {
             zIndex="100"
             h="60px"
         >
-            <Center fontSize="25px" pl="10px">
+            <Center fontSize="25px" p="10px">
                 <ChakraLink as={Link} href="/">
-                    ACTÏ
+                    <Image
+                        src="/logo.png"
+                        width="100%"
+                        height="100%"
+                        cursor="pointer"
+                    />
                 </ChakraLink>
             </Center>
             <Spacer />
-            <Center w="170px">
-                <Button onClick={onOpen} colorScheme="teal" variant="ghost">
+            <Center>
+                <Button
+                    className="help-button-desktop"
+                    colorScheme="teal"
+                    variant="ghost"
+                    onClick={onOpen}
+                >
                     {t("whoAreWe")}
                 </Button>
+
+                <IconButton
+                    p="0px 15px 5px 0px"
+                    className="help-button-mobile"
+                    onClick={onOpen}
+                    fontSize="30px"
+                    variant="ghost"
+                    colorScheme="teal"
+                    aria-label="get info"
+                    icon={<InfoIcon />}
+                />
 
                 <Modal size="lg" isOpen={isOpen} onClose={onClose}>
                     <ModalOverlay />

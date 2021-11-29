@@ -6,6 +6,7 @@ export default class Document extends NextDocument {
         return (
             <Html lang="en">
                 <Head>
+                    <link rel="shortcut icon" href="/favicon.png" />
                     <link
                         rel="stylesheet"
                         href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"

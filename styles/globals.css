@@ -45,6 +45,14 @@ a {
     z-index: 100;
 }
 
+.help-button-desktop {
+    display: block !important;
+}
+
+.help-button-mobile {
+    display: none !important;
+}
+
 @media screen and (max-width: 1000px) {
     .floating-button {
         width: 50px;
@@ -69,5 +77,15 @@ a {
     }
     .map {
         height: 110vh !important;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .help-button-desktop {
+        display: none !important;
+    }
+
+    .help-button-mobile {
+        display: block !important;
     }
 }
