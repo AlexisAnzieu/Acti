@@ -55,11 +55,11 @@ function Navbar() {
             zIndex="100"
             h="60px"
         >
-            <Center fontSize="25px" p="10px">
+            <Center p="10px">
                 <ChakraLink as={Link} href="/">
                     <Image
                         src="/logo.png"
-                        width="100%"
+                        width="125px"
                         height="100%"
                         cursor="pointer"
                     />
