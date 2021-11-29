@@ -20,7 +20,6 @@ import { Locale } from "../../component/NavbarComponent";
 import PriceIcon from "../../component/PriceIconComponent";
 import SocialMedia from "../../component/SocialMediaComponent";
 import { definitions } from "../../type/supabase";
-import { seasonsColor } from "..";
 import("dayjs/locale/fr");
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
@@ -81,19 +80,21 @@ export default function Activity({ activity }: GetServerSideProps["props"]) {
 
                     <Flex mb="20px">
                         <Center w="100%">
-                            {(activity.seasons as string[]).map((s: string) => (
-                                <Badge
-                                    m="1"
-                                    variant="solid"
-                                    key={s}
-                                    borderRadius="full"
-                                    px="2"
-                                    fontSize="15px"
-                                    colorScheme={seasonsColor[s]}
-                                >
-                                    {t(`season.${s}`)}
-                                </Badge>
-                            ))}
+                            {(activity.seasons as string[]).map(
+                                (season: string) => (
+                                    <Badge
+                                        m="1"
+                                        variant="solid"
+                                        key={season}
+                                        borderRadius="full"
+                                        px="2"
+                                        fontSize="15px"
+                                        colorScheme="teal"
+                                    >
+                                        {t(`season.${season}`)}
+                                    </Badge>
+                                )
+                            )}
                         </Center>
                     </Flex>
 

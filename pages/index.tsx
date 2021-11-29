@@ -27,16 +27,7 @@ import { definitions } from "../type/supabase";
 
 const MAX_DESCRIPTION_LENGTH = 250;
 
-type SeasonsColor = {
-    [key: string]: string;
-};
-
-export const seasonsColor: SeasonsColor = {
-    summer: "orange",
-    spring: "green",
-    winter: "blue",
-    autumn: "red",
-};
+export const seasons: string[] = ["summer", "spring", "winter", "autumn"];
 
 export type QueryParam = {
     query?: string;
@@ -60,24 +51,24 @@ function Activity(activity: definitions["activity"], locale: Locale) {
             href={`/activities/${activity.id}`}
         >
             <Box
-                cursor="pointer"
-                boxShadow="lg"
-                margin="5px"
-                display="inline-block"
-                maxW="300px"
-                borderWidth="1px"
                 borderRadius="lg"
+                borderWidth="1px"
+                boxShadow="lg"
+                cursor="pointer"
+                display="inline-block"
+                margin="5px"
+                maxW="300px"
                 overflow="hidden"
-                textAlign="left"
                 role="group"
+                textAlign="left"
             >
                 <Image
-                    transitionDuration="400ms"
                     _groupHover={{ height: "0px" }}
-                    height="200px"
-                    width="300px"
-                    src={activity.picture_url}
                     alt={activity.picture_url}
+                    height="200px"
+                    src={activity.picture_url}
+                    transitionDuration="400ms"
+                    width="300px"
                 />
 
                 <Box
@@ -89,12 +80,12 @@ function Activity(activity: definitions["activity"], locale: Locale) {
                     <Box display="flex" alignItems="baseline">
                         {(activity.seasons as string[]).map((s: string) => (
                             <Badge
-                                mr="1"
-                                variant="solid"
-                                key={s}
                                 borderRadius="full"
-                                px="1"
-                                colorScheme={seasonsColor[s]}
+                                colorScheme="teal"
+                                key={s}
+                                mr="1"
+                                px="1.5"
+                                variant="solid"
                             >
                                 {t(`season.${s}`)}
                             </Badge>
@@ -102,12 +93,12 @@ function Activity(activity: definitions["activity"], locale: Locale) {
                     </Box>
 
                     <Box
-                        mt="1"
-                        fontWeight="semibold"
                         as="h4"
-                        lineHeight="tight"
-                        isTruncated
                         color="gray.600"
+                        fontWeight="semibold"
+                        isTruncated
+                        lineHeight="tight"
+                        mt="1"
                     >
                         {activity.name[locale]}
                     </Box>
@@ -217,11 +208,11 @@ export default function Activities(props: GetServerSideProps["props"]) {
                     />
                     <Input
                         className="search-bar"
-                        onChange={(e) => paramHandler("query", e.target.value)}
                         defaultValue={queryParam.query}
                         fontSize="30px"
-                        variant="md"
+                        onChange={(e) => paramHandler("query", e.target.value)}
                         placeholder={t("searchActivity")}
+                        variant="md"
                     />
                 </InputGroup>
             </Flex>
@@ -230,16 +221,16 @@ export default function Activities(props: GetServerSideProps["props"]) {
 
             <Box className="activity-list">
                 <Box padding="10px 15px 10px 15px">
-                    {Object.entries(seasonsColor).map(([index, color]) => (
+                    {seasons.map((season) => (
                         <Badge
                             cursor="pointer"
                             variant={
-                                queryParam.season === index
+                                queryParam.season === season
                                     ? "solid"
                                     : "outline"
                             }
-                            id={index}
-                            key={index}
+                            id={season}
+                            key={season}
                             onClick={(e) =>
                                 paramHandler(
                                     "season",
@@ -251,9 +242,9 @@ export default function Activities(props: GetServerSideProps["props"]) {
                             fontSize="1.5em"
                             borderRadius="full"
                             px="6"
-                            colorScheme={color}
+                            colorScheme="teal"
                         >
-                            {t(`season.${index}`)}
+                            {t(`season.${season}`)}
                         </Badge>
                     ))}
                 </Box>
