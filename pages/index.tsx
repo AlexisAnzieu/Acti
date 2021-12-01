@@ -294,19 +294,20 @@ export function searchApi(
     return apiUrl.href;
 }
 
-export async function getServerSideProps(
-    context: GetServerSidePropsContext
-): Promise<GetServerSideProps> {
-    return fetch(searchApi(context.query, context.locale as Locale))
+export async function getServerSideProps({
+    query,
+    locale,
+}: GetServerSidePropsContext): Promise<GetServerSideProps> {
+    return fetch(searchApi(query, locale as Locale))
         .then((res: Response) => res.json())
         .then(async (activities) => {
             return {
                 props: {
-                    ...(await serverSideTranslations(context.locale as Locale, [
+                    ...(await serverSideTranslations(locale as Locale, [
                         "common",
                     ])),
                     activities,
-                    queryParam: context.query,
+                    queryParam: query,
                 },
             };
         });
