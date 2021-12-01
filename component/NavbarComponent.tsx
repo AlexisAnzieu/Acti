@@ -1,9 +1,11 @@
+import { InfoIcon } from "@chakra-ui/icons";
 import {
     Avatar,
+    Box,
     Button,
     Center,
     Flex,
-    Image,
+    IconButton,
     Link as ChakraLink,
     Modal,
     ModalBody,
@@ -11,12 +13,11 @@ import {
     ModalContent,
     ModalFooter,
     ModalHeader,
-    IconButton,
     ModalOverlay,
     Spacer,
     useDisclosure,
 } from "@chakra-ui/react";
-import { InfoIcon } from "@chakra-ui/icons";
+import NextImage from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
@@ -57,12 +58,18 @@ function Navbar() {
         >
             <Center p="10px">
                 <ChakraLink as={Link} href="/">
-                    <Image
-                        src="/logo.png"
+                    <Box
                         width="125px"
                         height="100%"
+                        position="relative"
                         cursor="pointer"
-                    />
+                    >
+                        <NextImage
+                            layout="fill"
+                            alt="logo acti"
+                            src="/logo.png"
+                        />
+                    </Box>
                 </ChakraLink>
             </Center>
             <Spacer />

@@ -4,9 +4,7 @@ import { BsCurrencyDollar } from "react-icons/bs";
 
 import { definitions } from "../type/supabase";
 
-const buildTooltipDescription = (price: number) => {
-    const { t } = useTranslation("common");
-
+const buildTooltipDescription = (price: number, t: any) => {
     const table = [
         t("priceIcon.free"),
         t("priceIcon.low"),
@@ -21,10 +19,12 @@ const PriceIcon = ({
     price,
     fontSize,
 }: Pick<definitions["activity"], "price"> & { fontSize?: string }) => {
+    const { t } = useTranslation("common");
+
     return (
         <Tooltip
             hasArrow
-            label={buildTooltipDescription(price)}
+            label={buildTooltipDescription(price, t)}
             bg={price === 0 ? "green.600" : ""}
         >
             <Box>

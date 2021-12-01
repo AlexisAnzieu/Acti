@@ -4,9 +4,7 @@ import { GiEarthAmerica } from "react-icons/gi";
 
 import { definitions } from "../type/supabase";
 
-const buildTooltipDescription = (carbonLevel: number) => {
-    const { t } = useTranslation("common");
-
+const buildTooltipDescription = (carbonLevel: number, t: any) => {
     const table = [
         t("carbonIcon.free"),
         t("carbonIcon.low"),
@@ -32,10 +30,12 @@ const CarbonIcon = ({
 }: Pick<definitions["activity"], "carbon_footprint"> & {
     fontSize?: string;
 }) => {
+    const { t } = useTranslation("common");
+
     return (
         <Tooltip
             hasArrow
-            label={buildTooltipDescription(carbon_footprint)}
+            label={buildTooltipDescription(carbon_footprint, t)}
             bg={selectColor(carbon_footprint)}
         >
             <Box>

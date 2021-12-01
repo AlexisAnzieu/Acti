@@ -11,9 +11,9 @@ import {
     Link as ChakraLink,
 } from "@chakra-ui/react";
 import { GetServerSidePropsContext } from "next";
-import NextImage from "next/image";
 import { useRouter } from "next/dist/client/router";
 import Head from "next/head";
+import NextImage from "next/image";
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -62,18 +62,25 @@ function Activity(activity: definitions["activity"], locale: Locale) {
                 role="group"
                 textAlign="left"
             >
-                <NextImage
-                    alt={activity.picture_url}
-                    height="200px"
-                    src={activity.picture_url as string}
+                <Box
                     width="300px"
-                />
+                    height="200px"
+                    transitionDuration="400ms"
+                    position="relative"
+                    _groupHover={{ height: "0px" }}
+                >
+                    <NextImage
+                        layout="fill"
+                        alt={activity.picture_url}
+                        src={activity.picture_url as string}
+                    />
+                </Box>
 
                 <Box
                     height="134px"
                     transitionDuration="400ms"
                     p="5"
-                    // _groupHover={{ height: "334px" }}
+                    _groupHover={{ height: "334px" }}
                 >
                     <Box display="flex" alignItems="baseline">
                         {(activity.seasons as string[]).map((s: string) => (
