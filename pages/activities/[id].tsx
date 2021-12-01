@@ -7,7 +7,7 @@ import {
     Icon,
     Link as ChakraLink,
 } from "@chakra-ui/react";
-import { GetServerSidePropsContext } from "next";
+import { GetStaticPropsContext } from "next";
 import dynamic from "next/dynamic";
 import Head from "next/head";
 import { useRouter } from "next/router";
@@ -191,20 +191,50 @@ export default function Activity({ activity }: GetServerSideProps["props"]) {
     );
 }
 
-export async function getServerSideProps(
-    context: GetServerSidePropsContext
-): Promise<GetServerSideProps> {
-    const id: string = context.query.id as string;
-    return fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/activities?id=${id}`)
-        .then((res: Response) => res.json())
-        .then(async (activity) => {
-            return {
-                props: {
-                    ...(await serverSideTranslations(context.locale as Locale, [
-                        "common",
-                    ])),
-                    activity,
-                },
-            };
-        });
+// export async function getServerSideProps(
+//     context: GetServerSidePropsContext
+// ): Promise<GetServerSideProps> {
+//     const id: string = context.query.id as string;
+//     return fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/activities?id=${id}`)
+//         .then((res: Response) => res.json())
+//         .then(async (activity) => {
+//             return {
+//                 props: {
+//                     ...(await serverSideTranslations(context.locale as Locale, [
+//                         "common",
+//                     ])),
+//                     activity,
+//                 },
+//             };
+//         });
+// }
+
+export async function getStaticPaths() {
+    const res: any = await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/activities`
+    );
+    const activities = await res.json();
+
+    const paths = activities.map((activity: definitions["activity"]) => ({
+        params: { id: activity.id },
+    }));
+
+    return { paths, fallback: false };
+}
+
+export async function getStaticProps({
+    params,
+    locale,
+}: GetStaticPropsContext) {
+    console.log({ params, locale });
+    const activity: any = await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/activities?id=${params?.id}`
+    );
+
+    return {
+        props: {
+            ...(await serverSideTranslations(locale as Locale, ["common"])),
+            activity: await activity.json(),
+        },
+    };
 }
