@@ -191,33 +191,18 @@ export default function Activity({ activity }: GetServerSideProps["props"]) {
     );
 }
 
-// export async function getServerSideProps(
-//     context: GetServerSidePropsContext
-// ): Promise<GetServerSideProps> {
-//     const id: string = context.query.id as string;
-//     return fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/activities?id=${id}`)
-//         .then((res: Response) => res.json())
-//         .then(async (activity) => {
-//             return {
-//                 props: {
-//                     ...(await serverSideTranslations(context.locale as Locale, [
-//                         "common",
-//                     ])),
-//                     activity,
-//                 },
-//             };
-//         });
-// }
-
 export async function getStaticPaths() {
     const res: any = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/api/activities`
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/activities?fields=id`
     );
     const activities = await res.json();
 
-    const paths = activities.map((activity: definitions["activity"]) => ({
-        params: { id: activity.id },
-    }));
+    const paths = ["en", "fr"].flatMap((locale: string) =>
+        activities.map((activity: definitions["activity"]) => ({
+            params: { id: activity.id },
+            locale,
+        }))
+    );
 
     return { paths, fallback: false };
 }
@@ -226,7 +211,6 @@ export async function getStaticProps({
     params,
     locale,
 }: GetStaticPropsContext) {
-    console.log({ params, locale });
     const activity: any = await fetch(
         `${process.env.NEXT_PUBLIC_BASE_URL}/api/activities?id=${params?.id}`
     );

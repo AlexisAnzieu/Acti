@@ -8,16 +8,17 @@ type params = {
 	query: string;
 	id: string;
 	season: string;
-	locale: 'en' | 'fr'
+	locale: 'en' | 'fr',
+	fields: string;
 }
 
 export default async function (
 	req: NextApiRequest,
 	res: NextApiResponse<any>
 ) {
-	const { query, id, season, locale } = req.query as params;
+	const { query, id, season, locale, fields = '*' } = req.query as params;
 	let result;
-	let supabaseBase = supabase.from<definitions["activity"]>("activity").select("*").order('created_at', { ascending: false });
+	let supabaseBase = supabase.from<definitions["activity"]>("activity").select(fields).order('created_at', { ascending: false });
 	if (id) {
 		result = await supabaseBase.eq('id', id).single();
 	} else if (query || season) {
