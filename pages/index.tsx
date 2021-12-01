@@ -5,13 +5,13 @@ import {
     Divider,
     Flex,
     Icon,
-    Image,
     Input,
     InputGroup,
     InputLeftElement,
     Link as ChakraLink,
 } from "@chakra-ui/react";
 import { GetServerSidePropsContext } from "next";
+import NextImage from "next/image";
 import { useRouter } from "next/dist/client/router";
 import Head from "next/head";
 import Link from "next/link";
@@ -62,12 +62,10 @@ function Activity(activity: definitions["activity"], locale: Locale) {
                 role="group"
                 textAlign="left"
             >
-                <Image
-                    _groupHover={{ height: "0px" }}
+                <NextImage
                     alt={activity.picture_url}
                     height="200px"
-                    src={activity.picture_url}
-                    transitionDuration="400ms"
+                    src={activity.picture_url as string}
                     width="300px"
                 />
 
@@ -75,7 +73,7 @@ function Activity(activity: definitions["activity"], locale: Locale) {
                     height="134px"
                     transitionDuration="400ms"
                     p="5"
-                    _groupHover={{ height: "334px" }}
+                    // _groupHover={{ height: "334px" }}
                 >
                     <Box display="flex" alignItems="baseline">
                         {(activity.seasons as string[]).map((s: string) => (
