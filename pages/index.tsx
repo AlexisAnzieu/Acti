@@ -154,17 +154,17 @@ export default function Activities() {
     const [locale] = useState(router.locale as Locale);
     const { t } = useTranslation("common");
 
-    const [queryParam, setQueryParam] = useState(router.query);
     const [activities, setActivities] = useState([]);
 
     useEffect(() => {
-        fetch(searchApi(queryParam, locale))
+        if (!router.isReady) return;
+        fetch(searchApi(router.query, locale))
             .then((res: Response) => res.json())
             .then((result) => {
                 setActivities(result);
                 setIsLoading(false);
             });
-    }, [queryParam]);
+    }, [router.isReady, router.query]);
 
     function paramHandler(param: string, value: string | null): void {
         if (isLoading) {
@@ -174,7 +174,7 @@ export default function Activities() {
         setIsLoading(true);
 
         if (param === "season") {
-            value = value !== queryParam.season ? value : null;
+            value = value !== router.query.season ? value : null;
         }
         if (!value) {
             delete router.query[param];
@@ -183,7 +183,6 @@ export default function Activities() {
             ...router.query,
             ...(value && { [param]: value }),
         };
-        setQueryParam(routerQuery);
 
         router.push(
             {
@@ -216,7 +215,7 @@ export default function Activities() {
                     />
                     <Input
                         className="search-bar"
-                        defaultValue={queryParam.query}
+                        defaultValue={router.query.query}
                         fontSize="30px"
                         onChange={(e) => paramHandler("query", e.target.value)}
                         placeholder={t("searchActivity")}
@@ -233,7 +232,7 @@ export default function Activities() {
                         <Badge
                             cursor="pointer"
                             variant={
-                                queryParam.season === season
+                                router.query.season === season
                                     ? "solid"
                                     : "outline"
                             }
