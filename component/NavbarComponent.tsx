@@ -6,7 +6,6 @@ import {
     Center,
     Flex,
     IconButton,
-    Link as ChakraLink,
     Modal,
     ModalBody,
     ModalCloseButton,
@@ -18,7 +17,6 @@ import {
     useDisclosure,
 } from "@chakra-ui/react";
 import NextImage from "next/image";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { useState } from "react";
