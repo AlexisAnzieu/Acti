@@ -149,21 +149,22 @@ const ActivityList = (props: {
 };
 
 export default function Activities(props: GetServerSideProps["props"]) {
-    const [queryParam, setQueryParam] = useState(props?.queryParam);
-    const [activities, setActivities] = useState(props.activities);
     const [isLoading, setIsLoading] = useState(true);
     const router = useRouter();
     const [locale] = useState(router.locale as Locale);
     const { t } = useTranslation("common");
 
+    const [queryParam, setQueryParam] = useState(router.query);
+    const [activities, setActivities] = useState([]);
+
     useEffect(() => {
-        fetch(searchApi(router.query, locale))
+        fetch(searchApi(queryParam, locale))
             .then((res: Response) => res.json())
             .then((result) => {
                 setActivities(result);
                 setIsLoading(false);
             });
-    }, []);
+    }, [queryParam]);
 
     function paramHandler(param: string, value: string | null): void {
         if (isLoading) {
@@ -194,13 +195,6 @@ export default function Activities(props: GetServerSideProps["props"]) {
                 shallow: true,
             }
         );
-
-        fetch(searchApi(routerQuery, locale))
-            .then((res: Response) => res.json())
-            .then((result) => {
-                setActivities(result);
-                setIsLoading(false);
-            });
     }
 
     return (
