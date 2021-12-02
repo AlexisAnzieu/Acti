@@ -49,6 +49,7 @@ function Activity(activity: definitions["activity"], locale: Locale) {
             as={Link}
             key={activity.id}
             href={`/activities/${activity.id}`}
+            locale={locale}
         >
             <Box
                 borderRadius="lg"
