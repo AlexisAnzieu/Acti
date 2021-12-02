@@ -10,7 +10,7 @@ import {
     InputLeftElement,
     Link as ChakraLink,
 } from "@chakra-ui/react";
-import { GetServerSidePropsContext } from "next";
+import { GetStaticPropsContext } from "next";
 import { useRouter } from "next/dist/client/router";
 import Head from "next/head";
 import NextImage from "next/image";
@@ -148,7 +148,7 @@ const ActivityList = (props: {
     );
 };
 
-export default function Activities(props: GetServerSideProps["props"]) {
+export default function Activities() {
     const [isLoading, setIsLoading] = useState(true);
     const router = useRouter();
     const [locale] = useState(router.locale as Locale);
@@ -302,14 +302,10 @@ export function searchApi(
     return apiUrl.href;
 }
 
-export async function getServerSideProps({
-    query,
-    locale,
-}: GetServerSidePropsContext): Promise<GetServerSideProps> {
+export async function getStaticProps({ locale }: GetStaticPropsContext) {
     return {
         props: {
             ...(await serverSideTranslations(locale as Locale, ["common"])),
-            queryParam: query,
         },
     };
 }
