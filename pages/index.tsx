@@ -36,7 +36,7 @@ export type QueryParam = {
 
 export type GetServerSideProps = {
     props: {
-        activities: definitions["activity"][] | null;
+        activities?: definitions["activity"][] | null;
         queryParam: QueryParam;
     };
 };
@@ -151,10 +151,17 @@ const ActivityList = (props: {
 export default function Activities(props: GetServerSideProps["props"]) {
     const [queryParam, setQueryParam] = useState(props?.queryParam);
     const [activities, setActivities] = useState(props.activities);
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
     const router = useRouter();
     const [locale] = useState(router.locale as Locale);
     const { t } = useTranslation("common");
+
+    fetch(searchApi(router.query, locale))
+        .then((res: Response) => res.json())
+        .then((result) => {
+            setActivities(result);
+            setIsLoading(false);
+        });
 
     function paramHandler(param: string, value: string | null): void {
         if (isLoading) {
@@ -303,17 +310,10 @@ export async function getServerSideProps({
     query,
     locale,
 }: GetServerSidePropsContext): Promise<GetServerSideProps> {
-    return fetch(searchApi(query, locale as Locale))
-        .then((res: Response) => res.json())
-        .then(async (activities) => {
-            return {
-                props: {
-                    ...(await serverSideTranslations(locale as Locale, [
-                        "common",
-                    ])),
-                    activities,
-                    queryParam: query,
-                },
-            };
-        });
+    return {
+        props: {
+            ...(await serverSideTranslations(locale as Locale, ["common"])),
+            queryParam: query,
+        },
+    };
 }
