@@ -17,7 +17,7 @@ import NextImage from "next/image";
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BsMap, BsSearch } from "react-icons/bs";
 
 import CarbonIcon from "../component/CarbonIconComponent";
@@ -156,12 +156,14 @@ export default function Activities(props: GetServerSideProps["props"]) {
     const [locale] = useState(router.locale as Locale);
     const { t } = useTranslation("common");
 
-    fetch(searchApi(router.query, locale))
-        .then((res: Response) => res.json())
-        .then((result) => {
-            setActivities(result);
-            setIsLoading(false);
-        });
+    useEffect(() => {
+        fetch(searchApi(router.query, locale))
+            .then((res: Response) => res.json())
+            .then((result) => {
+                setActivities(result);
+                setIsLoading(false);
+            });
+    }, []);
 
     function paramHandler(param: string, value: string | null): void {
         if (isLoading) {
