@@ -48,8 +48,7 @@ function Activity(activity: definitions["activity"], locale: Locale) {
         <ChakraLink
             as={Link}
             key={activity.id}
-            href={`/activities/${activity.id}`}
-            locale={locale}
+            href={`${locale}/activities/${activity.id}`}
         >
             <Box
                 borderRadius="lg"
