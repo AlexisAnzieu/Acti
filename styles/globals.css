@@ -29,6 +29,11 @@ a {
     display: flex !important;
 }
 
+.activity-description {
+    width: 100%;
+    padding: 2%;
+}
+
 .floating-button {
     cursor: pointer;
     position: fixed;
@@ -77,6 +82,10 @@ a {
     }
     .map {
         height: 110vh !important;
+    }
+
+    .activity-description {
+        padding: 7%;
     }
 }
 

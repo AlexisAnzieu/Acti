@@ -45,7 +45,7 @@ export default function Activity({ activity }: GetServerSideProps["props"]) {
                 <title>Acti - {activity.name[locale]}</title>
             </Head>
             <Flex className="activity-flex">
-                <Box width="100%" p="2%">
+                <Box className="activity-description">
                     <Flex>
                         <Box w="9%">
                             <Icon
