@@ -57,20 +57,22 @@ function Navbar() {
             h="60px"
         >
             <Center p="10px">
-                <ChakraLink as={Link} href="/">
-                    <Box
-                        width="125px"
-                        height="100%"
-                        position="relative"
-                        cursor="pointer"
-                    >
-                        <NextImage
-                            layout="fill"
-                            alt="logo acti"
-                            src="/logo.png"
-                        />
-                    </Box>
-                </ChakraLink>
+                <Box w="100%" h="100%">
+                    <a href="/" aria-label="back to acti homepage">
+                        <Box
+                            width="125px"
+                            height="100%"
+                            position="relative"
+                            cursor="pointer"
+                        >
+                            <NextImage
+                                layout="fill"
+                                alt="logo acti"
+                                src="/logo.png"
+                            />
+                        </Box>
+                    </a>
+                </Box>
             </Center>
             <Spacer />
             <Center>
