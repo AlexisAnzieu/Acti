@@ -191,7 +191,7 @@ export default function Activity({ activity }: GetServerSideProps["props"]) {
 
 export async function getStaticPaths() {
     const res: any = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/api/activities`
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/activities?fields=id`
     );
     const activities = await res.json();
 
