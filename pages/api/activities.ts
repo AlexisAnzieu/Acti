@@ -38,12 +38,12 @@ export default async function (
 	const cleaned = result?.data?.map((item: any) => {
 		return {
 			...item,
-			seasons: JSON.parse(item.seasons),
-			name: JSON.parse(JSON.parse(item.name)),
-			social_media: JSON.parse(item.social_media),
-			review: JSON.parse(item.review),
-			description: JSON.parse(item.description),
-			location: JSON.parse(item.location)
+			...(item.seasons && { seasons: JSON.parse(item.seasons) }),
+			...(item.name && { name: JSON.parse(JSON.parse(item.name)) }),
+			...(item.social_media && { social_media: JSON.parse(item.social_media) }),
+			...(item.review && { review: JSON.parse(item.review) }),
+			...(item.description && { description: JSON.parse(item.description) }),
+			...(item.location && { location: JSON.parse(item.location) })
 		}
 
 	});

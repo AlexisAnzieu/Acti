@@ -191,7 +191,7 @@ export default function Activity({ activity }: GetServerSideProps["props"]) {
 
 export async function getStaticPaths() {
     const res: any = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/api/activities?fields=id`
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/activities`
     );
     const activities = await res.json();
 
@@ -209,26 +209,13 @@ export async function getStaticProps({
     params,
     locale,
 }: GetStaticPropsContext) {
-    const res: any = await fetch(
+    const activity: any = await fetch(
         `${process.env.NEXT_PUBLIC_BASE_URL}/api/activities?id=${params?.id}`
     );
-
-    const activity = await res.json();
-
-    const cleanedActivity = {
-        ...activity,
-        seasons: JSON.parse(activity.seasons),
-        name: JSON.parse(JSON.parse(activity.name)),
-        social_media: JSON.parse(activity.social_media),
-        review: JSON.parse(activity.review),
-        description: JSON.parse(activity.description),
-        location: JSON.parse(activity.location),
-    };
-
     return {
         props: {
             ...(await serverSideTranslations(locale as Locale, ["common"])),
-            activity: cleanedActivity,
+            activity: (await activity.json())[0],
         },
     };
 }
