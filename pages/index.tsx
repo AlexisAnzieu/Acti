@@ -72,7 +72,10 @@ function Activity(activity: definitions["activity"], locale: Locale) {
                     <NextImage
                         layout="fill"
                         alt={activity.picture_url}
-                        src={activity.picture_url as string}
+                        src={
+                            (activity.picture_url as string) ||
+                            "https://picsum.photos/400/600"
+                        }
                     />
                 </Box>
 
@@ -82,20 +85,22 @@ function Activity(activity: definitions["activity"], locale: Locale) {
                     p="5"
                     _groupHover={{ height: "334px" }}
                 >
-                    <Box display="flex" alignItems="baseline">
-                        {(activity.seasons as string[]).map((s: string) => (
-                            <Badge
-                                borderRadius="full"
-                                colorScheme="teal"
-                                key={s}
-                                mr="1"
-                                px="1.5"
-                                variant="solid"
-                            >
-                                {t(`season.${s}`)}
-                            </Badge>
-                        ))}
-                    </Box>
+                    {activity.seasons && (
+                        <Box display="flex" alignItems="baseline">
+                            {(activity.seasons as string[]).map((s: string) => (
+                                <Badge
+                                    borderRadius="full"
+                                    colorScheme="teal"
+                                    key={s}
+                                    mr="1"
+                                    px="1.5"
+                                    variant="solid"
+                                >
+                                    {t(`season.${s}`)}
+                                </Badge>
+                            ))}
+                        </Box>
+                    )}
 
                     <Box
                         as="h4"
@@ -105,7 +110,7 @@ function Activity(activity: definitions["activity"], locale: Locale) {
                         lineHeight="tight"
                         mt="1"
                     >
-                        {activity.name[locale]}
+                        {activity.name?.[locale]}
                     </Box>
 
                     <Box display="flex" alignItems="center">
@@ -117,15 +122,18 @@ function Activity(activity: definitions["activity"], locale: Locale) {
                             fontSize="18px"
                         />
                     </Box>
-                    <Box mt="15px">
-                        {activity.description[locale].length <
-                        MAX_DESCRIPTION_LENGTH
-                            ? activity.description[locale]
-                            : `${activity.description[locale].substring(
-                                  0,
-                                  MAX_DESCRIPTION_LENGTH
-                              )} [...]`}
-                    </Box>
+
+                    {activity.description?.[locale] && (
+                        <Box mt="15px">
+                            {activity.description?.[locale].length <
+                            MAX_DESCRIPTION_LENGTH
+                                ? activity.description?.[locale]
+                                : `${activity.description?.[locale].substring(
+                                      0,
+                                      MAX_DESCRIPTION_LENGTH
+                                  )} [...]`}
+                        </Box>
+                    )}
                 </Box>
             </Box>
         </ChakraLink>

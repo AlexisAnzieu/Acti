@@ -23,8 +23,8 @@ const Markers = ({ activities, locale }: MapProps) => {
         <>
             {activities.map((activity: definitions["activity"]) => (
                 <Marker
-                    key={`marker-${activity.name.en}`}
-                    position={activity.location as any}
+                    key={`marker-${activity.name?.en}`}
+                    position={(activity.location as any) || MONTREAL_LOCATION}
                 >
                     <Popup>
                         <Box
@@ -32,7 +32,7 @@ const Markers = ({ activities, locale }: MapProps) => {
                             lineHeight="normal"
                             fontSize="20px"
                         >
-                            {activity.name[locale]}
+                            {activity.name?.[locale]}
                             <Box fontSize="15px">
                                 {t("by")}{" "}
                                 <ChakraLink
@@ -46,7 +46,7 @@ const Markers = ({ activities, locale }: MapProps) => {
                             </Box>
                         </Box>
                         <Box mt="10px" fontSize="sm">
-                            {activity.description[locale]}
+                            {activity.description?.[locale]}
                             <Flex mt="20px">
                                 <Box textAlign="center" w="50%">
                                     <PriceIcon
@@ -123,7 +123,7 @@ const Map = (props: any) => {
     const router = useRouter();
     const isMapPage = router.pathname === "/map";
     const centerLocation = !isMapPage
-        ? props.activities[0].location
+        ? props.activities[0].location || MONTREAL_LOCATION
         : MONTREAL_LOCATION;
 
     const className = !isMapPage ? "detail-map" : "map";

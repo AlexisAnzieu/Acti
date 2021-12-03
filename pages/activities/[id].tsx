@@ -42,7 +42,7 @@ export default function Activity({ activity }: GetServerSideProps["props"]) {
     return (
         <Box>
             <Head>
-                <title>Acti - {activity.name[locale]}</title>
+                <title>Acti - {activity.name?.[locale]}</title>
             </Head>
             <Flex className="activity-flex">
                 <Box className="activity-description">
@@ -63,7 +63,7 @@ export default function Activity({ activity }: GetServerSideProps["props"]) {
                             lineHeight="normal"
                             fontSize="30px"
                         >
-                            {activity.name[locale]}
+                            {activity.name?.[locale]}
                             <Box fontSize="20px">
                                 {t("by")}{" "}
                                 <ChakraLink
@@ -80,21 +80,19 @@ export default function Activity({ activity }: GetServerSideProps["props"]) {
 
                     <Flex mb="20px">
                         <Center w="100%">
-                            {(activity.seasons as string[]).map(
-                                (season: string) => (
-                                    <Badge
-                                        m="1"
-                                        variant="solid"
-                                        key={season}
-                                        borderRadius="full"
-                                        px="2"
-                                        fontSize="15px"
-                                        colorScheme="teal"
-                                    >
-                                        {t(`season.${season}`)}
-                                    </Badge>
-                                )
-                            )}
+                            {activity.seasons?.map((season: string) => (
+                                <Badge
+                                    m="1"
+                                    variant="solid"
+                                    key={season}
+                                    borderRadius="full"
+                                    px="2"
+                                    fontSize="15px"
+                                    colorScheme="teal"
+                                >
+                                    {t(`season.${season}`)}
+                                </Badge>
+                            ))}
                         </Center>
                     </Flex>
 
@@ -105,7 +103,7 @@ export default function Activity({ activity }: GetServerSideProps["props"]) {
                         lineHeight="normal"
                         fontSize="20px"
                     >
-                        {activity.description[locale]}
+                        {activity.description?.[locale]}
                     </Box>
 
                     {activity.review?.[locale] && (
@@ -193,7 +191,7 @@ export default function Activity({ activity }: GetServerSideProps["props"]) {
 
 export async function getStaticPaths() {
     const res: any = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/api/activities?fields=id`
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/activities`
     );
     const activities = await res.json();
 
@@ -218,7 +216,7 @@ export async function getStaticProps({
     return {
         props: {
             ...(await serverSideTranslations(locale as Locale, ["common"])),
-            activity: await activity.json(),
+            activity: (await activity.json())[0],
         },
     };
 }

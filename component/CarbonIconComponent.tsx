@@ -25,7 +25,7 @@ const selectColor = (carbon: number): string => {
 };
 
 const CarbonIcon = ({
-    carbon_footprint,
+    carbon_footprint = 1,
     fontSize,
 }: Pick<definitions["activity"], "carbon_footprint"> & {
     fontSize?: string;

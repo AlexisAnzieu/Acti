@@ -20,21 +20,37 @@ export default async function (
 	let result;
 	let supabaseBase = supabase.from<definitions["activity"]>("activity").select(fields).order('created_at', { ascending: false });
 	if (id) {
-		result = await supabaseBase.eq('id', id).single();
+		result = await supabaseBase.eq('id', id);
 	} else if (query || season) {
 		if (query) {
-			supabaseBase.ilike(`name->>${locale}` as 'name', `%${query}%`);
+			// supabaseBase.ilike(`name->>${locale}` as 'name', `%${query}%`);
+			supabaseBase.ilike("name", `%${query}%`)
 		}
 		if (season) {
-			supabaseBase.contains("seasons", [season])
+			// supabaseBase.contains("seasons", season)
+			supabaseBase.like("seasons", `%${season}%`)
 		}
 		result = await supabaseBase;
 	} else {
 		result = await supabaseBase;
 	}
+
+	const cleaned = result?.data?.map((item: any) => {
+		return {
+			...item,
+			seasons: JSON.parse(item.seasons),
+			name: JSON.parse(JSON.parse(item.name)),
+			social_media: JSON.parse(item.social_media),
+			review: JSON.parse(item.review),
+			description: JSON.parse(item.description),
+			location: JSON.parse(item.location)
+		}
+
+	});
+
 	res.statusCode = result.status;
 	res.setHeader('Content-Type', 'application/json');
-	res.end(JSON.stringify(result.data))
+	res.end(JSON.stringify(cleaned))
 }
 
 

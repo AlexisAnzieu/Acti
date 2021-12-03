@@ -17,8 +17,11 @@ export interface paths {
       parameters: {
         query: {
           name?: parameters["rowFilter.activity.name"];
+          description?: parameters["rowFilter.activity.description"];
           compagny?: parameters["rowFilter.activity.compagny"];
           picture_url?: parameters["rowFilter.activity.picture_url"];
+          seasons?: parameters["rowFilter.activity.seasons"];
+          location?: parameters["rowFilter.activity.location"];
           address?: parameters["rowFilter.activity.address"];
           city?: parameters["rowFilter.activity.city"];
           postal_code?: parameters["rowFilter.activity.postal_code"];
@@ -27,12 +30,9 @@ export interface paths {
           price?: parameters["rowFilter.activity.price"];
           carbon_footprint?: parameters["rowFilter.activity.carbon_footprint"];
           id?: parameters["rowFilter.activity.id"];
-          seasons?: parameters["rowFilter.activity.seasons"];
-          description?: parameters["rowFilter.activity.description"];
           email?: parameters["rowFilter.activity.email"];
           website?: parameters["rowFilter.activity.website"];
           created_at?: parameters["rowFilter.activity.created_at"];
-          location?: parameters["rowFilter.activity.location"];
           review?: parameters["rowFilter.activity.review"];
           /** Filtering Columns */
           select?: parameters["select"];
@@ -85,8 +85,11 @@ export interface paths {
       parameters: {
         query: {
           name?: parameters["rowFilter.activity.name"];
+          description?: parameters["rowFilter.activity.description"];
           compagny?: parameters["rowFilter.activity.compagny"];
           picture_url?: parameters["rowFilter.activity.picture_url"];
+          seasons?: parameters["rowFilter.activity.seasons"];
+          location?: parameters["rowFilter.activity.location"];
           address?: parameters["rowFilter.activity.address"];
           city?: parameters["rowFilter.activity.city"];
           postal_code?: parameters["rowFilter.activity.postal_code"];
@@ -95,12 +98,9 @@ export interface paths {
           price?: parameters["rowFilter.activity.price"];
           carbon_footprint?: parameters["rowFilter.activity.carbon_footprint"];
           id?: parameters["rowFilter.activity.id"];
-          seasons?: parameters["rowFilter.activity.seasons"];
-          description?: parameters["rowFilter.activity.description"];
           email?: parameters["rowFilter.activity.email"];
           website?: parameters["rowFilter.activity.website"];
           created_at?: parameters["rowFilter.activity.created_at"];
-          location?: parameters["rowFilter.activity.location"];
           review?: parameters["rowFilter.activity.review"];
         };
         header: {
@@ -117,8 +117,11 @@ export interface paths {
       parameters: {
         query: {
           name?: parameters["rowFilter.activity.name"];
+          description?: parameters["rowFilter.activity.description"];
           compagny?: parameters["rowFilter.activity.compagny"];
           picture_url?: parameters["rowFilter.activity.picture_url"];
+          seasons?: parameters["rowFilter.activity.seasons"];
+          location?: parameters["rowFilter.activity.location"];
           address?: parameters["rowFilter.activity.address"];
           city?: parameters["rowFilter.activity.city"];
           postal_code?: parameters["rowFilter.activity.postal_code"];
@@ -127,12 +130,9 @@ export interface paths {
           price?: parameters["rowFilter.activity.price"];
           carbon_footprint?: parameters["rowFilter.activity.carbon_footprint"];
           id?: parameters["rowFilter.activity.id"];
-          seasons?: parameters["rowFilter.activity.seasons"];
-          description?: parameters["rowFilter.activity.description"];
           email?: parameters["rowFilter.activity.email"];
           website?: parameters["rowFilter.activity.website"];
           created_at?: parameters["rowFilter.activity.created_at"];
-          location?: parameters["rowFilter.activity.location"];
           review?: parameters["rowFilter.activity.review"];
         };
         body: {
@@ -154,11 +154,11 @@ export interface paths {
 
 export interface definitions {
   activity: {
-    name: {
+    name?: {
       en: string,
       fr: string
     };
-    description: {
+    description?: {
       en: string,
       fr: string
     };
@@ -173,14 +173,14 @@ export interface definitions {
       youtube: string,
       instagram: string
     };
-    price: number;
-    carbon_footprint: number;
+    price?: number;
+    carbon_footprint?: number;
     /**
      * Note:
      * This is a Primary Key.<pk/>
      */
     id: string;
-    seasons?: unknown[];
+    seasons?: string[];
     email?: string;
     website?: string;
     created_at?: string;
@@ -216,8 +216,11 @@ export interface parameters {
   /** activity */
   "body.activity": definitions["activity"];
   "rowFilter.activity.name": string;
+  "rowFilter.activity.description": string;
   "rowFilter.activity.compagny": string;
   "rowFilter.activity.picture_url": string;
+  "rowFilter.activity.seasons": string;
+  "rowFilter.activity.location": string;
   "rowFilter.activity.address": string;
   "rowFilter.activity.city": string;
   "rowFilter.activity.postal_code": string;
@@ -226,12 +229,9 @@ export interface parameters {
   "rowFilter.activity.price": string;
   "rowFilter.activity.carbon_footprint": string;
   "rowFilter.activity.id": string;
-  "rowFilter.activity.seasons": string;
-  "rowFilter.activity.description": string;
   "rowFilter.activity.email": string;
   "rowFilter.activity.website": string;
   "rowFilter.activity.created_at": string;
-  "rowFilter.activity.location": string;
   "rowFilter.activity.review": string;
 }
 

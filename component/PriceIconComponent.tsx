@@ -16,7 +16,7 @@ const buildTooltipDescription = (price: number, t: any) => {
 };
 
 const PriceIcon = ({
-    price,
+    price = 1,
     fontSize,
 }: Pick<definitions["activity"], "price"> & { fontSize?: string }) => {
     const { t } = useTranslation("common");
