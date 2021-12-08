@@ -35,22 +35,9 @@ export default async function (
 		result = await supabaseBase;
 	}
 
-	const cleaned = result?.data?.map((item: any) => {
-		return {
-			...item,
-			...(item.seasons && { seasons: JSON.parse(item.seasons) }),
-			...(item.name && { name: JSON.parse(JSON.parse(item.name)) }),
-			...(item.social_media && { social_media: JSON.parse(item.social_media) }),
-			...(item.review && { review: JSON.parse(item.review) }),
-			...(item.description && { description: JSON.parse(item.description) }),
-			...(item.location && { location: JSON.parse(item.location) })
-		}
-
-	});
-
 	res.statusCode = result.status;
 	res.setHeader('Content-Type', 'application/json');
-	res.end(JSON.stringify(cleaned))
+	res.end(JSON.stringify(result.data))
 }
 
 
