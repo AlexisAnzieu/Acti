@@ -20,15 +20,13 @@ export default async function (
 	let result;
 	let supabaseBase = supabase.from<definitions["activity"]>("activity").select(fields).order('created_at', { ascending: false });
 	if (id) {
-		result = await supabaseBase.eq('id', id);
+		result = await supabaseBase.eq('id', id).single();
 	} else if (query || season) {
 		if (query) {
-			// supabaseBase.ilike(`name->>${locale}` as 'name', `%${query}%`);
-			supabaseBase.ilike("name", `%${query}%`)
+			supabaseBase.ilike(`name->>${locale}` as 'name', `%${query}%`);
 		}
 		if (season) {
-			// supabaseBase.contains("seasons", season)
-			supabaseBase.like("seasons", `%${season}%`)
+			supabaseBase.contains("seasons", season)
 		}
 		result = await supabaseBase;
 	} else {

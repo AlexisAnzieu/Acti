@@ -209,13 +209,13 @@ export async function getStaticProps({
     params,
     locale,
 }: GetStaticPropsContext) {
-    const activity: any = await fetch(
+    const res: any = await fetch(
         `${process.env.NEXT_PUBLIC_BASE_URL}/api/activities?id=${params?.id}`
     );
     return {
         props: {
             ...(await serverSideTranslations(locale as Locale, ["common"])),
-            activity: (await activity.json())[0],
+            activity: await res.json(),
         },
     };
 }
