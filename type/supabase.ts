@@ -3,6 +3,11 @@
  * Do not make direct changes to the file.
  */
 
+type Translations = {
+  en: string,
+  fr: string
+};
+
 export interface paths {
   "/": {
     get: {
@@ -16,24 +21,24 @@ export interface paths {
     get: {
       parameters: {
         query: {
-          name?: parameters["rowFilter.activity.name"];
-          description?: parameters["rowFilter.activity.description"];
           compagny?: parameters["rowFilter.activity.compagny"];
           picture_url?: parameters["rowFilter.activity.picture_url"];
-          seasons?: parameters["rowFilter.activity.seasons"];
-          location?: parameters["rowFilter.activity.location"];
           address?: parameters["rowFilter.activity.address"];
           city?: parameters["rowFilter.activity.city"];
           postal_code?: parameters["rowFilter.activity.postal_code"];
           phone?: parameters["rowFilter.activity.phone"];
-          social_media?: parameters["rowFilter.activity.social_media"];
           price?: parameters["rowFilter.activity.price"];
           carbon_footprint?: parameters["rowFilter.activity.carbon_footprint"];
           id?: parameters["rowFilter.activity.id"];
           email?: parameters["rowFilter.activity.email"];
           website?: parameters["rowFilter.activity.website"];
           created_at?: parameters["rowFilter.activity.created_at"];
+          name?: parameters["rowFilter.activity.name"];
+          social_media?: parameters["rowFilter.activity.social_media"];
+          description?: parameters["rowFilter.activity.description"];
+          location?: parameters["rowFilter.activity.location"];
           review?: parameters["rowFilter.activity.review"];
+          seasons?: parameters["rowFilter.activity.seasons"];
           /** Filtering Columns */
           select?: parameters["select"];
           /** Ordering */
@@ -84,24 +89,24 @@ export interface paths {
     delete: {
       parameters: {
         query: {
-          name?: parameters["rowFilter.activity.name"];
-          description?: parameters["rowFilter.activity.description"];
           compagny?: parameters["rowFilter.activity.compagny"];
           picture_url?: parameters["rowFilter.activity.picture_url"];
-          seasons?: parameters["rowFilter.activity.seasons"];
-          location?: parameters["rowFilter.activity.location"];
           address?: parameters["rowFilter.activity.address"];
           city?: parameters["rowFilter.activity.city"];
           postal_code?: parameters["rowFilter.activity.postal_code"];
           phone?: parameters["rowFilter.activity.phone"];
-          social_media?: parameters["rowFilter.activity.social_media"];
           price?: parameters["rowFilter.activity.price"];
           carbon_footprint?: parameters["rowFilter.activity.carbon_footprint"];
           id?: parameters["rowFilter.activity.id"];
           email?: parameters["rowFilter.activity.email"];
           website?: parameters["rowFilter.activity.website"];
           created_at?: parameters["rowFilter.activity.created_at"];
+          name?: parameters["rowFilter.activity.name"];
+          social_media?: parameters["rowFilter.activity.social_media"];
+          description?: parameters["rowFilter.activity.description"];
+          location?: parameters["rowFilter.activity.location"];
           review?: parameters["rowFilter.activity.review"];
+          seasons?: parameters["rowFilter.activity.seasons"];
         };
         header: {
           /** Preference */
@@ -109,31 +114,31 @@ export interface paths {
         };
       };
       responses: {
-        /** No Contente */
+        /** No Content */
         204: never;
       };
     };
     patch: {
       parameters: {
         query: {
-          name?: parameters["rowFilter.activity.name"];
-          description?: parameters["rowFilter.activity.description"];
           compagny?: parameters["rowFilter.activity.compagny"];
           picture_url?: parameters["rowFilter.activity.picture_url"];
-          seasons?: parameters["rowFilter.activity.seasons"];
-          location?: parameters["rowFilter.activity.location"];
           address?: parameters["rowFilter.activity.address"];
           city?: parameters["rowFilter.activity.city"];
           postal_code?: parameters["rowFilter.activity.postal_code"];
           phone?: parameters["rowFilter.activity.phone"];
-          social_media?: parameters["rowFilter.activity.social_media"];
           price?: parameters["rowFilter.activity.price"];
           carbon_footprint?: parameters["rowFilter.activity.carbon_footprint"];
           id?: parameters["rowFilter.activity.id"];
           email?: parameters["rowFilter.activity.email"];
           website?: parameters["rowFilter.activity.website"];
           created_at?: parameters["rowFilter.activity.created_at"];
+          name?: parameters["rowFilter.activity.name"];
+          social_media?: parameters["rowFilter.activity.social_media"];
+          description?: parameters["rowFilter.activity.description"];
+          location?: parameters["rowFilter.activity.location"];
           review?: parameters["rowFilter.activity.review"];
+          seasons?: parameters["rowFilter.activity.seasons"];
         };
         body: {
           /** activity */
@@ -154,25 +159,12 @@ export interface paths {
 
 export interface definitions {
   activity: {
-    name?: {
-      en: string,
-      fr: string
-    };
-    description?: {
-      en: string,
-      fr: string
-    };
     compagny?: string;
     picture_url?: string;
     address?: string;
     city?: string;
     postal_code?: string;
     phone?: string;
-    social_media: {
-      facebook: string,
-      youtube: string,
-      instagram: string
-    };
     price?: number;
     carbon_footprint?: number;
     /**
@@ -180,15 +172,19 @@ export interface definitions {
      * This is a Primary Key.<pk/>
      */
     id: string;
-    seasons?: string[];
     email?: string;
     website?: string;
     created_at?: string;
-    location?: string;
-    review?: {
-      en: string,
-      fr: string
+    name?: Translations;
+    social_media: {
+      facebook: string,
+      youtube: string,
+      instagram: string
     };
+    description?: Translations;
+    location?: string;
+    review: Translations;
+    seasons: string[];
   };
 }
 
@@ -215,24 +211,24 @@ export interface parameters {
   limit: string;
   /** activity */
   "body.activity": definitions["activity"];
-  "rowFilter.activity.name": string;
-  "rowFilter.activity.description": string;
   "rowFilter.activity.compagny": string;
   "rowFilter.activity.picture_url": string;
-  "rowFilter.activity.seasons": string;
-  "rowFilter.activity.location": string;
   "rowFilter.activity.address": string;
   "rowFilter.activity.city": string;
   "rowFilter.activity.postal_code": string;
   "rowFilter.activity.phone": string;
-  "rowFilter.activity.social_media": string;
   "rowFilter.activity.price": string;
   "rowFilter.activity.carbon_footprint": string;
   "rowFilter.activity.id": string;
   "rowFilter.activity.email": string;
   "rowFilter.activity.website": string;
   "rowFilter.activity.created_at": string;
+  "rowFilter.activity.name": string;
+  "rowFilter.activity.social_media": string;
+  "rowFilter.activity.description": string;
+  "rowFilter.activity.location": string;
   "rowFilter.activity.review": string;
+  "rowFilter.activity.seasons": string;
 }
 
 export interface operations { }

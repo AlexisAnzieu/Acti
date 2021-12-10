@@ -31,14 +31,16 @@ export default async function (
 		result = await supabaseBase;
 	}
 
-	result.data = result.data?.filter((activity: definitions["activity"]) => {
-		return activity.picture_url &&
-			activity.name &&
-			activity.description &&
-			activity.location &&
-			activity.seasons &&
-			activity.website
-	})
+	if (fields !== '*') {
+		result.data = result.data?.filter((activity: definitions["activity"]) => {
+			return activity.picture_url &&
+				activity.name &&
+				activity.description &&
+				activity.location &&
+				activity.seasons &&
+				activity.website
+		})
+	}
 	return sendReponse(res, result);
 }
 
