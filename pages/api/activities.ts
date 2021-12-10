@@ -26,7 +26,7 @@ export default async function (
 			supabaseBase.ilike(`name->>${locale}` as 'name', `%${query}%`);
 		}
 		if (season) {
-			supabaseBase.contains("seasons", season)
+			supabaseBase.contains("seasons", [season])
 		}
 		result = await supabaseBase;
 	} else {
