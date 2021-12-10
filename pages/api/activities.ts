@@ -31,7 +31,7 @@ export default async function (
 		result = await supabaseBase;
 	}
 
-	if (fields !== '*') {
+	if (fields !== 'id') {
 		result.data = result.data?.filter((activity: definitions["activity"]) => {
 			return activity.picture_url &&
 				activity.name &&
