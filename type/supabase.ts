@@ -109,7 +109,7 @@ export interface paths {
         };
       };
       responses: {
-        /** No Content */
+        /** No Contente */
         204: never;
       };
     };
