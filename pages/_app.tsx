@@ -11,6 +11,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     return (
         <>
             <Script
+                id="google_analytics_script"
                 strategy="lazyOnload"
                 src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
             />
