@@ -42,7 +42,7 @@ export default function Activity({ activity }: GetServerSideProps["props"]) {
     return (
         <Box>
             <Head>
-                <title>Acti - {activity.name?.[locale]}</title>
+                <title>Acti - {activity.compagny}</title>
             </Head>
             <Flex className="activity-flex">
                 <Box className="activity-description">
