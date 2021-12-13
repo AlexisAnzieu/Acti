@@ -110,7 +110,7 @@ function Activity(activity: definitions["activity"], locale: Locale) {
                         lineHeight="tight"
                         mt="1"
                     >
-                        {activity.name?.[locale]}
+                        {activity.name?.[locale]} {activity.compagny}
                     </Box>
 
                     <Box display="flex" alignItems="center">

@@ -99,28 +99,36 @@ function Navbar() {
                     <ModalContent>
                         <ModalHeader>Heureux de vous accueillir!</ModalHeader>
                         <ModalCloseButton />
-                        <ModalBody>
+                        <ModalBody whiteSpace="pre-line">
                             <Flex mb="20px">
                                 <Center w="50%">
-                                    <Avatar
-                                        size="2xl"
-                                        name="Carla Fabregas"
-                                        src="https://upduuutuduczuuhixpdp.supabase.in/storage/v1/object/public/profile/carla.jpg"
-                                    />
+                                    <a href="https://www.linkedin.com/in/carla-fabregas/">
+                                        <Avatar
+                                            size="2xl"
+                                            name="Carla Fabregas"
+                                            src="https://upduuutuduczuuhixpdp.supabase.in/storage/v1/object/public/profile/carla.jpg"
+                                        />
+                                    </a>
                                 </Center>
                                 <Center w="50%">
-                                    <Avatar
-                                        size="2xl"
-                                        name="Alexis Anzieu"
-                                        src="https://upduuutuduczuuhixpdp.supabase.in/storage/v1/object/public/profile/alexis.jpeg"
-                                    />
+                                    <a href="https://www.linkedin.com/in/alexis-anzieu/">
+                                        <Avatar
+                                            size="2xl"
+                                            name="Alexis Anzieu"
+                                            src="https://upduuutuduczuuhixpdp.supabase.in/storage/v1/object/public/profile/alexis.jpeg"
+                                        />
+                                    </a>
                                 </Center>
                             </Flex>
-                            {t("whoAreWeModal.text")}
+                            <div
+                                dangerouslySetInnerHTML={{
+                                    __html: t("whoAreWeModal.text"),
+                                }}
+                            />
                         </ModalBody>
                         <ModalFooter>
                             <Button onClick={onClose} variant="ghost">
-                                Bonne visite!
+                                {t("whoAreWeModal.endText")}
                             </Button>
                         </ModalFooter>
                     </ModalContent>

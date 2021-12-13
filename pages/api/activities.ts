@@ -17,7 +17,7 @@ export default async function (
 	res: NextApiResponse<any>
 ) {
 	const { query, id, season, locale, fields = '*' } = req.query as Params;
-	const supabaseBase = supabase.from<definitions["activity"]>("activity").select(fields);
+	const supabaseBase = supabase.from<definitions["activity"]>("activity").select(fields).order(`name->>${locale}` as 'name');
 
 	let result;
 	if (id) {
@@ -34,10 +34,7 @@ export default async function (
 	if (fields !== 'id') {
 		result.data = result.data?.filter((activity: definitions["activity"]) => {
 			return activity.picture_url &&
-				activity.name &&
-				activity.description &&
 				activity.location &&
-				activity.seasons &&
 				activity.website
 		})
 	}

@@ -25,6 +25,7 @@
     "by": "par",
     "whoAreWe": "Qui sommes-nous?",
     "whoAreWeModal": {
-        "text": "Nous sommes un jeune couple (Alexis & Carla), arpentant le Québec à la recherche d'activités originales. \n Nos amis nous demandant regulièrement des retours d'expérience, l'idée nous est venue de déveloper un site web afin d'y capitaliser nos differentes trouvailles."
+        "text": "Nous sommes un jeune couple (Alexis & Carla), arpentant le Québec à la recherche d'activités originales. Nos amis nous demandant regulièrement des retours d'expérience, l'idée nous est venue de déveloper un site web afin d'y capitaliser nos differentes trouvailles. \n \n Acti fait partie du projet <a style='color:#2E797B' href='https://h2t.club'>h2t.club</a> qui vise à la création de communautés locales. Son code source est entièrement disponible sur <a style='color:#2E797B' href='https://github.com/AlexisAnzieu/Acti'>Github</a>. \n \n Pour toutes questions merci d'envoyer un mail à <a style='color:#2E797B' href='mailto:contact@h2t.club'>contact@h2t.club</a>",
+        "endText": "Bonne visite!"
     }
 }
