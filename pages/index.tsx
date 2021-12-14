@@ -266,10 +266,7 @@ export default function Activities() {
                 <Box h="100vh" padding="15px">
                     {isLoading ? (
                         <Box textAlign="center">
-                            <CircularProgress
-                                isIndeterminate
-                                color="green.300"
-                            />
+                            <CircularProgress isIndeterminate color="teal" />
                         </Box>
                     ) : (
                         <ActivityList
