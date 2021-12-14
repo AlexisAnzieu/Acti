@@ -10,31 +10,31 @@
     },
     "dependencies": {
         "@chakra-ui/icons": "^1.1.1",
-        "@chakra-ui/react": "^1.6.10",
-        "@emotion/react": "^11.6.0",
+        "@chakra-ui/react": "^1.7.3",
+        "@emotion/react": "^11.7.1",
         "@emotion/styled": "^11.6.0",
-        "@supabase/supabase-js": "^1.25.2",
+        "@supabase/supabase-js": "^1.28.5",
         "dayjs": "^1.10.7",
         "dotenv": "^10.0.0",
         "framer-motion": "^4.1.17",
         "leaflet": "^1.7.1",
         "lodash": "^4.17.21",
-        "next": "^12.0.0",
+        "next": "^12.0.7",
         "next-i18next": "^8.10.0",
-        "react": "17.0.2",
-        "react-dom": "17.0.2",
+        "react": "^17.0.2",
+        "react-dom": "^17.0.2",
         "react-icons": "^4.3.1",
         "react-leaflet": "^3.2.2"
     },
     "devDependencies": {
         "@types/leaflet": "^1.7.6",
-        "@types/node": "16.11.6",
-        "@types/react": "^17.0.34",
+        "@types/node": "^16.11.12",
+        "@types/react": "^17.0.37",
         "@types/react-dom": "^17.0.11",
-        "eslint": "7",
-        "eslint-config-next": "12.0.0",
+        "eslint": "^7",
+        "eslint-config-next": "^12.0.7",
         "eslint-plugin-simple-import-sort": "^7.0.0",
         "eslint-plugin-unused-imports": "^2.0.0",
-        "typescript": "4.4.4"
+        "typescript": "^4.5.4"
     }
 }
