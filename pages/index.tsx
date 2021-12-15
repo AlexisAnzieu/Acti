@@ -8,6 +8,7 @@ import {
     Input,
     InputGroup,
     InputLeftElement,
+    Center,
     Link as ChakraLink,
 } from "@chakra-ui/react";
 import { GetStaticPropsContext } from "next";
@@ -24,6 +25,7 @@ import CarbonIcon from "../component/CarbonIconComponent";
 import { Locale } from "../component/NavbarComponent";
 import PriceIcon from "../component/PriceIconComponent";
 import { definitions } from "../type/supabase";
+import Newsletter from "../component/NewsletterComponent";
 
 const MAX_DESCRIPTION_LENGTH = 250;
 
@@ -144,8 +146,18 @@ const ActivityList = (props: {
     activities: GetServerSideProps["props"]["activities"];
     locale: Locale;
 }) => {
+    const { t } = useTranslation("common");
     if (!props.activities?.length) {
-        return <h1>Aucune activité ne correspond à ces critères</h1>;
+        return (
+            <>
+                <Center fontSize="20px">{t("noActivityFound")}</Center>
+                <Center>
+                    <Box width="300px" margin="3%">
+                        <Newsletter />
+                    </Box>
+                </Center>
+            </>
+        );
     }
     return (
         <>
