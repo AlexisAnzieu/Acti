@@ -215,7 +215,7 @@ export default function Activities() {
                 />
                 <meta
                     property="og:description"
-                    content="Guide d'activité au Québec"
+                    content={t("ogDescription")}
                     key="ogdesc"
                 />
                 <meta

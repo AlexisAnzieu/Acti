@@ -27,5 +27,6 @@
     "whoAreWeModal": {
         "text": "We are a young couple (Carla & Alexis), travelling around Quebec in search of original activities. Our friends regularly ask us for ideas, so we decided to develop a website to capitalize our different finds. \n \n Acti is part of the more global project <a style='color:#2E797B' href='https://h2t.club'>h2t.club</a> which aim to create local communities. The source code is completely opensourced on <a style='color:#2E797B' href='https://github.com/AlexisAnzieu/Acti'>Github</a>. \n \n For any inquiries, please send an email to <a style='color:#2E797B' href='mailto:contact@h2t.club'>contact@h2t.club</a>",
         "endText": "Have fun!"
-    }
+    },
+    "ogDescription": "Actï is a blog that help you to find activities to do, for a fee or not, in all the cities of Quebec. It was born from a capitalization of Carla and Alexis' adventures and contributes to the h2t project helping the development of local communities"
 }
