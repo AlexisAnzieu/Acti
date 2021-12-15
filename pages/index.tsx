@@ -208,6 +208,21 @@ export default function Activities() {
         <>
             <Head>
                 <title>{t("documentTitle.index")}</title>
+                <meta
+                    property="og:title"
+                    content={t("documentTitle.index")}
+                    key="ogtitle"
+                />
+                <meta
+                    property="og:description"
+                    content="Guide d'activité au Québec"
+                    key="ogdesc"
+                />
+                <meta
+                    property="og:image"
+                    content="https://upduuutuduczuuhixpdp.supabase.in/storage/v1/object/public/profile/actiseo.jpeg"
+                    key="ogpic"
+                />
             </Head>
             <Flex margin="30px 0px 10px 10px">
                 <InputGroup>
