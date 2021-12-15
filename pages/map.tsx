@@ -1,5 +1,5 @@
 import { Box, Icon } from "@chakra-ui/react";
-import { GetServerSidePropsContext } from "next";
+import { GetStaticPropsContext } from "next";
 import dynamic from "next/dynamic";
 import Head from "next/head";
 import Link from "next/link";
@@ -11,6 +11,7 @@ import { BsViewList } from "react-icons/bs";
 
 import { Locale } from "../component/NavbarComponent";
 import { GetServerSideProps, searchApi } from ".";
+import { definitions } from "../type/supabase";
 
 export default function Map(props: GetServerSideProps["props"]) {
     const { t } = useTranslation("common");
@@ -43,23 +44,15 @@ export default function Map(props: GetServerSideProps["props"]) {
     );
 }
 
-export async function getServerSideProps(
-    context: GetServerSidePropsContext
-): Promise<GetServerSideProps> {
-    return fetch(searchApi(context.query, context.locale as Locale))
-        .then((res: Response) => res.json())
-        .then(async (activities) => {
-            const filteredActivities = activities.filter(
-                (activity: any) => activity.location
-            );
-            return {
-                props: {
-                    ...(await serverSideTranslations(context.locale as Locale, [
-                        "common",
-                    ])),
-                    activities: filteredActivities,
-                    queryParam: context.query,
-                },
-            };
-        });
+export async function getStaticProps({ locale }: GetStaticPropsContext) {
+    const res: any = await fetch(searchApi({}, locale as Locale));
+    const filteredActivities = (await res.json()).filter(
+        (activity: definitions["activity"]) => activity.location
+    );
+    return {
+        props: {
+            ...(await serverSideTranslations(locale as Locale, ["common"])),
+            activities: filteredActivities,
+        },
+    };
 }

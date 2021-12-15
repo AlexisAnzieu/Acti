@@ -43,7 +43,32 @@ export type GetServerSideProps = {
     };
 };
 
-function Activity(activity: definitions["activity"], locale: Locale) {
+const buildNewsletterActivity = () => {
+    const { t } = useTranslation("common");
+
+    return (
+        <Box
+            key="newsletterActivity"
+            borderRadius="lg"
+            borderWidth="1px"
+            boxShadow="lg"
+            display="inline-block"
+            margin="5px"
+            height="334px"
+            width="300px"
+            overflow="hidden"
+            p="5"
+            textAlign="left"
+        >
+            {t("noActivityMatching")}
+            <br />
+            <br />
+            <Newsletter />
+        </Box>
+    );
+};
+
+const buildActivity = (activity: definitions["activity"], locale: Locale) => {
     const { t } = useTranslation("common");
 
     return (
@@ -74,10 +99,7 @@ function Activity(activity: definitions["activity"], locale: Locale) {
                     <NextImage
                         layout="fill"
                         alt={activity.picture_url}
-                        src={
-                            (activity.picture_url as string) ||
-                            "https://picsum.photos/400/600"
-                        }
+                        src={activity.picture_url}
                     />
                 </Box>
 
@@ -89,7 +111,7 @@ function Activity(activity: definitions["activity"], locale: Locale) {
                 >
                     {activity.seasons && (
                         <Box display="flex" alignItems="baseline">
-                            {(activity.seasons as string[]).map((s: string) => (
+                            {activity.seasons.map((s: string) => (
                                 <Badge
                                     borderRadius="full"
                                     colorScheme="teal"
@@ -140,7 +162,7 @@ function Activity(activity: definitions["activity"], locale: Locale) {
             </Box>
         </ChakraLink>
     );
-}
+};
 
 const ActivityList = (props: {
     activities: GetServerSideProps["props"]["activities"];
@@ -161,9 +183,12 @@ const ActivityList = (props: {
     }
     return (
         <>
-            {props?.activities.map((activity) =>
-                Activity(activity, props.locale)
-            )}{" "}
+            {[
+                ...props?.activities.map((activity) =>
+                    buildActivity(activity, props.locale)
+                ),
+                buildNewsletterActivity(),
+            ]}
         </>
     );
 };

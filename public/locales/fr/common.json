@@ -30,6 +30,7 @@
     },
     "ogDescription": "Actï est un blog permettant de trouver des activités à faire, payantes ou non, dans toutes les villes du Québec. Il est né d'une capitalisation des aventures de Carla et d'Alexis et contribue au projet h2t aidant au développement de communautés locales.",
     "noActivityFound": "Aucune activité ne correspond à ces critères pour le moment, souhaitez-vous vous abonner à notre newsletter afin d'être tenu au courant?",
+    "noActivityMatching": "Aucune activité ne vous tente? Vous pouvez vous abonner à notre newsletter afin d'être tenu au courant de nos dernières trouvailles!",
     "newsletter": {
         "email": "Votre adresse courriel",
         "submit": "S'abonner",

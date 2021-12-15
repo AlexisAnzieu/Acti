@@ -24,13 +24,13 @@ import("dayjs/locale/fr");
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 
-type GetServerSideProps = {
+type getStaticProps = {
     props: {
         activity: definitions["activity"];
     };
 };
 
-export default function Activity({ activity }: GetServerSideProps["props"]) {
+export default function Activity({ activity }: getStaticProps["props"]) {
     dayjs.extend(relativeTime);
     const router = useRouter();
     const locale = router.locale as Locale;
