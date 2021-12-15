@@ -159,14 +159,14 @@ export interface paths {
 
 export interface definitions {
   activity: {
-    compagny?: string;
-    picture_url?: string;
+    compagny: string;
+    picture_url: string;
     address?: string;
     city?: string;
     postal_code?: string;
     phone?: string;
-    price?: number;
-    carbon_footprint?: number;
+    price: number;
+    carbon_footprint: number;
     /**
      * Note:
      * This is a Primary Key.<pk/>
@@ -175,15 +175,15 @@ export interface definitions {
     email?: string;
     website?: string;
     created_at?: string;
-    name?: Translations;
+    name: Translations;
     social_media: {
       facebook: string,
       youtube: string,
       instagram: string
     };
     description?: Translations;
-    location?: string;
-    review: Translations;
+    location: string;
+    review?: Translations;
     seasons: string[];
   };
 }

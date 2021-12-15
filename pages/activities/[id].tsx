@@ -43,6 +43,21 @@ export default function Activity({ activity }: GetServerSideProps["props"]) {
         <Box>
             <Head>
                 <title>Acti - {activity.compagny}</title>
+                <meta
+                    property="og:title"
+                    content={`${activity.name?.[locale]} ${activity.compagny}`}
+                    key="ogtitle"
+                />
+                <meta
+                    property="og:description"
+                    content={activity.description?.[locale]}
+                    key="ogdesc"
+                />
+                <meta
+                    property="og:image"
+                    content={activity.picture_url}
+                    key="ogpic"
+                />
             </Head>
             <Flex className="activity-flex">
                 <Box className="activity-description">
