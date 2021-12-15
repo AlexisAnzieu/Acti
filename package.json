@@ -28,10 +28,10 @@
     },
     "devDependencies": {
         "@types/leaflet": "^1.7.6",
-        "@types/node": "^16.11.12",
+        "@types/node": "^16.11.13",
         "@types/react": "^17.0.37",
         "@types/react-dom": "^17.0.11",
-        "eslint": "^7",
+        "eslint": "^8.4",
         "eslint-config-next": "^12.0.7",
         "eslint-plugin-simple-import-sort": "^7.0.0",
         "eslint-plugin-unused-imports": "^2.0.0",
