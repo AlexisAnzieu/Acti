@@ -220,7 +220,7 @@ export default function Activities() {
                 />
                 <meta
                     property="og:image"
-                    content="https://upduuutuduczuuhixpdp.supabase.in/storage/v1/object/public/profile/actiseo.jpeg"
+                    content="https://upduuutuduczuuhixpdp.supabase.in/storage/v1/object/public/profile/actiseo.png"
                     key="ogpic"
                 />
             </Head>
