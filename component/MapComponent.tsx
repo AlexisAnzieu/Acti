@@ -131,7 +131,7 @@ const Map = (props: any) => {
         <MapContainer
             className={className}
             center={centerLocation}
-            zoom={6}
+            zoom={!isMapPage ? 10 : 7}
             scrollWheelZoom={true}
         >
             <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
