@@ -50,8 +50,7 @@ const BuildNewsletterActivity = () => {
         <Box
             key="newsletterActivity"
             borderRadius="lg"
-            borderWidth="1px"
-            boxShadow="lg"
+            boxShadow="md"
             display="inline-block"
             margin="5px"
             height="334px"
