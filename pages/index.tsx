@@ -43,7 +43,9 @@ export type GetServerSideProps = {
     };
 };
 
-const buildNewsletterActivity = (translation: string) => {
+const BuildNewsletterActivity = () => {
+    const { t } = useTranslation("common");
+
     return (
         <Box
             key="newsletterActivity"
@@ -58,7 +60,7 @@ const buildNewsletterActivity = (translation: string) => {
             p="5"
             textAlign="left"
         >
-            {translation}
+            {t("noActivityMatching")}
             <br />
             <br />
             <Newsletter />
@@ -66,7 +68,7 @@ const buildNewsletterActivity = (translation: string) => {
     );
 };
 
-const buildActivity = (activity: definitions["activity"], locale: Locale) => {
+const BuildActivity = (activity: definitions["activity"], locale: Locale) => {
     const { t } = useTranslation("common");
 
     return (
@@ -183,9 +185,9 @@ const ActivityList = (props: {
         <>
             {[
                 ...props?.activities.map((activity) =>
-                    buildActivity(activity, props.locale)
+                    BuildActivity(activity, props.locale)
                 ),
-                buildNewsletterActivity(t("noActivityMatching")),
+                BuildNewsletterActivity(),
             ]}
         </>
     );
