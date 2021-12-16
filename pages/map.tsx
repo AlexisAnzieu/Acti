@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import React from "react";
-import { BsViewList } from "react-icons/bs";
+import { BsGrid } from "react-icons/bs";
 
 import { Locale } from "../component/NavbarComponent";
 import { GetServerSideProps, searchApi } from ".";
@@ -37,7 +37,7 @@ export default function Map(props: GetServerSideProps["props"]) {
                         query: router.query,
                     }}
                 >
-                    <Icon h="1.8em" as={BsViewList} />
+                    <Icon h="1.8em" as={BsGrid} />
                 </Link>
             </Box>
         </>
