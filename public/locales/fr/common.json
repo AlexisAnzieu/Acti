@@ -10,12 +10,14 @@
         "index": "Actï - Activités au Québec",
         "map": "Actï - Carte"
     },
+    "carbonFilter": "Émission de CO2 générée par l'activité",
     "carbonIcon": {
         "free": "Cette activité est sans impact écologique directe",
         "low": "Cette activité a peu d'impact écologique",
         "medium": "Cette activité a un impact écologique élevé",
         "high": "Cette activité a un lourd impact écologique"
     },
+    "priceFilter": "Coût moyen de l'activité",
     "priceIcon": {
         "free": "Cette activité est gratuite",
         "low": "Cette activité coûte moins de 50$",

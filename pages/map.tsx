@@ -10,8 +10,8 @@ import React from "react";
 import { BsGrid } from "react-icons/bs";
 
 import { Locale } from "../component/NavbarComponent";
-import { GetServerSideProps, searchApi } from ".";
 import { definitions } from "../type/supabase";
+import { GetServerSideProps, searchApi } from ".";
 
 export default function Map(props: GetServerSideProps["props"]) {
     const { t } = useTranslation("common");

@@ -1,6 +1,7 @@
 import {
     Badge,
     Box,
+    Center,
     CircularProgress,
     Divider,
     Flex,
@@ -8,8 +9,16 @@ import {
     Input,
     InputGroup,
     InputLeftElement,
-    Center,
     Link as ChakraLink,
+    RangeSlider,
+    RangeSliderFilledTrack,
+    RangeSliderThumb,
+    RangeSliderTrack,
+    Slider,
+    SliderFilledTrack,
+    SliderThumb,
+    SliderTrack,
+    Tooltip,
 } from "@chakra-ui/react";
 import { GetStaticPropsContext } from "next";
 import { useRouter } from "next/dist/client/router";
@@ -19,13 +28,14 @@ import Link from "next/link";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import React, { useEffect, useState } from "react";
-import { BsMap, BsSearch } from "react-icons/bs";
+import { BsCurrencyDollar, BsMap, BsSearch } from "react-icons/bs";
+import { GiEarthAmerica } from "react-icons/gi";
 
 import CarbonIcon from "../component/CarbonIconComponent";
 import { Locale } from "../component/NavbarComponent";
+import Newsletter from "../component/NewsletterComponent";
 import PriceIcon from "../component/PriceIconComponent";
 import { definitions } from "../type/supabase";
-import Newsletter from "../component/NewsletterComponent";
 
 const MAX_DESCRIPTION_LENGTH = 250;
 
@@ -210,22 +220,30 @@ export default function Activities() {
             });
     }, [router.isReady, router.query]);
 
-    function paramHandler(param: string, value: string | null): void {
+    function paramHandler(param: string, value: any): void {
         if (isLoading) {
             return;
         }
 
         setIsLoading(true);
 
+        const hasNoValue = value === null || value === undefined;
+
+        if (hasNoValue) {
+            delete router.query[param];
+        }
+
         if (param === "season") {
             value = value !== router.query.season ? value : null;
         }
-        if (!value) {
-            delete router.query[param];
+
+        if (param === "price") {
+            value = value.join(",");
         }
+
         const routerQuery = {
             ...router.query,
-            ...(value && { [param]: value }),
+            ...(!hasNoValue && { [param]: value }),
         };
 
         router.push(
@@ -286,33 +304,97 @@ export default function Activities() {
             <Divider className="search-bar" m="0% 2% 20px 2% " />
 
             <Box className="activity-list">
-                <Box padding="10px 15px 10px 15px">
-                    {seasons.map((season) => (
-                        <Badge
-                            cursor="pointer"
-                            variant={
-                                router.query.season === season
-                                    ? "solid"
-                                    : "outline"
-                            }
-                            id={season}
-                            key={season}
-                            onClick={(e) =>
-                                paramHandler(
-                                    "season",
-                                    (e.target as HTMLTextAreaElement).id
-                                )
-                            }
-                            mr="2"
-                            mb="1"
-                            fontSize="1.5em"
-                            borderRadius="full"
-                            px="6"
-                            colorScheme="teal"
+                <Box className="filters">
+                    <Box mb="20px">
+                        {seasons.map((season) => (
+                            <Badge
+                                cursor="pointer"
+                                variant={
+                                    router.query.season === season
+                                        ? "solid"
+                                        : "outline"
+                                }
+                                id={season}
+                                key={season}
+                                onClick={(e) =>
+                                    paramHandler(
+                                        "season",
+                                        (e.target as HTMLTextAreaElement).id
+                                    )
+                                }
+                                mr="1"
+                                fontSize="1em"
+                                borderRadius="full"
+                                px="2"
+                                colorScheme="teal"
+                            >
+                                {t(`season.${season}`)}
+                            </Badge>
+                        ))}
+                    </Box>
+                    <Tooltip placement="top" hasArrow label={t("priceFilter")}>
+                        <Box
+                            className="sliderFilter"
+                            key={router.query?.price as string}
                         >
-                            {t(`season.${season}`)}
-                        </Badge>
-                    ))}
+                            <RangeSlider
+                                onChangeEnd={(value: number[]) =>
+                                    paramHandler("price", value)
+                                }
+                                defaultValue={
+                                    router?.query?.price
+                                        ? (router?.query?.price as string)
+                                              .split(",")
+                                              .map((v) => +v)
+                                        : [0, 3]
+                                }
+                                min={0}
+                                max={3}
+                                step={1}
+                            >
+                                <RangeSliderTrack bg="teal.100">
+                                    <RangeSliderFilledTrack bg="teal" />
+                                </RangeSliderTrack>
+                                <RangeSliderThumb boxSize={6} index={0}>
+                                    <Box color="teal" as={BsCurrencyDollar} />
+                                </RangeSliderThumb>
+                                <RangeSliderThumb boxSize={6} index={1}>
+                                    <Box color="teal" as={BsCurrencyDollar} />
+                                </RangeSliderThumb>
+                            </RangeSlider>
+                        </Box>
+                    </Tooltip>
+
+                    <Tooltip placement="top" hasArrow label={t("carbonFilter")}>
+                        <Box
+                            className="sliderFilter"
+                            width="200px"
+                            key={router.query?.carbon_footprint as string}
+                        >
+                            <Slider
+                                onChangeEnd={(value: number) =>
+                                    paramHandler("carbon_footprint", value)
+                                }
+                                name="carbonFootprintDefaultValue"
+                                defaultValue={
+                                    router?.query?.carbon_footprint
+                                        ? +(router?.query
+                                              ?.carbon_footprint as string)
+                                        : 3
+                                }
+                                min={0}
+                                max={3}
+                                step={1}
+                            >
+                                <SliderTrack bg="teal.100">
+                                    <SliderFilledTrack bg="teal" />
+                                </SliderTrack>
+                                <SliderThumb boxSize={6}>
+                                    <Box color="teal" as={GiEarthAmerica} />
+                                </SliderThumb>
+                            </Slider>
+                        </Box>
+                    </Tooltip>
                 </Box>
                 <Box h="100vh" padding="15px">
                     {isLoading ? (

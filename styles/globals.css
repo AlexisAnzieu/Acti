@@ -29,6 +29,16 @@ a {
     display: flex !important;
 }
 
+.filters {
+    display: inline-flex !important;
+    padding: 10px 15px 10px 15px;
+}
+
+.sliderFilter {
+    margin-left: 30px;
+    width: 200px;
+}
+
 .activity-description {
     width: 100%;
     padding: 2%;
@@ -67,6 +77,16 @@ a {
 
     .activity-flex {
         display: inline !important;
+    }
+
+    .filters {
+        display: inline !important;
+    }
+
+    .sliderFilter {
+        margin-top: 10px;
+        margin-left: 23%;
+        width: 200px;
     }
 
     .activity-list {
