@@ -4,7 +4,7 @@ import { GiEarthAmerica } from "react-icons/gi";
 
 import { definitions } from "../type/supabase";
 
-const buildTooltipDescription = (carbonLevel: number, t: any) => {
+export const buildTooltipDescription = (carbonLevel: number, t: any) => {
     const table = [
         t("carbonIcon.free"),
         t("carbonIcon.low"),

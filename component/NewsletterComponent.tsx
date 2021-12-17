@@ -26,7 +26,7 @@ const subscribeNewsletter = async (email: string): Promise<boolean> => {
 
     return fetch(apiUrl.href)
         .then((res: Response) => res.status === 200)
-        .catch((err: Error) => false);
+        .catch(() => false);
 };
 
 const Newsletter = () => {

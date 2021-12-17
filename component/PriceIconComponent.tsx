@@ -4,7 +4,7 @@ import { BsCurrencyDollar } from "react-icons/bs";
 
 import { definitions } from "../type/supabase";
 
-const buildTooltipDescription = (price: number, t: any) => {
+export const buildTooltipDescription = (price: number, t: any) => {
     const table = [
         t("priceIcon.free"),
         t("priceIcon.low"),

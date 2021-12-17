@@ -30,16 +30,16 @@ export default function Map(props: GetServerSideProps["props"]) {
                 <MapWithNoSSR id="big-map" activities={props.activities} />
             </Box>
 
-            <Box className="floating-button">
-                <Link
-                    href={{
-                        pathname: "/",
-                        query: router.query,
-                    }}
-                >
+            <Link
+                href={{
+                    pathname: "/",
+                    query: router.query,
+                }}
+            >
+                <Box className="floating-button">
                     <Icon h="1.8em" as={BsGrid} />
-                </Link>
-            </Box>
+                </Box>
+            </Link>
         </>
     );
 }

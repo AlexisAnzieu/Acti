@@ -31,7 +31,9 @@ import React, { useEffect, useState } from "react";
 import { BsCurrencyDollar, BsMap, BsSearch } from "react-icons/bs";
 import { GiEarthAmerica } from "react-icons/gi";
 
-import CarbonIcon from "../component/CarbonIconComponent";
+import CarbonIcon, {
+    buildTooltipDescription,
+} from "../component/CarbonIconComponent";
 import { Locale } from "../component/NavbarComponent";
 import Newsletter from "../component/NewsletterComponent";
 import PriceIcon from "../component/PriceIconComponent";
@@ -44,6 +46,8 @@ export const seasons: string[] = ["summer", "spring", "winter", "autumn"];
 export type QueryParam = {
     query?: string;
     season?: string;
+    carbon_footprint?: string;
+    price?: string;
 };
 
 export type GetServerSideProps = {
@@ -400,7 +404,11 @@ export default function Activities() {
                             <Tooltip
                                 placement="top"
                                 hasArrow
-                                label={t("carbonFilter")}
+                                label={buildTooltipDescription(
+                                    +(router?.query
+                                        ?.carbon_footprint as string),
+                                    t
+                                )}
                             >
                                 <SliderThumb boxSize={6}>
                                     <Box color="teal" as={GiEarthAmerica} />
@@ -422,16 +430,16 @@ export default function Activities() {
                     )}
                 </Box>
             </Box>
-            <Box className="floating-button">
-                <Link
-                    href={{
-                        pathname: "/map",
-                        query: router.query,
-                    }}
-                >
+            <Link
+                href={{
+                    pathname: "/map",
+                    query: router.query,
+                }}
+            >
+                <Box className="floating-button">
                     <Icon h="1.8em" as={BsMap} />
-                </Link>
-            </Box>
+                </Box>
+            </Link>
         </>
     );
 }
