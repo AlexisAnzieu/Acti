@@ -17,7 +17,6 @@ a {
 
 .leaflet-container {
     z-index: 50;
-    width: 100wh;
     height: 95vh;
 }
 
