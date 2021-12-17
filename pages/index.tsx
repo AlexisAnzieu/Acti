@@ -368,7 +368,6 @@ export default function Activities() {
                     <Tooltip placement="top" hasArrow label={t("carbonFilter")}>
                         <Box
                             className="sliderFilter"
-                            width="200px"
                             key={router.query?.carbon_footprint as string}
                         >
                             <Slider
