@@ -19,9 +19,9 @@
 <p align="center">
   <a href="#about">About</a> •
   <a href="#tiers">Tiers</a> •
-  <a href="#installation">Installation</a> •
-  <a href="#optimization">Updating</a> •
   <a href="#features">Features</a> •
+  <a href="#installation">Installation</a> •
+  <a href="#database">Database</a> •
 </p>
 
 ---
@@ -50,6 +50,7 @@ This idea uses a lot of tiers library/framework/Saas products without which it c
 
 | For what?            | Used technology     |
 | -------------------- | ------------------- |
+| CSS                  | Chakra-UI           |
 | Language             | JS/Typescript/React |
 | Framework            | NextJS              |
 | Map                  | Leaflet             |
@@ -62,4 +63,37 @@ This idea uses a lot of tiers library/framework/Saas products without which it c
 
 1. Make sure that you have [nodeJS](https://nodejs.org/en/) installed on your machine.
 2. Fill the [.env.example](.env.example) file accordingly the instructions then rename it to `.env`.
-3.
+3. The backend is decoupled from the frontend and lives in `pages/api/` folder. Here is where Supabase SaaS is called but you could replace it by any external services.
+
+## Features
+
+-   internationalization
+-   map service
+-   analytics
+-
+
+## Database
+
+Supabase SaaS uses Postgresql under the hood and the schema is built like this:
+| column name | data type |
+| ---------------- | ------------------------ |
+| compagny | text |
+| picture_url | text |
+| address | text |
+| city | text |
+| postal_code | text |
+| phone | text |
+| price | bigint |
+| carbon_footprint | bigint |
+| id | uuid |
+| email | text |
+| website | text |
+| created_at | timestamp with time zone |
+| name | jsonb |
+| social_media | json |
+| description | jsonb |
+| location | json |
+| review | jsonb |
+| seasons | ARRAY |
+
+Openapi specifications allows us to generate [a typescript file on fly](https://supabase.com/docs/reference/javascript/generating-types) corresponding to this schema. You can find it in the repo [here](/type/supabase.ts).
