@@ -20,14 +20,8 @@
   <a href="#about">About</a> •
   <a href="#tiers">Tiers</a> •
   <a href="#installation">Installation</a> •
-  <a href="#updating">Updating</a> •
+  <a href="#optimization">Updating</a> •
   <a href="#features">Features</a> •
-  <a href="#binds">Binds</a> •
-  <a href="#wiki">Wiki</a> •
-  <a href="#contributing">Contributing</a> •
-  <a href="#credits">Credits</a> •
-  <a href="#support">Support</a> •
-  <a href="#license">License</a>
 </p>
 
 ---
@@ -50,6 +44,7 @@ This idea uses a lot of tiers library/framework/Saas products without which it c
 | CDN           | Supabase & Vercel |
 | Code review   | SonarCloud        |
 | Analytics     | Google Analytics  |
+| Newsletter    | Sendinblue        |
 
 ### Very useful JS libraries
 
@@ -62,3 +57,9 @@ This idea uses a lot of tiers library/framework/Saas products without which it c
 | Internationalization | I18next             |
 | Date formatting      | Dayjs               |
 | Code formatting      | Eslint              |
+
+## Installation
+
+1. Make sure that you have [nodeJS](https://nodejs.org/en/) installed on your machine.
+2. Fill the [.env.example](.env.example) file accordingly the instructions then rename it to `.env`.
+3.
