@@ -16,9 +16,9 @@
 
 </div>
 
-
 <p align="center">
   <a href="#about">About</a> •
+  <a href="#tiers">Tiers</a> •
   <a href="#installation">Installation</a> •
   <a href="#updating">Updating</a> •
   <a href="#features">Features</a> •
@@ -32,14 +32,18 @@
 
 ---
 
-
 ## About
-Acti has been developped in order to be familiarized with new web technologies:
+
+After two years spent surveying Quebec, an idea popped into my head: why not referencing all theses adventures within a hand-sewn website? So I could also implement all the JS fatigue in one place 💪
+
+## Tiers
+
+This idea uses a lot of tiers library/framework/Saas products without which it can't work. All of them are free to use as long as you develop an open source project.
+
+### Saas Product
 
 | For what?     | Used technology   |
-|---------------|-------------------|
-| JS library    | React             |
-| Web framework | NextJS            |
+| ------------- | ----------------- |
 | Backend API   | Vercel            |
 | SaaS Database | Supabase          |
 | Deployment    | Vercel            |
@@ -47,3 +51,14 @@ Acti has been developped in order to be familiarized with new web technologies:
 | Code review   | SonarCloud        |
 | Analytics     | Google Analytics  |
 
+### Very useful JS libraries
+
+| For what?            | Used technology     |
+| -------------------- | ------------------- |
+| Language             | JS/Typescript/React |
+| Framework            | NextJS              |
+| Map                  | Leaflet             |
+| Form validation      | Formik              |
+| Internationalization | I18next             |
+| Date formatting      | Dayjs               |
+| Code formatting      | Eslint              |
