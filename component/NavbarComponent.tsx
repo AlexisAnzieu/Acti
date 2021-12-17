@@ -102,7 +102,10 @@ function Navbar() {
                         <ModalBody whiteSpace="pre-line">
                             <Flex mb="20px">
                                 <Center w="50%">
-                                    <a href="https://www.linkedin.com/in/carla-fabregas/">
+                                    <a
+                                        href="https://www.linkedin.com/in/carla-fabregas/"
+                                        title="linkedin carla fabregas"
+                                    >
                                         <Avatar
                                             size="2xl"
                                             name="Carla Fabregas"
@@ -111,7 +114,10 @@ function Navbar() {
                                     </a>
                                 </Center>
                                 <Center w="50%">
-                                    <a href="https://www.linkedin.com/in/alexis-anzieu/">
+                                    <a
+                                        href="https://www.linkedin.com/in/alexis-anzieu/"
+                                        title="linkedin alexis anzieu"
+                                    >
                                         <Avatar
                                             size="2xl"
                                             name="Alexis Anzieu"
