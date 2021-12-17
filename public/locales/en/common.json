@@ -17,7 +17,8 @@
         "medium": "This activity has a significant ecological impact",
         "high": "This activity has a heavy ecological impact"
     },
-    "priceFilter": "Average activity cost",
+    "priceFilterMax": "Maximum activity cost",
+    "priceFilterMin": "Minimum activity cost",
     "priceIcon": {
         "free": "This activity is free",
         "low": "This activity cost less than 50$",

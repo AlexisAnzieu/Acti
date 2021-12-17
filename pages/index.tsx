@@ -332,68 +332,82 @@ export default function Activities() {
                             </Badge>
                         ))}
                     </Box>
-                    <Tooltip placement="top" hasArrow label={t("priceFilter")}>
-                        <Box
-                            className="sliderFilter"
-                            key={router.query?.price as string}
+                    <Box
+                        className="sliderFilter"
+                        key={router.query?.price as string}
+                    >
+                        <RangeSlider
+                            onChangeEnd={(value: number[]) =>
+                                paramHandler("price", value)
+                            }
+                            defaultValue={
+                                router?.query?.price
+                                    ? (router?.query?.price as string)
+                                          .split(",")
+                                          .map((v) => +v)
+                                    : [0, 3]
+                            }
+                            min={0}
+                            max={3}
+                            step={1}
                         >
-                            <RangeSlider
-                                onChangeEnd={(value: number[]) =>
-                                    paramHandler("price", value)
-                                }
-                                defaultValue={
-                                    router?.query?.price
-                                        ? (router?.query?.price as string)
-                                              .split(",")
-                                              .map((v) => +v)
-                                        : [0, 3]
-                                }
-                                min={0}
-                                max={3}
-                                step={1}
+                            <RangeSliderTrack bg="teal.100">
+                                <RangeSliderFilledTrack bg="teal" />
+                            </RangeSliderTrack>
+                            <Tooltip
+                                placement="top"
+                                hasArrow
+                                label={t("priceFilterMin")}
                             >
-                                <RangeSliderTrack bg="teal.100">
-                                    <RangeSliderFilledTrack bg="teal" />
-                                </RangeSliderTrack>
                                 <RangeSliderThumb boxSize={6} index={0}>
                                     <Box color="teal" as={BsCurrencyDollar} />
                                 </RangeSliderThumb>
+                            </Tooltip>
+                            <Tooltip
+                                placement="top"
+                                hasArrow
+                                label={t("priceFilterMax")}
+                            >
                                 <RangeSliderThumb boxSize={6} index={1}>
                                     <Box color="teal" as={BsCurrencyDollar} />
                                 </RangeSliderThumb>
-                            </RangeSlider>
-                        </Box>
-                    </Tooltip>
+                            </Tooltip>
+                        </RangeSlider>
+                    </Box>
 
-                    <Tooltip placement="top" hasArrow label={t("carbonFilter")}>
-                        <Box
-                            className="sliderFilter"
-                            key={router.query?.carbon_footprint as string}
+                    <Box
+                        className="sliderFilter"
+                        key={router.query?.carbon_footprint as string}
+                    >
+                        <Slider
+                            onChangeEnd={(value: number) =>
+                                paramHandler("carbon_footprint", value)
+                            }
+                            name="carbonFootprintDefaultValue"
+                            defaultValue={
+                                router?.query?.carbon_footprint
+                                    ? +(router?.query
+                                          ?.carbon_footprint as string)
+                                    : 3
+                            }
+                            min={0}
+                            max={3}
+                            step={1}
                         >
-                            <Slider
-                                onChangeEnd={(value: number) =>
-                                    paramHandler("carbon_footprint", value)
-                                }
-                                name="carbonFootprintDefaultValue"
-                                defaultValue={
-                                    router?.query?.carbon_footprint
-                                        ? +(router?.query
-                                              ?.carbon_footprint as string)
-                                        : 3
-                                }
-                                min={0}
-                                max={3}
-                                step={1}
+                            <SliderTrack bg="teal.100">
+                                <SliderFilledTrack bg="teal" />
+                            </SliderTrack>
+                            <Tooltip
+                                placement="top"
+                                hasArrow
+                                label={t("carbonFilter")}
                             >
-                                <SliderTrack bg="teal.100">
-                                    <SliderFilledTrack bg="teal" />
-                                </SliderTrack>
                                 <SliderThumb boxSize={6}>
                                     <Box color="teal" as={GiEarthAmerica} />
                                 </SliderThumb>
-                            </Slider>
-                        </Box>
-                    </Tooltip>
+                            </Tooltip>
+                        </Slider>
+                    </Box>
                 </Box>
                 <Box h="100vh" padding="15px">
                     {isLoading ? (

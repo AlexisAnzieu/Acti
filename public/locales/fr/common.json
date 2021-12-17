@@ -17,7 +17,8 @@
         "medium": "Cette activité a un impact écologique élevé",
         "high": "Cette activité a un lourd impact écologique"
     },
-    "priceFilter": "Coût moyen de l'activité",
+    "priceFilterMax": "Coût maximum de l'activité",
+    "priceFilterMin": "Coût minimum de l'activité",
     "priceIcon": {
         "free": "Cette activité est gratuite",
         "low": "Cette activité coûte moins de 50$",
