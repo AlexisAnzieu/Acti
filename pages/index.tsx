@@ -38,6 +38,7 @@ import { Locale } from "../component/NavbarComponent";
 import Newsletter from "../component/NewsletterComponent";
 import PriceIcon from "../component/PriceIconComponent";
 import { definitions } from "../type/supabase";
+import { Parallax } from "react-scroll-parallax";
 
 const MAX_DESCRIPTION_LENGTH = 250;
 
@@ -56,6 +57,16 @@ export type GetServerSideProps = {
         queryParam: QueryParam;
     };
 };
+
+const ParallaxImage = () => (
+    <Parallax className="custom-class" y={[-25, 25]} tagOuter="figure">
+        <NextImage
+            width="2000px"
+            height="400px"
+            src="https://picsum.photos/2000/399"
+        />
+    </Parallax>
+);
 
 const BuildNewsletterActivity = () => {
     const { t } = useTranslation("common");
@@ -282,7 +293,8 @@ export default function Activities() {
                     key="ogpic"
                 />
             </Head>
-            <Flex margin="30px 0px 10px 10px">
+            <Box width="100%">{ParallaxImage()}</Box>
+            <Flex margin="30px 0px 30px 10px">
                 <InputGroup>
                     <InputLeftElement
                         pointerEvents="none"
@@ -304,9 +316,6 @@ export default function Activities() {
                     />
                 </InputGroup>
             </Flex>
-
-            <Divider className="search-bar" m="0% 2% 20px 2% " />
-
             <Box className="activity-list">
                 <Box className="filters">
                     <Box mb="20px">
@@ -418,16 +427,16 @@ export default function Activities() {
                     </Box>
                 </Box>
                 <Box h="100vh" padding="15px">
-                    {isLoading ? (
-                        <Box textAlign="center">
+                    <Box textAlign="center">
+                        {isLoading ? (
                             <CircularProgress isIndeterminate color="teal" />
-                        </Box>
-                    ) : (
-                        <ActivityList
-                            activities={activities}
-                            locale={locale as Locale}
-                        />
-                    )}
+                        ) : (
+                            <ActivityList
+                                activities={activities}
+                                locale={locale as Locale}
+                            />
+                        )}
+                    </Box>
                 </Box>
             </Box>
             <Link

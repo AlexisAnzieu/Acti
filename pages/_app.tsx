@@ -4,6 +4,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 import type { AppProps } from "next/app";
 import Script from "next/script";
 import { appWithTranslation } from "next-i18next";
+import { ParallaxProvider } from "react-scroll-parallax";
 
 import Navbar from "../component/NavbarComponent";
 
@@ -27,8 +28,10 @@ function MyApp({ Component, pageProps }: AppProps) {
             </Script>
 
             <ChakraProvider>
-                <Navbar />
-                <Component {...pageProps} />
+                <ParallaxProvider>
+                    <Navbar />
+                    <Component {...pageProps} />
+                </ParallaxProvider>
             </ChakraProvider>
         </>
     );
