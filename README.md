@@ -36,26 +36,23 @@ This idea uses a lot of tiers library/framework/Saas products without which it c
 
 ### Saas Product
 
-- Backend API: Vercel            
-- SaaS Database: Supabase          
-- Deployment: Vercel            
-- CDN: Supabase & Vercel 
-- Code quality: SonarCloud        
-- Analytics: Google Analytics  
-- Newsletter: Sendinblue        
+-   **Backend API**: Vercel
+-   **Database**: Supabase
+-   **Deployment**: Vercel
+-   **Code quality**: SonarCloud
+-   **Analytics**: Google Analytics
+-   **Newsletter**: Sendinblue
 
 ### Very useful JS libraries
 
-| For what?            | Used technology     |
-| -------------------- | ------------------- |
-| CSS                  | Chakra-UI           |
-| Language             | JS/Typescript/React |
-| Framework            | NextJS              |
-| Map                  | Leaflet             |
-| Form validation      | Formik              |
-| Internationalization | I18next             |
-| Date formatting      | Dayjs               |
-| Code formatting      | Eslint              |
+-   **Styling**: Chakra-UI
+-   **Language**: JS/Typescript/React
+-   **Framework**: NextJS
+-   **Map**: Leaflet
+-   **Form validation**: Formik
+-   **Internationalization**: I18next
+-   **Date calculation**: Dayjs
+-   **Code formatting**: Eslint
 
 ## Installation
 
