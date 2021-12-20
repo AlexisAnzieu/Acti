@@ -36,15 +36,13 @@ This idea uses a lot of tiers library/framework/Saas products without which it c
 
 ### Saas Product
 
-| For what?     | Used technology   |
-| ------------- | ----------------- |
-| Backend API   | Vercel            |
-| SaaS Database | Supabase          |
-| Deployment    | Vercel            |
-| CDN           | Supabase & Vercel |
-| Code review   | SonarCloud        |
-| Analytics     | Google Analytics  |
-| Newsletter    | Sendinblue        |
+- Backend API: Vercel            
+- SaaS Database: Supabase          
+- Deployment: Vercel            
+- CDN: Supabase & Vercel 
+- Code quality: SonarCloud        
+- Analytics: Google Analytics  
+- Newsletter: Sendinblue        
 
 ### Very useful JS libraries
 
