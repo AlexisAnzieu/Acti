@@ -30,7 +30,7 @@ type StaticProps = {
     };
 };
 
-export default function Activity({ activity }: getStaticProps["props"]) {
+export default function Activity({ activity }: StaticProps["props"]) {
     dayjs.extend(relativeTime);
     const router = useRouter();
     const locale = router.locale as Locale;
