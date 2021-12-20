@@ -39,6 +39,7 @@ export interface paths {
           location?: parameters["rowFilter.activity.location"];
           review?: parameters["rowFilter.activity.review"];
           seasons?: parameters["rowFilter.activity.seasons"];
+          slug?: parameters["rowFilter.activity.slug"];
           /** Filtering Columns */
           select?: parameters["select"];
           /** Ordering */
@@ -107,6 +108,7 @@ export interface paths {
           location?: parameters["rowFilter.activity.location"];
           review?: parameters["rowFilter.activity.review"];
           seasons?: parameters["rowFilter.activity.seasons"];
+          slug?: parameters["rowFilter.activity.slug"];
         };
         header: {
           /** Preference */
@@ -139,6 +141,7 @@ export interface paths {
           location?: parameters["rowFilter.activity.location"];
           review?: parameters["rowFilter.activity.review"];
           seasons?: parameters["rowFilter.activity.seasons"];
+          slug?: parameters["rowFilter.activity.slug"];
         };
         body: {
           /** activity */
@@ -152,6 +155,82 @@ export interface paths {
       responses: {
         /** No Content */
         204: never;
+      };
+    };
+  };
+  "/rpc/unaccent": {
+    post: {
+      parameters: {
+        body: {
+          args: {
+            "": string;
+          };
+        };
+        header: {
+          /** Preference */
+          Prefer?: parameters["preferParams"];
+        };
+      };
+      responses: {
+        /** OK */
+        200: unknown;
+      };
+    };
+  };
+  "/rpc/unaccent_lexize": {
+    post: {
+      parameters: {
+        body: {
+          args: {
+            "": string;
+          };
+        };
+        header: {
+          /** Preference */
+          Prefer?: parameters["preferParams"];
+        };
+      };
+      responses: {
+        /** OK */
+        200: unknown;
+      };
+    };
+  };
+  "/rpc/slugify": {
+    post: {
+      parameters: {
+        body: {
+          args: {
+            value: string;
+          };
+        };
+        header: {
+          /** Preference */
+          Prefer?: parameters["preferParams"];
+        };
+      };
+      responses: {
+        /** OK */
+        200: unknown;
+      };
+    };
+  };
+  "/rpc/unaccent_init": {
+    post: {
+      parameters: {
+        body: {
+          args: {
+            "": string;
+          };
+        };
+        header: {
+          /** Preference */
+          Prefer?: parameters["preferParams"];
+        };
+      };
+      responses: {
+        /** OK */
+        200: unknown;
       };
     };
   };
@@ -185,6 +264,7 @@ export interface definitions {
     location: string;
     review?: Translations;
     seasons: string[];
+    slug: string;
   };
 }
 
@@ -229,6 +309,7 @@ export interface parameters {
   "rowFilter.activity.location": string;
   "rowFilter.activity.review": string;
   "rowFilter.activity.seasons": string;
+  "rowFilter.activity.slug": string;
 }
 
 export interface operations { }

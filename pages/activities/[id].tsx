@@ -24,7 +24,7 @@ import("dayjs/locale/fr");
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 
-type getStaticProps = {
+type StaticProps = {
     props: {
         activity: definitions["activity"];
     };

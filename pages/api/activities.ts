@@ -12,28 +12,32 @@ type Params = {
 	fields: string;
 	carbon_footprint: string;
 	locale: 'en' | 'fr',
+	slug: string
 }
 
 export default async function (
 	req: NextApiRequest,
 	res: NextApiResponse<any>
 ) {
-	const { query, id, season, locale, fields = '*', price, carbon_footprint } = req.query as Params;
+	const { query, id, season, locale, fields = '*', price, carbon_footprint, slug } = req.query as Params;
 	const supabaseBase = supabase.from<definitions["activity"]>("activity").select(fields).order(`name->>${locale}` as 'name');
 
 	let result;
 	if (id) {
-		result = await singleActivity(supabaseBase, { id });
+		result = await singleActivityById(supabaseBase, { id });
 		return sendReponse(res, result);
 	}
-
+	if (slug) {
+		result = await singleActivityBySlug(supabaseBase, { slug });
+		return sendReponse(res, result);
+	}
 	if (query || season || price || carbon_footprint) {
 		result = await filterActivities(supabaseBase, { query, season, locale, price, carbon_footprint });
 	} else {
 		result = await supabaseBase;
 	}
 
-	if (fields !== 'id') {
+	if (fields !== 'id' && fields !== 'slug') {
 		result.data = result.data?.filter((activity: definitions["activity"]) => {
 			return activity.picture_url &&
 				activity.location &&
@@ -44,7 +48,8 @@ export default async function (
 }
 
 
-const singleActivity = async (supabaseBase: any, { id }: { id: Params['id'] }) => supabaseBase.eq('id', id).single();
+const singleActivityById = async (supabaseBase: any, { id }: { id: Params['id'] }) => supabaseBase.eq('id', id).single();
+const singleActivityBySlug = async (supabaseBase: any, { slug }: { slug: Params['slug'] }) => supabaseBase.eq('slug', slug).single();
 
 const filterActivities = async (
 	supabaseBase: any, { query, season, locale, price, carbon_footprint }: Partial<Params>) => {
