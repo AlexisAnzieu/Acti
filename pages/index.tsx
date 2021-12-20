@@ -87,8 +87,8 @@ const BuildActivity = (activity: definitions["activity"], locale: Locale) => {
     return (
         <ChakraLink
             as={Link}
-            key={activity.id}
-            href={`${locale}/activities/${activity.id}`}
+            key={activity.slug}
+            href={`${locale}/activities/${activity.slug}`}
         >
             <Box
                 borderRadius="lg"

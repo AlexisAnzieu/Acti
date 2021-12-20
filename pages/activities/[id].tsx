@@ -206,13 +206,12 @@ export default function Activity({ activity }: StaticProps["props"]) {
 
 export async function getStaticPaths() {
     const res: any = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/api/activities?fields=id`
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/activities?fields=slug`
     );
     const activities = await res.json();
-
     const paths = ["en", "fr"].flatMap((locale: string) =>
         activities.map((activity: definitions["activity"]) => ({
-            params: { id: activity.id },
+            params: { id: activity.slug },
             locale,
         }))
     );
@@ -225,7 +224,7 @@ export async function getStaticProps({
     locale,
 }: GetStaticPropsContext) {
     const res: any = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/api/activities?id=${params?.id}`
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/activities?slug=${params?.id}`
     );
     return {
         props: {
