@@ -4,11 +4,11 @@ import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 
-import CarbonIcon from "../component/CarbonIconComponent";
-import PriceIcon from "../component/PriceIconComponent";
+import CarbonIconComponent from "../component/CarbonIconComponent";
+import PriceIconComponent from "../component/PriceIconComponent";
 import { definitions } from "../type/supabase";
 import { Locale } from "./NavbarComponent";
-import SocialMedia from "./SocialMediaComponent";
+import SocialMediaComponent from "./SocialMediaComponent";
 
 const MONTREAL_LOCATION = { lat: 45.524184, lng: -73.581435 };
 
@@ -49,14 +49,14 @@ const Markers = ({ activities, locale }: MapProps) => {
                             {activity.description?.[locale]}
                             <Flex mt="20px">
                                 <Box textAlign="center" w="50%">
-                                    <PriceIcon
+                                    <PriceIconComponent
                                         price={activity.price}
                                         fontSize="20px"
                                     />
                                 </Box>
 
                                 <Box textAlign="center" w="50%">
-                                    <CarbonIcon
+                                    <CarbonIconComponent
                                         carbon_footprint={
                                             activity.carbon_footprint
                                         }
@@ -107,10 +107,10 @@ const Markers = ({ activities, locale }: MapProps) => {
                         </Box>
 
                         <Box w="100%" textAlign="center">
-                            <SocialMedia
+                            <SocialMediaComponent
                                 social_media={activity.social_media}
                                 boxSize={7}
-                            ></SocialMedia>
+                            ></SocialMediaComponent>
                         </Box>
                     </Popup>
                 </Marker>
@@ -119,7 +119,7 @@ const Markers = ({ activities, locale }: MapProps) => {
     );
 };
 
-const Map = (props: any) => {
+const MapComponent = (props: any) => {
     const router = useRouter();
     const isMapPage = router.pathname === "/map";
     const centerLocation = !isMapPage
@@ -143,4 +143,4 @@ const Map = (props: any) => {
     );
 };
 
-export default Map;
+export default MapComponent;

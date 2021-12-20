@@ -23,7 +23,7 @@ import { useState } from "react";
 
 export type Locale = "en" | "fr";
 
-function Navbar() {
+const NavbarComponent = () => {
     const router = useRouter();
     const [locale, setLocale] = useState(router.locale as Locale);
     const { isOpen, onOpen, onClose } = useDisclosure();
@@ -155,6 +155,6 @@ function Navbar() {
             </Center>
         </Flex>
     );
-}
+};
 
-export default Navbar;
+export default NavbarComponent;

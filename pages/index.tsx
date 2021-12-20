@@ -31,12 +31,12 @@ import React, { useEffect, useState } from "react";
 import { BsCurrencyDollar, BsMap, BsSearch } from "react-icons/bs";
 import { GiEarthAmerica } from "react-icons/gi";
 
-import CarbonIcon, {
+import CarbonIconComponent, {
     buildTooltipDescription,
 } from "../component/CarbonIconComponent";
 import { Locale } from "../component/NavbarComponent";
-import Newsletter from "../component/NewsletterComponent";
-import PriceIcon from "../component/PriceIconComponent";
+import NewsletterComponent from "../component/NewsletterComponent";
+import PriceIconComponent from "../component/PriceIconComponent";
 import { definitions } from "../type/supabase";
 
 const MAX_DESCRIPTION_LENGTH = 250;
@@ -76,7 +76,7 @@ const BuildNewsletterActivity = () => {
             {t("noActivityMatching")}
             <br />
             <br />
-            <Newsletter />
+            <NewsletterComponent />
         </Box>
     );
 };
@@ -151,10 +151,13 @@ const BuildActivity = (activity: definitions["activity"], locale: Locale) => {
                     </Box>
 
                     <Box display="flex" alignItems="center">
-                        <PriceIcon price={activity.price} fontSize="18px" />
+                        <PriceIconComponent
+                            price={activity.price}
+                            fontSize="18px"
+                        />
                     </Box>
                     <Box display="flex" alignItems="center">
-                        <CarbonIcon
+                        <CarbonIconComponent
                             carbon_footprint={activity.carbon_footprint}
                             fontSize="18px"
                         />
@@ -188,7 +191,7 @@ const ActivityList = (props: {
                 <Center fontSize="20px">{t("noActivityFound")}</Center>
                 <Center>
                     <Box width="300px" margin="3%">
-                        <Newsletter />
+                        <NewsletterComponent />
                     </Box>
                 </Center>
             </>

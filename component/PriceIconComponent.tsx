@@ -15,7 +15,7 @@ export const buildTooltipDescription = (price: number, t: any) => {
     return table[price];
 };
 
-const PriceIcon = ({
+const PriceIconComponent = ({
     price = 1,
     fontSize,
 }: Pick<definitions["activity"], "price"> & { fontSize?: string }) => {
@@ -43,4 +43,4 @@ const PriceIcon = ({
     );
 };
 
-export default PriceIcon;
+export default PriceIconComponent;

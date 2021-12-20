@@ -31,7 +31,7 @@ const buildMediaButton = (media: string, boxSize?: number) => {
     );
 };
 
-const SocialMedia = ({
+const SocialMediaComponent = ({
     social_media,
     boxSize,
 }: Pick<definitions["activity"], "social_media"> & { boxSize?: number }) => {
@@ -52,4 +52,4 @@ const SocialMedia = ({
     );
 };
 
-export default SocialMedia;
+export default SocialMediaComponent;

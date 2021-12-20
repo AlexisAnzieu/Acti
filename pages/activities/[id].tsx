@@ -15,10 +15,10 @@ import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { BsArrowLeftSquare } from "react-icons/bs";
 
-import CarbonIcon from "../../component/CarbonIconComponent";
+import CarbonIconComponent from "../../component/CarbonIconComponent";
 import { Locale } from "../../component/NavbarComponent";
-import PriceIcon from "../../component/PriceIconComponent";
-import SocialMedia from "../../component/SocialMediaComponent";
+import PriceIconComponent from "../../component/PriceIconComponent";
+import SocialMediaComponent from "../../component/SocialMediaComponent";
 import { definitions } from "../../type/supabase";
 import("dayjs/locale/fr");
 import dayjs from "dayjs";
@@ -136,11 +136,11 @@ export default function Activity({ activity }: StaticProps["props"]) {
                     )}
                     <Flex m="30px">
                         <Center w="50%">
-                            <PriceIcon price={activity.price} />
+                            <PriceIconComponent price={activity.price} />
                         </Center>
 
                         <Center w="50%">
-                            <CarbonIcon
+                            <CarbonIconComponent
                                 carbon_footprint={activity.carbon_footprint}
                             />
                         </Center>
@@ -191,9 +191,9 @@ export default function Activity({ activity }: StaticProps["props"]) {
                     </Box>
 
                     <Box w="100%" textAlign="center">
-                        <SocialMedia
+                        <SocialMediaComponent
                             social_media={activity.social_media}
-                        ></SocialMedia>
+                        ></SocialMediaComponent>
                     </Box>
                 </Box>
                 <Box width="100%">

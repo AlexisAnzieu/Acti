@@ -24,7 +24,7 @@ const selectColor = (carbon: number): string => {
     return "";
 };
 
-const CarbonIcon = ({
+const CarbonIconComponent = ({
     carbon_footprint = 1,
     fontSize,
 }: Pick<definitions["activity"], "carbon_footprint"> & {
@@ -56,4 +56,4 @@ const CarbonIcon = ({
     );
 };
 
-export default CarbonIcon;
+export default CarbonIconComponent;

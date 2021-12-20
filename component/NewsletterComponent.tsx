@@ -29,7 +29,7 @@ const subscribeNewsletter = async (email: string): Promise<boolean> => {
         .catch(() => false);
 };
 
-const Newsletter = () => {
+const NewsletterComponent = () => {
     const { t } = useTranslation("common");
     const toast = useToast();
 
@@ -93,4 +93,4 @@ const Newsletter = () => {
     );
 };
 
-export default Newsletter;
+export default NewsletterComponent;
