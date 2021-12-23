@@ -71,6 +71,10 @@ This idea uses a lot of tiers library/framework/Saas products without which it c
 
 <img width="1907" alt="Screen Shot 2021-12-23 at 1 25 14 PM" src="https://user-images.githubusercontent.com/11615615/147278973-a76f0f45-aa23-4d8f-b6d8-2ef912a43990.png">
 
+<img width="1907" alt="Screen Shot 2021-12-23 at 1 26 43 PM" src="https://user-images.githubusercontent.com/11615615/147279053-b6b138bc-e653-4af6-8ac1-3f7c976150bc.png">
+
+<img width="1907" alt="Screen Shot 2021-12-23 at 1 27 28 PM" src="https://user-images.githubusercontent.com/11615615/147279100-844df141-2b9a-4b4a-ba6c-9ded91fbaf20.png">
+
 ## Database
 
 Supabase SaaS uses Postgresql under the hood and the schema is built like this:
