@@ -69,6 +69,8 @@ This idea uses a lot of tiers library/framework/Saas products without which it c
 -   Map service
 -   Searching
 
+<img width="1907" alt="Screen Shot 2021-12-23 at 1 25 14 PM" src="https://user-images.githubusercontent.com/11615615/147278973-a76f0f45-aa23-4d8f-b6d8-2ef912a43990.png">
+
 ## Database
 
 Supabase SaaS uses Postgresql under the hood and the schema is built like this:
