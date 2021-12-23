@@ -62,10 +62,12 @@ This idea uses a lot of tiers library/framework/Saas products without which it c
 
 ## Features
 
--   internationalization
--   map service
--   analytics
--
+-   Analytics
+-   [Different rendering strategies](https://www.patterns.dev/posts/rendering-patterns/) for speediness (CSR on the main list and SSG for singleton pages)
+-   Filtering
+-   Internationalization
+-   Map service
+-   Searching
 
 ## Database
 
