@@ -65,7 +65,13 @@ export default function Activity({ activity }: StaticProps["props"]) {
                         <Box w="9%">
                             <Icon
                                 cursor="pointer"
-                                onClick={() => router.push("/")}
+                                onClick={() => {
+                                    const hasHistory =
+                                        window.history.length > 2;
+                                    hasHistory
+                                        ? router.back()
+                                        : router.push("/");
+                                }}
                                 fontSize="40px"
                                 as={BsArrowLeftSquare}
                             />
