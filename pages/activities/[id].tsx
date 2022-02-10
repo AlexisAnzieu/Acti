@@ -212,7 +212,7 @@ export default function Activity({ activity }: StaticProps["props"]) {
 
 export async function getStaticPaths() {
     const res: any = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/api/activities?fields=slug`
+        `https://4a84-70-81-36-26.ngrok.io/api/activities?fields=slug`
     );
     const activities = await res.json();
     const paths = ["en", "fr"].flatMap((locale: string) =>
@@ -230,7 +230,7 @@ export async function getStaticProps({
     locale,
 }: GetStaticPropsContext) {
     const res: any = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/api/activities?slug=${params?.id}`
+        `https://4a84-70-81-36-26.ngrok.io/api/activities?slug=${params?.id}`
     );
     return {
         props: {
