@@ -451,7 +451,7 @@ export function searchApi(
     queryParam: QueryParam = {},
     locale: Locale = "en"
 ): string {
-    const host = "https://4a84-70-81-36-26.ngrok.io";
+    const host = process.env.NEXT_PUBLIC_BASE_URL;
     const apiUrl = new URL(`${host}/api/activities`);
     const queryParamLocaleAdded = {
         ...queryParam,
