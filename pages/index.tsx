@@ -281,7 +281,7 @@ export default function Activities() {
                 />
                 <meta
                     property="og:image"
-                    content="https://upduuutuduczuuhixpdp.supabase.in/storage/v1/object/public/profile/actiseo1.png"
+                    content="https://xyzfqjxmadywqhwvcqxh.supabase.in/storage/v1/object/public/activities/ogFB.png"
                     key="ogpic"
                 />
             </Head>
