@@ -468,5 +468,6 @@ export async function getStaticProps({ locale }: GetStaticPropsContext) {
         props: {
             ...(await serverSideTranslations(locale as Locale, ["common"])),
         },
+        revalidate: 10,
     };
 }

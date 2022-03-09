@@ -8,7 +8,10 @@ export function middleware(request: NextRequest) {
         !request.nextUrl.pathname.includes('/api/') &&
         request.nextUrl.locale === 'default'
 
+    const url = request.nextUrl.clone()
+    url.locale = 'fr'
+
     return shouldHandleLocale
-        ? NextResponse.redirect('/fr')
+        ? NextResponse.rewrite(url)
         : undefined
 }
