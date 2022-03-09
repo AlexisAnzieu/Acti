@@ -237,5 +237,6 @@ export async function getStaticProps({
             ...(await serverSideTranslations(locale as Locale, ["common"])),
             activity: await res.json(),
         },
+        revalidate: 10,
     };
 }
