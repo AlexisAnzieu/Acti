@@ -54,6 +54,5 @@ export async function getStaticProps({ locale }: GetStaticPropsContext) {
             ...(await serverSideTranslations(locale as Locale, ["common"])),
             activities: filteredActivities,
         },
-        revalidate: 10,
     };
 }
