@@ -30,7 +30,8 @@
     "whoAreWe": "Qui sommes-nous?",
     "whoAreWeModal": {
         "text": "Nous sommes un jeune couple (<a style='color:#2E797B' href='https://www.linkedin.com/in/carla-fabregas/'>Carla</a> & <a style='color:#2E797B' href='https://www.linkedin.com/in/alexis-anzieu/'>Alexis</a>), arpentant le Québec à la recherche d'activités originales. Nos amis nous demandant regulièrement des retours d'expérience, l'idée nous est venue de développer un site web afin d'y capitaliser nos differentes trouvailles. \n \n Actï fait partie du projet <a style='color:#2E797B' href='https://h2t.club'>h2t.club</a> qui contribue à la création de communautés locales. Son code source est entièrement disponible sur <a style='color:#2E797B' href='https://github.com/AlexisAnzieu/Acti'>Github</a>. \n \n Pour toutes questions merci d'envoyer un courriel à <a style='color:#2E797B' href='mailto:contact@h2t.club'>contact@h2t.club</a>",
-        "endText": "Bonne visite!"
+        "endText": "Bonne visite!",
+        "welcome": "Heureux de vous accueillir!"
     },
     "ogDescription": "Actï est un blog permettant de trouver des activités à faire, payantes ou non, dans toutes les villes du Québec. Il est né d'une capitalisation des aventures de Carla et d'Alexis et contribue au projet h2t aidant au développement de communautés locales.",
     "noActivityFound": "Aucune activité ne correspond à ces critères pour le moment, souhaitez-vous vous abonner à notre newsletter afin d'être tenu au courant?",

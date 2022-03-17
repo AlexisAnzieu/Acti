@@ -97,7 +97,7 @@ const NavbarComponent = () => {
                 <Modal size="lg" isOpen={isOpen} onClose={onClose}>
                     <ModalOverlay />
                     <ModalContent>
-                        <ModalHeader>Heureux de vous accueillir!</ModalHeader>
+                        <ModalHeader>{t("whoAreWeModal.welcome")}</ModalHeader>
                         <ModalCloseButton />
                         <ModalBody whiteSpace="pre-line">
                             <Flex mb="20px">
