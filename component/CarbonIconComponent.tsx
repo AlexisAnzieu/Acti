@@ -6,19 +6,19 @@ import { definitions } from "../type/supabase";
 
 export const buildTooltipDescription = (carbonLevel: number, t: any) => {
     const table = [
-        t("carbonIcon.free"),
-        t("carbonIcon.low"),
-        t("carbonIcon.medium"),
         t("carbonIcon.high"),
+        t("carbonIcon.medium"),
+        t("carbonIcon.low"),
+        t("carbonIcon.free"),
     ];
 
     return table[carbonLevel];
 };
 
 const selectColor = (carbon: number): string => {
-    if (carbon === 0) {
+    if (carbon === 3) {
         return "green.600";
-    } else if (carbon === 3) {
+    } else if (carbon === 0) {
         return "red.600";
     }
     return "";
