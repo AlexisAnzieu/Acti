@@ -63,18 +63,13 @@ export default function Activity({ activity }: StaticProps["props"]) {
                 <Box className="activity-description">
                     <Flex>
                         <Box w="9%">
-                            <Icon
-                                cursor="pointer"
-                                onClick={() => {
-                                    const hasHistory =
-                                        window.history.length > 2;
-                                    hasHistory
-                                        ? router.back()
-                                        : router.push("/");
-                                }}
-                                fontSize="40px"
-                                as={BsArrowLeftSquare}
-                            />
+                            <ChakraLink href="/" scroll={false}>
+                                <Icon
+                                    cursor="pointer"
+                                    fontSize="40px"
+                                    as={BsArrowLeftSquare}
+                                />
+                            </ChakraLink>
                         </Box>
                         <Box
                             pt="7px"
