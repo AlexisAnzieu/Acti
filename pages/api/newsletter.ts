@@ -11,7 +11,7 @@ const headers = {
     'api-key': process.env.SIB_API_KEY as string
 };
 
-export default async function (
+export default async function newsletter(
     req: NextApiRequest,
     res: NextApiResponse<any>
 ) {

@@ -16,7 +16,7 @@ type Params = {
 	children_accessible: string,
 }
 
-export default async function (
+export default async function activities(
 	req: NextApiRequest,
 	res: NextApiResponse<any>
 ) {

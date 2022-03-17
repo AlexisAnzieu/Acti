@@ -17,6 +17,7 @@ import {
     useDisclosure,
 } from "@chakra-ui/react";
 import NextImage from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { useState } from "react";
@@ -56,7 +57,7 @@ const NavbarComponent = () => {
         >
             <Center p="10px">
                 <Box w="100%" h="100%">
-                    <a href="/" aria-label="back to acti homepage">
+                    <Link href="/" aria-label="back to acti homepage" passHref>
                         <Box
                             width="125px"
                             height="100%"
@@ -69,7 +70,7 @@ const NavbarComponent = () => {
                                 src="/logo.png"
                             />
                         </Box>
-                    </a>
+                    </Link>
                 </Box>
             </Center>
             <Spacer />
