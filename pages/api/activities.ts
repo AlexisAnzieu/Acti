@@ -66,7 +66,7 @@ const filterActivities = async (
 		supabaseBase.lte("price", max)
 	}
 	if (carbon_footprint) {
-		supabaseBase.lte("carbon_footprint", carbon_footprint)
+		supabaseBase.gte("carbon_footprint", carbon_footprint)
 	}
 	if (children_accessible) {
 		supabaseBase.eq("children_accessible", children_accessible)

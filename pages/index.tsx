@@ -398,7 +398,7 @@ export default function Activities() {
                                 router?.query?.carbon_footprint
                                     ? +(router?.query
                                           ?.carbon_footprint as string)
-                                    : 3
+                                    : 0
                             }
                             min={0}
                             max={3}
