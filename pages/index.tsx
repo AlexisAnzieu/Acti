@@ -48,6 +48,7 @@ export type QueryParam = {
     season?: string;
     carbon_footprint?: string;
     price?: string;
+    children_accessible?: boolean;
 };
 
 export type GetServerSideProps = {
@@ -234,18 +235,18 @@ export default function Activities() {
 
         setIsLoading(true);
 
-        const hasNoValue = value === null || value === undefined;
-
-        if (hasNoValue) {
-            delete router.query[param];
-        }
-
         if (param === "season") {
             value = value !== router.query.season ? value : null;
         }
 
         if (param === "price") {
             value = value.join(",");
+        }
+
+        const hasNoValue = value === null || value === undefined;
+
+        if (hasNoValue) {
+            delete router.query[param];
         }
 
         const routerQuery = {
@@ -385,6 +386,8 @@ export default function Activities() {
                     <Box
                         className="sliderFilter"
                         key={router.query?.carbon_footprint as string}
+                        pb="10px"
+                        mr="30px"
                     >
                         <Slider
                             onChangeEnd={(value: number) =>
@@ -418,6 +421,32 @@ export default function Activities() {
                                 </SliderThumb>
                             </Tooltip>
                         </Slider>
+                    </Box>
+                    <Box>
+                        <Badge
+                            variant={
+                                router.query.children_accessible
+                                    ? "solid"
+                                    : "outline"
+                            }
+                            cursor="pointer"
+                            id="children_accessible"
+                            onClick={() =>
+                                paramHandler(
+                                    "children_accessible",
+                                    !router.query.children_accessible
+                                        ? "true"
+                                        : null
+                                )
+                            }
+                            mr="1"
+                            fontSize="1em"
+                            borderRadius="full"
+                            px="2"
+                            colorScheme="teal"
+                        >
+                            {t("childrenAccessible")}
+                        </Badge>
                     </Box>
                 </Box>
                 <Box h="100vh" padding="15px">
@@ -458,7 +487,7 @@ export function searchApi(
         locale,
     };
     Object.entries(queryParamLocaleAdded).forEach(([key, value]) =>
-        apiUrl.searchParams.append(key, value)
+        apiUrl.searchParams.append(key, `${value}`)
     );
     return apiUrl.href;
 }

@@ -25,6 +25,7 @@
         "medium": "This activity cost between 50$ et 150$",
         "high": "This activity cost more than 150$"
     },
+    "childrenAccessible": "Children accessible",
     "by": "by",
     "whoAreWe": "Who are we?",
     "whoAreWeModal": {

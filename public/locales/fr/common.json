@@ -25,6 +25,7 @@
         "medium": "Cette activité coûte entre 50$ et 150$",
         "high": "Cette activité coûte plus de 150$"
     },
+    "childrenAccessible": "Accessible aux enfants",
     "by": "par",
     "whoAreWe": "Qui sommes-nous?",
     "whoAreWeModal": {

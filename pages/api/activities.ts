@@ -12,14 +12,15 @@ type Params = {
 	fields: string;
 	carbon_footprint: string;
 	locale: 'en' | 'fr',
-	slug: string
+	slug: string,
+	children_accessible: string,
 }
 
 export default async function (
 	req: NextApiRequest,
 	res: NextApiResponse<any>
 ) {
-	const { query, id, season, locale, fields = '*', price, carbon_footprint, slug } = req.query as Params;
+	const { query, id, season, locale, fields = '*', price, carbon_footprint, slug, children_accessible } = req.query as Params;
 	const supabaseBase = supabase.from<definitions["activity"]>("activity").select(fields).order(`name->>${locale}` as 'name');
 
 	let result;
@@ -31,8 +32,8 @@ export default async function (
 		result = await singleActivityBySlug(supabaseBase, { slug });
 		return sendReponse(res, result);
 	}
-	if (query || season || price || carbon_footprint) {
-		result = await filterActivities(supabaseBase, { query, season, locale, price, carbon_footprint });
+	if (query || season || price || carbon_footprint || children_accessible) {
+		result = await filterActivities(supabaseBase, { query, season, locale, price, carbon_footprint, children_accessible });
 	} else {
 		result = await supabaseBase;
 	}
@@ -52,7 +53,7 @@ const singleActivityById = async (supabaseBase: any, { id }: { id: Params['id'] 
 const singleActivityBySlug = async (supabaseBase: any, { slug }: { slug: Params['slug'] }) => supabaseBase.eq('slug', slug).single();
 
 const filterActivities = async (
-	supabaseBase: any, { query, season, locale, price, carbon_footprint }: Partial<Params>) => {
+	supabaseBase: any, { query, season, locale, price, carbon_footprint, children_accessible }: Partial<Params>) => {
 	if (query) {
 		supabaseBase.ilike(`name->>${locale}` as 'name', `%${query}%`);
 	}
@@ -66,6 +67,9 @@ const filterActivities = async (
 	}
 	if (carbon_footprint) {
 		supabaseBase.lte("carbon_footprint", carbon_footprint)
+	}
+	if (children_accessible) {
+		supabaseBase.eq("children_accessible", children_accessible)
 	}
 	return supabaseBase;
 };
