@@ -1,7 +1,7 @@
 <br>
 
 <h1 align="center">
-  <img src="https://user-images.githubusercontent.com/11615615/146594532-b7aeb31d-5b52-43c8-8216-4183ce4e24a5.png" alt="Expo Ticket App preview" width="500" />
+  <img src="https://user-images.githubusercontent.com/11615615/146594532-b7aeb31d-5b52-43c8-8216-4183ce4e24a5.png" width="500" />
  </h1>
 
 <h4 align="center">Reusable open source platform made to centralize whatever you want (activities in Quebec in this case).</h4>
