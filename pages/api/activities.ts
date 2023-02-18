@@ -20,56 +20,71 @@ export default async function activities(
     req: NextApiRequest,
     res: NextApiResponse<any>
 ) {
-    const {
-        query,
-        id,
-        season,
-        locale,
-        fields = "*",
-        price,
-        carbon_footprint,
-        slug,
-        children_accessible,
-    } = req.query as Params;
-    const supabaseBase = supabase
-        .from<definitions["activity"]>("activity")
-        .select(fields)
-        .order(`name->>${locale}` as "name");
-
-    let result;
-    if (id) {
-        result = await singleActivityById(supabaseBase, { id });
-        return sendReponse(res, result);
-    }
-    if (slug) {
-        result = await singleActivityBySlug(supabaseBase, { slug });
-        return sendReponse(res, result);
-    }
-    if (query || season || price || carbon_footprint || children_accessible) {
-        result = await filterActivities(supabaseBase, {
+    try {
+        const {
             query,
+            id,
             season,
             locale,
+            fields = "*",
             price,
             carbon_footprint,
+            slug,
             children_accessible,
-        });
-    } else {
-        result = await supabaseBase;
-    }
+        } = req.query as Params;
+        const supabaseBase = supabase
+            .from<definitions["activity"]>("activity")
+            .select(fields)
+            .order(`name->>${locale}` as "name");
 
-    if (fields !== "id" && fields !== "slug") {
-        result.data = result.data?.filter(
-            (activity: definitions["activity"]) => {
-                return (
-                    activity.picture_url &&
-                    activity.location &&
-                    activity.website
-                );
+        let result;
+        if (id) {
+            result = await singleActivityById(supabaseBase, { id });
+            return sendReponse(res, result);
+        }
+        if (slug) {
+            result = await singleActivityBySlug(supabaseBase, { slug });
+            return sendReponse(res, result);
+        }
+        if (
+            query ||
+            season ||
+            price ||
+            carbon_footprint ||
+            children_accessible
+        ) {
+            result = await filterActivities(supabaseBase, {
+                query,
+                season,
+                locale,
+                price,
+                carbon_footprint,
+                children_accessible,
+            });
+            console.log(result);
+
+            if (result.error) {
+                return res.status(500).json({ error: result.error });
             }
-        );
+        } else {
+            result = await supabaseBase;
+        }
+
+        if (fields !== "id" && fields !== "slug") {
+            result.data = result.data?.filter(
+                (activity: definitions["activity"]) => {
+                    return (
+                        activity.picture_url &&
+                        activity.location &&
+                        activity.website
+                    );
+                }
+            );
+        }
+        return sendReponse(res, result);
+    } catch (error) {
+        return res.status(500).json({ error });
     }
-    return sendReponse(res, result);
 }
 
 const singleActivityById = async (
@@ -98,7 +113,9 @@ const filterActivities = async (
         );
     }
     if (season) {
-        supabaseBase.contains("seasons", [season]);
+        supabaseBase.or(
+            `seasons->>0.eq.${season},seasons->>1.eq.${season},seasons->>2.eq.${season},seasons->>3.eq.${season}`
+        );
     }
     if (price) {
         const [min, max] = price.split(",");
