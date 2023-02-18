@@ -40,11 +40,11 @@ export default async function activities(
         let result;
         if (id) {
             result = await singleActivityById(supabaseBase, { id });
-            return sendReponse(res, result);
+            return sendReponse(res, normalizeActivity(result.data));
         }
         if (slug) {
             result = await singleActivityBySlug(supabaseBase, { slug });
-            return sendReponse(res, result);
+            return sendReponse(res, normalizeActivity(result.data));
         }
         if (
             query ||
@@ -69,12 +69,12 @@ export default async function activities(
             result = await supabaseBase;
         }
 
-        result.data = result.data?.map((activity: any) =>
+        const activities = result.data?.map((activity: any) =>
             normalizeActivity(activity)
         );
 
         if (fields !== "id" && fields !== "slug") {
-            result.data = result.data?.filter(
+            const filteredActivities = activities.filter(
                 (activity: definitions["activity"]) => {
                     return (
                         activity.picture_url &&
@@ -83,8 +83,9 @@ export default async function activities(
                     );
                 }
             );
+            return sendReponse(res, filteredActivities);
         }
-        return sendReponse(res, result);
+        return sendReponse(res, activities);
     } catch (error) {
         return res.status(500).json({ error });
     }
@@ -135,9 +136,8 @@ const filterActivities = async (
 };
 
 const sendReponse = (res: NextApiResponse<any>, result: any) => {
-    res.statusCode = result.status;
     res.setHeader("Content-Type", "application/json");
-    res.end(JSON.stringify(result.data));
+    res.end(JSON.stringify(result));
 };
 
 const normalizeActivity = (activity: any) => {
