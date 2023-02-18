@@ -61,7 +61,6 @@ export default async function activities(
                 carbon_footprint,
                 children_accessible,
             });
-            console.log(result);
 
             if (result.error) {
                 return res.status(500).json({ error: result.error });
@@ -69,6 +68,10 @@ export default async function activities(
         } else {
             result = await supabaseBase;
         }
+
+        result.data = result.data?.map((activity: any) =>
+            normalizeActivity(activity)
+        );
 
         if (fields !== "id" && fields !== "slug") {
             result.data = result.data?.filter(
@@ -135,4 +138,18 @@ const sendReponse = (res: NextApiResponse<any>, result: any) => {
     res.statusCode = result.status;
     res.setHeader("Content-Type", "application/json");
     res.end(JSON.stringify(result.data));
+};
+
+const normalizeActivity = (activity: any) => {
+    if (activity.new_location) {
+        activity.location = {
+            lat: activity.new_location.coordinates[1],
+            lng: activity.new_location.coordinates[0],
+        };
+    }
+
+    if (activity.new_picture_url) {
+        activity.picture_url = `https://acti.anzieu.fr/assets/${activity.new_picture_url}`;
+    }
+    return activity;
 };
