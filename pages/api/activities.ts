@@ -28,7 +28,7 @@ export default async function activities(
             locale,
             fields = "*",
             price,
-            carbon_footprint,
+            carbon_footprint = '2',
             slug,
             children_accessible,
         } = req.query as Params;
