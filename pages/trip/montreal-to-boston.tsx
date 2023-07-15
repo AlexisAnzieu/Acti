@@ -261,7 +261,7 @@ export default function Trip() {
                         </div>
                     </div>
                     <Box marginTop={30}>
-                        <Heading size="l">Retour d'expérience</Heading>
+                        <Heading size="l">Retour expérience</Heading>
                         <p>
                             Ce n’est que deux semaines précédant notre départ
                             que nous réalisâmes ce qui nous attendait : 650
