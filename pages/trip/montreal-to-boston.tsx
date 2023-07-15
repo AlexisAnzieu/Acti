@@ -1,6 +1,5 @@
 import { Box, Center, Container, Heading, Text } from "@chakra-ui/react";
 import Head from "next/head";
-import Image from "next/image";
 import { Tooltip } from "react-tooltip";
 
 export default function Trip() {
@@ -17,14 +16,14 @@ export default function Trip() {
                     float={true}
                     id="my-tooltip"
                     style={{
-                        maxWidth: "500px",
+                        maxWidth: "600px",
                         width: "40%",
                         borderRadius: "5%",
                         zIndex: 999,
                         padding: 0,
                     }}
                     render={({ activeAnchor }) => (
-                        <Image
+                        <img
                             style={{ borderRadius: "5%" }}
                             src={activeAnchor?.getAttribute("href") ?? ""}
                             alt=""
