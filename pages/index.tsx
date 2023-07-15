@@ -23,7 +23,7 @@ import {
 import { GetStaticPropsContext } from "next";
 import { useRouter } from "next/dist/client/router";
 import Head from "next/head";
-import NextImage from "next/image";
+import NextImage from "next/legacy/image";
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";

@@ -16,7 +16,7 @@ import {
     Spacer,
     useDisclosure,
 } from "@chakra-ui/react";
-import NextImage from "next/image";
+import NextImage from "next/legacy/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
