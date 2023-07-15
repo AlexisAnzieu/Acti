@@ -136,6 +136,7 @@ a {
 }
 /* Global ::before */
 .card::before {
+    z-index: -1;
     content: "";
     position: absolute;
     width: 50%;
@@ -186,6 +187,7 @@ a {
     color: gray;
     border-radius: 10px;
     padding: 10px;
+    z-index: 0;
 }
 
 /* Title of the card */
