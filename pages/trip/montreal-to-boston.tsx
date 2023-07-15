@@ -24,8 +24,7 @@ export default function Trip() {
                         padding: 0,
                     }}
                     render={({ activeAnchor }) => (
-                        <img
-                            width={"100%"}
+                        <Image
                             style={{ borderRadius: "5%" }}
                             src={activeAnchor?.getAttribute("href") ?? ""}
                             alt=""
