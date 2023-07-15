@@ -181,13 +181,13 @@ a {
 
 /* Information about the timeline */
 .info {
-    display: flex;
-    flex-direction: column;
-    background: #ceeedc;
-    color: gray;
+    text-align: justify;
+    background: #e6fff1c9;
+    color: rgb(93, 93, 93);
     border-radius: 10px;
     padding: 10px;
     z-index: 0;
+    line-height: 30px;
 }
 
 /* Title of the card */
