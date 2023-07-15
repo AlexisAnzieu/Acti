@@ -1,4 +1,4 @@
-import { Box, Center, Container, Flex, Heading, Text } from "@chakra-ui/react";
+import { Box, Center, Container, Heading, Text } from "@chakra-ui/react";
 import Head from "next/head";
 import NextImage from "next/legacy/image";
 import { Tooltip } from "react-tooltip";
@@ -26,7 +26,7 @@ export default function Trip() {
                         <NextImage
                             layout="fill"
                             style={{ borderRadius: "50%" }}
-                            src={activeAnchor?.getAttribute("href")!}
+                            src={activeAnchor?.getAttribute("href") ?? ""}
                             alt=""
                         />
                     )}
