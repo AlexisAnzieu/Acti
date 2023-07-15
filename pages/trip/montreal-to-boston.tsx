@@ -74,7 +74,8 @@ export default function Trip() {
                                 <Heading size="l" className="title">
                                     <a
                                         style={{
-                                            textDecoration: " underline dashed",
+                                            textDecoration: "underline",
+                                            textDecorationStyle: "dashed",
                                         }}
                                         data-tooltip-id="my-tooltip"
                                         href="/images/bostontrip/toknowlton.jpg"
@@ -91,7 +92,8 @@ export default function Trip() {
                                     préparatifs, proche du néant.{" "}
                                     <a
                                         style={{
-                                            textDecoration: " underline dashed",
+                                            textDecoration: "underline",
+                                            textDecorationStyle: "dashed",
                                         }}
                                         data-tooltip-id="my-tooltip"
                                         href="/images/bostontrip/chambly.jpeg"
@@ -106,7 +108,8 @@ export default function Trip() {
                                     profitons de{" "}
                                     <a
                                         style={{
-                                            textDecoration: " underline dashed",
+                                            textDecoration: "underline",
+                                            textDecorationStyle: "dashed",
                                         }}
                                         data-tooltip-id="my-tooltip"
                                         href="/images/bostontrip/richelieu.jpeg"
@@ -156,7 +159,8 @@ export default function Trip() {
                                 <Heading size="l" className="title">
                                     <a
                                         style={{
-                                            textDecoration: " underline dashed",
+                                            textDecoration: "underline",
+                                            textDecorationStyle: "dashed",
                                         }}
                                         data-tooltip-id="my-tooltip"
                                         href="/images/bostontrip/toJefferson.jpg"
@@ -260,7 +264,8 @@ export default function Trip() {
                                     voitures sont constamment agencées{" "}
                                     <a
                                         style={{
-                                            textDecoration: " underline dashed",
+                                            textDecoration: "underline",
+                                            textDecorationStyle: "dashed",
                                         }}
                                         data-tooltip-id="my-tooltip"
                                         href="/images/bostontrip/trail.jpeg"
@@ -305,7 +310,8 @@ export default function Trip() {
                                 <Heading size="l" className="title">
                                     <a
                                         style={{
-                                            textDecoration: " underline dashed",
+                                            textDecoration: "underline",
+                                            textDecorationStyle: "dashed",
                                         }}
                                         data-tooltip-id="my-tooltip"
                                         href="/images/bostontrip/toWarren.jpg"
@@ -324,7 +330,8 @@ export default function Trip() {
                                     composés
                                     <a
                                         style={{
-                                            textDecoration: " underline dashed",
+                                            textDecoration: "underline",
+                                            textDecorationStyle: "dashed",
                                         }}
                                         data-tooltip-id="my-tooltip"
                                         href="/images/bostontrip/pont1.jpeg"
@@ -337,7 +344,8 @@ export default function Trip() {
                                     morning ». Nous nous délectons{" "}
                                     <a
                                         style={{
-                                            textDecoration: " underline dashed",
+                                            textDecoration: "underline",
+                                            textDecorationStyle: "dashed",
                                         }}
                                         data-tooltip-id="my-tooltip"
                                         href="/images/bostontrip/mont.jpeg"
@@ -357,7 +365,8 @@ export default function Trip() {
                                     allures.{" "}
                                     <a
                                         style={{
-                                            textDecoration: " underline dashed",
+                                            textDecoration: "underline",
+                                            textDecorationStyle: "dashed",
                                         }}
                                         data-tooltip-id="my-tooltip"
                                         href="/images/bostontrip/piste.jpeg"
@@ -381,7 +390,8 @@ export default function Trip() {
                                     dormir.{" "}
                                     <a
                                         style={{
-                                            textDecoration: " underline dashed",
+                                            textDecoration: "underline",
+                                            textDecorationStyle: "dashed",
                                         }}
                                         data-tooltip-id="my-tooltip"
                                         href="/images/bostontrip/antoineronfle.jpeg"
@@ -431,7 +441,8 @@ export default function Trip() {
                                     aubaine !{" "}
                                     <a
                                         style={{
-                                            textDecoration: " underline dashed",
+                                            textDecoration: "underline",
+                                            textDecorationStyle: "dashed",
                                         }}
                                         data-tooltip-id="my-tooltip"
                                         href="/images/bostontrip/crevaison.jpeg"
@@ -453,7 +464,8 @@ export default function Trip() {
                                 <Heading size="l" className="title">
                                     <a
                                         style={{
-                                            textDecoration: " underline dashed",
+                                            textDecoration: "underline",
+                                            textDecorationStyle: "dashed",
                                         }}
                                         data-tooltip-id="my-tooltip"
                                         href="/images/bostontrip/toKillington.jpg"
@@ -470,7 +482,8 @@ export default function Trip() {
                                     sur son bagel.{" "}
                                     <a
                                         style={{
-                                            textDecoration: " underline dashed",
+                                            textDecoration: "underline",
+                                            textDecorationStyle: "dashed",
                                         }}
                                         data-tooltip-id="my-tooltip"
                                         href="/images/bostontrip/goutte.jpeg"
@@ -488,7 +501,8 @@ export default function Trip() {
                                     descente.
                                     <a
                                         style={{
-                                            textDecoration: " underline dashed",
+                                            textDecoration: "underline",
+                                            textDecorationStyle: "dashed",
                                         }}
                                         data-tooltip-id="my-tooltip"
                                         href="/images/bostontrip/brume.jpeg"
@@ -510,7 +524,8 @@ export default function Trip() {
                                     évidemment.{" "}
                                     <a
                                         style={{
-                                            textDecoration: " underline dashed",
+                                            textDecoration: "underline",
+                                            textDecorationStyle: "dashed",
                                         }}
                                         data-tooltip-id="my-tooltip"
                                         href="/images/bostontrip/alibaba.jpeg"
@@ -533,7 +548,8 @@ export default function Trip() {
                                     quelques mètres de là.{" "}
                                     <a
                                         style={{
-                                            textDecoration: " underline dashed",
+                                            textDecoration: "underline",
+                                            textDecorationStyle: "dashed",
                                         }}
                                         data-tooltip-id="my-tooltip"
                                         href="/images/bostontrip/boustifaille.jpeg"
@@ -565,7 +581,8 @@ export default function Trip() {
                                     accomplissant bien les choses,{" "}
                                     <a
                                         style={{
-                                            textDecoration: " underline dashed",
+                                            textDecoration: "underline",
+                                            textDecorationStyle: "dashed",
                                         }}
                                         data-tooltip-id="my-tooltip"
                                         href="/images/bostontrip/gastro.jpeg"
@@ -588,7 +605,8 @@ export default function Trip() {
                                 <Heading size="l" className="title">
                                     <a
                                         style={{
-                                            textDecoration: " underline dashed",
+                                            textDecoration: "underline",
+                                            textDecorationStyle: "dashed",
                                         }}
                                         data-tooltip-id="my-tooltip"
                                         href="/images/bostontrip/toNewburry.jpg"
@@ -607,7 +625,8 @@ export default function Trip() {
                                     l’heure d’ascension de la veille.
                                     <a
                                         style={{
-                                            textDecoration: " underline dashed",
+                                            textDecoration: "underline",
+                                            textDecorationStyle: "dashed",
                                         }}
                                         data-tooltip-id="my-tooltip"
                                         href="/images/bostontrip/lac.jpeg"
@@ -675,7 +694,8 @@ export default function Trip() {
                                     maîtres dans ses vallées infernales.
                                     <a
                                         style={{
-                                            textDecoration: " underline dashed",
+                                            textDecoration: "underline",
+                                            textDecorationStyle: "dashed",
                                         }}
                                         data-tooltip-id="my-tooltip"
                                         href="/images/bostontrip/parking.jpeg"
@@ -693,7 +713,8 @@ export default function Trip() {
                                     un peu moins pour ceux d’Antoine.
                                     <a
                                         style={{
-                                            textDecoration: " underline dashed",
+                                            textDecoration: "underline",
+                                            textDecorationStyle: "dashed",
                                         }}
                                         data-tooltip-id="my-tooltip"
                                         href="/images/bostontrip/pont2.jpeg"
@@ -744,7 +765,8 @@ export default function Trip() {
                                 <Heading size="l" className="title">
                                     <a
                                         style={{
-                                            textDecoration: " underline dashed",
+                                            textDecoration: "underline",
+                                            textDecorationStyle: "dashed",
                                         }}
                                         data-tooltip-id="my-tooltip"
                                         href="/images/bostontrip/toMerrimack.jpg"
@@ -785,7 +807,8 @@ export default function Trip() {
                                     kilomètres à la ronde,{" "}
                                     <a
                                         style={{
-                                            textDecoration: " underline dashed",
+                                            textDecoration: "underline",
+                                            textDecorationStyle: "dashed",
                                         }}
                                         data-tooltip-id="my-tooltip"
                                         href="/images/bostontrip/vent.jpeg"
@@ -804,7 +827,8 @@ export default function Trip() {
                                     à faire demi-tour{" "}
                                     <a
                                         style={{
-                                            textDecoration: " underline dashed",
+                                            textDecoration: "underline",
+                                            textDecorationStyle: "dashed",
                                         }}
                                         data-tooltip-id="my-tooltip"
                                         href="/images/bostontrip/danger.jpeg"
@@ -815,7 +839,8 @@ export default function Trip() {
                                     décision car nous déboulons{" "}
                                     <a
                                         style={{
-                                            textDecoration: " underline dashed",
+                                            textDecoration: "underline",
+                                            textDecorationStyle: "dashed",
                                         }}
                                         data-tooltip-id="my-tooltip"
                                         href="/images/bostontrip/parc.jpeg"
@@ -868,7 +893,8 @@ export default function Trip() {
                                 <Heading size="l" className="title">
                                     <a
                                         style={{
-                                            textDecoration: " underline dashed",
+                                            textDecoration: "underline",
+                                            textDecorationStyle: "dashed",
                                         }}
                                         data-tooltip-id="my-tooltip"
                                         href="/images/bostontrip/toBoston.jpg"
@@ -886,7 +912,8 @@ export default function Trip() {
                                     premiers kilomètres.{" "}
                                     <a
                                         style={{
-                                            textDecoration: " underline dashed",
+                                            textDecoration: "underline",
+                                            textDecorationStyle: "dashed",
                                         }}
                                         data-tooltip-id="my-tooltip"
                                         href="/images/bostontrip/aire.jpeg"
@@ -903,7 +930,8 @@ export default function Trip() {
                                     raccourcis, nous fait emprunter la forêt.
                                     <a
                                         style={{
-                                            textDecoration: " underline dashed",
+                                            textDecoration: "underline",
+                                            textDecorationStyle: "dashed",
                                         }}
                                         data-tooltip-id="my-tooltip"
                                         href="/images/bostontrip/foret.jpeg"
@@ -929,7 +957,8 @@ export default function Trip() {
                                     davantage habitués à en voir d’autres.{" "}
                                     <a
                                         style={{
-                                            textDecoration: " underline dashed",
+                                            textDecoration: "underline",
+                                            textDecorationStyle: "dashed",
                                         }}
                                         data-tooltip-id="my-tooltip"
                                         href="/images/bostontrip/boston.jpeg"
