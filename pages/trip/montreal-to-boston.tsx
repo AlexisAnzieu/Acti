@@ -1292,7 +1292,7 @@ export default function Trip({ lang }: any) {
                                 mr={3}
                                 style={{ float: "left" }}
                                 name="Oshigaki Kisame"
-                                src="https://bit.ly/broken-link"
+                                src="/public/images/bostontrip/antoine.jpeg"
                             />
                             Ce n’est que deux semaines précédant notre départ
                             que nous réalisâmes ce qui nous attendait : 650
