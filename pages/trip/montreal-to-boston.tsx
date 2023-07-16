@@ -11,6 +11,7 @@ import { GetStaticPropsContext } from "next";
 import Head from "next/head";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { Tooltip } from "react-tooltip";
+import { Divider } from "@chakra-ui/react";
 
 import { Locale } from "../../component/NavbarComponent";
 
@@ -30,7 +31,7 @@ export default function Trip({ lang }: any) {
                 <Head>
                     <title>Acti - Heureux hasards</title>
                 </Head>
-                <Container maxW={1000}>
+                <Container maxW={1000} mb={100}>
                     <Tooltip
                         place="left"
                         opacity={1}
@@ -1285,35 +1286,102 @@ export default function Trip({ lang }: any) {
                     <Box marginTop={30}>
                         <Center mb={10}>
                             {" "}
-                            <Heading size="l">Retour expérience</Heading>
+                            <Heading size="l">Rétrospectives</Heading>
                         </Center>
-                        <Text lineHeight={"25px"} textAlign={"justify"}>
+                        <Text
+                            my={10}
+                            fontStyle={"italic"}
+                            lineHeight={"25px"}
+                            textAlign={"justify"}
+                        >
                             <Avatar
-                                mr={3}
+                                size={"xl"}
+                                mr={4}
                                 style={{ float: "left" }}
-                                name="Oshigaki Kisame"
-                                src="/public/images/bostontrip/antoine.jpeg"
+                                name="Antoine Ganard"
+                                src="/images/bostontrip/antoine.jpeg"
                             />
-                            Ce n’est que deux semaines précédant notre départ
-                            que nous réalisâmes ce qui nous attendait : 650
-                            kilomètres accompagnés de 4000 mètres de dénivelé
-                            positif, le tout en 6 jours. Dans un éclair de
-                            lucidité, nous demandons à chatGPT de nous suggérer
-                            un programme sportif afin de préparer au mieux notre
-                            condition physique. Sa réponse demeura tout aussi
-                            cinglante que glaçante. Il nous proposait de
-                            parcourir entre 50 et 100 kilomètres par jour,
-                            durant les 14 prochains jours. Avions-nous vraiment
-                            envie de mettre autant de temps et d’énergie dans ce
-                            programme robotisé ? Définitivement non. Nous
-                            décidons tout de même de tester les sensations d’une
-                            étape de 100 kilomètres sur une selle. Ce que nous
-                            effectuons à deux reprises sur les week-ends qu’il
-                            nous restait, évidemment sans dénivelé. <br />{" "}
-                            <br /> Ce furent nos seuls et uniques entraînements
-                            pour ce long périple qui s’avéra finalement bien
-                            moins éprouvant physiquement que notre imagination
-                            ne le présageait.
+                            «  La liberté. C’est ça qui m’a marqué pendant ce
+                            voyage. La liberté de se lever quand on est prêt, de
+                            manger quand on a faim, de se coucher quand on est
+                            fatigué. Pas d’horaire à respecter, juste le temps à
+                            apprécier. Elle est extraordinaire d’ailleurs, la
+                            notion de temps sur une aventure comme celle-ci. On
+                            voit tellement de paysages, de gens ou même
+                            d’architectures en une journée, qu’elle nous en
+                            paraît en durer plusieurs. En une semaine, j’ai eu
+                            l’impression de vivre plusieurs mois. Et pourtant,
+                            je me suis moins ennuyé que pendant les quelques
+                            heures de voiture sur le retour. J’ai vécu chaque
+                            moment à 100%, et qu’est-ce que ça fait du bien. Les
+                            montées qui brûlent les cuisses et réduisent les
+                            fesses en miettes, m’ont fait me dépasser à
+                            plusieurs reprises. En puisant au fond de moi-même
+                            je me suis rendu compte que j’étais capable. En
+                            fait, si le mental veut, le corps suivra. Et puis,
+                            après les montées viennent les descentes. Elles me
+                            faisaient oublier instantanément la douleur dans les
+                            jambes, la pluie battante ou encore la chaleur.
+                            Chaque sensation est décuplée sur le vélo, comme si
+                            le corps reprenait vie. C’est ça en fait, la vie.
+                            Faire de chaque instant une expérience intense et
+                            accueillir ces sensations. Idéalement même, partager
+                            tous ces moments pour en garder une trace encore
+                            plus mémorable. Pour ça, je remercie chaleureusement
+                            Alexis de m’avoir accompagné sur ce trip. 15 ans que
+                            l’on se connaît, et pourtant j’ai eu l’impression de
+                            tout juste le rencontrer pendant ces 7 jours. Alors
+                            maintenant, il ne nous reste plus qu’à planifier le
+                            prochain voyage. Car oui, il est inenvisageable de
+                            ne pas recommencer.»
+                        </Text>
+                        <Divider />
+                        <Text
+                            my={10}
+                            fontStyle={"italic"}
+                            lineHeight={"25px"}
+                            textAlign={"justify"}
+                        >
+                            <Avatar
+                                size={"xl"}
+                                mr={4}
+                                style={{ float: "left" }}
+                                name="Alexis anzieu"
+                                src="/images/bostontrip/alexis.jpeg"
+                            />
+                            «  La liberté. C’est ça qui m’a marqué pendant ce
+                            voyage. La liberté de se lever quand on est prêt, de
+                            manger quand on a faim, de se coucher quand on est
+                            fatigué. Pas d’horaire à respecter, juste le temps à
+                            apprécier. Elle est extraordinaire d’ailleurs, la
+                            notion de temps sur une aventure comme celle-ci. On
+                            voit tellement de paysages, de gens ou même
+                            d’architectures en une journée, qu’elle nous en
+                            paraît en durer plusieurs. En une semaine, j’ai eu
+                            l’impression de vivre plusieurs mois. Et pourtant,
+                            je me suis moins ennuyé que pendant les quelques
+                            heures de voiture sur le retour. J’ai vécu chaque
+                            moment à 100%, et qu’est-ce que ça fait du bien. Les
+                            montées qui brûlent les cuisses et réduisent les
+                            fesses en miettes, m’ont fait me dépasser à
+                            plusieurs reprises. En puisant au fond de moi-même
+                            je me suis rendu compte que j’étais capable. En
+                            fait, si le mental veut, le corps suivra. Et puis,
+                            après les montées viennent les descentes. Elles me
+                            faisaient oublier instantanément la douleur dans les
+                            jambes, la pluie battante ou encore la chaleur.
+                            Chaque sensation est décuplée sur le vélo, comme si
+                            le corps reprenait vie. C’est ça en fait, la vie.
+                            Faire de chaque instant une expérience intense et
+                            accueillir ces sensations. Idéalement même, partager
+                            tous ces moments pour en garder une trace encore
+                            plus mémorable. Pour ça, je remercie chaleureusement
+                            Alexis de m’avoir accompagné sur ce trip. 15 ans que
+                            l’on se connaît, et pourtant j’ai eu l’impression de
+                            tout juste le rencontrer pendant ces 7 jours. Alors
+                            maintenant, il ne nous reste plus qu’à planifier le
+                            prochain voyage. Car oui, il est inenvisageable de
+                            ne pas recommencer.»
                         </Text>
                     </Box>
                 </Container>
