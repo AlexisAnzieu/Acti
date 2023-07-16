@@ -53,7 +53,6 @@ export default function Trip({ lang }: any) {
                             />
                         )}
                     />
-
                     <Box marginTop={30}>
                         <Center>
                             {" "}
@@ -1062,14 +1061,13 @@ export default function Trip({ lang }: any) {
                                                 au monde.
                                             </Highlight>
                                         </a>{" "}
-                                        Une douce piqûre de rappel sur
-                                        l’objectif de notre aventure, se
-                                        déplacer sans dégager de carbone pour ne
-                                        pas amplifier le phénomène. Le vent qui
-                                        nous arrive de face garde les particules
-                                        loin de nous et nous permet de respirer
-                                        un air propre venu tout droit du golfe
-                                        du Mexique. À contrevent donc, mais les
+                                        Quoi de mieux que notre mode de
+                                        transport décarboné pour ne pas aggraver
+                                        la situation ? Le vent qui nous arrive
+                                        de face garde les particules loin de
+                                        nous et nous permet de respirer un air
+                                        propre venu tout droit du golfe du
+                                        Mexique. À contrevent donc, mais les
                                         poumons sains et sereins. Nous hésitons
                                         à faire demi-tour{" "}
                                         <a
@@ -1349,40 +1347,36 @@ export default function Trip({ lang }: any) {
                                 name="Alexis anzieu"
                                 src="/images/bostontrip/alexis.jpeg"
                             />
-                            «  La liberté. C’est ça qui m’a marqué pendant ce
-                            voyage. La liberté de se lever quand on est prêt, de
-                            manger quand on a faim, de se coucher quand on est
-                            fatigué. Pas d’horaire à respecter, juste le temps à
-                            apprécier. Elle est extraordinaire d’ailleurs, la
-                            notion de temps sur une aventure comme celle-ci. On
-                            voit tellement de paysages, de gens ou même
-                            d’architectures en une journée, qu’elle nous en
-                            paraît en durer plusieurs. En une semaine, j’ai eu
-                            l’impression de vivre plusieurs mois. Et pourtant,
-                            je me suis moins ennuyé que pendant les quelques
-                            heures de voiture sur le retour. J’ai vécu chaque
-                            moment à 100%, et qu’est-ce que ça fait du bien. Les
-                            montées qui brûlent les cuisses et réduisent les
-                            fesses en miettes, m’ont fait me dépasser à
-                            plusieurs reprises. En puisant au fond de moi-même
-                            je me suis rendu compte que j’étais capable. En
-                            fait, si le mental veut, le corps suivra. Et puis,
-                            après les montées viennent les descentes. Elles me
-                            faisaient oublier instantanément la douleur dans les
-                            jambes, la pluie battante ou encore la chaleur.
-                            Chaque sensation est décuplée sur le vélo, comme si
-                            le corps reprenait vie. C’est ça en fait, la vie.
-                            Faire de chaque instant une expérience intense et
-                            accueillir ces sensations. Idéalement même, partager
-                            tous ces moments pour en garder une trace encore
-                            plus mémorable. Pour ça, je remercie chaleureusement
-                            Alexis de m’avoir accompagné sur ce trip. 15 ans que
-                            l’on se connaît, et pourtant j’ai eu l’impression de
-                            tout juste le rencontrer pendant ces 7 jours. Alors
-                            maintenant, il ne nous reste plus qu’à planifier le
-                            prochain voyage. Car oui, il est inenvisageable de
-                            ne pas recommencer.»
+                            «650km, sur le papier ce nombre me laissait
+                            sceptique quant à mes capacités physiques, de
+                            surcroît avec un entraînement proche du néant. Je ne
+                            doutais pas d’y arriver mais je redoutais de subir
+                            un effort constant durant le trajet. Force est de
+                            constater qu’il ne me fallut qu’une journée pour
+                            m’adapter à cette nouvelle routine et vivre une
+                            expérience hors du commun. Plus concrètement,
+                            arrêtons de justifier nos inactions par notre peur
+                            de l’échec. Offrons-nous l’opportunité d’échouer
+                            concrètement au lieu de nous laisser influencer par
+                            nos propres scénarios pessimistes. <br />
+                            Ce périple m’a aussi permis d’assouvir ma soif
+                            d’aventure sans dégrader notre planète. Il m’a
+                            démontré que d’autres imaginaires étaient à portée
+                            de pédales sans nécessairement avoir besoin se
+                            téléporter à l’autre bout du globe. À toutes celles
+                            et à ceux qui désirent s’évader de leur quotidien en
+                            parcourant le monde une semaine à la fois, je vous
+                            invite à vous lancer dans une aventure
+                            cyclotouristique similaire, à votre rythme, et ainsi
+                            prendre soin du Vivant.»
                         </Text>
+                    </Box>
+                    <Box
+                        fontSize={80}
+                        fontFamily={"autography"}
+                        textAlign={"right"}
+                    >
+                        Antoine & Alexis
                     </Box>
                 </Container>
             </Box>

@@ -6,6 +6,11 @@ body {
         Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
+@font-face {
+    font-family: autography;
+    src: url("/fonts/Autography-DOLnW.otf");
+}
+
 a {
     color: inherit;
     text-decoration: none;
