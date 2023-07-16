@@ -101,15 +101,20 @@ export default function Trip({ lang }: any) {
                                 <Box className="info">
                                     <Heading size="l" className="title">
                                         <a
-                                            style={{
-                                                textDecoration: "underline",
-                                                textDecorationStyle: "dashed",
-                                            }}
                                             data-tooltip-id="my-tooltip"
                                             href="/images/bostontrip/toknowlton.jpg"
                                         >
-                                            {" "}
-                                            Jour 1 (Montréal - Knowlton)
+                                            <Highlight
+                                                query="Jour 1 (Montréal - Knowlton)"
+                                                styles={{
+                                                    borderRadius: "50px",
+                                                    px: "2",
+                                                    py: "1",
+                                                    bg: "green.100",
+                                                }}
+                                            >
+                                                Jour 1 (Montréal - Knowlton)
+                                            </Highlight>
                                         </a>
                                     </Heading>
                                     <Text>
@@ -128,9 +133,9 @@ export default function Trip({ lang }: any) {
                                                 query="Un premier arrêt à Chambly"
                                                 styles={{
                                                     borderRadius: "50px",
-                                                    px: "1",
+                                                    px: "2",
                                                     py: "1",
-                                                    bg: "orange.100",
+                                                    bg: "green.100",
                                                 }}
                                             >
                                                 Un premier arrêt à Chambly
@@ -143,15 +148,22 @@ export default function Trip({ lang }: any) {
                                         pratique. Ce premier déboire passé, nous
                                         profitons de{" "}
                                         <a
-                                            style={{
-                                                textDecoration: "underline",
-                                                textDecorationStyle: "dashed",
-                                            }}
                                             data-tooltip-id="my-tooltip"
                                             href="/images/bostontrip/richelieu.jpeg"
                                         >
-                                            notre premier déjeuner à Saint-Jean
-                                            de Richelieu{" "}
+                                            <Highlight
+                                                query="notre premier déjeuner à Saint-Jean
+                                                de Richelieu"
+                                                styles={{
+                                                    borderRadius: "50px",
+                                                    px: "2",
+                                                    py: "1",
+                                                    bg: "green.100",
+                                                }}
+                                            >
+                                                notre premier déjeuner à
+                                                Saint-Jean de Richelieu
+                                            </Highlight>
                                         </a>
                                         , situé à 40 km de Montréal, dans
                                         l’intention de vérifier combien de
@@ -197,14 +209,21 @@ export default function Trip({ lang }: any) {
                                 <Box className="info">
                                     <Heading size="l" className="title">
                                         <a
-                                            style={{
-                                                textDecoration: "underline",
-                                                textDecorationStyle: "dashed",
-                                            }}
                                             data-tooltip-id="my-tooltip"
                                             href="/images/bostontrip/toJefferson.jpg"
                                         >
-                                            Jour 2 (Knowlton - Jeffersonville)
+                                            <Highlight
+                                                query=" Jour 2 (Knowlton - Jeffersonville)"
+                                                styles={{
+                                                    borderRadius: "50px",
+                                                    px: "2",
+                                                    py: "1",
+                                                    bg: "green.100",
+                                                }}
+                                            >
+                                                Jour 2 (Knowlton -
+                                                Jeffersonville)
+                                            </Highlight>
                                         </a>
                                     </Heading>{" "}
                                     <Text>
@@ -215,16 +234,23 @@ export default function Trip({ lang }: any) {
                                         remplissons les gourdes et nous nous
                                         dirigeons vers le café le plus proche.{" "}
                                         <a
-                                            style={{
-                                                textDecoration:
-                                                    "underline dashed",
-                                            }}
                                             data-tooltip-id="my-tooltip"
                                             href="/images/bostontrip/cafe.jpeg"
                                         >
-                                            Café qui ne paye pas de mine avec un
-                                            excellent petit déjeuner accompagné
-                                            de son cappuccino au lait d’avoine.
+                                            <Highlight
+                                                query="accompagné de son cappuccino au lait d’avoine."
+                                                styles={{
+                                                    borderRadius: "50px",
+                                                    px: "2",
+                                                    py: "1",
+                                                    bg: "green.100",
+                                                }}
+                                            >
+                                                Café qui ne paye pas de mine
+                                                avec un excellent petit déjeuner
+                                                accompagné de son cappuccino au
+                                                lait d’avoine.
+                                            </Highlight>
                                         </a>{" "}
                                         Enfin, nous nous remettons en route. Les
                                         cinq premiers kilomètres en montée
@@ -251,15 +277,22 @@ export default function Trip({ lang }: any) {
                                         peut nous mener en cellule. Les menottes
                                         fixées au banc ne nous rassurent pas.{" "}
                                         <a
-                                            style={{
-                                                textDecoration:
-                                                    "underline dashed",
-                                            }}
                                             data-tooltip-id="my-tooltip"
                                             href="/images/bostontrip/poste-frontiere.jpeg"
                                         >
-                                            Dix longues minutes plus tard , nous
-                                            franchissons la frontière{" "}
+                                            <Highlight
+                                                query=" nous
+                                                franchissons la frontière"
+                                                styles={{
+                                                    borderRadius: "50px",
+                                                    px: "2",
+                                                    py: "1",
+                                                    bg: "green.100",
+                                                }}
+                                            >
+                                                Dix longues minutes plus tard ,
+                                                nous franchissons la frontière
+                                            </Highlight>{" "}
                                         </a>
                                         munie de notre passeport tamponné USA.
                                         Le cliché de la ville américaine est
@@ -286,16 +319,22 @@ export default function Trip({ lang }: any) {
                                         sauvés in extremis par un Subway
                                         juxtaposé à une station-service.
                                         <a
-                                            style={{
-                                                textDecoration:
-                                                    "underline dashed",
-                                            }}
                                             data-tooltip-id="my-tooltip"
                                             href="/images/bostontrip/subway.jpeg"
                                         >
                                             {" "}
-                                            Nous voici en train de dévorer notre
-                                            premier repas américain.
+                                            <Highlight
+                                                query=" Nous voici en train de dévorer "
+                                                styles={{
+                                                    borderRadius: "50px",
+                                                    px: "2",
+                                                    py: "1",
+                                                    bg: "green.100",
+                                                }}
+                                            >
+                                                Nous voici en train de dévorer
+                                                notre premier repas américain.
+                                            </Highlight>{" "}
                                         </a>
                                         Quelques kilomètres après notre départ,
                                         mon porte-bagages se fait la malle (sans
@@ -310,15 +349,21 @@ export default function Trip({ lang }: any) {
                                         routes de voitures sont constamment
                                         agencées{" "}
                                         <a
-                                            style={{
-                                                textDecoration: "underline",
-                                                textDecorationStyle: "dashed",
-                                            }}
                                             data-tooltip-id="my-tooltip"
                                             href="/images/bostontrip/trail.jpeg"
                                         >
-                                            d’un sentier dédié aux engins non
-                                            motorisés.
+                                            <Highlight
+                                                query=" d’un sentier dédié "
+                                                styles={{
+                                                    borderRadius: "50px",
+                                                    px: "2",
+                                                    py: "1",
+                                                    bg: "green.100",
+                                                }}
+                                            >
+                                                d’un sentier dédié aux engins
+                                                non motorisés.
+                                            </Highlight>
                                         </a>
                                         Malheureusement, ces chemins sont
                                         confectionnés de terre et se
@@ -331,17 +376,24 @@ export default function Trip({ lang }: any) {
                                         voie boueuse fut suivie de ce que j’ai
                                         renommé la ligne rouge.{" "}
                                         <a
-                                            style={{
-                                                textDecoration:
-                                                    "underline dashed",
-                                            }}
                                             data-tooltip-id="my-tooltip"
                                             href="/images/bostontrip/ligne-rouge.jpeg"
                                         >
                                             {" "}
-                                            Un sentier parsemé de petits
-                                            graviers sur lequel mes pneus
-                                            n’adhèrent pas{" "}
+                                            <Highlight
+                                                query=" Un sentier parsemé de petits
+                                                graviers"
+                                                styles={{
+                                                    borderRadius: "50px",
+                                                    px: "2",
+                                                    py: "1",
+                                                    bg: "green.100",
+                                                }}
+                                            >
+                                                Un sentier parsemé de petits
+                                                graviers sur lequel mes pneus
+                                                n’adhèrent pas
+                                            </Highlight>{" "}
                                         </a>
                                         , mettant mes cuisses à rude épreuve.
                                         Plus désagréable encore, le guidon
@@ -359,14 +411,20 @@ export default function Trip({ lang }: any) {
                                 <Box className="info">
                                     <Heading size="l" className="title">
                                         <a
-                                            style={{
-                                                textDecoration: "underline",
-                                                textDecorationStyle: "dashed",
-                                            }}
                                             data-tooltip-id="my-tooltip"
                                             href="/images/bostontrip/toWarren.jpg"
                                         >
-                                            Jour 3 (Jeffersonville - Warren)
+                                            <Highlight
+                                                query=" Jour 3 (Jeffersonville - Warren)"
+                                                styles={{
+                                                    borderRadius: "50px",
+                                                    px: "2",
+                                                    py: "1",
+                                                    bg: "green.100",
+                                                }}
+                                            >
+                                                Jour 3 (Jeffersonville - Warren)
+                                            </Highlight>
                                         </a>
                                     </Heading>{" "}
                                     <Text>
@@ -380,14 +438,20 @@ export default function Trip({ lang }: any) {
                                         oublié par les 20 km de sentiers
                                         composés
                                         <a
-                                            style={{
-                                                textDecoration: "underline",
-                                                textDecorationStyle: "dashed",
-                                            }}
                                             data-tooltip-id="my-tooltip"
                                             href="/images/bostontrip/pont1.jpeg"
                                         >
-                                            d’anciens ponts ferroviaires{" "}
+                                            <Highlight
+                                                query="  d’anciens ponts ferroviaires"
+                                                styles={{
+                                                    borderRadius: "50px",
+                                                    px: "2",
+                                                    py: "1",
+                                                    bg: "green.100",
+                                                }}
+                                            >
+                                                d’anciens ponts ferroviaires
+                                            </Highlight>
                                         </a>{" "}
                                         et de paysages montagneux. Il y a moins
                                         de cyclistes que la veille, suffisamment
@@ -395,16 +459,22 @@ export default function Trip({ lang }: any) {
                                         chaleureux « good morning ». Nous nous
                                         délectons{" "}
                                         <a
-                                            style={{
-                                                textDecoration: "underline",
-                                                textDecorationStyle: "dashed",
-                                            }}
                                             data-tooltip-id="my-tooltip"
                                             href="/images/bostontrip/mont.jpeg"
                                         >
-                                            des monts verdoyants à perte de vue,
-                                            cette région du Vermont porte
-                                            décidément bien son nom
+                                            <Highlight
+                                                query="  des monts verdoyants à perte de vue"
+                                                styles={{
+                                                    borderRadius: "50px",
+                                                    px: "2",
+                                                    py: "1",
+                                                    bg: "green.100",
+                                                }}
+                                            >
+                                                des monts verdoyants à perte de
+                                                vue, cette région du Vermont
+                                                porte décidément bien son nom
+                                            </Highlight>
                                         </a>
                                         . Nous nous octroyons une courte pause,
                                         le temps de trouver notre prochaine
@@ -416,15 +486,22 @@ export default function Trip({ lang }: any) {
                                         peu assourdissante à cause des 33 tonnes
                                         passant à côté de nous de vives allures.{" "}
                                         <a
-                                            style={{
-                                                textDecoration: "underline",
-                                                textDecorationStyle: "dashed",
-                                            }}
                                             data-tooltip-id="my-tooltip"
                                             href="/images/bostontrip/piste.jpeg"
                                         >
-                                            Toutefois, la bande d’arrêts
-                                            d’urgence/piste cyclable{" "}
+                                            <Highlight
+                                                query="la bande d’arrêt
+                                                d’urgence"
+                                                styles={{
+                                                    borderRadius: "50px",
+                                                    px: "2",
+                                                    py: "1",
+                                                    bg: "green.100",
+                                                }}
+                                            >
+                                                Toutefois, la bande d’arrêt
+                                                d’urgence/piste cyclable
+                                            </Highlight>{" "}
                                         </a>
                                         nous laisse quand même un peu de marge
                                         de manœuvre. Nous développons un sixième
@@ -441,15 +518,22 @@ export default function Trip({ lang }: any) {
                                         13 h 30 et notre seule envie jouxtant ce
                                         repas est de s’allonger et dormir.{" "}
                                         <a
-                                            style={{
-                                                textDecoration: "underline",
-                                                textDecorationStyle: "dashed",
-                                            }}
                                             data-tooltip-id="my-tooltip"
                                             href="/images/bostontrip/antoineronfle.jpeg"
                                         >
-                                            Mon camarade Antoine commence
-                                            d’ailleurs à ronfler.
+                                            <Highlight
+                                                query=" Mon camarade Antoine commence
+                                                d’ailleurs à ronfler."
+                                                styles={{
+                                                    borderRadius: "50px",
+                                                    px: "2",
+                                                    py: "1",
+                                                    bg: "green.100",
+                                                }}
+                                            >
+                                                Mon camarade Antoine commence
+                                                d’ailleurs à ronfler.
+                                            </Highlight>
                                         </a>{" "}
                                         La deuxième partie de la journée est un
                                         peu plus compliquée. Elle démarre par
@@ -495,15 +579,22 @@ export default function Trip({ lang }: any) {
                                         première crevaison, 5 minutes avant
                                         l’arrivée, quelle aubaine !{" "}
                                         <a
-                                            style={{
-                                                textDecoration: "underline",
-                                                textDecorationStyle: "dashed",
-                                            }}
                                             data-tooltip-id="my-tooltip"
                                             href="/images/bostontrip/crevaison.jpeg"
                                         >
-                                            Je réussis cependant à changer ma
-                                            chambre à air promptement
+                                            <Highlight
+                                                query="Je réussis cependant à changer
+                                                ma chambre à air promptement"
+                                                styles={{
+                                                    borderRadius: "50px",
+                                                    px: "2",
+                                                    py: "1",
+                                                    bg: "green.100",
+                                                }}
+                                            >
+                                                Je réussis cependant à changer
+                                                ma chambre à air promptement
+                                            </Highlight>
                                         </a>{" "}
                                         et nous voilà parvenus à notre troisième
                                         cocon locatif. Petit plongeon dans la
@@ -519,14 +610,20 @@ export default function Trip({ lang }: any) {
                                 <Box className="info">
                                     <Heading size="l" className="title">
                                         <a
-                                            style={{
-                                                textDecoration: "underline",
-                                                textDecorationStyle: "dashed",
-                                            }}
                                             data-tooltip-id="my-tooltip"
                                             href="/images/bostontrip/toKillington.jpg"
                                         >
-                                            Jour 4 (Warren - Killington)
+                                            <Highlight
+                                                query=" Jour 4 (Warren - Killington)"
+                                                styles={{
+                                                    borderRadius: "50px",
+                                                    px: "2",
+                                                    py: "1",
+                                                    bg: "green.100",
+                                                }}
+                                            >
+                                                Jour 4 (Warren - Killington)
+                                            </Highlight>
                                         </a>
                                     </Heading>{" "}
                                     <Text>
@@ -537,16 +634,23 @@ export default function Trip({ lang }: any) {
                                         la taille de l’assiette et fromage à la
                                         crème monté sur son bagel.{" "}
                                         <a
-                                            style={{
-                                                textDecoration: "underline",
-                                                textDecorationStyle: "dashed",
-                                            }}
                                             data-tooltip-id="my-tooltip"
                                             href="/images/bostontrip/goutte.jpeg"
                                         >
-                                            Au moment de poser les fesses sur la
-                                            selle, les premières gouttes
-                                            tombent, ô joie !
+                                            <Highlight
+                                                query="les premières gouttes
+                                                tombent, ô joie !"
+                                                styles={{
+                                                    borderRadius: "50px",
+                                                    px: "2",
+                                                    py: "1",
+                                                    bg: "green.100",
+                                                }}
+                                            >
+                                                Au moment de poser les fesses
+                                                sur la selle, les premières
+                                                gouttes tombent, ô joie !
+                                            </Highlight>
                                         </a>{" "}
                                         Cependant, je suis plus préoccupé par
                                         mon pneu, mal remis de sa crevaison, que
@@ -556,18 +660,24 @@ export default function Trip({ lang }: any) {
                                         Heureusement, nous résidons en haut d’un
                                         col et ce matin ne sera que descente.
                                         <a
-                                            style={{
-                                                textDecoration: "underline",
-                                                textDecorationStyle: "dashed",
-                                            }}
                                             data-tooltip-id="my-tooltip"
                                             href="/images/bostontrip/brume.jpeg"
                                         >
                                             {" "}
-                                            Les paysages pluvieux apportent une
-                                            atmosphère féerique, la brume se
-                                            glissant entre les arbres
-                                            larmoyants.
+                                            <Highlight
+                                                query="une atmosphère féerique"
+                                                styles={{
+                                                    borderRadius: "50px",
+                                                    px: "2",
+                                                    py: "1",
+                                                    bg: "green.100",
+                                                }}
+                                            >
+                                                Les paysages pluvieux apportent
+                                                une atmosphère féerique, la
+                                                brume se glissant entre les
+                                                arbres larmoyants.
+                                            </Highlight>
                                         </a>
                                         L’odeur de la terre mouillée et le peu
                                         de circulation transforment cette heure
@@ -581,19 +691,27 @@ export default function Trip({ lang }: any) {
                                         de monter sur le podium, bien
                                         évidemment.{" "}
                                         <a
-                                            style={{
-                                                textDecoration: "underline",
-                                                textDecorationStyle: "dashed",
-                                            }}
                                             data-tooltip-id="my-tooltip"
                                             href="/images/bostontrip/alibaba.jpeg"
                                         >
-                                            Nous entrons alors dans une vraie
-                                            caverne d’Ali Baba. Des vélos par
-                                            centaines, des pédaliers, des
-                                            dérailleurs, des guidons, des
-                                            selles, entretenus de longue date
-                                            par de vieux loups de mer.
+                                            <Highlight
+                                                query="une vraie
+                                                caverne d’Ali Baba"
+                                                styles={{
+                                                    borderRadius: "50px",
+                                                    px: "2",
+                                                    py: "1",
+                                                    bg: "green.100",
+                                                }}
+                                            >
+                                                Nous entrons alors dans une
+                                                vraie caverne d’Ali Baba. Des
+                                                vélos par centaines, des
+                                                pédaliers, des dérailleurs, des
+                                                guidons, des selles, entretenus
+                                                de longue date par de vieux
+                                                loups de mer.
+                                            </Highlight>
                                         </a>
                                         L’ambiance chaleureuse nous force à
                                         conter notre aventure, un peu écourtée
@@ -606,16 +724,22 @@ export default function Trip({ lang }: any) {
                                         avant, place à la boustifaille située à
                                         quelques mètres de là.{" "}
                                         <a
-                                            style={{
-                                                textDecoration: "underline",
-                                                textDecorationStyle: "dashed",
-                                            }}
                                             data-tooltip-id="my-tooltip"
                                             href="/images/bostontrip/boustifaille.jpeg"
                                         >
-                                            Nous regardons les cyclistes défier
-                                            les torrents d’eau à coup de
-                                            pédales.
+                                            <Highlight
+                                                query=" Nous regardons les cyclistes"
+                                                styles={{
+                                                    borderRadius: "50px",
+                                                    px: "2",
+                                                    py: "1",
+                                                    bg: "green.100",
+                                                }}
+                                            >
+                                                Nous regardons les cyclistes
+                                                défier les torrents d’eau à coup
+                                                de pédales.
+                                            </Highlight>
                                         </a>{" "}
                                         La pause déjeuner se prolonge sur 2
                                         heures. Un gros milk-shake au café en
@@ -642,16 +766,22 @@ export default function Trip({ lang }: any) {
                                         bénite. Pour finir la soirée, le hasard
                                         accomplissant bien les choses,{" "}
                                         <a
-                                            style={{
-                                                textDecoration: "underline",
-                                                textDecorationStyle: "dashed",
-                                            }}
                                             data-tooltip-id="my-tooltip"
                                             href="/images/bostontrip/gastro.jpeg"
                                         >
-                                            un restaurant semi-gastronomique se
-                                            situe à quelques mètres de notre
-                                            hébergement.
+                                            <Highlight
+                                                query="un restaurant semi-gastronomique"
+                                                styles={{
+                                                    borderRadius: "50px",
+                                                    px: "2",
+                                                    py: "1",
+                                                    bg: "green.100",
+                                                }}
+                                            >
+                                                un restaurant semi-gastronomique
+                                                se situe à quelques mètres de
+                                                notre hébergement.
+                                            </Highlight>
                                         </a>{" "}
                                         Nous allons pouvoir nous ravitailler
                                         correctement avant d’entamer la plus
@@ -666,14 +796,20 @@ export default function Trip({ lang }: any) {
                                 <Box className="info">
                                     <Heading size="l" className="title">
                                         <a
-                                            style={{
-                                                textDecoration: "underline",
-                                                textDecorationStyle: "dashed",
-                                            }}
                                             data-tooltip-id="my-tooltip"
                                             href="/images/bostontrip/toNewburry.jpg"
                                         >
-                                            Jour 5 (Killington - Newburry)
+                                            <Highlight
+                                                query="Jour 5 (Killington - Newburry)"
+                                                styles={{
+                                                    borderRadius: "50px",
+                                                    px: "2",
+                                                    py: "1",
+                                                    bg: "green.100",
+                                                }}
+                                            >
+                                                Jour 5 (Killington - Newburry)
+                                            </Highlight>
                                         </a>
                                     </Heading>{" "}
                                     <Text>
@@ -685,17 +821,24 @@ export default function Trip({ lang }: any) {
                                         permettre de poser rapidement le pied
                                         sur l’étrier. Durant les cinq premières
                                         minutes, nous dévalons l’heure
-                                        d’ascension de la veille.
+                                        d’ascension de la veille.{" "}
                                         <a
-                                            style={{
-                                                textDecoration: "underline",
-                                                textDecorationStyle: "dashed",
-                                            }}
                                             data-tooltip-id="my-tooltip"
                                             href="/images/bostontrip/lac.jpeg"
                                         >
-                                            S’enchaînent ensuite des paysages
-                                            montagneux, parsemés de lacs,{" "}
+                                            <Highlight
+                                                query="parsemés de lacs"
+                                                styles={{
+                                                    borderRadius: "50px",
+                                                    px: "2",
+                                                    py: "1",
+                                                    bg: "green.100",
+                                                }}
+                                            >
+                                                S’enchaînent ensuite des
+                                                paysages montagneux, parsemés de
+                                                lacs,
+                                            </Highlight>
                                         </a>{" "}
                                         de tracés lisses, de peu de trafic et
                                         d’oiseaux toujours aussi vivants,
@@ -761,20 +904,26 @@ export default function Trip({ lang }: any) {
                                         nous attend. Nous sommes entourés de
                                         Pizza Hut, McDonald’s et Burger King qui
                                         règne en maîtres dans ses vallées
-                                        infernales.
+                                        infernales.{" "}
                                         <a
-                                            style={{
-                                                textDecoration: "underline",
-                                                textDecorationStyle: "dashed",
-                                            }}
                                             data-tooltip-id="my-tooltip"
                                             href="/images/bostontrip/parking.jpeg"
                                         >
-                                            {" "}
-                                            Notre seule solution consiste donc à
-                                            chercher de quoi se sustenter dans
-                                            le supermarché du coin puis de le
-                                            consommer sur le parking.
+                                            <Highlight
+                                                query="sur le parking"
+                                                styles={{
+                                                    borderRadius: "50px",
+                                                    px: "2",
+                                                    py: "1",
+                                                    bg: "green.100",
+                                                }}
+                                            >
+                                                Notre seule solution consiste
+                                                donc à chercher de quoi se
+                                                sustenter dans le supermarché du
+                                                coin puis de le consommer sur le
+                                                parking.
+                                            </Highlight>
                                         </a>
                                         Nous n’y resterons pas longtemps, au
                                         grand regret de nos cuisses encore
@@ -783,16 +932,22 @@ export default function Trip({ lang }: any) {
                                         pour mes pneus de route, un peu moins
                                         pour ceux d’Antoine.
                                         <a
-                                            style={{
-                                                textDecoration: "underline",
-                                                textDecorationStyle: "dashed",
-                                            }}
                                             data-tooltip-id="my-tooltip"
                                             href="/images/bostontrip/pont2.jpeg"
                                         >
                                             {" "}
-                                            Nous traversons une fois de plus un
-                                            ancien pont ferroviaire
+                                            <Highlight
+                                                query="ancien pont ferroviaire"
+                                                styles={{
+                                                    borderRadius: "50px",
+                                                    px: "2",
+                                                    py: "1",
+                                                    bg: "green.100",
+                                                }}
+                                            >
+                                                Nous traversons une fois de plus
+                                                un ancien pont ferroviaire
+                                            </Highlight>
                                         </a>{" "}
                                         et croisons deux enfants conduisant
                                         chacun leur quad, les parents à
@@ -838,14 +993,20 @@ export default function Trip({ lang }: any) {
                                 <Box className="info">
                                     <Heading size="l" className="title">
                                         <a
-                                            style={{
-                                                textDecoration: "underline",
-                                                textDecorationStyle: "dashed",
-                                            }}
                                             data-tooltip-id="my-tooltip"
                                             href="/images/bostontrip/toMerrimack.jpg"
                                         >
-                                            Jour 6 (Newburry - Merrimack)
+                                            <Highlight
+                                                query=" Jour 6 (Newburry - Merrimack)"
+                                                styles={{
+                                                    borderRadius: "50px",
+                                                    px: "2",
+                                                    py: "1",
+                                                    bg: "green.100",
+                                                }}
+                                            >
+                                                Jour 6 (Newburry - Merrimack)
+                                            </Highlight>
                                         </a>
                                     </Heading>{" "}
                                     <Text>
@@ -883,15 +1044,22 @@ export default function Trip({ lang }: any) {
                                         des cendres à des milliers de kilomètres
                                         à la ronde,{" "}
                                         <a
-                                            style={{
-                                                textDecoration: "underline",
-                                                textDecorationStyle: "dashed",
-                                            }}
                                             data-tooltip-id="my-tooltip"
                                             href="/images/bostontrip/vent.jpeg"
                                         >
-                                            Montréal est d’ailleurs ce jour-là
-                                            la ville la plus polluée au monde.{" "}
+                                            <Highlight
+                                                query="la ville la plus polluée au monde"
+                                                styles={{
+                                                    borderRadius: "50px",
+                                                    px: "2",
+                                                    py: "1",
+                                                    bg: "green.100",
+                                                }}
+                                            >
+                                                Montréal est d’ailleurs ce
+                                                jour-là la ville la plus polluée
+                                                au monde.
+                                            </Highlight>
                                         </a>{" "}
                                         Une douce piqûre de rappel sur
                                         l’objectif de notre aventure, se
@@ -904,27 +1072,40 @@ export default function Trip({ lang }: any) {
                                         poumons sains et sereins. Nous hésitons
                                         à faire demi-tour{" "}
                                         <a
-                                            style={{
-                                                textDecoration: "underline",
-                                                textDecorationStyle: "dashed",
-                                            }}
                                             data-tooltip-id="my-tooltip"
                                             href="/images/bostontrip/danger.jpeg"
                                         >
-                                            devant une pancarte présageant un
-                                            danger
+                                            <Highlight
+                                                query="une pancarte présageant un
+                                                danger"
+                                                styles={{
+                                                    borderRadius: "50px",
+                                                    px: "2",
+                                                    py: "1",
+                                                    bg: "green.100",
+                                                }}
+                                            >
+                                                devant une pancarte présageant
+                                                un danger
+                                            </Highlight>
                                         </a>{" "}
                                         mais décidons d’aller de l’avant. Sage
                                         décision car nous déboulons{" "}
                                         <a
-                                            style={{
-                                                textDecoration: "underline",
-                                                textDecorationStyle: "dashed",
-                                            }}
                                             data-tooltip-id="my-tooltip"
                                             href="/images/bostontrip/parc.jpeg"
                                         >
-                                            sur un magnifique parc régional
+                                            <Highlight
+                                                query="un magnifique parc régional"
+                                                styles={{
+                                                    borderRadius: "50px",
+                                                    px: "2",
+                                                    py: "1",
+                                                    bg: "green.100",
+                                                }}
+                                            >
+                                                sur un magnifique parc régional
+                                            </Highlight>
                                         </a>{" "}
                                         juste avant notre pause de mi-journée.
                                         Le trajet apparut moins éprouvant que
@@ -975,14 +1156,20 @@ export default function Trip({ lang }: any) {
                                 <Box className="info">
                                     <Heading size="l" className="title">
                                         <a
-                                            style={{
-                                                textDecoration: "underline",
-                                                textDecorationStyle: "dashed",
-                                            }}
                                             data-tooltip-id="my-tooltip"
                                             href="/images/bostontrip/toBoston.jpg"
                                         >
-                                            Jour 7 (Merrimack - Boston)
+                                            <Highlight
+                                                query=" Jour 7 (Merrimack - Boston)"
+                                                styles={{
+                                                    borderRadius: "50px",
+                                                    px: "2",
+                                                    py: "1",
+                                                    bg: "green.100",
+                                                }}
+                                            >
+                                                Jour 7 (Merrimack - Boston)
+                                            </Highlight>
                                         </a>
                                     </Heading>{" "}
                                     <Text>
@@ -994,16 +1181,23 @@ export default function Trip({ lang }: any) {
                                         et le trafic ubiquitaire lorsque nous
                                         entamons les premiers kilomètres.{" "}
                                         <a
-                                            style={{
-                                                textDecoration: "underline",
-                                                textDecorationStyle: "dashed",
-                                            }}
                                             data-tooltip-id="my-tooltip"
                                             href="/images/bostontrip/aire.jpeg"
                                         >
-                                            Nous traversons les zones
-                                            industrielles logées entre Boston et
-                                            les montagnes.
+                                            <Highlight
+                                                query=" Nous traversons les zones
+                                                industrielles"
+                                                styles={{
+                                                    borderRadius: "50px",
+                                                    px: "2",
+                                                    py: "1",
+                                                    bg: "green.100",
+                                                }}
+                                            >
+                                                Nous traversons les zones
+                                                industrielles logées entre
+                                                Boston et les montagnes.
+                                            </Highlight>
                                         </a>{" "}
                                         Les pick-up nous dépassent à vive
                                         allure, le bicycleux n’apparaît
@@ -1013,19 +1207,27 @@ export default function Trip({ lang }: any) {
                                         séparent de la voie cyclable. En chemin,
                                         Google Maps, le spécialiste des
                                         raccourcis, nous fait emprunter la
-                                        forêt.
+                                        forêt.{" "}
                                         <a
-                                            style={{
-                                                textDecoration: "underline",
-                                                textDecorationStyle: "dashed",
-                                            }}
                                             data-tooltip-id="my-tooltip"
                                             href="/images/bostontrip/foret.jpeg"
                                         >
-                                            Même si nous devons mettre le pied à
-                                            terre, c’est très agréable de humer
-                                            la mousse des arbres, et de la
-                                            terre, encore humide de la veille.{" "}
+                                            <Highlight
+                                                query="nous devons mettre le pied à
+                                                terre"
+                                                styles={{
+                                                    borderRadius: "50px",
+                                                    px: "2",
+                                                    py: "1",
+                                                    bg: "green.100",
+                                                }}
+                                            >
+                                                Même si nous devons mettre le
+                                                pied à terre, c’est très
+                                                agréable de humer la mousse des
+                                                arbres, et de la terre, encore
+                                                humide de la veille.
+                                            </Highlight>
                                         </a>{" "}
                                         Nous croisons par trois fois un
                                         promeneur avec son chien qui nous
@@ -1044,18 +1246,26 @@ export default function Trip({ lang }: any) {
                                         cyclistes, davantage habitués à en voir
                                         d’autres.{" "}
                                         <a
-                                            style={{
-                                                textDecoration: "underline",
-                                                textDecorationStyle: "dashed",
-                                            }}
                                             data-tooltip-id="my-tooltip"
                                             href="/images/bostontrip/boston.jpeg"
                                         >
-                                            Au fur et à mesure que nous nous
-                                            enfonçons dans la ville, les
-                                            bâtiments grandissent autour de
-                                            nous. Les premiers gratte-ciel
-                                            émergent.
+                                            <Highlight
+                                                query=" les
+                                                bâtiments grandissent autour de
+                                                nous"
+                                                styles={{
+                                                    borderRadius: "50px",
+                                                    px: "2",
+                                                    py: "1",
+                                                    bg: "green.100",
+                                                }}
+                                            >
+                                                Au fur et à mesure que nous nous
+                                                enfonçons dans la ville, les
+                                                bâtiments grandissent autour de
+                                                nous. Les premiers gratte-ciel
+                                                émergent.
+                                            </Highlight>
                                         </a>
                                         Les feux rouges à chaque intersection
                                         nous freinent. Nous passons devant
