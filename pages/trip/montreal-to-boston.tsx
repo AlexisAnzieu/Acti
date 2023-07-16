@@ -11,7 +11,6 @@ import { GetStaticPropsContext } from "next";
 import Head from "next/head";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { Tooltip } from "react-tooltip";
-import { Divider } from "@chakra-ui/react";
 
 import { Locale } from "../../component/NavbarComponent";
 
