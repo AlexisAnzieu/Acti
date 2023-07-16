@@ -56,11 +56,14 @@ export default function Trip({ lang }: any) {
                     <Box marginTop={30}>
                         <Center>
                             {" "}
-                            <Heading size="xl"> Heureux hasards</Heading>
+                            <Heading fontFamily={"autography"} fontSize={100}>
+                                {" "}
+                                Heureux hasards
+                            </Heading>
                         </Center>
                         <Center>
                             {" "}
-                            <Heading size="l">
+                            <Heading fontStyle={"italic"} size="l">
                                 {" "}
                                 De Montréal à Boston, récit d’une joyeuse
                                 odyssée cyclotouristique.
@@ -89,9 +92,7 @@ export default function Trip({ lang }: any) {
                             effectuons à deux reprises sur les week-ends qu’il
                             nous restait, évidemment sans dénivelé. <br />{" "}
                             <br /> Ce furent nos seuls et uniques entraînements
-                            pour ce long périple qui s’avéra finalement bien
-                            moins éprouvant physiquement que notre imagination
-                            ne le présageait.
+                            pour ce périple.
                         </Text>
                     </Box>
                     <br />
@@ -152,8 +153,7 @@ export default function Trip({ lang }: any) {
                                             href="/images/bostontrip/richelieu.jpeg"
                                         >
                                             <Highlight
-                                                query="notre premier déjeuner à Saint-Jean
-                                                de Richelieu"
+                                                query="notre premier déjeuner"
                                                 styles={{
                                                     borderRadius: "50px",
                                                     px: "2",
@@ -238,7 +238,7 @@ export default function Trip({ lang }: any) {
                                             href="/images/bostontrip/cafe.jpeg"
                                         >
                                             <Highlight
-                                                query="accompagné de son cappuccino au lait d’avoine."
+                                                query="accompagné de son cappuccino"
                                                 styles={{
                                                     borderRadius: "50px",
                                                     px: "2",
@@ -522,7 +522,7 @@ export default function Trip({ lang }: any) {
                                             href="/images/bostontrip/antoineronfle.jpeg"
                                         >
                                             <Highlight
-                                                query=" Mon camarade Antoine commence
+                                                query="commence
                                                 d’ailleurs à ronfler."
                                                 styles={{
                                                     borderRadius: "50px",
@@ -583,8 +583,8 @@ export default function Trip({ lang }: any) {
                                             href="/images/bostontrip/crevaison.jpeg"
                                         >
                                             <Highlight
-                                                query="Je réussis cependant à changer
-                                                ma chambre à air promptement"
+                                                query="changer
+                                                ma chambre à air"
                                                 styles={{
                                                     borderRadius: "50px",
                                                     px: "2",
@@ -1284,7 +1284,7 @@ export default function Trip({ lang }: any) {
                     <Box marginTop={30}>
                         <Center mb={10}>
                             {" "}
-                            <Heading size="l">Rétrospectives</Heading>
+                            <Heading size="xl">Rétrospectives</Heading>
                         </Center>
                         <Text
                             my={10}
@@ -1293,7 +1293,7 @@ export default function Trip({ lang }: any) {
                             textAlign={"justify"}
                         >
                             <Avatar
-                                size={"xl"}
+                                size={"2xl"}
                                 mr={4}
                                 style={{ float: "left" }}
                                 name="Antoine Ganard"
@@ -1341,7 +1341,7 @@ export default function Trip({ lang }: any) {
                             textAlign={"justify"}
                         >
                             <Avatar
-                                size={"xl"}
+                                size={"2xl"}
                                 mr={4}
                                 style={{ float: "left" }}
                                 name="Alexis anzieu"
