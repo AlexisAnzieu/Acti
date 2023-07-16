@@ -1,6 +1,10 @@
 import { Box, Center, Container, Heading, Text } from "@chakra-ui/react";
+import { GetStaticPropsContext } from "next";
 import Head from "next/head";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { Tooltip } from "react-tooltip";
+
+import { Locale } from "../../component/NavbarComponent";
 
 export default function Trip() {
     return (
@@ -1008,4 +1012,12 @@ export default function Trip() {
             </Container>
         </Box>
     );
+}
+
+export async function getStaticProps({ locale }: GetStaticPropsContext) {
+    return {
+        props: {
+            ...(await serverSideTranslations(locale as Locale, ["common"])),
+        },
+    };
 }
