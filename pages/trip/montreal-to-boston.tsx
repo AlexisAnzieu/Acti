@@ -6,6 +6,7 @@ import {
     Heading,
     Highlight,
     Text,
+    Divider,
 } from "@chakra-ui/react";
 import { GetStaticPropsContext } from "next";
 import Head from "next/head";
@@ -99,7 +100,7 @@ export default function Trip({ lang }: any) {
                         <Box className="outer">
                             <Box className="card">
                                 <Box className="info">
-                                    <Heading size="l" className="title">
+                                    <Box className="title">
                                         <a
                                             data-tooltip-id="my-tooltip"
                                             href="/images/bostontrip/toknowlton.jpg"
@@ -116,7 +117,7 @@ export default function Trip({ lang }: any) {
                                                 Jour 1 (Montréal - Knowlton)
                                             </Highlight>
                                         </a>
-                                    </Heading>
+                                    </Box>
                                     <Text>
                                         Nous partons la fleur au fusil sur les
                                         coups de 10 h, après nous être rassasiés
@@ -207,7 +208,7 @@ export default function Trip({ lang }: any) {
                             </Box>
                             <Box className="card">
                                 <Box className="info">
-                                    <Heading size="l" className="title">
+                                    <Box className="title">
                                         <a
                                             data-tooltip-id="my-tooltip"
                                             href="/images/bostontrip/toJefferson.jpg"
@@ -225,7 +226,7 @@ export default function Trip({ lang }: any) {
                                                 Jeffersonville)
                                             </Highlight>
                                         </a>
-                                    </Heading>{" "}
+                                    </Box>{" "}
                                     <Text>
                                         Nous nous levons à 8 h et vérifions la
                                         météo afin de ne pas avoir de mauvaises
@@ -409,7 +410,7 @@ export default function Trip({ lang }: any) {
                             </Box>
                             <Box className="card">
                                 <Box className="info">
-                                    <Heading size="l" className="title">
+                                    <Box className="title">
                                         <a
                                             data-tooltip-id="my-tooltip"
                                             href="/images/bostontrip/toWarren.jpg"
@@ -426,7 +427,7 @@ export default function Trip({ lang }: any) {
                                                 Jour 3 (Jeffersonville - Warren)
                                             </Highlight>
                                         </a>
-                                    </Heading>{" "}
+                                    </Box>{" "}
                                     <Text>
                                         La nuitée est courte et peu intense,
                                         notre chambre étant située au-dessus de
@@ -608,7 +609,7 @@ export default function Trip({ lang }: any) {
                             </Box>
                             <Box className="card">
                                 <Box className="info">
-                                    <Heading size="l" className="title">
+                                    <Box className="title">
                                         <a
                                             data-tooltip-id="my-tooltip"
                                             href="/images/bostontrip/toKillington.jpg"
@@ -625,7 +626,7 @@ export default function Trip({ lang }: any) {
                                                 Jour 4 (Warren - Killington)
                                             </Highlight>
                                         </a>
-                                    </Heading>{" "}
+                                    </Box>{" "}
                                     <Text>
                                         Une agréable nuit silencieuse comparée à
                                         la veille. Nous prenons le petit
@@ -794,7 +795,7 @@ export default function Trip({ lang }: any) {
                             </Box>
                             <Box className="card">
                                 <Box className="info">
-                                    <Heading size="l" className="title">
+                                    <Box className="title">
                                         <a
                                             data-tooltip-id="my-tooltip"
                                             href="/images/bostontrip/toNewburry.jpg"
@@ -811,7 +812,7 @@ export default function Trip({ lang }: any) {
                                                 Jour 5 (Killington - Newburry)
                                             </Highlight>
                                         </a>
-                                    </Heading>{" "}
+                                    </Box>{" "}
                                     <Text>
                                         Nous appréhendons quelque peu cette
                                         journée. Le petit déjeuner n’apparaît
@@ -991,7 +992,7 @@ export default function Trip({ lang }: any) {
                             </Box>
                             <Box className="card">
                                 <Box className="info">
-                                    <Heading size="l" className="title">
+                                    <Box className="title">
                                         <a
                                             data-tooltip-id="my-tooltip"
                                             href="/images/bostontrip/toMerrimack.jpg"
@@ -1008,7 +1009,7 @@ export default function Trip({ lang }: any) {
                                                 Jour 6 (Newburry - Merrimack)
                                             </Highlight>
                                         </a>
-                                    </Heading>{" "}
+                                    </Box>{" "}
                                     <Text>
                                         Aujourd’hui s’annonce mentalement
                                         compliqué. La pluie est de retour et pas
@@ -1154,7 +1155,7 @@ export default function Trip({ lang }: any) {
                             </Box>
                             <Box className="card">
                                 <Box className="info">
-                                    <Heading size="l" className="title">
+                                    <Box className="title">
                                         <a
                                             data-tooltip-id="my-tooltip"
                                             href="/images/bostontrip/toBoston.jpg"
@@ -1171,7 +1172,7 @@ export default function Trip({ lang }: any) {
                                                 Jour 7 (Merrimack - Boston)
                                             </Highlight>
                                         </a>
-                                    </Heading>{" "}
+                                    </Box>{" "}
                                     <Text>
                                         Sommeil peu réparateur sur cette aire
                                         d’autoroute, mais agréablement surpris
