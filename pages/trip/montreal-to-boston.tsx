@@ -29,7 +29,13 @@ export default function Trip({ lang }: any) {
         return (
             <Box>
                 <Head>
-                    <title>Acti - Heureux hasards</title>
+                    <title>Heureux hasards</title>
+                    <meta
+                        name="og:description"
+                        content="De Montréal à Boston, récit d’une joyeuse
+                                odyssée cyclotouristique."
+                    />
+                    <meta name="og:image" content="/images/bostontrip/cover" />
                 </Head>
                 <Container maxW={1000} mb={100}>
                     <Tooltip
