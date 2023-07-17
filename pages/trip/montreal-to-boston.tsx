@@ -3,10 +3,10 @@ import {
     Box,
     Center,
     Container,
+    Divider,
     Heading,
     Highlight,
     Text,
-    Divider,
 } from "@chakra-ui/react";
 import { GetStaticPropsContext } from "next";
 import Head from "next/head";
