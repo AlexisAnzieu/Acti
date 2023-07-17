@@ -35,7 +35,10 @@ export default function Trip({ lang }: any) {
                         content="De Montréal à Boston, récit d’une joyeuse
                                 odyssée cyclotouristique."
                     />
-                    <meta name="og:image" content="/images/bostontrip/cover" />
+                    <meta
+                        name="og:image"
+                        content="/images/bostontrip/cover.jpeg"
+                    />
                 </Head>
                 <Container maxW={1000} mb={100}>
                     <Tooltip
