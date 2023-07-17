@@ -1357,7 +1357,7 @@ export default function Trip({ lang }: any) {
                             Ce périple m’a aussi permis d’assouvir ma soif
                             d’aventure sans dégrader notre planète. Il m’a
                             démontré que d’autres imaginaires étaient à portée
-                            de pédales sans nécessairement avoir besoin se
+                            de pédales sans nécessairement avoir besoin de se
                             téléporter à l’autre bout du globe. À toutes celles
                             et à ceux qui désirent s’évader de leur quotidien en
                             parcourant le monde une semaine à la fois, je vous
