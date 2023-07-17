@@ -56,7 +56,11 @@ export default function Trip({ lang }: any) {
                     <Box marginTop={30}>
                         <Center>
                             {" "}
-                            <Heading fontFamily={"autography"} fontSize={100}>
+                            <Heading
+                                fontFamily={"autography"}
+                                fontSize={100}
+                                mb={10}
+                            >
                                 {" "}
                                 Heureux hasards
                             </Heading>
@@ -86,13 +90,13 @@ export default function Trip({ lang }: any) {
                             parcourir entre 50 et 100 kilomètres par jour,
                             durant les 14 prochains jours. Avions-nous vraiment
                             envie de mettre autant de temps et d’énergie dans ce
-                            programme robotisé ? Définitivement non. Nous
+                            programme robotisé ? Définitivement non. Nous
                             décidons tout de même de tester les sensations d’une
                             étape de 100 kilomètres sur une selle. Ce que nous
                             effectuons à deux reprises sur les week-ends qu’il
                             nous restait, évidemment sans dénivelé. <br />{" "}
-                            <br /> Ce furent nos seuls et uniques entraînements
-                            pour ce périple.
+                            <br /> Ce fut notre seul et unique entraînement pour
+                            ce périple.
                         </Text>
                     </Box>
                     <br />
@@ -131,7 +135,7 @@ export default function Trip({ lang }: any) {
                                         >
                                             {" "}
                                             <Highlight
-                                                query="Un premier arrêt à Chambly"
+                                                query="Un arrêt à Chambly"
                                                 styles={{
                                                     borderRadius: "50px",
                                                     px: "2",
@@ -139,7 +143,7 @@ export default function Trip({ lang }: any) {
                                                     bg: "green.100",
                                                 }}
                                             >
-                                                Un premier arrêt à Chambly
+                                                Un arrêt à Chambly
                                             </Highlight>
                                         </a>{" "}
                                         est nécessaire afin de se munir de
@@ -230,9 +234,11 @@ export default function Trip({ lang }: any) {
                                         Nous nous levons à 8 h et vérifions la
                                         météo afin de ne pas avoir de mauvaises
                                         surprises. Encore aujourd’hui, le
-                                        thermomètre dépasse les 28°. Nous
+                                        thermomètre dépasse les 30°. Nous
                                         remplissons les gourdes et nous nous
-                                        dirigeons vers le café le plus proche.{" "}
+                                        dirigeons vers le café le plus proche.
+                                        Café qui ne paye pas de mine avec un
+                                        excellent petit déjeuner{" "}
                                         <a
                                             data-tooltip-id="my-tooltip"
                                             href="/images/bostontrip/cafe.jpeg"
@@ -246,8 +252,6 @@ export default function Trip({ lang }: any) {
                                                     bg: "green.100",
                                                 }}
                                             >
-                                                Café qui ne paye pas de mine
-                                                avec un excellent petit déjeuner
                                                 accompagné de son cappuccino au
                                                 lait d’avoine.
                                             </Highlight>
@@ -275,7 +279,8 @@ export default function Trip({ lang }: any) {
                                         touriste qu’on vient de croiser dans un
                                         bar excepté que là, une mauvaise réponse
                                         peut nous mener en cellule. Les menottes
-                                        fixées au banc ne nous rassurent pas.{" "}
+                                        fixées au banc ne nous rassurent pas.
+                                        Dix longues minutes plus tard,{" "}
                                         <a
                                             data-tooltip-id="my-tooltip"
                                             href="/images/bostontrip/poste-frontiere.jpeg"
@@ -290,7 +295,6 @@ export default function Trip({ lang }: any) {
                                                     bg: "green.100",
                                                 }}
                                             >
-                                                Dix longues minutes plus tard ,
                                                 nous franchissons la frontière
                                             </Highlight>{" "}
                                         </a>
@@ -337,17 +341,17 @@ export default function Trip({ lang }: any) {
                                             </Highlight>{" "}
                                         </a>
                                         Quelques kilomètres après notre départ,
-                                        mon porte-bagages se fait la malle (sans
-                                        mauvais jeu de mots). Je me pose donc
-                                        sur le bas-côté à la recherche de la vis
-                                        perdue, sous l’atmosphère étouffante de
-                                        l’après-midi. Cinq minutes plus tard, un
-                                        jeune garçon sort de sa maison, un verre
-                                        de limonade à la main et me l’offre, une
-                                        délicate attention qui mérite cet
-                                        hommage dans ce récit. Au Vermont, les
-                                        routes de voitures sont constamment
-                                        agencées{" "}
+                                        un porte-bagages se fait la malle (sans
+                                        mauvais jeu de mots). Nous nous posons
+                                        donc sur le bas-côté à la recherche de
+                                        la vis perdue, sous l’atmosphère
+                                        étouffante de l’après-midi. Cinq minutes
+                                        plus tard, un jeune garçon sort de sa
+                                        maison, une limonade à la main et nous
+                                        l’offre, une délicate attention qui
+                                        mérite cet hommage dans ce récit. Au
+                                        Vermont, les routes de voitures sont
+                                        constamment agencées{" "}
                                         <a
                                             data-tooltip-id="my-tooltip"
                                             href="/images/bostontrip/trail.jpeg"
@@ -361,20 +365,17 @@ export default function Trip({ lang }: any) {
                                                     bg: "green.100",
                                                 }}
                                             >
-                                                d’un sentier dédié aux engins
-                                                non motorisés.
+                                                d’un sentier dédié
                                             </Highlight>
-                                        </a>
+                                        </a>{" "}
+                                        aux engins non motorisés.
                                         Malheureusement, ces chemins sont
                                         confectionnés de terre et se
-                                        transforment parfois en pente giboyeuse
-                                        et ensablée. Ma monture profita de cette
-                                        première occasion pour s’y embourber, me
-                                        laissant parcourir à pied un bon
-                                        kilomètre, Antoine ricanant doucement du
-                                        haut de son vélo tout terrain. Cette
-                                        voie boueuse fut suivie de ce que j’ai
-                                        renommé la ligne rouge.{" "}
+                                        transforment parfois en pentes
+                                        giboyeuses et ensablées. Une monture
+                                        profita de cette occasion pour s’y
+                                        embourber. Cette voie boueuse fut suivie
+                                        de ce que l’on renomma la ligne rouge.{" "}
                                         <a
                                             data-tooltip-id="my-tooltip"
                                             href="/images/bostontrip/ligne-rouge.jpeg"
@@ -391,19 +392,19 @@ export default function Trip({ lang }: any) {
                                                 }}
                                             >
                                                 Un sentier parsemé de petits
-                                                graviers sur lequel mes pneus
-                                                n’adhèrent pas
-                                            </Highlight>{" "}
+                                                graviers sur lequel les pneus de
+                                                route n’adhèrent pas
+                                            </Highlight>
                                         </a>
-                                        , mettant mes cuisses à rude épreuve.
+                                        , mettant les cuisses à rude épreuve.
                                         Plus désagréable encore, le guidon
-                                        vibre, manquant de me déboîter les
+                                        vibre, manquant de déboîter les
                                         poignets, les épaules et le dos. Arrivés
                                         à 17 h dans la seule auberge du coin,
                                         nous prenons le temps de nous désaltérer
                                         et de nous préparer pour la troisième
                                         journée pour laquelle nous n’avons prévu
-                                        ni itinéraire ni point de chute ! .{" "}
+                                        ni itinéraire ni point de chute !
                                     </Text>
                                 </Box>
                             </Box>
@@ -456,7 +457,7 @@ export default function Trip({ lang }: any) {
                                         et de paysages montagneux. Il y a moins
                                         de cyclistes que la veille, suffisamment
                                         pour continuer à apprécier les
-                                        chaleureux « good morning ». Nous nous
+                                        chaleureux « good morning ». Nous nous
                                         délectons{" "}
                                         <a
                                             data-tooltip-id="my-tooltip"
@@ -538,31 +539,21 @@ export default function Trip({ lang }: any) {
                                         La deuxième partie de la journée est un
                                         peu plus compliquée. Elle démarre par
                                         l’achat d’une nouvelle paire de gants,
-                                        car mes mains apparaissent toutes rouge
+                                        car les mains apparaissent toutes rouge
                                         dû aux tremblements du guidon sur les
                                         pistes de sentier. S’ensuivit une montée
-                                        de dénivelé de 700 m en une trentaine de
-                                        minutes, un effort intense accompagné
-                                        des 30° qui tape sur le crâne à travers
-                                        le casque et les cheveux. Au bout d’un
-                                        certain temps, j’arrive à caler mon
-                                        pédalage sur mon souffle. J’ai
-                                        l’impression de réapprendre à respirer.
-                                        C’est toujours aussi pénible, mais au
-                                        moins j’avance avec la confiance
-                                        d’arrivée au bout. Je me rappelle un
-                                        article que j’avais lu en rapport avec
-                                        la distance et l’infini. Il mettait en
-                                        scène la relation entre un but marqué et
-                                        un filet. La balle franchit la moitié de
-                                        la distance qui la sépare du filet au
-                                        bout de quelques secondes. Puis encore
-                                        la moitié, puis encore la moitié, puis
-                                        encore la moitié et en fin de compte la
-                                        balle ne devrait jamais toucher le
-                                        filet. C’est un peu l’impression que
-                                        j’avais sur cette pente, le sentiment
-                                        d’avancer par moitié sans jamais en voir
+                                        de dénivelé de 700 mètres en une
+                                        trentaine de minutes, un effort intense
+                                        accompagné des 30° qui tape sur le crâne
+                                        à travers le casque. Au bout d’un
+                                        certain temps, nous arrivons à caler
+                                        notre pédalage sur notre souffle. Nous
+                                        avons l’impression de réapprendre à
+                                        respirer. C’est toujours aussi pénible,
+                                        mais au moins nous avançons avec la
+                                        confiance d’arriver à bon port. Nous
+                                        avons l’impression de grimper la pente
+                                        moitié après moitié sans jamais en voir
                                         le bout. En haut de la côte, délivrance,
                                         la douce joie du vent de la descente
                                         annihile la peine de la montée. Nous
@@ -575,16 +566,16 @@ export default function Trip({ lang }: any) {
                                         méditation forcée de plusieurs heures
                                         par jour. Mais ça ne sera pas sur la
                                         pente qu’un problème surviendra. En
-                                        effet, voici venue l’heure de ma
+                                        effet, voici venue l’heure de la
                                         première crevaison, 5 minutes avant
-                                        l’arrivée, quelle aubaine !{" "}
+                                        l’arrivée, quelle aubaine !{" "}
                                         <a
                                             data-tooltip-id="my-tooltip"
                                             href="/images/bostontrip/crevaison.jpeg"
                                         >
                                             <Highlight
                                                 query="changer
-                                                ma chambre à air"
+                                                la chambre à air"
                                                 styles={{
                                                     borderRadius: "50px",
                                                     px: "2",
@@ -592,8 +583,9 @@ export default function Trip({ lang }: any) {
                                                     bg: "green.100",
                                                 }}
                                             >
-                                                Je réussis cependant à changer
-                                                ma chambre à air promptement
+                                                Nous réussissons cependant à
+                                                changer la chambre à air
+                                                promptement
                                             </Highlight>
                                         </a>{" "}
                                         et nous voilà parvenus à notre troisième
@@ -639,7 +631,7 @@ export default function Trip({ lang }: any) {
                                         >
                                             <Highlight
                                                 query="les premières gouttes
-                                                tombent, ô joie !"
+                                                tombent, ô joie !"
                                                 styles={{
                                                     borderRadius: "50px",
                                                     px: "2",
@@ -649,12 +641,12 @@ export default function Trip({ lang }: any) {
                                             >
                                                 Au moment de poser les fesses
                                                 sur la selle, les premières
-                                                gouttes tombent, ô joie !
+                                                gouttes tombent, ô joie !
                                             </Highlight>
                                         </a>{" "}
-                                        Cependant, je suis plus préoccupé par
-                                        mon pneu, mal remis de sa crevaison, que
-                                        par les nuages qui s’affolent. La
+                                        Cependant, nous sommes plus préoccupé
+                                        par le pneu, mal remis de sa crevaison,
+                                        que par les nuages qui s’affolent. La
                                         prochaine boutique de vélo est située à
                                         une trentaine de kilomètres.
                                         Heureusement, nous résidons en haut d’un
@@ -678,14 +670,14 @@ export default function Trip({ lang }: any) {
                                                 brume se glissant entre les
                                                 arbres larmoyants.
                                             </Highlight>
-                                        </a>
+                                        </a>{" "}
                                         L’odeur de la terre mouillée et le peu
                                         de circulation transforment cette heure
                                         d’inquiétude en temps de plénitude. Dans
                                         la vallée, nous nous faisons doubler par
                                         un, puis deux, puis cinq, puis une
                                         dizaine de cyclistes. Mais que se
-                                        passe-t-il donc ? Une course ! Et nous
+                                        passe-t-il donc ? Une course ! Et nous
                                         nous trouvons dedans. Nous entamons un
                                         dernier sprint jusqu’à la boutique afin
                                         de monter sur le podium, bien
@@ -705,30 +697,29 @@ export default function Trip({ lang }: any) {
                                                 }}
                                             >
                                                 Nous entrons alors dans une
-                                                vraie caverne d’Ali Baba. Des
-                                                vélos par centaines, des
-                                                pédaliers, des dérailleurs, des
-                                                guidons, des selles, entretenus
-                                                de longue date par de vieux
-                                                loups de mer.
+                                                vraie caverne d’Ali Baba.
                                             </Highlight>
-                                        </a>
-                                        L’ambiance chaleureuse nous force à
-                                        conter notre aventure, un peu écourtée
-                                        du fait de notre patois peu habitué à
-                                        des accents si prononcés. Mon pneu est
-                                        remplacé et ma chambre à air gonflée.
-                                        Nous sommes prêts à affronter cette
-                                        deuxième partie de journée sous le
-                                        gourou de Zeus, dieu de la pluie. Mais
-                                        avant, place à la boustifaille située à
-                                        quelques mètres de là.{" "}
+                                        </a>{" "}
+                                        Des vélos par centaines, des pédaliers,
+                                        des dérailleurs, des guidons, des
+                                        selles, entretenus de longue date par de
+                                        vieux loups de mer. L’ambiance
+                                        chaleureuse nous force à conter notre
+                                        aventure, un peu écourtée du fait de
+                                        notre patois peu habitué à des accents
+                                        si prononcés. Le pneu est remplacé et la
+                                        chambre à air gonflée. Nous sommes prêts
+                                        à affronter cette deuxième partie de
+                                        journée sous le gourou de Zeus, dieu de
+                                        la pluie. Mais avant, place à la
+                                        boustifaille située à quelques mètres de
+                                        là.{" "}
                                         <a
                                             data-tooltip-id="my-tooltip"
                                             href="/images/bostontrip/boustifaille.jpeg"
                                         >
                                             <Highlight
-                                                query=" Nous regardons les cyclistes"
+                                                query=" Nous observons les cyclistes"
                                                 styles={{
                                                     borderRadius: "50px",
                                                     px: "2",
@@ -736,35 +727,34 @@ export default function Trip({ lang }: any) {
                                                     bg: "green.100",
                                                 }}
                                             >
-                                                Nous regardons les cyclistes
-                                                défier les torrents d’eau à coup
-                                                de pédales.
+                                                Nous observons les cyclistes
                                             </Highlight>
-                                        </a>{" "}
-                                        La pause déjeuner se prolonge sur 2
-                                        heures. Un gros milk-shake au café en
-                                        sonne le glas. Le départ est compliqué.
-                                        La sérotonine ne subsiste plus dans le
-                                        sang, les vêtements sont mouillés, nous
-                                        commençons doucement à trouver l’averse
-                                        longue. Les paysages toujours aussi
-                                        beaux et détrempés se succèdent par une
-                                        montée d’une vingtaine de kilomètres.
-                                        Des ruisseaux coulent le long de la
-                                        route et viennent se déchaîner contre
-                                        nos roues qui glissent à reculons.
-                                        Éclaboussures, sueurs et pluie
-                                        torrentielle, pénible cocktail de cette
-                                        fin de journée. Tandis que nous arrivons
-                                        enfin à l’auberge, le réceptionniste
-                                        nous accueille avec son discours
-                                        habituel de bienvenue. Nos oreilles
-                                        frémissent quand nous entendons que le
-                                        jacuzzi ferme sous peu. Un jacuzzi
-                                        dites-vous ? Cinq minutes plus tard,
-                                        nous sautons de l’eau subite vers l’eau
-                                        bénite. Pour finir la soirée, le hasard
-                                        accomplissant bien les choses,{" "}
+                                        </a>
+                                        défier les torrents d’eau à coup de
+                                        pédales. La pause déjeuner se prolonge
+                                        sur 2 heures. Un gros milk-shake au café
+                                        en sonne le glas. Le départ est
+                                        compliqué. La sérotonine ne subsiste
+                                        plus dans le sang, les vêtements sont
+                                        mouillés, nous commençons doucement à
+                                        trouver l’averse longue. Les paysages
+                                        toujours aussi beaux et détrempés se
+                                        succèdent par une montée d’une vingtaine
+                                        de kilomètres. Des ruisseaux coulent le
+                                        long de la route et viennent se
+                                        déchaîner contre nos roues qui glissent
+                                        à reculons. Éclaboussures, sueurs et
+                                        pluie torrentielle, pénible cocktail de
+                                        cette fin de journée. Tandis que nous
+                                        arrivons enfin à l’auberge, le
+                                        réceptionniste nous accueille avec son
+                                        discours habituel de bienvenue. Nos
+                                        oreilles frémissent quand nous entendons
+                                        que le jacuzzi ferme sous peu. Un
+                                        jacuzzi dites-vous ? Cinq minutes plus
+                                        tard, nous sautons de l’eau subite vers
+                                        l’eau bénite. Pour finir la soirée, le
+                                        hasard accomplissant bien les choses,{" "}
                                         <a
                                             data-tooltip-id="my-tooltip"
                                             href="/images/bostontrip/gastro.jpeg"
@@ -786,7 +776,7 @@ export default function Trip({ lang }: any) {
                                         Nous allons pouvoir nous ravitailler
                                         correctement avant d’entamer la plus
                                         difficile et tortueuse journée de notre
-                                        expédition, 100 kilomètres sur 1200
+                                        expédition, 100 kilomètres sur 1100
                                         mètres de dénivelé positif, le tout dans
                                         nos habits humides.
                                     </Text>
@@ -867,11 +857,11 @@ export default function Trip({ lang }: any) {
                                         attrapons nos gourdes et récompensons
                                         nos muscles à coup de grosses gorgées
                                         d’eau, pressé d’entamer la descente.
-                                        Profitons-en un peu pour en parler. Le
-                                        plus plaisant n’est pas la descente en
-                                        elle-même. Si nous n’avions fait que
-                                        descendre, la jouissance aurait été
-                                        moindre. Le vrai plaisir provient de
+                                        Prenons d’ailleurs un instant pour en
+                                        parler. Le plus plaisant n’est pas la
+                                        descente en elle-même. Si nous n’avions
+                                        fait que descendre, la jouissance aurait
+                                        été moindre. Le vrai plaisir provient de
                                         l’écart émotionnel entre l’effort
                                         intense et l’effort néant. Nous en
                                         venons à apprécier les hauts dénivelés,
@@ -924,13 +914,12 @@ export default function Trip({ lang }: any) {
                                                 coin puis de le consommer sur le
                                                 parking.
                                             </Highlight>
-                                        </a>
+                                        </a>{" "}
                                         Nous n’y resterons pas longtemps, au
                                         grand regret de nos cuisses encore
                                         chaudes. Nous démarrons par un doux
                                         sentier dans la forêt un brin cahoteuse
-                                        pour mes pneus de route, un peu moins
-                                        pour ceux d’Antoine.
+                                        pour les pneus de route.
                                         <a
                                             data-tooltip-id="my-tooltip"
                                             href="/images/bostontrip/pont2.jpeg"
@@ -953,7 +942,7 @@ export default function Trip({ lang }: any) {
                                         chacun leur quad, les parents à
                                         l’arrière. Parlons maintenant des
                                         calculs de dénivelé des applications de
-                                        cartographie. Lors de ce trajet, nous
+                                        cartographie. Pour cette aventure, nous
                                         nous sommes munis de Google Maps et de
                                         Komoot afin d’optimiser l’itinéraire en
                                         fonction des différents styles de
@@ -985,7 +974,7 @@ export default function Trip({ lang }: any) {
                                         veut de plus en plus incompréhensible
                                         pour nos oreilles chauvines. Plus que
                                         deux jours, sous une pluie potentielle,
-                                        et à nous Boston !
+                                        et à nous Boston !
                                     </Text>
                                 </Box>
                             </Box>
@@ -1011,7 +1000,7 @@ export default function Trip({ lang }: any) {
                                     </Box>{" "}
                                     <Text>
                                         Aujourd’hui s’annonce mentalement
-                                        compliqué. La pluie est de retour et pas
+                                        compliqué. La pluie est de retour, pas
                                         de restauration salvatrice en chemin et
                                         l’hôtel que nous avons réservé est situé
                                         sur une aire d’autoroute. Nous sentons
@@ -1262,20 +1251,19 @@ export default function Trip({ lang }: any) {
                                                 Au fur et à mesure que nous nous
                                                 enfonçons dans la ville, les
                                                 bâtiments grandissent autour de
-                                                nous. Les premiers gratte-ciel
-                                                émergent.
+                                                nous.
                                             </Highlight>
-                                        </a>
-                                        Les feux rouges à chaque intersection
-                                        nous freinent. Nous passons devant
-                                        Harvard, puis le MIT, mais nous n’avons
-                                        qu’une seule idée en tête. Avant même de
-                                        se prendre en photos auprès de ces
-                                        belles institutions. C’est de poser nos
-                                        vélos et laver nos affaires, pour
-                                        finalement se débarbouiller. Et dire
-                                        qu’enfin nous l’avons fait. Nous l’avons
-                                        fait.
+                                        </a>{" "}
+                                        Les premiers gratte-ciel émergent. Les
+                                        feux rouges à chaque intersection nous
+                                        freinent. Nous passons devant Harvard,
+                                        puis le MIT, mais nous n’avons qu’une
+                                        seule idée en tête. Avant même de se
+                                        prendre en photos au devant de ces
+                                        fameuses institutions. C’est de poser
+                                        nos vélos, laver nos affaires, puis nous
+                                        débarbouiller. Et dire qu’enfin nous
+                                        l’avons fait. Nous l’avons fait.
                                     </Text>
                                 </Box>
                             </Box>
@@ -1299,7 +1287,7 @@ export default function Trip({ lang }: any) {
                                 name="Antoine Ganard"
                                 src="/images/bostontrip/antoine.jpeg"
                             />
-                            «  La liberté. C’est ça qui m’a marqué pendant ce
+                            « La liberté. C’est ça qui m’a marqué pendant ce
                             voyage. La liberté de se lever quand on est prêt, de
                             manger quand on a faim, de se coucher quand on est
                             fatigué. Pas d’horaire à respecter, juste le temps à

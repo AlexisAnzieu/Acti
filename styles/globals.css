@@ -197,6 +197,7 @@ a {
 
 /* Title of the card */
 .title {
+    margin-bottom: 15px;
     color: rgb(21, 62, 9);
     position: relative;
     font-weight: bold;
