@@ -33,7 +33,7 @@ export default function Trip({ lang }: any) {
                     <meta
                         name="og:description"
                         content="De Montréal à Boston, récit d’une joyeuse
-                                odyssée cyclotouristique."
+                                odyssée cyclotouristique de 650km."
                     />
                     <meta
                         name="og:image"
