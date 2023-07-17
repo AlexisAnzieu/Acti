@@ -226,7 +226,7 @@ export default function Activities() {
                 setActivities(result);
                 setIsLoading(false);
             });
-    }, [router.isReady, router.query]);
+    }, [router.isReady, router.query, locale]);
 
     function paramHandler(param: string, value: any): void {
         if (isLoading) {
