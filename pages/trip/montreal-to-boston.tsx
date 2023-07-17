@@ -53,7 +53,7 @@ export default function Trip({ lang }: any) {
                             />
                         )}
                     />
-                    <Box marginTop={30}>
+                    <Box marginTop={30} textAlign={"center"}>
                         <Center>
                             {" "}
                             <Heading
@@ -81,22 +81,22 @@ export default function Trip({ lang }: any) {
                         >
                             Ce n’est que deux semaines précédant notre départ
                             que nous réalisâmes ce qui nous attendait : 650
-                            kilomètres accompagnés de 4000 mètres de dénivelé
-                            positif, le tout en 6 jours. Dans un éclair de
-                            lucidité, nous demandons à chatGPT de nous suggérer
-                            un programme sportif afin de préparer au mieux notre
-                            condition physique. Sa réponse demeura tout aussi
-                            cinglante que glaçante. Il nous proposait de
-                            parcourir entre 50 et 100 kilomètres par jour,
-                            durant les 14 prochains jours. Avions-nous vraiment
-                            envie de mettre autant de temps et d’énergie dans ce
+                            kilomètres et 4000 mètres de dénivelé positif, le
+                            tout en 6 jours. Dans un éclair de lucidité, nous
+                            demandons à chatGPT de nous suggérer un programme
+                            sportif afin de préparer au mieux notre condition
+                            physique. Sa réponse demeura tout aussi cinglante
+                            que glaçante. Il nous proposait de parcourir entre
+                            50 et 100 kilomètres par jour, durant les 14
+                            prochains jours. Avions-nous vraiment envie de
+                            mettre autant de temps et d’énergie dans ce
                             programme robotisé ? Définitivement non. Nous
                             décidons tout de même de tester les sensations d’une
                             étape de 100 kilomètres sur une selle. Ce que nous
                             effectuons à deux reprises sur les week-ends qu’il
-                            nous restait, évidemment sans dénivelé. <br />{" "}
-                            <br /> Ce fut notre seul et unique entraînement pour
-                            ce périple.
+                            nous restait, sans les dénivelés. <br /> <br /> Ce
+                            fut notre seul et unique entraînement pour ce
+                            périple.
                         </Text>
                     </Box>
                     <br />
@@ -1167,13 +1167,14 @@ export default function Trip({ lang }: any) {
                                         nous transportera sur les 80 km
                                         restants. Le vent demeure encore présent
                                         et le trafic ubiquitaire lorsque nous
-                                        entamons les premiers kilomètres.{" "}
+                                        entamons les premiers kilomètres.Nous
+                                        traversons{" "}
                                         <a
                                             data-tooltip-id="my-tooltip"
                                             href="/images/bostontrip/aire.jpeg"
                                         >
                                             <Highlight
-                                                query=" Nous traversons les zones
+                                                query="  les zones
                                                 industrielles"
                                                 styles={{
                                                     borderRadius: "50px",
@@ -1182,11 +1183,10 @@ export default function Trip({ lang }: any) {
                                                     bg: "green.100",
                                                 }}
                                             >
-                                                Nous traversons les zones
-                                                industrielles logées entre
-                                                Boston et les montagnes.
+                                                les zones industrielles
                                             </Highlight>
                                         </a>{" "}
+                                        logées entre Boston et les montagnes.
                                         Les pick-up nous dépassent à vive
                                         allure, le bicycleux n’apparaît
                                         décidément pas comme étant le bienvenu
@@ -1232,15 +1232,15 @@ export default function Trip({ lang }: any) {
                                         larges. En contrepartie, moins de
                                         salutations de la part des autres
                                         cyclistes, davantage habitués à en voir
-                                        d’autres.{" "}
+                                        d’autres. Au fur et à mesure que nous
+                                        nous enfonçons dans la ville,{" "}
                                         <a
                                             data-tooltip-id="my-tooltip"
                                             href="/images/bostontrip/boston.jpeg"
                                         >
                                             <Highlight
                                                 query=" les
-                                                bâtiments grandissent autour de
-                                                nous"
+                                                bâtiments grandissent"
                                                 styles={{
                                                     borderRadius: "50px",
                                                     px: "2",
@@ -1248,22 +1248,20 @@ export default function Trip({ lang }: any) {
                                                     bg: "green.100",
                                                 }}
                                             >
-                                                Au fur et à mesure que nous nous
-                                                enfonçons dans la ville, les
-                                                bâtiments grandissent autour de
-                                                nous.
+                                                les bâtiments grandissent
                                             </Highlight>
                                         </a>{" "}
-                                        Les premiers gratte-ciel émergent. Les
-                                        feux rouges à chaque intersection nous
-                                        freinent. Nous passons devant Harvard,
-                                        puis le MIT, mais nous n’avons qu’une
-                                        seule idée en tête. Avant même de se
-                                        prendre en photos au devant de ces
-                                        fameuses institutions. C’est de poser
-                                        nos vélos, laver nos affaires, puis nous
-                                        débarbouiller. Et dire qu’enfin nous
-                                        l’avons fait. Nous l’avons fait.
+                                        autour de nous. Les premiers gratte-ciel
+                                        émergent. Les feux rouges à chaque
+                                        intersection nous freinent. Nous passons
+                                        devant Harvard, puis le MIT, mais nous
+                                        n’avons qu’une seule idée en tête. Avant
+                                        même de se prendre en photos au devant
+                                        de ces fameuses institutions. C’est de
+                                        poser nos vélos, laver nos affaires,
+                                        puis nous débarbouiller. Et dire
+                                        qu’enfin nous l’avons fait. Nous l’avons
+                                        fait.
                                     </Text>
                                 </Box>
                             </Box>
