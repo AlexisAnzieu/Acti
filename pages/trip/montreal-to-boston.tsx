@@ -37,7 +37,7 @@ export default function Trip({ lang }: any) {
                     />
                     <meta
                         name="og:image"
-                        content="/images/bostontrip/cover.jpeg"
+                        content="/images/bostontrip/cover2.jpeg"
                     />
                 </Head>
                 <Container maxW={1000} mb={100}>
