@@ -174,42 +174,41 @@ export default function Trip({ lang }: any) {
                                                     bg: "green.100",
                                                 }}
                                             >
-                                                notre premier déjeuner à
-                                                Saint-Jean de Richelieu
+                                                notre premier déjeuner
                                             </Highlight>
-                                        </a>
-                                        , situé à 40 km de Montréal, dans
-                                        l’intention de vérifier combien de
-                                        distance il nous reste à parcourir. Nous
-                                        avons réservé pour cette première nuit
-                                        une auberge avec piscine, pensant que
-                                        nous pourrions patauger dedans et
-                                        refroidir nos muscles à l’heure du
-                                        goûter. Mais il est 14 h et nous avons
-                                        du mal à cacher notre déception en
-                                        voyant s’afficher les 80 kilomètres
-                                        subsistants, adieu chaises longues. Les
-                                        paysages identiques de champs à perte de
-                                        vue s’enchaînent. Les pistes cyclables
-                                        ombragées restent agréables à utiliser.
-                                        Les dix derniers kilomètres en montée
-                                        sous le soleil encore brûlant à côté
-                                        d’une route à forte affluence mettent
-                                        nos nerfs à dure épreuve. Effort
-                                        contrasté par notre arrivée à l’auberge
-                                        de Knowlton qui se déroule en toute
-                                        quiétude, nous sommes les seuls clients.
-                                        Le gérant nous confie les clés de son
-                                        établissement avant de rentrer chez lui.
-                                        Nous sommes maintenant les heureux
-                                        propriétaires d’une bâtisse de 50
-                                        chambres. Après application d’un peu de
-                                        vaseline réparatrice permettant des
-                                        futurs moins douloureux sur la selle,
-                                        nous voilà en route pour la marina afin
-                                        de récupérer de quoi nous sustenter.
-                                        Nous en profitons au passage pour
-                                        glisser un orteil dans l’eau de la
+                                        </a>{" "}
+                                        à Saint-Jean de Richelieu , situé à 40
+                                        km de Montréal, dans l’intention de
+                                        vérifier combien de distance il nous
+                                        reste à parcourir. Nous avons réservé
+                                        pour cette première nuit une auberge
+                                        avec piscine, pensant que nous pourrions
+                                        patauger dedans et refroidir nos muscles
+                                        à l’heure du goûter. Mais il est 14 h et
+                                        nous avons du mal à cacher notre
+                                        déception en voyant s’afficher les 80
+                                        kilomètres subsistants, adieu chaises
+                                        longues. Les paysages identiques de
+                                        champs à perte de vue s’enchaînent. Les
+                                        pistes cyclables ombragées restent
+                                        agréables à utiliser. Les dix derniers
+                                        kilomètres en montée sous le soleil
+                                        encore brûlant à côté d’une route à
+                                        forte affluence mettent nos nerfs à dure
+                                        épreuve. Effort contrasté par notre
+                                        arrivée à l’auberge de Knowlton qui se
+                                        déroule en toute quiétude, nous sommes
+                                        les seuls clients. Le gérant nous confie
+                                        les clés de son établissement avant de
+                                        rentrer chez lui. Nous sommes maintenant
+                                        les heureux propriétaires d’une bâtisse
+                                        de 50 chambres. Après application d’un
+                                        peu de vaseline réparatrice permettant
+                                        des futurs moins douloureux sur la
+                                        selle, nous voilà en route pour la
+                                        marina afin de récupérer de quoi nous
+                                        sustenter. Nous en profitons au passage
+                                        pour glisser un orteil dans l’eau de la
                                         piscine. Demain, nous avons prévu de
                                         traverser la frontière américaine à vélo
                                         en passant par un petit poste de douane.
@@ -261,22 +260,21 @@ export default function Trip({ lang }: any) {
                                                     bg: "green.100",
                                                 }}
                                             >
-                                                accompagné de son cappuccino au
-                                                lait d’avoine.
+                                                accompagné de son cappuccino
                                             </Highlight>
                                         </a>{" "}
-                                        Enfin, nous nous remettons en route. Les
-                                        cinq premiers kilomètres en montée
-                                        demeurent douloureux et les courbatures
-                                        font leurs premières apparitions.
-                                        Cependant, les 20 km suivants se
-                                        déroulent en descente et nous permettent
-                                        donc d’apprécier un échauffement
-                                        tranquille. Nous apercevons les
-                                        montagnes du Vermont au loin, regrettant
-                                        déjà les terrains plats de la veille. La
-                                        fin de cette matinée nous amène
-                                        directement au poste-frontière. Le
+                                        au lait d’avoine. Enfin, nous nous
+                                        remettons en route. Les cinq premiers
+                                        kilomètres en montée demeurent
+                                        douloureux et les courbatures font leurs
+                                        premières apparitions. Cependant, les 20
+                                        km suivants se déroulent en descente et
+                                        nous permettent donc d’apprécier un
+                                        échauffement tranquille. Nous apercevons
+                                        les montagnes du Vermont au loin,
+                                        regrettant déjà les terrains plats de la
+                                        veille. La fin de cette matinée nous
+                                        amène directement au poste-frontière. Le
                                         douanier nous accueille avec l’amabilité
                                         d’un douanier, c’est-à-dire qu’il sait
                                         où placer la barre du sourire, et c’est
@@ -346,11 +344,11 @@ export default function Trip({ lang }: any) {
                                                 }}
                                             >
                                                 Nous voici en train de dévorer
-                                                notre premier repas américain.
                                             </Highlight>{" "}
                                         </a>
-                                        Quelques kilomètres après notre départ,
-                                        un porte-bagages se fait la malle (sans
+                                        notre premier repas américain. Quelques
+                                        kilomètres après notre départ, un
+                                        porte-bagages se fait la malle (sans
                                         mauvais jeu de mots). Nous nous posons
                                         donc sur le bas-côté à la recherche de
                                         la vis perdue, sous l’atmosphère
@@ -401,13 +399,13 @@ export default function Trip({ lang }: any) {
                                                 }}
                                             >
                                                 Un sentier parsemé de petits
-                                                graviers sur lequel les pneus de
-                                                route n’adhèrent pas
+                                                graviers
                                             </Highlight>
-                                        </a>
-                                        , mettant les cuisses à rude épreuve.
-                                        Plus désagréable encore, le guidon
-                                        vibre, manquant de déboîter les
+                                        </a>{" "}
+                                        sur lequel les pneus de route n’adhèrent
+                                        pas , mettant les cuisses à rude
+                                        épreuve. Plus désagréable encore, le
+                                        guidon vibre, manquant de déboîter les
                                         poignets, les épaules et le dos. Arrivés
                                         à 17 h dans la seule auberge du coin,
                                         nous prenons le temps de nous désaltérer
@@ -482,19 +480,20 @@ export default function Trip({ lang }: any) {
                                                 }}
                                             >
                                                 des monts verdoyants à perte de
-                                                vue, cette région du Vermont
-                                                porte décidément bien son nom
+                                                vue,
                                             </Highlight>
-                                        </a>
-                                        . Nous nous octroyons une courte pause,
-                                        le temps de trouver notre prochaine
-                                        destination pour le déjeuner. Nous
-                                        jetons notre dévolu sur un petit café
-                                        situé à une vingtaine de kilomètres.
-                                        Après la douceur du sentier, nous voici
-                                        de retour sur la rigueur de la route un
-                                        peu assourdissante à cause des 33 tonnes
-                                        passant à côté de nous de vives allures.{" "}
+                                        </a>{" "}
+                                        cette région du Vermont porte décidément
+                                        bien son nom . Nous nous octroyons une
+                                        courte pause, le temps de trouver notre
+                                        prochaine destination pour le déjeuner.
+                                        Nous jetons notre dévolu sur un petit
+                                        café situé à une vingtaine de
+                                        kilomètres. Après la douceur du sentier,
+                                        nous voici de retour sur la rigueur de
+                                        la route un peu assourdissante à cause
+                                        des 33 tonnes passant à côté de nous de
+                                        vives allures. Toutefois,{" "}
                                         <a
                                             data-tooltip-id="my-tooltip"
                                             href="/images/bostontrip/piste.jpeg"
@@ -509,16 +508,16 @@ export default function Trip({ lang }: any) {
                                                     bg: "green.100",
                                                 }}
                                             >
-                                                Toutefois, la bande d’arrêt
-                                                d’urgence/piste cyclable
+                                                la bande d’arrêt d’urgence
                                             </Highlight>{" "}
                                         </a>
-                                        nous laisse quand même un peu de marge
-                                        de manœuvre. Nous développons un sixième
-                                        sens qui consiste à deviner la taille et
-                                        l’apparence d’une voiture au seul bruit
-                                        de son moteur. Nous avons cependant du
-                                        mal à différencier les gros camions de
+                                        /piste cyclable nous laisse quand même
+                                        un peu de marge de manœuvre. Nous
+                                        développons un sixième sens qui consiste
+                                        à deviner la taille et l’apparence d’une
+                                        voiture au seul bruit de son moteur.
+                                        Nous avons cependant du mal à
+                                        différencier les gros camions de
                                         marchandises des énormes trucks. Une
                                         montée douloureuse fut suivie d’une
                                         glissade de 2 km à grande allure pour
@@ -526,7 +525,8 @@ export default function Trip({ lang }: any) {
                                         agréablement surpris par la qualité de
                                         la nourriture et des breuvages. Il est
                                         13 h 30 et notre seule envie jouxtant ce
-                                        repas est de s’allonger et dormir.{" "}
+                                        repas est de s’allonger et dormir. Mon
+                                        camarade Antoine{" "}
                                         <a
                                             data-tooltip-id="my-tooltip"
                                             href="/images/bostontrip/antoineronfle.jpeg"
@@ -541,8 +541,7 @@ export default function Trip({ lang }: any) {
                                                     bg: "green.100",
                                                 }}
                                             >
-                                                Mon camarade Antoine commence
-                                                d’ailleurs à ronfler.
+                                                commence d’ailleurs à ronfler.
                                             </Highlight>
                                         </a>{" "}
                                         La deuxième partie de la journée est un
@@ -577,7 +576,8 @@ export default function Trip({ lang }: any) {
                                         pente qu’un problème surviendra. En
                                         effet, voici venue l’heure de la
                                         première crevaison, 5 minutes avant
-                                        l’arrivée, quelle aubaine !{" "}
+                                        l’arrivée, quelle aubaine ! Nous
+                                        réussissons cependant à{" "}
                                         <a
                                             data-tooltip-id="my-tooltip"
                                             href="/images/bostontrip/crevaison.jpeg"
@@ -592,18 +592,16 @@ export default function Trip({ lang }: any) {
                                                     bg: "green.100",
                                                 }}
                                             >
-                                                Nous réussissons cependant à
                                                 changer la chambre à air
-                                                promptement
                                             </Highlight>
                                         </a>{" "}
-                                        et nous voilà parvenus à notre troisième
-                                        cocon locatif. Petit plongeon dans la
-                                        piscine ouverte juste pour nous et
-                                        dégustation d’un cidre normand pas tout
-                                        à fait local. Demain, il pleut, une
-                                        nouveauté que nous avons hâte
-                                        d’expérimenter.
+                                        promptement et nous voilà parvenus à
+                                        notre troisième cocon locatif. Petit
+                                        plongeon dans la piscine ouverte juste
+                                        pour nous et dégustation d’un cidre
+                                        normand pas tout à fait local. Demain,
+                                        il pleut, une nouveauté que nous avons
+                                        hâte d’expérimenter.
                                     </Text>
                                 </Box>
                             </Box>
@@ -633,7 +631,8 @@ export default function Trip({ lang }: any) {
                                         déjeuner américain de campagne dont nous
                                         avons maintenant l’habitude, pancakes de
                                         la taille de l’assiette et fromage à la
-                                        crème monté sur son bagel.{" "}
+                                        crème monté sur son bagel. Au moment de
+                                        poser les fesses sur la selle,{" "}
                                         <a
                                             data-tooltip-id="my-tooltip"
                                             href="/images/bostontrip/goutte.jpeg"
@@ -648,9 +647,8 @@ export default function Trip({ lang }: any) {
                                                     bg: "green.100",
                                                 }}
                                             >
-                                                Au moment de poser les fesses
-                                                sur la selle, les premières
-                                                gouttes tombent, ô joie !
+                                                les premières gouttes tombent, ô
+                                                joie !
                                             </Highlight>
                                         </a>{" "}
                                         Cependant, nous sommes plus préoccupé
@@ -660,6 +658,7 @@ export default function Trip({ lang }: any) {
                                         une trentaine de kilomètres.
                                         Heureusement, nous résidons en haut d’un
                                         col et ce matin ne sera que descente.
+                                        Les paysages pluvieux apportent{" "}
                                         <a
                                             data-tooltip-id="my-tooltip"
                                             href="/images/bostontrip/brume.jpeg"
@@ -674,23 +673,21 @@ export default function Trip({ lang }: any) {
                                                     bg: "green.100",
                                                 }}
                                             >
-                                                Les paysages pluvieux apportent
-                                                une atmosphère féerique, la
-                                                brume se glissant entre les
-                                                arbres larmoyants.
+                                                une atmosphère féerique
                                             </Highlight>
-                                        </a>{" "}
-                                        L’odeur de la terre mouillée et le peu
-                                        de circulation transforment cette heure
-                                        d’inquiétude en temps de plénitude. Dans
-                                        la vallée, nous nous faisons doubler par
-                                        un, puis deux, puis cinq, puis une
-                                        dizaine de cyclistes. Mais que se
-                                        passe-t-il donc ? Une course ! Et nous
-                                        nous trouvons dedans. Nous entamons un
-                                        dernier sprint jusqu’à la boutique afin
-                                        de monter sur le podium, bien
-                                        évidemment.{" "}
+                                        </a>
+                                        , la brume se glissant entre les arbres
+                                        larmoyants. L’odeur de la terre mouillée
+                                        et le peu de circulation transforment
+                                        cette heure d’inquiétude en temps de
+                                        plénitude. Dans la vallée, nous nous
+                                        faisons doubler par un, puis deux, puis
+                                        cinq, puis une dizaine de cyclistes.
+                                        Mais que se passe-t-il donc ? Une course
+                                        ! Et nous nous trouvons dedans. Nous
+                                        entamons un dernier sprint jusqu’à la
+                                        boutique afin de monter sur le podium,
+                                        bien évidemment. Nous entrons alors dans{" "}
                                         <a
                                             data-tooltip-id="my-tooltip"
                                             href="/images/bostontrip/alibaba.jpeg"
@@ -705,8 +702,7 @@ export default function Trip({ lang }: any) {
                                                     bg: "green.100",
                                                 }}
                                             >
-                                                Nous entrons alors dans une
-                                                vraie caverne d’Ali Baba.
+                                                une vraie caverne d’Ali Baba.
                                             </Highlight>
                                         </a>{" "}
                                         Des vélos par centaines, des pédaliers,
@@ -778,16 +774,15 @@ export default function Trip({ lang }: any) {
                                                 }}
                                             >
                                                 un restaurant semi-gastronomique
-                                                se situe à quelques mètres de
-                                                notre hébergement.
                                             </Highlight>
                                         </a>{" "}
-                                        Nous allons pouvoir nous ravitailler
-                                        correctement avant d’entamer la plus
-                                        difficile et tortueuse journée de notre
-                                        expédition, 100 kilomètres sur 1100
-                                        mètres de dénivelé positif, le tout dans
-                                        nos habits humides.
+                                        se situe à quelques mètres de notre
+                                        hébergement. Nous allons pouvoir nous
+                                        ravitailler correctement avant d’entamer
+                                        la plus difficile et tortueuse journée
+                                        de notre expédition, 100 kilomètres sur
+                                        1100 mètres de dénivelé positif, le tout
+                                        dans nos habits humides.
                                     </Text>
                                 </Box>
                             </Box>
@@ -820,7 +815,8 @@ export default function Trip({ lang }: any) {
                                         permettre de poser rapidement le pied
                                         sur l’étrier. Durant les cinq premières
                                         minutes, nous dévalons l’heure
-                                        d’ascension de la veille.{" "}
+                                        d’ascension de la veille. S’enchaînent
+                                        ensuite des paysages montagneux,{" "}
                                         <a
                                             data-tooltip-id="my-tooltip"
                                             href="/images/bostontrip/lac.jpeg"
@@ -834,9 +830,7 @@ export default function Trip({ lang }: any) {
                                                     bg: "green.100",
                                                 }}
                                             >
-                                                S’enchaînent ensuite des
-                                                paysages montagneux, parsemés de
-                                                lacs,
+                                                parsemés de lacs,
                                             </Highlight>
                                         </a>{" "}
                                         de tracés lisses, de peu de trafic et
@@ -903,7 +897,10 @@ export default function Trip({ lang }: any) {
                                         nous attend. Nous sommes entourés de
                                         Pizza Hut, McDonald’s et Burger King qui
                                         règne en maîtres dans ses vallées
-                                        infernales.{" "}
+                                        infernales. Notre seule solution
+                                        consiste donc à chercher de quoi se
+                                        sustenter dans le supermarché du coin
+                                        puis de le consommer{" "}
                                         <a
                                             data-tooltip-id="my-tooltip"
                                             href="/images/bostontrip/parking.jpeg"
@@ -917,18 +914,15 @@ export default function Trip({ lang }: any) {
                                                     bg: "green.100",
                                                 }}
                                             >
-                                                Notre seule solution consiste
-                                                donc à chercher de quoi se
-                                                sustenter dans le supermarché du
-                                                coin puis de le consommer sur le
-                                                parking.
+                                                sur le parking.
                                             </Highlight>
                                         </a>{" "}
                                         Nous n’y resterons pas longtemps, au
                                         grand regret de nos cuisses encore
                                         chaudes. Nous démarrons par un doux
                                         sentier dans la forêt un brin cahoteuse
-                                        pour les pneus de route.
+                                        pour les pneus de route.Nous traversons
+                                        une fois de plus un{" "}
                                         <a
                                             data-tooltip-id="my-tooltip"
                                             href="/images/bostontrip/pont2.jpeg"
@@ -943,8 +937,7 @@ export default function Trip({ lang }: any) {
                                                     bg: "green.100",
                                                 }}
                                             >
-                                                Nous traversons une fois de plus
-                                                un ancien pont ferroviaire
+                                                ancien pont ferroviaire
                                             </Highlight>
                                         </a>{" "}
                                         et croisons deux enfants conduisant
@@ -1040,7 +1033,8 @@ export default function Trip({ lang }: any) {
                                         respiratoires. Les forêts canadiennes
                                         sont en proie aux flammes et génèrent
                                         des cendres à des milliers de kilomètres
-                                        à la ronde,{" "}
+                                        à la ronde, Montréal est d’ailleurs ce
+                                        jour-là{" "}
                                         <a
                                             data-tooltip-id="my-tooltip"
                                             href="/images/bostontrip/vent.jpeg"
@@ -1054,9 +1048,8 @@ export default function Trip({ lang }: any) {
                                                     bg: "green.100",
                                                 }}
                                             >
-                                                Montréal est d’ailleurs ce
-                                                jour-là la ville la plus polluée
-                                                au monde.
+                                                la ville la plus polluée au
+                                                monde.
                                             </Highlight>
                                         </a>{" "}
                                         Quoi de mieux que notre mode de
@@ -1067,7 +1060,7 @@ export default function Trip({ lang }: any) {
                                         propre venu tout droit du golfe du
                                         Mexique. À contrevent donc, mais les
                                         poumons sains et sereins. Nous hésitons
-                                        à faire demi-tour{" "}
+                                        à faire demi-tour devant{" "}
                                         <a
                                             data-tooltip-id="my-tooltip"
                                             href="/images/bostontrip/danger.jpeg"
@@ -1082,12 +1075,12 @@ export default function Trip({ lang }: any) {
                                                     bg: "green.100",
                                                 }}
                                             >
-                                                devant une pancarte présageant
-                                                un danger
+                                                une pancarte présageant un
+                                                danger
                                             </Highlight>
                                         </a>{" "}
                                         mais décidons d’aller de l’avant. Sage
-                                        décision car nous déboulons{" "}
+                                        décision car nous déboulons sur{" "}
                                         <a
                                             data-tooltip-id="my-tooltip"
                                             href="/images/bostontrip/parc.jpeg"
@@ -1101,7 +1094,7 @@ export default function Trip({ lang }: any) {
                                                     bg: "green.100",
                                                 }}
                                             >
-                                                sur un magnifique parc régional
+                                                un magnifique parc régional
                                             </Highlight>
                                         </a>{" "}
                                         juste avant notre pause de mi-journée.
@@ -1204,7 +1197,7 @@ export default function Trip({ lang }: any) {
                                         séparent de la voie cyclable. En chemin,
                                         Google Maps, le spécialiste des
                                         raccourcis, nous fait emprunter la
-                                        forêt.{" "}
+                                        forêt. Même si{" "}
                                         <a
                                             data-tooltip-id="my-tooltip"
                                             href="/images/bostontrip/foret.jpeg"
@@ -1219,30 +1212,30 @@ export default function Trip({ lang }: any) {
                                                     bg: "green.100",
                                                 }}
                                             >
-                                                Même si nous devons mettre le
-                                                pied à terre, c’est très
-                                                agréable de humer la mousse des
-                                                arbres, et de la terre, encore
-                                                humide de la veille.
+                                                nous devons mettre le pied à
+                                                terre,
                                             </Highlight>
                                         </a>{" "}
-                                        Nous croisons par trois fois un
-                                        promeneur avec son chien qui nous
-                                        indique la piste à prendre. Il déboulait
-                                        d’on ne sait où de derrière les fagots.
-                                        On aurait dit une caméra cachée. Enfin,
-                                        le corridor ombragé tant attendu nous
-                                        amène d’une traite à Boston. Les pick-up
-                                        se font graduellement plus rares,
-                                        remplacés par des voitures citadines.
-                                        Les conducteurs apparaissent de plus en
-                                        plus respectueux et les voies dédiées au
-                                        vélo se trouvent progressivement plus
-                                        larges. En contrepartie, moins de
-                                        salutations de la part des autres
-                                        cyclistes, davantage habitués à en voir
-                                        d’autres. Au fur et à mesure que nous
-                                        nous enfonçons dans la ville,{" "}
+                                        c’est très agréable de humer la mousse
+                                        des arbres, et de la terre, encore
+                                        humide de la veille. Nous croisons par
+                                        trois fois un promeneur avec son chien
+                                        qui nous indique la piste à prendre. Il
+                                        déboulait d’on ne sait où de derrière
+                                        les fagots. On aurait dit une caméra
+                                        cachée. Enfin, le corridor ombragé tant
+                                        attendu nous amène d’une traite à
+                                        Boston. Les pick-up se font
+                                        graduellement plus rares, remplacés par
+                                        des voitures citadines. Les conducteurs
+                                        apparaissent de plus en plus respectueux
+                                        et les voies dédiées au vélo se trouvent
+                                        progressivement plus larges. En
+                                        contrepartie, moins de salutations de la
+                                        part des autres cyclistes, davantage
+                                        habitués à en voir d’autres. Au fur et à
+                                        mesure que nous nous enfonçons dans la
+                                        ville,{" "}
                                         <a
                                             data-tooltip-id="my-tooltip"
                                             href="/images/bostontrip/boston.jpeg"
