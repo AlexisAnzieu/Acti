@@ -1360,11 +1360,13 @@ export default function Trip({ lang }: any) {
                         </Text>
                     </Box>
                     <Box
-                        fontSize={80}
+                        fontSize={30}
                         fontFamily={"autography"}
                         textAlign={"right"}
                     >
-                        Antoine & Alexis
+                        {" "}
+                        Rédigé le 16 Juin 2023 à Montréal par
+                        <Box fontSize={80}>Antoine & Alexis</Box>
                     </Box>
                 </Container>
             </Box>
