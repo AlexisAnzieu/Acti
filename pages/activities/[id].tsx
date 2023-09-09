@@ -207,7 +207,7 @@ export default function Activity({ activity }: StaticProps["props"]) {
 
 export async function getStaticPaths() {
     const res: any = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/api/activities?fields=slug`
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/activities?fields=slug&carbon_footprint=0`
     );
     const activities = await res.json();
     const paths = ["en", "fr"].flatMap((locale: string) =>

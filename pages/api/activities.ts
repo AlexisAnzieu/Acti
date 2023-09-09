@@ -28,7 +28,7 @@ export default async function activities(
             locale,
             fields = "*",
             price,
-            carbon_footprint = '2',
+            carbon_footprint = "2",
             slug,
             children_accessible,
         } = req.query as Params;
@@ -46,13 +46,7 @@ export default async function activities(
             result = await singleActivityBySlug(supabaseBase, { slug });
             return sendReponse(res, normalizeActivity(result.data));
         }
-        if (
-            query ||
-            season ||
-            price ||
-            carbon_footprint ||
-            children_accessible
-        ) {
+        if (query || season || price || children_accessible) {
             result = await filterActivities(supabaseBase, {
                 query,
                 season,
