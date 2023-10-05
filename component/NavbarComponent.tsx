@@ -75,14 +75,16 @@ const NavbarComponent = () => {
             </Center>
             <Spacer />
             <Center>
-                <Button
-                    className="help-button-desktop"
-                    colorScheme="teal"
-                    variant="ghost"
-                    onClick={onOpen}
-                >
-                    {t("whoAreWe")}
-                </Button>
+                {!router.pathname.includes("trip") && (
+                    <Button
+                        className="help-button-desktop"
+                        colorScheme="teal"
+                        variant="ghost"
+                        onClick={onOpen}
+                    >
+                        {t("whoAreWe")}
+                    </Button>
+                )}
 
                 <IconButton
                     p="0px 15px 5px 0px"
