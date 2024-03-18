@@ -27,7 +27,11 @@ export default function Trip({ lang }: any) {
             content="From Montreal to Boston, story of a joyful
                         650km cycling odyssey."
           />
-          <meta name="og:image" content="/images/bostontrip/cover4.JPG" />
+          <meta
+            name="image"
+            property="og:image"
+            content="/images/bostontrip/cover4.JPG"
+          />
         </Head>
         <Container maxW={1000} mb={100}>
           <Tooltip
@@ -1080,7 +1084,11 @@ export default function Trip({ lang }: any) {
             content="De Montréal à Boston, récit d’une joyeuse
                                 odyssée cyclotouristique de 650km."
           />
-          <meta name="og:image" content="/images/bostontrip/cover4.JPG" />
+          <meta
+            name="image"
+            property="og:image"
+            content="/images/bostontrip/cover4.JPG"
+          />
         </Head>
         <Container maxW={1000} mb={100}>
           <Tooltip
