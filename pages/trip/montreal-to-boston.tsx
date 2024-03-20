@@ -58,7 +58,7 @@ export default function Trip({ lang }: any) {
           <Box marginTop={30} textAlign={"center"}>
             <Center>
               {" "}
-              <Heading fontFamily={"autography"} fontSize={100} mb={10}>
+              <Heading fontFamily={"autography"} fontSize={85} mb={10}>
                 {" "}
                 Happy coincidences
               </Heading>

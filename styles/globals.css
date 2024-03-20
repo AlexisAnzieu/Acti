@@ -1,230 +1,230 @@
 html,
 body {
-    padding: 0;
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-        Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
 @font-face {
-    font-family: autography;
-    src: url("/fonts/Autography-DOLnW.otf");
+  font-family: autography;
+  src: url("/fonts/Autography-DOLnW.otf");
 }
 
 a {
-    color: inherit;
-    text-decoration: none;
+  color: inherit;
+  text-decoration: none;
 }
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .leaflet-container {
-    z-index: 50;
-    height: 95vh;
+  z-index: 50;
+  height: 95vh;
 }
 
 .search-bar {
-    width: 93% !important;
+  width: 93% !important;
 }
 
 .activity-flex {
-    display: flex !important;
+  display: flex !important;
 }
 
 .filters {
-    display: inline-flex !important;
-    padding: 10px 15px 10px 15px;
+  display: inline-flex !important;
+  padding: 10px 15px 10px 15px;
 }
 
 .sliderFilter {
-    margin-left: 30px;
-    width: 200px;
+  margin-left: 30px;
+  width: 200px;
 }
 
 .activity-description {
-    width: 100%;
-    padding: 2%;
+  width: 100%;
+  padding: 2%;
 }
 
 .floating-button {
-    cursor: pointer;
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 90px;
-    height: 90px;
-    font-size: 50px;
-    background-color: teal;
-    color: #fff;
-    border-radius: 50px;
-    text-align: center;
-    box-shadow: 2px 2px 3px #999;
-    z-index: 100;
+  cursor: pointer;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 90px;
+  height: 90px;
+  font-size: 50px;
+  background-color: teal;
+  color: #fff;
+  border-radius: 50px;
+  text-align: center;
+  box-shadow: 2px 2px 3px #999;
+  z-index: 100;
 }
 
 .help-button-desktop {
-    display: block !important;
+  display: block !important;
 }
 
 .help-button-mobile {
-    display: none !important;
+  display: none !important;
 }
 
 @media screen and (max-width: 1000px) {
-    .floating-button {
-        width: 50px;
-        height: 50px;
-        font-size: 28px;
-    }
+  .floating-button {
+    width: 50px;
+    height: 50px;
+    font-size: 28px;
+  }
 
-    .activity-flex {
-        display: inline !important;
-    }
+  .activity-flex {
+    display: inline !important;
+  }
 
-    .filters {
-        display: inline !important;
-    }
+  .filters {
+    display: inline !important;
+  }
 
-    .sliderFilter {
-        margin-top: 10px;
-        margin-left: 17%;
-        width: 65%;
-    }
+  .sliderFilter {
+    margin-top: 10px;
+    margin-left: 17%;
+    width: 65%;
+  }
 
-    .activity-list {
-        text-align: center !important;
-    }
+  .activity-list {
+    text-align: center !important;
+  }
 
-    .search-bar {
-        width: 90% !important;
-    }
+  .search-bar {
+    width: 90% !important;
+  }
 
-    .detail-map {
-        height: 30vh !important;
-    }
-    .map {
-        height: 110vh !important;
-    }
+  .detail-map {
+    height: 30vh !important;
+  }
+  .map {
+    height: 110vh !important;
+  }
 
-    .activity-description {
-        padding: 7%;
-    }
+  .activity-description {
+    padding: 7%;
+  }
 }
 
 @media screen and (max-width: 600px) {
-    .help-button-desktop {
-        display: none !important;
-    }
+  .help-button-desktop {
+    display: none !important;
+  }
 
-    .help-button-mobile {
-        display: block !important;
-    }
+  .help-button-mobile {
+    display: block !important;
+  }
 }
 
 .timeline {
-    font-size: 18px;
+  font-size: 18px;
 }
 
 /* Card container */
 .card {
-    position: relative;
+  position: relative;
 }
 
 /* setting padding based on even or odd */
 .card:nth-child(odd) {
-    padding: 30px 0 30px 30px;
+  padding: 30px 0 30px 30px;
 }
 .card:nth-child(even) {
-    padding: 30px 30px 30px 0;
+  padding: 30px 30px 30px 0;
 }
 /* Global ::before */
 .card::before {
-    z-index: -1;
-    content: "";
-    position: absolute;
-    width: 50%;
-    border: solid rgb(18, 139, 125);
+  z-index: -1;
+  content: "";
+  position: absolute;
+  width: 50%;
+  border: solid rgb(18, 139, 125);
 }
 
 /* Setting the border of top, bottom, left */
 .card:nth-child(odd)::before {
-    left: 0px;
-    top: -5px;
-    bottom: -5px;
-    border-width: 5px 0 5px 5px;
-    border-radius: 50px 0 0 50px;
+  left: 0px;
+  top: -5px;
+  bottom: -5px;
+  border-width: 5px 0 5px 5px;
+  border-radius: 50px 0 0 50px;
 }
 
 /* Setting the border of top, bottom, right */
 .card:nth-child(even)::before {
-    right: 0;
-    top: 0;
-    bottom: 0;
-    border-width: 5px 5px 5px 0;
-    border-radius: 0 50px 50px 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  border-width: 5px 5px 5px 0;
+  border-radius: 0 50px 50px 0;
 }
 
 /* Removing the border if it is the first card */
 .card:first-child::before {
-    border-top: 0;
-    border-top-left-radius: 0;
+  border-top: 0;
+  border-top-left-radius: 0;
 }
 
 /* Removing the border if it is the last card  and it's odd */
 .card:last-child:nth-child(odd)::before {
-    border-bottom: 0;
-    border-bottom-left-radius: 0;
+  border-bottom: 0;
+  border-bottom-left-radius: 0;
 }
 
 /* Removing the border if it is the last card  and it's even */
 .card:last-child:nth-child(even)::before {
-    border-bottom: 0;
-    border-bottom-right-radius: 0;
+  border-bottom: 0;
+  border-bottom-right-radius: 0;
 }
 
 /* Information about the timeline */
 .info {
-    text-align: justify;
-    background: #e6fff1c9;
-    color: rgb(73, 73, 73);
-    border-radius: 10px;
-    padding: 10px;
-    z-index: 0;
-    line-height: 30px;
+  text-align: justify;
+  background: #e6fff1c9;
+  color: rgb(73, 73, 73);
+  border-radius: 10px;
+  padding: 10px;
+  z-index: 0;
+  line-height: 30px;
 }
 
 /* Title of the card */
 .title {
-    margin-bottom: 15px;
-    color: rgb(21, 62, 9);
-    position: relative;
-    font-weight: bold;
+  margin-bottom: 15px;
+  color: rgb(21, 62, 9);
+  position: relative;
+  font-weight: bold;
 }
 
 /* Timeline dot  */
 .title::before {
-    content: "";
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    background: white;
-    border-radius: 999px;
-    border: 3px solid rgb(16, 90, 61);
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: white;
+  border-radius: 999px;
+  border: 3px solid rgb(16, 90, 61);
 }
 
 /* text right if the card is even  */
 .card:nth-child(even) > .info > .title {
-    text-align: right;
+  text-align: right;
 }
 
 /* setting dot to the left if the card is odd */
 .card:nth-child(odd) > .info > .title::before {
-    left: -45px;
+  left: -45px;
 }
 
 /* setting dot to the right if the card is odd */
 .card:nth-child(even) > .info > .title::before {
-    right: -45px;
+  right: -45px;
 }
