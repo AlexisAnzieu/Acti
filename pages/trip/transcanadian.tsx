@@ -1,18 +1,9 @@
 /* eslint-disable react/no-unescaped-entities */
-import {
-  Box,
-  Container,
-  Center,
-  Heading,
-  Text,
-  Highlight,
-  keyframes,
-} from "@chakra-ui/react";
-import { useEffect } from "react";
-import Head from "next/head";
+import { Box, Center, Heading, keyframes, Text } from "@chakra-ui/react";
 import { GetStaticPropsContext } from "next";
+import Head from "next/head";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { Tooltip } from "react-tooltip";
+import { useEffect } from "react";
 import { useRef, useState } from "react";
 
 import { Locale } from "../../component/NavbarComponent";
