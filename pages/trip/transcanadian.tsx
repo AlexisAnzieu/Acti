@@ -274,7 +274,7 @@ export default function TransCanadian({ lang }: any) {
     },
   };
 
-  const currentContent = content[lang as keyof typeof content];
+  const currentContent = content["fr"];
 
   return (
     <Box>
