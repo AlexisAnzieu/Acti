@@ -143,7 +143,7 @@ const normalizeActivity = (activity: any) => {
     }
 
     if (activity.new_picture_url) {
-        activity.picture_url = `https://acti.anzieu.fr/assets/${activity.new_picture_url}`;
+        activity.picture_url = `https://acti.anzieu.com/assets/${activity.new_picture_url}`;
     }
     return activity;
 };

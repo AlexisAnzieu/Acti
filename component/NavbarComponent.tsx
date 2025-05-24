@@ -109,7 +109,7 @@ const NavbarComponent = () => {
                     <Avatar
                       size="2xl"
                       name="Carla Fabregas"
-                      src="https://acti.anzieu.fr/assets/e4848cd3-25a6-47c0-9b87-38ba696358f8"
+                      src="https://acti.anzieu.com/assets/e4848cd3-25a6-47c0-9b87-38ba696358f8"
                     />
                   </a>
                 </Center>
@@ -121,7 +121,7 @@ const NavbarComponent = () => {
                     <Avatar
                       size="2xl"
                       name="Alexis Anzieu"
-                      src="https://acti.anzieu.fr/assets/ebaed129-92c2-499f-bcaa-f1f6a1c18765"
+                      src="https://acti.anzieu.com/assets/ebaed129-92c2-499f-bcaa-f1f6a1c18765"
                     />
                   </a>
                 </Center>
