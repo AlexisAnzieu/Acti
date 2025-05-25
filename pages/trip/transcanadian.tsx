@@ -45,6 +45,53 @@ const smokeAnimation = keyframes`
   }
 `;
 
+const trainWobbleAnimation = keyframes`
+  0%, 100% {
+    transform: translateX(-50%) translateY(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateX(-50%) translateY(-1px) rotate(0.5deg);
+  }
+  50% {
+    transform: translateX(-50%) translateY(0px) rotate(0deg);
+  }
+  75% {
+    transform: translateX(-50%) translateY(1px) rotate(-0.5deg);
+  }
+`;
+
+const railShineAnimation = keyframes`
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: 200px 0;
+  }
+`;
+
+const speedLinesAnimation = keyframes`
+  0% {
+    transform: translateX(60px);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 0;
+  }
+`;
+
+const wheelRotateAnimation = keyframes`
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+`;
+
 const DayCard = ({ day, title, content, imageUrl, index }: any) => (
   <Box
     className="day-card"
@@ -119,6 +166,7 @@ export default function TransCanadian({ lang }: any) {
     let isMouseDown = false;
     let startX: number;
     let scrollLeft: number;
+    let isScrolling = false;
 
     const handleScroll = () => {
       const { scrollLeft, scrollWidth, clientWidth } = container;
@@ -128,9 +176,48 @@ export default function TransCanadian({ lang }: any) {
 
     const handleWheel = (e: WheelEvent) => {
       e.preventDefault();
-      const delta =
-        Math.abs(e.deltaY) > Math.abs(e.deltaX) ? e.deltaY : e.deltaX;
-      container.scrollLeft += delta * 2.5;
+      
+      // Prevent multiple rapid scrolls
+      if (isScrolling) return;
+      
+      // Use vertical scroll to advance to next/previous day
+      if (e.deltaY > 0) {
+        // Scrolling down - go to next day
+        const currentScrollLeft = container.scrollLeft;
+        const currentDay = Math.floor(currentScrollLeft / window.innerWidth);
+        const nextDay = Math.min(currentDay + 1, 3); // Max 4 days (0-3)
+        
+        if (nextDay !== currentDay) {
+          isScrolling = true;
+          container.scrollTo({
+            left: nextDay * window.innerWidth,
+            behavior: "smooth"
+          });
+          
+          // Reset scroll lock after animation
+          setTimeout(() => {
+            isScrolling = false;
+          }, 600);
+        }
+      } else if (e.deltaY < 0) {
+        // Scrolling up - go to previous day
+        const currentScrollLeft = container.scrollLeft;
+        const currentDay = Math.ceil(currentScrollLeft / window.innerWidth);
+        const prevDay = Math.max(currentDay - 1, 0); // Min day 0
+        
+        if (prevDay !== currentDay) {
+          isScrolling = true;
+          container.scrollTo({
+            left: prevDay * window.innerWidth,
+            behavior: "smooth"
+          });
+          
+          // Reset scroll lock after animation
+          setTimeout(() => {
+            isScrolling = false;
+          }, 600);
+        }
+      }
       handleScroll();
     };
 
@@ -319,7 +406,7 @@ export default function TransCanadian({ lang }: any) {
         bottom="0"
         left="0"
         right="0"
-        height="100px"
+        height="120px"
         zIndex={1}
       >
         {/* Background gradient for tracks area */}
@@ -332,47 +419,222 @@ export default function TransCanadian({ lang }: any) {
           background="linear-gradient(transparent, rgba(255,255,255,0.9) 40%)"
         />
 
-        {/* Tracks */}
+        {/* Rail bed/gravel */}
+        <Box
+          position="absolute"
+          bottom="35px"
+          left="0"
+          right="0"
+          height="20px"
+          backgroundColor="#8B7355"
+          backgroundImage="radial-gradient(circle, #A0916B 1px, transparent 1px)"
+          backgroundSize="4px 4px"
+        />
+
+        {/* Main tracks with enhanced styling */}
         <Box
           position="absolute"
           bottom="40px"
           left="0"
-          width="100%"
-          height="12px"
-          backgroundColor="gray.300"
+          right="0"
+          height="14px"
+          backgroundColor="gray.400"
+          borderRadius="2px"
+          overflow="hidden"
         >
+          {/* Animated rail shine effect */}
           <Box
-            height="6px"
+            position="absolute"
+            top="0"
+            left="0"
+            width="100%"
+            height="100%"
+            background="linear-gradient(90deg, transparent, rgba(255,255,255,0.3) 50%, transparent)"
+            backgroundSize="200px 100%"
+            animation={`${railShineAnimation} 3s infinite linear`}
+          />
+          
+          {/* Rail ties/sleepers */}
+          <Box
+            height="8px"
             position="absolute"
             top="3px"
             left="0"
             width="100%"
-            backgroundImage="repeating-linear-gradient(90deg, #666, #666 20px, transparent 20px, transparent 40px)"
+            backgroundImage="repeating-linear-gradient(90deg, #4A4A4A, #4A4A4A 15px, #666 15px, #666 25px)"
           />
         </Box>
 
-        {/* Train with smoke effect */}
-        <Box
-          position="absolute"
-          bottom="52px"
-          left={`${scrollProgress * 80}%`}
-          transform="translateX(-50%)"
-          transition="left 0.1s ease-out"
-          fontSize="2rem"
-          filter="drop-shadow(0 2px 2px rgba(0,0,0,0.2))"
-        >
+        {/* Rail markers at different positions */}
+        {[20, 40, 60, 80].map((position, index) => (
+          <Box
+            key={index}
+            position="absolute"
+            bottom="60px"
+            left={`${position}%`}
+            fontSize="0.8rem"
+            opacity="0.4"
+          >
+            🏔️
+          </Box>
+        ))}
+
+        {/* Speed lines effect */}
+        {scrollProgress > 0.1 && (
           <Box
             position="absolute"
-            top="-10px"
+            bottom="70px"
             left="0"
-            animation={`${smokeAnimation} 2s infinite`}
-            opacity="0.6"
-            fontSize="1rem"
+            width="100%"
+            height="20px"
+            overflow="hidden"
           >
-            💨
+            {[...Array(8)].map((_, i) => {
+              const trainPositionPercent = scrollProgress * 85; // Match the train position calculation
+              
+              // Calculate train length based on visible cars
+              const trainLength = 
+                (scrollProgress > 0.2 ? 1 : 0) + 
+                (scrollProgress > 0.5 ? 1 : 0) + 
+                (scrollProgress > 0.8 ? 1 : 0);
+              const trainWidthPercent = 2 + (trainLength * 1.5); // Approximate train width in percentage
+              
+              // Add randomness to positioning (slower updates)
+              const baseOffset = -(5 + (i * 2.5));
+              const randomOffset = (Math.sin(Date.now() * 0.0003 + i * 1.5) * 1.5); // Slower, smaller horizontal variation
+              const lineOffsetPercent = baseOffset + randomOffset;
+              const lineLeftPercent = trainPositionPercent - trainWidthPercent + lineOffsetPercent;
+              
+              // Random vertical positioning (slower)
+              const randomVertical = Math.sin(Date.now() * 0.0002 + i * 2) * 3;
+              const verticalPosition = (i * 2.5) + randomVertical;
+              
+              // Random line properties (slower changes)
+              const randomWidth = 25 + (Math.sin(Date.now() * 0.0004 + i * 0.8) * 10); // 15-35px width, slower change
+              const randomOpacity = 0.25 + (Math.sin(Date.now() * 0.0003 + i * 1.2) * 0.15); // 0.1-0.4 opacity, slower change
+              const randomDuration = 0.8 + (Math.sin(Date.now() * 0.0002 + i * 0.6) * 0.4); // 0.8-1.2s duration (slower)
+              const randomDelay = Math.sin(Date.now() * 0.0001 + i * 0.9) * 0.2; // Smaller delay variation
+              
+              // Only show lines that are within reasonable bounds (0% to 100%)
+              if (lineLeftPercent < -10 || lineLeftPercent > 110) return null;
+              
+              return (
+                <Box
+                  key={i}
+                  position="absolute"
+                  bottom={`${Math.max(0, verticalPosition)}px`}
+                  left={`${lineLeftPercent}%`} // Dynamic position based on train location in percentage
+                  width={`${randomWidth}px`}
+                  height="2px"
+                  backgroundColor={`rgba(100,100,100,${randomOpacity})`}
+                  animation={`${speedLinesAnimation} ${randomDuration}s infinite linear`}
+                  style={{
+                    animationDelay: `${randomDelay}s`,
+                  }}
+                />
+              );
+            })}
           </Box>
-          🚂
+        )}
+
+        {/* Enhanced train with multiple smoke puffs and wobble */}
+        <Box
+          position="absolute"
+          bottom="54px"
+          left={`${scrollProgress * 85}%`}
+          animation={scrollProgress > 0.05 ? `${trainWobbleAnimation} 0.6s infinite` : 'none'}
+          transition="left 0.15s ease-out"
+          fontSize="2.2rem"
+          filter="drop-shadow(0 3px 6px rgba(0,0,0,0.3))"
+          zIndex={2}
+        >
+          {/* Multiple smoke puffs - positioned relative to locomotive */}
+          {[...Array(4)].map((_, i) => {
+            // Calculate offset based on train length (how many cars are visible)
+            const trainLength = 
+              (scrollProgress > 0.2 ? 1 : 0) + 
+              (scrollProgress > 0.5 ? 1 : 0) + 
+              (scrollProgress > 0.8 ? 1 : 0);
+            const locomotiveOffset = trainLength * 35; // Approximate width of each car
+            
+            return (
+              <Box
+                key={i}
+                position="absolute"
+                top={`${-15 - i * 8}px`}
+                left={`${locomotiveOffset - 5 + i * 3}px`}
+                animation={`${smokeAnimation} ${2 + i * 0.3}s infinite`}
+                opacity="0.6"
+                fontSize="1rem"
+                style={{
+                  animationDelay: `${i * 0.4}s`,
+                }}
+              >
+                💨
+              </Box>
+            );
+          })}
+          
+          {/* Train cars */}
+          <Box display="flex" alignItems="center">
+            {/* Passenger cars - appear before the locomotive */}
+            {scrollProgress > 0.8 && (
+              <Box fontSize="1.6rem" marginRight="-4px">
+                🚋
+              </Box>
+            )}
+            {scrollProgress > 0.5 && (
+              <Box fontSize="1.8rem" marginRight="-4px">
+                🚃
+              </Box>
+            )}
+            {scrollProgress > 0.2 && (
+              <Box fontSize="1.8rem" marginRight="-4px">
+                🚃
+              </Box>
+            )}
+            
+            <Box position="relative" transform="scaleX(-1)">
+              🚂
+              {/* Animated wheels */}
+              <Box
+                position="absolute"
+                bottom="-2px"
+                left="8px"
+                fontSize="0.6rem"
+                animation={scrollProgress > 0.05 ? `${wheelRotateAnimation} 0.3s infinite linear` : 'none'}
+              >
+                ⚙️
+              </Box>
+              <Box
+                position="absolute"
+                bottom="-2px"
+                right="8px"
+                fontSize="0.6rem"
+                animation={scrollProgress > 0.05 ? `${wheelRotateAnimation} 0.3s infinite linear` : 'none'}
+                style={{ animationDelay: '0.15s' }}
+              >
+                ⚙️
+              </Box>
+            </Box>
+          </Box>
         </Box>
+
+        {/* Station markers */}
+        {[0, 25, 50, 75, 100].map((position, index) => (
+          <Box
+            key={index}
+            position="absolute"
+            bottom="20px"
+            left={`${position * 0.85}%`}
+            fontSize="1.2rem"
+            opacity={scrollProgress * 100 >= position ? "1" : "0.3"}
+            transition="opacity 0.3s ease"
+            transform="translateX(-50%)"
+          >
+            🚉
+          </Box>
+        ))}
       </Box>
 
       {/* Progress indicator */}
@@ -399,7 +661,7 @@ export default function TransCanadian({ lang }: any) {
       {showInstructions && (
         <Box
           position="fixed"
-          bottom="140px"
+          bottom="160px"
           left="50%"
           transform="translateX(-50%)"
           backgroundColor="white"
