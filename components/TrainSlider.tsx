@@ -1,4 +1,4 @@
-import { Box, keyframes, Text } from "@chakra-ui/react";
+import { Box, keyframes, Text, Tooltip } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 
 const smokeAnimation = keyframes`
@@ -71,6 +71,7 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
   const [isDragging, setIsDragging] = useState(false);
   const [dragStartX, setDragStartX] = useState(0);
   const [dragStartProgress, setDragStartProgress] = useState(0);
+  const [showTooltip, setShowTooltip] = useState(false);
 
   const handleRailClick = (event: React.MouseEvent<HTMLDivElement>) => {
     const rect = event.currentTarget.getBoundingClientRect();
@@ -162,7 +163,7 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
       bottom="0"
       left="0"
       right="0"
-      height="120px"
+      height="80px"
       zIndex={1}
     >
       {/* Background gradient for tracks area */}
@@ -178,7 +179,7 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
       {/* Rail bed/gravel */}
       <Box
         position="absolute"
-        bottom="35px"
+        bottom="0"
         left="0"
         right="0"
         height="20px"
@@ -190,7 +191,7 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
       {/* Main tracks with enhanced styling */}
       <Box
         position="absolute"
-        bottom="40px"
+        bottom="5px"
         left="0"
         right="0"
         height="14px"
@@ -229,114 +230,125 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
 
 
       {/* Enhanced train with multiple smoke puffs and wobble */}
-      <Box
-        position="absolute"
-        bottom="54px"
-        left={`${scrollProgress * 100}%`}
-        animation={scrollProgress > 0.05 ? `${trainWobbleAnimation} 0.6s infinite` : 'none'}
-        transition="left 0.1s ease-out"
-        fontSize="2.2rem"
-        filter="drop-shadow(0 3px 6px rgba(0,0,0,0.3))"
-        zIndex={2}
-        transform={`translateX(-${scrollProgress * 100}%)`}
-        cursor={isDragging ? 'grabbing' : 'grab'}
-        onMouseDown={handleTrainMouseDown}
-        onTouchStart={handleTrainTouchStart}
-        userSelect="none"
-        style={{ touchAction: 'none' }}
+      <Tooltip
+        label="Drag the train or click on the rails to navigate through the journey"
+        placement="top"
+        bg="gray.800"
+        color="white"
+        fontSize="sm"
+        px={3}
+        py={2}
+        borderRadius="md"
+        isOpen={showTooltip && !isDragging}
+        hasArrow
       >
-        {/* Multiple smoke puffs */}
-        {[...Array(4)].map((_, i) => {
-          const trainLength = 
-            (scrollProgress > 0.2 ? 1 : 0) + 
-            (scrollProgress > 0.5 ? 1 : 0) + 
-            (scrollProgress > 0.8 ? 1 : 0);
-          const locomotiveOffset = trainLength * 35;
+        <Box
+          position="absolute"
+          bottom="19px"
+          left={`${scrollProgress * 100}%`}
+          animation={scrollProgress > 0.05 ? `${trainWobbleAnimation} 0.6s infinite` : 'none'}
+          transition="left 0.1s ease-out"
+          fontSize="2.2rem"
+          filter="drop-shadow(0 3px 6px rgba(0,0,0,0.3))"
+          zIndex={2}
+          transform={`translateX(-${scrollProgress * 100}%)`}
+          cursor={isDragging ? 'grabbing' : 'grab'}
+          onMouseDown={handleTrainMouseDown}
+          onTouchStart={handleTrainTouchStart}
+          onMouseEnter={() => setShowTooltip(true)}
+          onMouseLeave={() => setShowTooltip(false)}
+          userSelect="none"
+          style={{ touchAction: 'none' }}
+        >
+          {/* Multiple smoke puffs */}
+          {[...Array(4)].map((_, i) => {
+            const trainLength = 
+              (scrollProgress > 0.2 ? 1 : 0) + 
+              (scrollProgress > 0.5 ? 1 : 0) + 
+              (scrollProgress > 0.8 ? 1 : 0);
+            const locomotiveOffset = trainLength * 35;
+            
+            return (
+              <Box
+                key={i}
+                position="absolute"
+                top={`${-15 - i * 8}px`}
+                left={`${locomotiveOffset - 5 + i * 3}px`}
+                animation={`${smokeAnimation} ${2 + i * 0.3}s infinite`}
+                opacity="0.6"
+                fontSize="1rem"
+                style={{
+                  animationDelay: `${i * 0.4}s`,
+                }}
+              >
+                💨
+              </Box>
+            );
+          })}
           
-          return (
-            <Box
-              key={i}
-              position="absolute"
-              top={`${-15 - i * 8}px`}
-              left={`${locomotiveOffset - 5 + i * 3}px`}
-              animation={`${smokeAnimation} ${2 + i * 0.3}s infinite`}
-              opacity="0.6"
-              fontSize="1rem"
-              style={{
-                animationDelay: `${i * 0.4}s`,
-              }}
-            >
-              💨
-            </Box>
-          );
-        })}
-        
-        {/* Train cars */}
-        <Box display="flex" alignItems="center">
-          {scrollProgress > 0.8 && (
-            <Box fontSize="1.6rem" marginRight="-4px">
-              🚋
-            </Box>
-          )}
-          {scrollProgress > 0.5 && (
-            <Box fontSize="1.8rem" marginRight="-4px">
-              🚃
-            </Box>
-          )}
-          {scrollProgress > 0.2 && (
-            <Box fontSize="1.8rem" marginRight="-4px">
-              🚃
-            </Box>
-          )}
-          
-          <Box position="relative" transform="scaleX(-1)">
-            🚂
-            {/* Animated wheels */}
-            <Box
-              position="absolute"
-              bottom="-2px"
-              left="8px"
-              fontSize="0.6rem"
-              animation={scrollProgress > 0.05 ? `${wheelRotateAnimation} 0.3s infinite linear` : 'none'}
-            >
-              ⚙️
-            </Box>
-            <Box
-              position="absolute"
-              bottom="-2px"
-              right="8px"
-              fontSize="0.6rem"
-              animation={scrollProgress > 0.05 ? `${wheelRotateAnimation} 0.3s infinite linear` : 'none'}
-              style={{ animationDelay: '0.15s' }}
-            >
-              ⚙️
+          {/* Train cars */}
+          <Box display="flex" alignItems="center">
+            {scrollProgress > 0.8 && (
+              <Box fontSize="1.6rem" marginRight="-4px">
+                🚋
+              </Box>
+            )}
+            {scrollProgress > 0.5 && (
+              <Box fontSize="1.8rem" marginRight="-4px">
+                🚃
+              </Box>
+            )}
+            {scrollProgress > 0.2 && (
+              <Box fontSize="1.8rem" marginRight="-4px">
+                🚃
+              </Box>
+            )}
+            
+            <Box position="relative" transform="scaleX(-1)">
+              🚂
+              {/* Animated wheels */}
+              <Box
+                position="absolute"
+                bottom="-2px"
+                left="8px"
+                fontSize="0.6rem"
+                animation={scrollProgress > 0.05 ? `${wheelRotateAnimation} 0.3s infinite linear` : 'none'}
+              >
+                ⚙️
+              </Box>
+              <Box
+                position="absolute"
+                bottom="-2px"
+                right="8px"
+                fontSize="0.6rem"
+                animation={scrollProgress > 0.05 ? `${wheelRotateAnimation} 0.3s infinite linear` : 'none'}
+                style={{ animationDelay: '0.15s' }}
+              >
+                ⚙️
+              </Box>
             </Box>
           </Box>
         </Box>
-      </Box>
+      </Tooltip>
 
       {/* Speed lines effect */}
       {scrollProgress > 0.1 && (
         <Box
           position="absolute"
-          bottom="70px"
+          bottom="35px"
           left="0"
           width="100%"
           height="20px"
           overflow="hidden"
+          zIndex={1}
         >
           {[...Array(8)].map((_, i) => {
             const trainPositionPercent = scrollProgress * 100;
-            const trainLength = 
-              (scrollProgress > 0.2 ? 1 : 0) + 
-              (scrollProgress > 0.5 ? 1 : 0) + 
-              (scrollProgress > 0.8 ? 1 : 0);
-            const trainWidthPercent = 2 + (trainLength * 1.5);
             
-            const baseOffset = -(5 + (i * 2.5));
+            const baseOffset = (i * 2.5);
             const randomOffset = (Math.sin(Date.now() * 0.0003 + i * 1.5) * 1.5);
             const lineOffsetPercent = baseOffset + randomOffset;
-            const lineLeftPercent = trainPositionPercent - trainWidthPercent + lineOffsetPercent;
+            const lineLeftPercent = trainPositionPercent - lineOffsetPercent; // Position at train location
             
             const randomVertical = Math.sin(Date.now() * 0.0002 + i * 2) * 3;
             const verticalPosition = (i * 2.5) + randomVertical;

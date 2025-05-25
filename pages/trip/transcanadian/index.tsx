@@ -149,19 +149,18 @@ export default function TransCanadian() {
         left="0"
         css={{
           "&::-webkit-scrollbar": { 
-            width: "8px"
+            display: "none"
           },
           "&::-webkit-scrollbar-track": {
-            background: "rgba(0,0,0,0.1)",
-            borderRadius: "4px"
+            display: "none"
           },
           "&::-webkit-scrollbar-thumb": {
-            background: "rgba(0,0,0,0.3)",
-            borderRadius: "4px"
+            display: "none"
           },
           "&::-webkit-scrollbar-thumb:hover": {
-            background: "rgba(0,0,0,0.5)"
-          }
+            display: "none"
+          },
+          scrollbarWidth: "none" // Firefox
         }}
       >
         {currentContent.days.map((day, index) => (
