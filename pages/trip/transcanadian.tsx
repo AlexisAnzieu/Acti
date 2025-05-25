@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
-import { Box, Center, Heading, keyframes, Text } from "@chakra-ui/react";
+import { Box, Heading, keyframes, Text } from "@chakra-ui/react";
 import { GetStaticPropsContext } from "next";
 import Head from "next/head";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -92,13 +92,12 @@ const wheelRotateAnimation = keyframes`
   }
 `;
 
-const DayCard = ({ day, title, content, imageUrl, index }: any) => (
+const DayCard = ({ title, content, imageUrl, index }: any) => (
   <Box
     className="day-card"
     flex="0 0 100vw"
     minWidth="100vw"
     height="100vh"
-    padding="2rem"
     scrollSnapAlign="start"
     backgroundColor={`hsl(${index * 45}, 85%, 97%)`}
     position="relative"
@@ -113,43 +112,69 @@ const DayCard = ({ day, title, content, imageUrl, index }: any) => (
         opacity="0.5"
         animation={`${pulseAnimation} 2s infinite`}
         _hover={{ opacity: 0.8 }}
+        zIndex={10}
       >
         👉
       </Box>
     )}
-    <Center
-      flexDirection="column"
-      height="100%"
-      maxWidth="800px"
-      margin="0 auto"
-      paddingBottom="120px"
-      animation={`${fadeInAnimation} 0.5s ease-out`}
+    <Box
+      height="100vh"
+      overflowY="auto"
+      padding="2rem"
+      paddingBottom="140px"
+      data-day-content
+      sx={{
+        "&::-webkit-scrollbar": { 
+          width: "8px"
+        },
+        "&::-webkit-scrollbar-track": {
+          background: "rgba(0,0,0,0.1)",
+          borderRadius: "4px"
+        },
+        "&::-webkit-scrollbar-thumb": {
+          background: "rgba(0,0,0,0.3)",
+          borderRadius: "4px"
+        },
+        "&::-webkit-scrollbar-thumb:hover": {
+          background: "rgba(0,0,0,0.5)"
+        }
+      }}
     >
-      <Heading mb={6} size="2xl">
-        {title}
-      </Heading>
-      <Text mb={6} fontSize="xl" lineHeight="1.8">
-        {content}
-      </Text>
-      {imageUrl && (
-        <Box
-          maxWidth="600px"
-          boxShadow="xl"
-          borderRadius="lg"
-          overflow="hidden"
-        >
-          <img
-            src={imageUrl}
-            alt={title}
-            style={{ width: "100%", height: "auto" }}
-          />
-        </Box>
-      )}
-    </Center>
+      <Box
+        maxWidth="800px"
+        margin="0 auto"
+        paddingTop="2rem"
+        animation={`${fadeInAnimation} 0.5s ease-out`}
+      >
+        <Heading mb={6} size="2xl" textAlign="center">
+          {title}
+        </Heading>
+        <Text mb={6} fontSize="lg" lineHeight="1.8" whiteSpace="pre-line">
+          {content}
+        </Text>
+        {imageUrl && (
+          <Box
+            maxWidth="600px"
+            margin="0 auto"
+            boxShadow="xl"
+            borderRadius="lg"
+            overflow="hidden"
+          >
+            <Box
+              as="img"
+              src={imageUrl}
+              alt={title}
+              width="100%"
+              height="auto"
+            />
+          </Box>
+        )}
+      </Box>
+    </Box>
   </Box>
 );
 
-export default function TransCanadian({ lang }: any) {
+export default function TransCanadian() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [showInstructions, setShowInstructions] = useState(true);
@@ -175,14 +200,73 @@ export default function TransCanadian({ lang }: any) {
     };
 
     const handleWheel = (e: WheelEvent) => {
-      e.preventDefault();
+      // Find the day content element that's being scrolled
+      const target = e.target as HTMLElement;
+      const dayContentElement = target.closest('[data-day-content]') as HTMLElement;
       
-      // Prevent multiple rapid scrolls
-      if (isScrolling) return;
-      
-      // Use vertical scroll to advance to next/previous day
-      if (e.deltaY > 0) {
-        // Scrolling down - go to next day
+      // If we're not scrolling within a day's content, use the old behavior
+      if (!dayContentElement) {
+        e.preventDefault();
+        
+        // Prevent multiple rapid scrolls
+        if (isScrolling) return;
+        
+        // Use vertical scroll to advance to next/previous day
+        if (e.deltaY > 0) {
+          // Scrolling down - go to next day
+          const currentScrollLeft = container.scrollLeft;
+          const currentDay = Math.floor(currentScrollLeft / window.innerWidth);
+          const nextDay = Math.min(currentDay + 1, 3); // Max 4 days (0-3)
+          
+          if (nextDay !== currentDay) {
+            isScrolling = true;
+            container.scrollTo({
+              left: nextDay * window.innerWidth,
+              behavior: "smooth"
+            });
+            
+            // Reset scroll lock after animation
+            setTimeout(() => {
+              isScrolling = false;
+            }, 600);
+          }
+        } else if (e.deltaY < 0) {
+          // Scrolling up - go to previous day
+          const currentScrollLeft = container.scrollLeft;
+          const currentDay = Math.ceil(currentScrollLeft / window.innerWidth);
+          const prevDay = Math.max(currentDay - 1, 0); // Min day 0
+          
+          if (prevDay !== currentDay) {
+            isScrolling = true;
+            container.scrollTo({
+              left: prevDay * window.innerWidth,
+              behavior: "smooth"
+            });
+            
+            // Reset scroll lock after animation
+            setTimeout(() => {
+              isScrolling = false;
+            }, 600);
+          }
+        }
+        handleScroll();
+        return;
+      }
+
+      // We're scrolling within day content - check if we've reached the boundaries
+      const { scrollTop, scrollHeight, clientHeight } = dayContentElement;
+      const isAtTop = scrollTop === 0;
+      const isAtBottom = scrollTop + clientHeight >= scrollHeight - 1; // -1 for rounding errors
+
+      // Prevent multiple rapid scrolls between days
+      if (isScrolling) {
+        e.preventDefault();
+        return;
+      }
+
+      if (e.deltaY > 0 && isAtBottom) {
+        // Scrolling down and at bottom - go to next day
+        e.preventDefault();
         const currentScrollLeft = container.scrollLeft;
         const currentDay = Math.floor(currentScrollLeft / window.innerWidth);
         const nextDay = Math.min(currentDay + 1, 3); // Max 4 days (0-3)
@@ -199,8 +283,10 @@ export default function TransCanadian({ lang }: any) {
             isScrolling = false;
           }, 600);
         }
-      } else if (e.deltaY < 0) {
-        // Scrolling up - go to previous day
+        handleScroll();
+      } else if (e.deltaY < 0 && isAtTop) {
+        // Scrolling up and at top - go to previous day
+        e.preventDefault();
         const currentScrollLeft = container.scrollLeft;
         const currentDay = Math.ceil(currentScrollLeft / window.innerWidth);
         const prevDay = Math.max(currentDay - 1, 0); // Min day 0
@@ -217,8 +303,9 @@ export default function TransCanadian({ lang }: any) {
             isScrolling = false;
           }, 600);
         }
+        handleScroll();
       }
-      handleScroll();
+      // If not at boundaries, allow normal scrolling (don't preventDefault)
     };
 
     const handleMouseDown = (e: MouseEvent) => {
@@ -340,7 +427,7 @@ export default function TransCanadian({ lang }: any) {
         {
           title: "Jour 1: Montréal à Ottawa",
           content:
-            "Notre périple débute à la gare Centrale de Montréal, où nous montons à bord du célèbre train Le Canadien de VIA Rail. La route vers Ottawa serpente à travers la magnifique région des Laurentides, avec ses collines ondulantes et ses forêts denses. En route vers la capitale du Canada, nous apercevons de charmantes petites villes et la majestueuse rivière des Outaouais.",
+            "Remontons le fil du récit jusqu'au J-0, lorsque le mardi 29 mai en fin d'après-midi nous entamons notre aventure ferroviaire. Il faut en effet se rendre à Toronto afin d'embarquer sur le Transcanadien. Qu'à cela ne tienne, nous avons déjà fait le trajet de cinq heures reliant Montréal à Toronto plusieurs fois. Les confortables wagons récemment mis en service nous permettent de nous délecter d'un beau coucher de soleil. Seul bémol, les coups de klaxon intempestifs qui surviennent à la moindre petite intersection dénuée de barrières de signalisation. Casque antibruit sur les oreilles et livre de poche en main, un avant-goût de notre aventure se dessine.\n\nNotre arrivée à Toronto débute par une petite marche nocturne de 15 minutes jusqu'à l'auberge de jeunesse la plus proche. S'ensuit d'une nuit passablement bruyante due à une isolation douteuse. Le transcanadien part à 10h, le réveil est mis à 8h, ce serait dommage de louper le départ hebdomadaire.\n\nNous voilà enfin au Jour 1 ! De retour à la gare avec une bonne heure d'avance à la recherche du train numéro 001. L'enregistrement se déroule dans le salon business, qui ne doit son nom qu'à ses fauteuils émaillés par le temps. Le distributeur de café-filtre à disposition ne nous émerveille pas vraiment. Nous décidons de partir à la recherche d'un Starbucks, afin d'allier un soupçon de présent à ces vestiges du passé. Café en main, nous nous rendons sur le quai et nous apercevons enfin se prolongeant devant nous, ce monstre de fer et d'acier brillant sous les miroirs ensoleillés des gratte-ciels. Je remonte la rame à la recherche de la locomotive, mais me fait stopper net dans mon élan par un garde de la sécurité qui ne souhaitait apparemment pas me voir m'aventurer jusque-là. Défi relevé, je réussirai à capturer une photo de cette locomotive d'ici la fin du séjour.\n\n\"10 minutes avant le départ !\" scande une voix grave dans la gare, Nous profitons d'un dernier bol d'air frais comme si nous embarquions dans une navette spatiale pour un an, puis escaladons la marche d'accès menant au wagon. Ce n'est pas une simple porte que nous franchissons mais une véritable machine à remonter dans le temps. Un seul pas à l'intérieur suffit à nous projeter 70 ans en arrière, à l'ère où la moquette sur les murs était de mise. Notre intendante de wagon nous présente la chambre dans laquelle nous allons dormir ces quatre prochains jours. Deux sièges sont disposés ici, repliés en soirée afin de laisser place à un lit superposé. L'odeur du vieux cuir monte aux narines, accompagnée de cette nostalgie du passé que nous n'avions vue que dans des vieux films.\n\nLe conducteur du train nous accueille à bord par les haut-parleurs, deux minutes avant d'enclencher le levier de vitesse. L'accélération est immédiate. Le paysage fuse à toute allure. Ou presque. C'est par une pointe de 20 km/h que va débuter cette sortie de périphérie de Toronto.\n\nNous sommes tellement enthousiastes à l'idée d'explorer le convoi que nous sortons de notre cocon dans les 5 minutes qui suivent le départ. J'avais l'impression d'être dans un livre d'Agatha Christie, en espérant que le meurtre ne concerne aucun d'entre nous. Au besoin, nous avions acheté un escape game en chemin afin de sustenter notre soif de mystère (et aussi pour nous occuper). La première voiture que nous abordons, et de loin la plus importante, est la voiture-restaurant. Les assiettes tintent au rythme des soubresauts des rails qui nous offrent une douce mélodie. Nous remontons une voiture de plus et tombons sur celle des activités. Quelques jeux de société à la boîte en carton délabré, victimes de leur succès, s'empilent dans un coin de table. Une dame m'interpelle tout au bout et me demande si je souhaite goûter au cocktail mimosa de bienvenue. Il est 10 heures mais après tout pourquoi pas. Cette première matinée consista à s'approprier ce véhicule d'un kilomètre et nous dépensâmes les heures suivantes à vagabonder de l'avant économique jusqu'à l'arrière prestige. Pour les plus cinéphiles d'entre vous, certains peuvent s'imaginer ce train comme celui du film Snowpiercer, symbolisant une lutte des classes. Ici définit ici par le droit d'accès aux wagons panoramiques, le clou du spectacle sur lequel nous reviendrons plus tard.\n\nEt maintenant, comment occuper tout ce temps disponible auquel nous ne sommes plus habitués ? Par chance, nous avons embarqué avec nous des romans mais ces derniers ne vont sûrement pas suffire. À 14h, c'est l'appel pour le troisième service de déjeuner. Voici venu le temps du double date entre inconnus. L'idée à bord est de mélanger les passagers de tout horizon lors des repas. Deux retraités nous racontent leur ancien métier d'architecte: paysagiste dans les parcs pour l'un et dans les cimetières pour l'autre. Cette discussion d'abord confuse et maladroite s'éclaircit peu à peu malgré la différence de langues et de générations. Bien que formelle, elle nous projette dans un univers différent. Mais l'exercice de traduction vers l'anglais est fatigant, notamment avec le bruit du train et des accents.\n\nÀ 17h, premier arrêt au milieu de l'inconnu, il fait à peine 10 degrés mais tout le monde se précipite dehors afin d'apprécier la caresse du vent frais et l'espace non exigu. Tous étudient avec curiosité ce sous-marin roulant, voguant en équipage vers l'inconnu à travers un environnement désertique.\n\nNous n'en sommes qu'à notre première journée et un fil conducteur commence déjà à émerger: le mouvement perpétuel sous nos pieds et le paysage qui défile en continu. Les hauts pins vert et les arbres dénués de feuilles, sortent tout juste de l'hiver. Les lacs, à peine dégelés, sur lesquels sont parsemées des traces de motoneige. Les quelques maisons alignées le long de la voie ferrée. Et enfin le bouquet final, le coucher de soleil en dégustant notre crème de champignons au dîner. La serveuse nous prévient du changement de fuseau horaire car cela fait plusieurs heures que nous n'avons plus de réseau et donc plus de synchronisation automatique. Ça serait bête de louper le petit déjeuner !",
         },
         {
           title: "Jour 2: Ottawa à Toronto",
