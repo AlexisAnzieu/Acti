@@ -28,7 +28,7 @@ const DayCard = ({ title, content, imageUrl, index }: any) => (
     backgroundColor={`hsl(${index * 45}, 85%, 97%)`}
     position="relative"
     padding="2rem"
-    paddingBottom="140px"
+    paddingBottom="100px"
   >
     <Box
       maxWidth="800px"

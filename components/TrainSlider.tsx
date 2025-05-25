@@ -182,58 +182,61 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
       bottom="0"
       left="0"
       right="0"
-      height="120px"
+      height="80px"
       zIndex={1}
     >
-      {/* Sky background */}
+      {/* Sky background - more transparent and blended */}
       <Box
         position="absolute"
         bottom="0"
         left="0"
         right="0"
         height="100%"
-        background="linear-gradient(to bottom, #87CEEB 0%, #E0F6FF 60%, white 100%)"
+        background="linear-gradient(to bottom, rgba(135, 206, 235, 0.3) 0%, rgba(224, 246, 255, 0.6) 50%, rgba(255, 255, 255, 0.8) 100%)"
+        backdropFilter="blur(2px)"
       />
 
       {/* Sun */}
       <Box
         position="absolute"
-        top="10px"
+        top="5px"
         right="15%"
-        width="30px"
-        height="30px"
+        width="25px"
+        height="25px"
         backgroundColor="#FFD700"
         borderRadius="50%"
-        boxShadow="0 0 20px rgba(255, 215, 0, 0.6)"
+        boxShadow="0 0 15px rgba(255, 215, 0, 0.4)"
         zIndex={1}
+        opacity="0.8"
       />
 
       {/* Toronto city skyline at start */}
       <Box
         position="absolute"
-        bottom="10px"
+        bottom="8px"
         left="0"
         width="5%"
-        height="100px"
+        height="65px"
         overflow="hidden"
         zIndex={2}
+        opacity="0.7"
       >
         {/* CN Tower */}
         <Box
           position="absolute"
-          bottom="10px"
+          bottom="8px"
           left="30%"
           width="3px"
-          height="60px"
+          height="45px"
           backgroundColor="#C0C0C0"
         >
           {/* CN Tower pod */}
           <Box
             position="absolute"
-            top="40px"
+            top="30px"
             left="-2px"
             width="7px"
-            height="8px"
+            height="6px"
             backgroundColor="#E0E0E0"
             borderRadius="50%"
           />
@@ -241,17 +244,17 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
         
         {/* City buildings */}
         {[
-          { left: "10%", width: "8px", height: "35px", color: "#4A4A4A" },
-          { left: "20%", width: "10px", height: "45px", color: "#5A5A5A" },
-          { left: "40%", width: "12px", height: "40px", color: "#6A6A6A" },
-          { left: "55%", width: "9px", height: "38px", color: "#4A4A4A" },
-          { left: "67%", width: "11px", height: "42px", color: "#5A5A5A" },
-          { left: "80%", width: "8px", height: "32px", color: "#6A6A6A" },
+          { left: "10%", width: "8px", height: "25px", color: "#4A4A4A" },
+          { left: "20%", width: "10px", height: "32px", color: "#5A5A5A" },
+          { left: "40%", width: "12px", height: "28px", color: "#6A6A6A" },
+          { left: "55%", width: "9px", height: "26px", color: "#4A4A4A" },
+          { left: "67%", width: "11px", height: "30px", color: "#5A5A5A" },
+          { left: "80%", width: "8px", height: "22px", color: "#6A6A6A" },
         ].map((building, i) => (
           <Box
             key={`toronto-${i}`}
             position="absolute"
-            bottom="10px"
+            bottom="8px"
             left={building.left}
             width={building.width}
             height={building.height}
@@ -263,7 +266,7 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
               <Box
                 key={j}
                 position="absolute"
-                top={`${10 + j * 8}px`}
+                top={`${8 + j * 6}px`}
                 left="2px"
                 width="2px"
                 height="2px"
@@ -279,20 +282,21 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
       {/* Trees and lakes background for first quarter */}
       <Box
         position="absolute"
-        bottom="20px"
+        bottom="15px"
         left="5%"
         width="20%"
-        height="100px"
+        height="60px"
         overflow="hidden"
         zIndex={2}
+        opacity="0.7"
       >
         {/* Rolling hills background */}
         <Box
           position="absolute"
-          bottom="30px"
+          bottom="22px"
           left="0"
           width="100%"
-          height="15px"
+          height="12px"
           backgroundColor="#7CB342"
           opacity="0.6"
           style={{
@@ -303,20 +307,20 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
         {/* Lakes */}
         <Box
           position="absolute"
-          bottom="15px"
+          bottom="12px"
           left="5%"
           width="15%"
-          height="12px"
+          height="8px"
           backgroundColor="#4A90E2"
           borderRadius="50px"
           opacity="0.8"
         />
         <Box
           position="absolute"
-          bottom="8px"
+          bottom="6px"
           left="60%"
           width="20%"
-          height="8px"
+          height="6px"
           backgroundColor="#4A90E2"
           borderRadius="50px"
           opacity="0.7"
@@ -325,8 +329,8 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
         {/* Trees */}
         {[...Array(8)].map((_, i) => {
           const leftPercent = (i * 12) + (Math.sin(i * 2) * 3);
-          const height = 20 + (Math.sin(i * 1.5) * 8);
-          const bottom = 20 + (Math.sin(i * 0.8) * 5);
+          const height = 14 + (Math.sin(i * 1.5) * 5);
+          const bottom = 15 + (Math.sin(i * 0.8) * 3);
           const treeType = i % 3;
           
           return (
@@ -348,20 +352,21 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
       {/* Farm landscape for second quarter */}
       <Box
         position="absolute"
-        bottom="20px"
+        bottom="15px"
         left="25%"
         width="50%"
-        height="100px"
+        height="60px"
         overflow="hidden"
         zIndex={2}
+        opacity="0.7"
       >
         {/* Rolling hills */}
         <Box
           position="absolute"
-          bottom="30px"
+          bottom="22px"
           left="0"
           width="100%"
-          height="12px"
+          height="8px"
           backgroundColor="#7CB342"
           opacity="0.6"
           style={{
@@ -372,20 +377,20 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
         {/* Farm fields */}
         <Box
           position="absolute"
-          bottom="20px"
+          bottom="15px"
           left="10%"
           width="30%"
-          height="12px"
+          height="8px"
           backgroundColor="#8BC34A"
           borderRadius="2px"
           opacity="0.8"
         />
         <Box
           position="absolute"
-          bottom="20px"
+          bottom="15px"
           left="45%"
           width="35%"
-          height="15px"
+          height="10px"
           backgroundColor="#9CCC65"
           borderRadius="2px"
           opacity="0.7"
@@ -394,20 +399,20 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
         {/* Barn */}
         <Box
           position="absolute"
-          bottom="25px"
+          bottom="18px"
           left="15%"
-          width="20px"
-          height="18px"
+          width="15px"
+          height="12px"
           backgroundColor="#8D6E63"
           borderRadius="2px"
         >
           {/* Barn roof */}
           <Box
             position="absolute"
-            top="-8px"
-            left="-2px"
-            width="24px"
-            height="12px"
+            top="-6px"
+            left="-1px"
+            width="17px"
+            height="8px"
             backgroundColor="#D32F2F"
             style={{
               clipPath: "polygon(50% 0%, 0% 100%, 100% 100%)"
@@ -418,8 +423,8 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
         {/* Farm animals and crops */}
         {[...Array(20)].map((_, i) => {
           const leftPercent = (i * 4.5) + (Math.sin(i * 2) * 2);
-          const height = 14 + (Math.sin(i * 1.5) * 4);
-          const bottom = 20 + (Math.sin(i * 0.8) * 3);
+          const height = 10 + (Math.sin(i * 1.5) * 3);
+          const bottom = 15 + (Math.sin(i * 0.8) * 2);
           const elementType = i % 6;
           
           return (
@@ -446,10 +451,10 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
           <Box
             key={`fence-${i}`}
             position="absolute"
-            bottom="20px"
+            bottom="15px"
             left={`${5 + i * 12}%`}
             width="2px"
-            height="12px"
+            height="8px"
             backgroundColor="#8D6E63"
             opacity="0.6"
           />
@@ -459,20 +464,21 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
       {/* Lake and mountains landscape */}
       <Box
         position="absolute"
-        bottom="20px"
+        bottom="15px"
         left="75%"
         width="20%"
-        height="100px"
+        height="60px"
         overflow="hidden"
         zIndex={2}
+        opacity="0.7"
       >
         {/* Mountain ranges */}
         <Box
           position="absolute"
-          bottom="25px"
+          bottom="18px"
           left="0"
           width="100%"
-          height="20px"
+          height="15px"
           backgroundColor="#6B7C93"
           opacity="0.6"
           style={{
@@ -481,10 +487,10 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
         />
         <Box
           position="absolute"
-          bottom="30px"
+          bottom="22px"
           left="0"
           width="100%"
-          height="15px"
+          height="10px"
           backgroundColor="#8B9DC3"
           opacity="0.5"
           style={{
@@ -495,10 +501,10 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
         {/* Large lake */}
         <Box
           position="absolute"
-          bottom="8px"
+          bottom="6px"
           left="10%"
           width="80%"
-          height="15px"
+          height="10px"
           backgroundColor="#2E7DD2"
           borderRadius="20px"
           opacity="0.8"
@@ -507,7 +513,7 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
         {/* Reflective water shimmer */}
         <Box
           position="absolute"
-          bottom="10px"
+          bottom="8px"
           left="15%"
           width="70%"
           height="2px"
@@ -519,8 +525,8 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
         {/* Scenic elements */}
         {[...Array(6)].map((_, i) => {
           const leftPercent = (i * 15) + (Math.sin(i * 3) * 5);
-          const height = 15 + (Math.sin(i * 2) * 5);
-          const bottom = 20 + (Math.sin(i * 1.5) * 4);
+          const height = 12 + (Math.sin(i * 2) * 3);
+          const bottom = 15 + (Math.sin(i * 1.5) * 3);
           const elementType = i % 3;
           
           return (
@@ -542,20 +548,21 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
       {/* Vancouver city skyline at end */}
       <Box
         position="absolute"
-        bottom="10px"
+        bottom="8px"
         left="95%"
         width="5%"
-        height="100px"
+        height="65px"
         overflow="hidden"
         zIndex={2}
+        opacity="0.7"
       >
         {/* Mountains backdrop */}
         <Box
           position="absolute"
-          bottom="40px"
+          bottom="30px"
           left="0"
           width="100%"
-          height="25px"
+          height="18px"
           backgroundColor="#6B7C93"
           opacity="0.4"
           style={{
@@ -565,18 +572,18 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
         
         {/* City buildings */}
         {[
-          { left: "5%", width: "9px", height: "42px", color: "#4A4A4A" },
-          { left: "18%", width: "11px", height: "50px", color: "#5A5A5A" },
-          { left: "32%", width: "10px", height: "38px", color: "#6A6A6A" },
-          { left: "45%", width: "12px", height: "55px", color: "#4A4A4A" },
-          { left: "60%", width: "8px", height: "35px", color: "#5A5A5A" },
-          { left: "72%", width: "10px", height: "45px", color: "#6A6A6A" },
-          { left: "85%", width: "9px", height: "40px", color: "#4A4A4A" },
+          { left: "5%", width: "9px", height: "30px", color: "#4A4A4A" },
+          { left: "18%", width: "11px", height: "35px", color: "#5A5A5A" },
+          { left: "32%", width: "10px", height: "26px", color: "#6A6A6A" },
+          { left: "45%", width: "12px", height: "38px", color: "#4A4A4A" },
+          { left: "60%", width: "8px", height: "24px", color: "#5A5A5A" },
+          { left: "72%", width: "10px", height: "32px", color: "#6A6A6A" },
+          { left: "85%", width: "9px", height: "28px", color: "#4A4A4A" },
         ].map((building, i) => (
           <Box
             key={`vancouver-${i}`}
             position="absolute"
-            bottom="10px"
+            bottom="8px"
             left={building.left}
             width={building.width}
             height={building.height}
@@ -588,7 +595,7 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
               <Box
                 key={j}
                 position="absolute"
-                top={`${8 + j * 7}px`}
+                top={`${6 + j * 5}px`}
                 left="2px"
                 width="2px"
                 height="2px"
@@ -603,18 +610,18 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
         {/* City elements */}
         <Box
           position="absolute"
-          bottom="25px"
+          bottom="18px"
           left="15%"
-          fontSize="12px"
+          fontSize="10px"
           opacity="0.7"
         >
           🌊
         </Box>
         <Box
           position="absolute"
-          bottom="45px"
+          bottom="32px"
           left="70%"
-          fontSize="10px"
+          fontSize="8px"
           opacity="0.6"
         >
           🏔️
@@ -689,11 +696,11 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
       >
         <Box
           position="absolute"
-          bottom="19px"
+          bottom="13px"
           left={`${scrollProgress * 100}%`}
           transition="left 0.1s ease-out"
-          fontSize="2.8rem"
-          filter="drop-shadow(0 3px 6px rgba(0,0,0,0.3))"
+          fontSize="2.2rem"
+          filter="drop-shadow(0 2px 4px rgba(0,0,0,0.3))"
           zIndex={3}
           transform={`translateX(-${scrollProgress * 100}%)`}
           cursor={isDragging ? 'grabbing' : 'grab'}
@@ -710,11 +717,11 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
               <Box
                 key={i}
                 position="absolute"
-                top={`${-5 - i * 6}px`}
-                left={`${120 + i * 4}px`}
+                top={`${-4 - i * 5}px`}
+                left={`${100 + i * 3}px`}
                 animation={scrollProgress > 0.05 ? `${smokeAnimation} ${1.5 + i * 0.2}s infinite` : 'none'}
                 opacity="0.7"
-                fontSize="1.2rem"
+                fontSize="1.0rem"
                 style={{
                   animationDelay: `${i * 0.3}s`,
                 }}
@@ -729,7 +736,7 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
             {/* Wagon 1 */}
             <Box 
               position="relative" 
-              fontSize="2.0rem" 
+              fontSize="1.6rem" 
               marginRight="1px"
               animation={scrollProgress > 0.05 ? `${trainWobbleAnimation} 0.8s infinite` : 'none'}
               style={{ animationDelay: '0.3s' }}
@@ -739,8 +746,8 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
               <Box
                 position="absolute"
                 bottom="-2px"
-                left="6px"
-                fontSize="0.6rem"
+                left="5px"
+                fontSize="0.5rem"
                 animation={scrollProgress > 0.05 ? `${wheelRotateAnimation} 0.3s infinite linear` : 'none'}
               >
                 ⚙️
@@ -748,8 +755,8 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
               <Box
                 position="absolute"
                 bottom="-2px"
-                right="6px"
-                fontSize="0.6rem"
+                right="5px"
+                fontSize="0.5rem"
                 animation={scrollProgress > 0.05 ? `${wheelRotateAnimation} 0.3s infinite linear` : 'none'}
                 style={{ animationDelay: '0.1s' }}
               >
@@ -760,7 +767,7 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
             {/* Wagon 2 */}
             <Box 
               position="relative" 
-              fontSize="2.2rem" 
+              fontSize="1.8rem" 
               marginRight="1px"
               animation={scrollProgress > 0.05 ? `${trainWobbleAnimation} 0.7s infinite` : 'none'}
               style={{ animationDelay: '0.2s' }}
@@ -770,8 +777,8 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
               <Box
                 position="absolute"
                 bottom="-2px"
-                left="7px"
-                fontSize="0.6rem"
+                left="6px"
+                fontSize="0.5rem"
                 animation={scrollProgress > 0.05 ? `${wheelRotateAnimation} 0.3s infinite linear` : 'none'}
               >
                 ⚙️
@@ -779,8 +786,8 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
               <Box
                 position="absolute"
                 bottom="-2px"
-                right="7px"
-                fontSize="0.6rem"
+                right="6px"
+                fontSize="0.5rem"
                 animation={scrollProgress > 0.05 ? `${wheelRotateAnimation} 0.3s infinite linear` : 'none'}
                 style={{ animationDelay: '0.05s' }}
               >
@@ -791,7 +798,7 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
             {/* Wagon 3 */}
             <Box 
               position="relative" 
-              fontSize="2.2rem" 
+              fontSize="1.8rem" 
               marginRight="1px"
               animation={scrollProgress > 0.05 ? `${trainWobbleAnimation} 0.9s infinite` : 'none'}
               style={{ animationDelay: '0.1s' }}
@@ -801,8 +808,8 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
               <Box
                 position="absolute"
                 bottom="-2px"
-                left="7px"
-                fontSize="0.6rem"
+                left="6px"
+                fontSize="0.5rem"
                 animation={scrollProgress > 0.05 ? `${wheelRotateAnimation} 0.3s infinite linear` : 'none'}
               >
                 ⚙️
@@ -810,8 +817,8 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
               <Box
                 position="absolute"
                 bottom="-2px"
-                right="7px"
-                fontSize="0.6rem"
+                right="6px"
+                fontSize="0.5rem"
                 animation={scrollProgress > 0.05 ? `${wheelRotateAnimation} 0.3s infinite linear` : 'none'}
                 style={{ animationDelay: '0.2s' }}
               >
@@ -822,6 +829,7 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
             {/* Locomotive */}
             <Box 
               position="relative" 
+              fontSize="2.2rem"
               animation={scrollProgress > 0.05 ? `${locomotiveWobbleAnimation} 0.6s infinite` : 'none'}
               transform={scrollProgress <= 0.05 ? "scaleX(-1)" : "none"}
             >
@@ -830,8 +838,8 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
               <Box
                 position="absolute"
                 bottom="-2px"
-                left="8px"
-                fontSize="0.6rem"
+                left="7px"
+                fontSize="0.5rem"
                 animation={scrollProgress > 0.05 ? `${wheelRotateAnimation} 0.3s infinite linear` : 'none'}
               >
                 ⚙️
@@ -839,8 +847,8 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
               <Box
                 position="absolute"
                 bottom="-2px"
-                right="8px"
-                fontSize="0.6rem"
+                right="7px"
+                fontSize="0.5rem"
                 animation={scrollProgress > 0.05 ? `${wheelRotateAnimation} 0.3s infinite linear` : 'none'}
                 style={{ animationDelay: '0.15s' }}
               >
