@@ -10,6 +10,7 @@ import {
 import { GetStaticPropsContext } from "next";
 import dynamic from "next/dynamic";
 import Head from "next/head";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -63,13 +64,15 @@ export default function Activity({ activity }: StaticProps["props"]) {
                 <Box className="activity-description"  p="30px">
                     <Flex>
                         <Box w="9%">
-                            <ChakraLink href="/activities">
-                                <Icon
-                                    cursor="pointer"
-                                    fontSize="40px"
-                                    as={BsArrowLeftSquare}
-                                />
-                            </ChakraLink>
+                            <Link href="/activities" locale={locale} passHref>
+                                <ChakraLink>
+                                    <Icon
+                                        cursor="pointer"
+                                        fontSize="40px"
+                                        as={BsArrowLeftSquare}
+                                    />
+                                </ChakraLink>
+                            </Link>
                         </Box>
                         <Box
                             pt="7px"

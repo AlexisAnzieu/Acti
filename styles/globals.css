@@ -168,7 +168,24 @@ a:hover {
   display: none !important;
 }
 
+.activity-flex {
+  display: flex;
+  flex-direction: row;
+}
+
 @media screen and (max-width: 1000px) {
+  .activity-flex {
+    flex-direction: column-reverse;
+  }
+  
+  .activity-flex > div:last-child {
+    height: 100px;
+  }
+  
+  .activity-flex > div:last-child .leaflet-container {
+    height: 100px;
+  }
+  
   .floating-button {
     width: 50px;
     height: 50px;
