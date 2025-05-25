@@ -102,21 +102,6 @@ const DayCard = ({ title, content, imageUrl, index }: any) => (
     backgroundColor={`hsl(${index * 45}, 85%, 97%)`}
     position="relative"
   >
-    {index < 3 && (
-      <Box
-        position="absolute"
-        right="20px"
-        top="50%"
-        transform="translateY(-50%)"
-        fontSize="24px"
-        opacity="0.5"
-        animation={`${pulseAnimation} 2s infinite`}
-        _hover={{ opacity: 0.8 }}
-        zIndex={10}
-      >
-        👉
-      </Box>
-    )}
     <Box
       height="100vh"
       overflowY="auto"
@@ -724,48 +709,6 @@ export default function TransCanadian() {
         ))}
       </Box>
 
-      {/* Progress indicator */}
-      <Box
-        position="fixed"
-        top="20px"
-        right="20px"
-        backgroundColor="white"
-        padding="15px 20px"
-        borderRadius="lg"
-        boxShadow="lg"
-        fontSize="lg"
-        fontWeight="bold"
-        zIndex={3}
-        display="flex"
-        alignItems="center"
-        gap="10px"
-      >
-        <Box fontSize="xl">🚉</Box>
-        Station {Math.min(Math.ceil(scrollProgress * 4), 4)} of 4
-      </Box>
-
-      {/* Scroll instructions */}
-      {showInstructions && (
-        <Box
-          position="fixed"
-          bottom="160px"
-          left="50%"
-          transform="translateX(-50%)"
-          backgroundColor="white"
-          padding="15px 25px"
-          borderRadius="full"
-          boxShadow="lg"
-          fontSize="lg"
-          animation={`${fadeInAnimation} 0.5s ease-out, ${fadeInAnimation} 0.5s ease-in reverse forwards 3.5s`}
-          display="flex"
-          alignItems="center"
-          gap="10px"
-          zIndex={3}
-        >
-          <Box>👆</Box>
-          Drag horizontally to explore the journey
-        </Box>
-      )}
     </Box>
   );
 }
