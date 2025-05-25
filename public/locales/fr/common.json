@@ -1,4 +1,13 @@
 {
+    "chooseYourAdventure": "Choisissez Votre Aventure",
+    "activities": {
+        "title": "Activités",
+        "description": "Découvrez des activités uniques à travers le Québec"
+    },
+    "trips": {
+        "title": "Voyages",
+        "description": "Explorez des itinéraires de voyage lents au départ du Québec"
+    },
     "searchActivity": "Rechercher",
     "season": {
         "summer": "été",

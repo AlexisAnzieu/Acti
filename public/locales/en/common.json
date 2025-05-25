@@ -1,4 +1,13 @@
 {
+    "chooseYourAdventure": "Choose Your Adventure",
+    "activities": {
+        "title": "Activities",
+        "description": "Discover unique activities across Québec"
+    },
+    "trips": {
+        "title": "Trips",
+        "description": "Explore curated slow travel itineraries from Québec"
+    },
     "searchActivity": "Search",
     "season": {
         "summer": "summer",
