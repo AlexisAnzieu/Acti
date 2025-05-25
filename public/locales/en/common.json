@@ -9,6 +9,11 @@
         "description": "Explore curated slow travel itineraries from Québec"
     },
     "searchActivity": "Search",
+    "filters": "Filters",
+    "accessibility": "Accessibility",
+    "carbonFootprint": "Carbon Footprint",
+    "price": "Price",
+    "seasons": "Seasons",
     "season": {
         "summer": "summer",
         "winter": "winter",

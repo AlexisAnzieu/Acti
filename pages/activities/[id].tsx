@@ -63,7 +63,7 @@ export default function Activity({ activity }: StaticProps["props"]) {
                 <Box className="activity-description">
                     <Flex>
                         <Box w="9%">
-                            <ChakraLink href="/">
+                            <ChakraLink href="/activities">
                                 <Icon
                                     cursor="pointer"
                                     fontSize="40px"

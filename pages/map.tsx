@@ -11,9 +11,13 @@ import { BsGrid } from "react-icons/bs";
 
 import { Locale } from "../component/NavbarComponent";
 import { definitions } from "../type/supabase";
-import { GetServerSideProps, searchApi } from ".";
+import { searchApi } from "./activities";
 
-export default function Map(props: GetServerSideProps["props"]) {
+type Props = {
+    activities: definitions["activity"][];
+};
+
+export default function Map(props: Props) {
     const { t } = useTranslation("common");
     const router = useRouter();
     const MapWithNoSSR = dynamic(() => import("../component/MapComponent"), {

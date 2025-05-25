@@ -25,27 +25,110 @@ a {
   height: 95vh;
 }
 
-.search-bar {
-  width: 93% !important;
+.filter-header {
+  margin: 0 24px;
+  transition: all 0.2s ease;
+  border: 1px solid rgba(0, 128, 128, 0.1);
+  position: relative;
+  z-index: 2;
 }
 
-.activity-flex {
-  display: flex !important;
+.filter-header:hover {
+  border-color: teal;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
 .filters {
-  display: inline-flex !important;
-  padding: 10px 15px 10px 15px;
+  display: flex !important;
+  flex-wrap: wrap;
+  gap: 36px;
+  padding: 24px;
+  background: linear-gradient(to right bottom, rgba(0, 128, 128, 0.05), rgba(0, 128, 128, 0.02));
+  border-radius: 20px;
+  margin: 0 24px;
+  align-items: flex-start;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 128, 128, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transform-origin: top;
+  visibility: visible;
+  transition: all 0.3s ease, padding 0.3s ease, margin 0.3s ease;
+}
+
+.filters[style*="height: 0"] {
+  margin: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  border-color: transparent;
 }
 
 .sliderFilter {
-  margin-left: 30px;
-  width: 200px;
+  width: 220px;
+  transition: all 0.3s ease;
+  padding: 12px 0;
+  margin-top: 4px;
 }
 
-.activity-description {
+.activity-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  padding: 0 24px 24px 24px;
   width: 100%;
-  padding: 2%;
+  grid-auto-rows: 1fr;
+}
+
+.activity-grid > * {
+  height: 100%;
+}
+
+.activity-list {
+  padding: 24px;
+  min-height: 100vh;
+  background: #fafafa;
+}
+
+.filter-label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: rgb(74, 85, 104);
+  margin-bottom: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 6px;
+}
+
+.filter-label::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 24px;
+  height: 2px;
+  background-color: teal;
+  border-radius: 2px;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  min-width: 220px;
+  position: relative;
+}
+
+.filter-group badge {
+  transition: all 0.2s ease;
+}
+
+.filter-group badge:hover {
+  transform: translateY(-1px);
 }
 
 .floating-button {
@@ -53,15 +136,24 @@ a {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  width: 90px;
-  height: 90px;
-  font-size: 50px;
+  width: 60px;
+  height: 60px;
+  font-size: 30px;
   background-color: teal;
   color: #fff;
-  border-radius: 50px;
+  border-radius: 50%;
   text-align: center;
-  box-shadow: 2px 2px 3px #999;
+  box-shadow: 0 4px 12px rgba(0, 128, 128, 0.3);
   z-index: 100;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.floating-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 128, 128, 0.4);
 }
 
 .help-button-desktop {
@@ -76,40 +168,37 @@ a {
   .floating-button {
     width: 50px;
     height: 50px;
-    font-size: 28px;
+    font-size: 24px;
   }
 
-  .activity-flex {
-    display: inline !important;
+  .filter-header {
+    margin: 0 16px;
+    font-size: 14px;
   }
 
   .filters {
-    display: inline !important;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 20px;
+    gap: 24px;
+  }
+
+  .filter-group {
+    width: 100%;
   }
 
   .sliderFilter {
-    margin-top: 10px;
-    margin-left: 17%;
-    width: 65%;
+    width: 100%;
+  }
+
+  .activity-grid {
+    padding: 16px;
+    gap: 16px;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .activity-list {
-    text-align: center !important;
-  }
-
-  .search-bar {
-    width: 90% !important;
-  }
-
-  .detail-map {
-    height: 30vh !important;
-  }
-  .map {
-    height: 110vh !important;
-  }
-
-  .activity-description {
-    padding: 7%;
+    padding: 16px;
   }
 }
 
@@ -121,110 +210,4 @@ a {
   .help-button-mobile {
     display: block !important;
   }
-}
-
-.timeline {
-  font-size: 18px;
-}
-
-/* Card container */
-.card {
-  position: relative;
-}
-
-/* setting padding based on even or odd */
-.card:nth-child(odd) {
-  padding: 30px 0 30px 30px;
-}
-.card:nth-child(even) {
-  padding: 30px 30px 30px 0;
-}
-/* Global ::before */
-.card::before {
-  z-index: -1;
-  content: "";
-  position: absolute;
-  width: 50%;
-  border: solid rgb(18, 139, 125);
-}
-
-/* Setting the border of top, bottom, left */
-.card:nth-child(odd)::before {
-  left: 0px;
-  top: -5px;
-  bottom: -5px;
-  border-width: 5px 0 5px 5px;
-  border-radius: 50px 0 0 50px;
-}
-
-/* Setting the border of top, bottom, right */
-.card:nth-child(even)::before {
-  right: 0;
-  top: 0;
-  bottom: 0;
-  border-width: 5px 5px 5px 0;
-  border-radius: 0 50px 50px 0;
-}
-
-/* Removing the border if it is the first card */
-.card:first-child::before {
-  border-top: 0;
-  border-top-left-radius: 0;
-}
-
-/* Removing the border if it is the last card  and it's odd */
-.card:last-child:nth-child(odd)::before {
-  border-bottom: 0;
-  border-bottom-left-radius: 0;
-}
-
-/* Removing the border if it is the last card  and it's even */
-.card:last-child:nth-child(even)::before {
-  border-bottom: 0;
-  border-bottom-right-radius: 0;
-}
-
-/* Information about the timeline */
-.info {
-  text-align: justify;
-  background: #e6fff1c9;
-  color: rgb(73, 73, 73);
-  border-radius: 10px;
-  padding: 10px;
-  z-index: 0;
-  line-height: 30px;
-}
-
-/* Title of the card */
-.title {
-  margin-bottom: 15px;
-  color: rgb(21, 62, 9);
-  position: relative;
-  font-weight: bold;
-}
-
-/* Timeline dot  */
-.title::before {
-  content: "";
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  background: white;
-  border-radius: 999px;
-  border: 3px solid rgb(16, 90, 61);
-}
-
-/* text right if the card is even  */
-.card:nth-child(even) > .info > .title {
-  text-align: right;
-}
-
-/* setting dot to the left if the card is odd */
-.card:nth-child(odd) > .info > .title::before {
-  left: -45px;
-}
-
-/* setting dot to the right if the card is odd */
-.card:nth-child(even) > .info > .title::before {
-  right: -45px;
 }

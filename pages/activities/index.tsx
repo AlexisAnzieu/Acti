@@ -28,7 +28,7 @@ import Link from "next/link";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import React, { useEffect, useState } from "react";
-import { BsCurrencyDollar, BsMap, BsSearch } from "react-icons/bs";
+import { BsCurrencyDollar, BsMap, BsSearch, BsChevronDown, BsFilter } from "react-icons/bs";
 import { GiEarthAmerica } from "react-icons/gi";
 
 import CarbonIconComponent, {
@@ -64,19 +64,30 @@ const BuildNewsletterActivity = () => {
   return (
     <Box
       key="newsletterActivity"
-      borderRadius="lg"
-      boxShadow="md"
-      display="inline-block"
-      margin="5px"
-      height="334px"
-      width="300px"
+      borderRadius="xl"
+      borderWidth="1px"
+      boxShadow="lg"
       overflow="hidden"
-      p="5"
-      textAlign="left"
+      transition="all 0.3s ease"
+      _hover={{
+        transform: "translateY(-4px)",
+        boxShadow: "2xl",
+      }}
+      bg="white"
+      p="6"
+      height="400px"
+      display="flex"
+      flexDirection="column"
+      justifyContent="center"
     >
-      {t("noActivityMatching")}
-      <br />
-      <br />
+      <Box
+        mb="4"
+        fontSize="lg"
+        fontWeight="bold"
+        color="gray.700"
+      >
+        {t("noActivityMatching")}
+      </Box>
       <NewsletterComponent />
     </Box>
   );
@@ -92,85 +103,94 @@ const BuildActivity = (activity: definitions["activity"], locale: Locale) => {
       href={`${locale}/activities/${activity.slug}`}
     >
       <Box
-        borderRadius="lg"
+        borderRadius="xl"
         borderWidth="1px"
         boxShadow="lg"
         cursor="pointer"
-        display="inline-block"
-        margin="5px"
-        maxW="300px"
         overflow="hidden"
         role="group"
         textAlign="left"
+        transition="all 0.3s ease"
+        _hover={{
+          transform: "translateY(-4px)",
+          boxShadow: "2xl",
+        }}
+        bg="white"
+        height="400px"
+        display="flex"
+        flexDirection="column"
       >
-        <Box
-          width="300px"
-          height="200px"
-          transitionDuration="400ms"
-          position="relative"
-          _groupHover={{ height: "0px" }}
-        >
+        <Box position="relative" height="200px" overflow="hidden">
           <NextImage
             layout="fill"
+            objectFit="cover"
             alt={activity.picture_url}
             src={activity.picture_url}
           />
-        </Box>
-
-        <Box
-          height="134px"
-          transitionDuration="400ms"
-          p="5"
-          _groupHover={{ height: "334px" }}
-        >
-          {activity.seasons && (
-            <Box display="flex" alignItems="baseline">
-              {activity.seasons.map((s: string) => (
-                <Badge
-                  borderRadius="full"
-                  colorScheme="teal"
-                  key={s}
-                  mr="1"
-                  px="1.5"
-                  variant="solid"
-                >
-                  {t(`season.${s}`)}
-                </Badge>
-              ))}
+          {activity.description?.[locale] && (
+            <Box
+              position="absolute"
+              top="100%"
+              left="0"
+              right="0"
+              bg="rgba(255, 255, 255, 0.95)"
+              p="6"
+              height="200px"
+              overflowY="auto"
+              transition="all 0.3s ease"
+              _groupHover={{ top: "0" }}
+            >
+              <Box color="gray.600" fontSize="sm">
+                {activity.description[locale].length < MAX_DESCRIPTION_LENGTH
+                  ? activity.description[locale]
+                  : `${activity.description[locale].substring(
+                      0,
+                      MAX_DESCRIPTION_LENGTH
+                    )} [...]`}
+              </Box>
             </Box>
           )}
+        </Box>
+
+        <Box p="6" flex="1" display="flex" flexDirection="column" justifyContent="space-between">
+          <Flex flexWrap="wrap" gap="2" mb="3">
+            {(activity.seasons || []).map((s: string) => (
+              <Badge
+                borderRadius="full"
+                colorScheme="teal"
+                key={s}
+                px="2"
+                py="1"
+                variant="solid"
+                fontSize="xs"
+              >
+                {t(`season.${s}`)}
+              </Badge>
+            ))}
+          </Flex>
 
           <Box
-            as="h4"
-            color="gray.600"
-            fontWeight="semibold"
+            as="h3"
+            color="gray.700"
+            fontWeight="bold"
+            fontSize="lg"
+            mb="3"
             isTruncated
-            lineHeight="tight"
-            mt="1"
           >
             {activity.name?.[locale]} {activity.compagny}
           </Box>
 
-          <Box display="flex" alignItems="center">
-            <PriceIconComponent price={activity.price} fontSize="18px" />
-          </Box>
-          <Box display="flex" alignItems="center">
-            <CarbonIconComponent
-              carbon_footprint={activity.carbon_footprint}
-              fontSize="18px"
-            />
-          </Box>
-
-          {activity.description?.[locale] && (
-            <Box mt="15px">
-              {activity.description?.[locale].length < MAX_DESCRIPTION_LENGTH
-                ? activity.description?.[locale]
-                : `${activity.description?.[locale].substring(
-                    0,
-                    MAX_DESCRIPTION_LENGTH
-                  )} [...]`}
+          <Flex gap="4">
+            <Box display="flex" alignItems="center">
+              <PriceIconComponent price={activity.price} fontSize="20px" />
             </Box>
-          )}
+            <Box display="flex" alignItems="center">
+              <CarbonIconComponent
+                carbon_footprint={activity.carbon_footprint}
+                fontSize="20px"
+              />
+            </Box>
+          </Flex>
         </Box>
       </Box>
     </ChakraLink>
@@ -195,14 +215,14 @@ const ActivityList = (props: {
     );
   }
   return (
-    <>
+    <Box className="activity-grid">
       {[
         ...props?.activities.map((activity) =>
           BuildActivity(activity, props.locale)
         ),
         BuildNewsletterActivity(),
       ]}
-    </>
+    </Box>
   );
 };
 
@@ -211,6 +231,7 @@ export default function Activities() {
   const router = useRouter();
   const [locale] = useState(router.locale as Locale);
   const { t } = useTranslation("common");
+  const [showFilters, setShowFilters] = useState(false);
 
   const [activities, setActivities] = useState([]);
 
@@ -283,28 +304,60 @@ export default function Activities() {
           key="ogpic"
         />
       </Head>
-      <Flex margin="30px 0px 10px 10px">
-        <InputGroup>
-          <InputLeftElement
-            pointerEvents="none"
-            children={<Icon fontSize="20px" as={BsSearch} color="gray.700" />}
-          />
-          <Input
-            className="search-bar"
-            defaultValue={router.query.query}
-            fontSize="30px"
-            onChange={(e) => paramHandler("query", e.target.value)}
-            placeholder={t("searchActivity")}
-            variant="md"
-          />
-        </InputGroup>
-      </Flex>
-
-      <Divider className="search-bar" m="0% 2% 20px 2% " />
-
       <Box className="activity-list">
-        <Box className="filters">
-          <Box mb="20px">
+        <Flex mb="4" px="6" gap="3" alignItems="center">
+          <Flex 
+            className="filter-header" 
+            onClick={() => setShowFilters(!showFilters)}
+            cursor="pointer"
+            alignItems="center"
+            bg="white"
+            p="2"
+            px="3"
+            borderRadius="full"
+            boxShadow="sm"
+            height="40px"
+            _hover={{ bg: "gray.50" }}
+          >
+            <Icon as={BsFilter} fontSize="16px" mr="2" color="gray.600" />
+            <Box fontSize="sm" color="gray.600" mr="2">{t("filters")}</Box>
+            <Icon
+              as={BsChevronDown}
+              fontSize="12px"
+              transform={showFilters ? "rotate(180deg)" : "none"}
+              transition="transform 0.2s"
+              color="gray.600"
+            />
+          </Flex>
+          <InputGroup size="md" flex="1">
+            <InputLeftElement
+              pointerEvents="none"
+              children={<Icon fontSize="16px" as={BsSearch} color="gray.600" />}
+            />
+            <Input
+              defaultValue={router.query.query}
+              onChange={(e) => paramHandler("query", e.target.value)}
+              placeholder={t("searchActivity")}
+              variant="filled"
+              bg="white"
+              _hover={{ bg: "gray.50" }}
+              _focus={{ bg: "white" }}
+              fontSize="sm"
+              borderRadius="full"
+            />
+          </InputGroup>
+        </Flex>
+
+        <Box 
+          className="filters"
+          height={showFilters ? "auto" : "0"}
+          opacity={showFilters ? "1" : "0"}
+          overflow="hidden"
+          transition="all 0.3s ease"
+          mb={showFilters ? "6" : "0"}
+        >
+          <Box className="filter-group" mb="20px">
+            <Box className="filter-label">{t("seasons")}</Box>
             {seasons.map((season) => (
               <Badge
                 cursor="pointer"
@@ -314,103 +367,147 @@ export default function Activities() {
                 onClick={(e) =>
                   paramHandler("season", (e.target as HTMLTextAreaElement).id)
                 }
-                mr="1"
+                mr="2"
+                mb="2"
                 fontSize="1em"
                 borderRadius="full"
-                px="2"
+                px="4"
+                py="2"
                 colorScheme="teal"
+                transition="all 0.2s"
+                _hover={{
+                  transform: "translateY(-1px)",
+                  boxShadow: "sm"
+                }}
+                role="button"
+                aria-pressed={router.query.season === season}
               >
                 {t(`season.${season}`)}
               </Badge>
             ))}
           </Box>
-          <Box className="sliderFilter" key={router.query?.price as string}>
-            <RangeSlider
-              onChangeEnd={(value: number[]) => paramHandler("price", value)}
-              defaultValue={
-                router?.query?.price
-                  ? (router?.query?.price as string).split(",").map((v) => +v)
-                  : [0, 3]
-              }
-              min={0}
-              max={3}
-              step={1}
-            >
-              <RangeSliderTrack bg="teal.100">
-                <RangeSliderFilledTrack bg="teal" />
-              </RangeSliderTrack>
-              <Tooltip placement="top" hasArrow label={t("priceFilterMin")}>
-                <RangeSliderThumb boxSize={6} index={0}>
-                  <Box color="teal" as={BsCurrencyDollar} />
-                </RangeSliderThumb>
-              </Tooltip>
-              <Tooltip placement="top" hasArrow label={t("priceFilterMax")}>
-                <RangeSliderThumb boxSize={6} index={1}>
-                  <Box color="teal" as={BsCurrencyDollar} />
-                </RangeSliderThumb>
-              </Tooltip>
-            </RangeSlider>
+
+          <Box className="filter-group">
+            <Box className="filter-label">{t("price")}</Box>
+            <Box className="sliderFilter">
+              <RangeSlider
+                onChangeEnd={(value: number[]) => paramHandler("price", value)}
+                defaultValue={
+                  router?.query?.price
+                    ? (router?.query?.price as string).split(",").map((v) => +v)
+                    : [0, 3]
+                }
+                min={0}
+                max={3}
+                step={1}
+                aria-label={["Minimum price", "Maximum price"]}
+                focusThumbOnChange={true}
+              >
+                <RangeSliderTrack bg="teal.100" h="3px">
+                  <RangeSliderFilledTrack bg="teal" />
+                </RangeSliderTrack>
+                <Tooltip placement="top" hasArrow label={t("priceFilterMin")} openDelay={500}>
+                  <RangeSliderThumb 
+                    boxSize={6} 
+                    index={0}
+                    _focus={{
+                      boxShadow: "0 0 0 3px rgba(0, 128, 128, 0.2)"
+                    }}
+                  >
+                    <Box color="teal" as={BsCurrencyDollar} />
+                  </RangeSliderThumb>
+                </Tooltip>
+                <Tooltip placement="top" hasArrow label={t("priceFilterMax")} openDelay={500}>
+                  <RangeSliderThumb 
+                    boxSize={6} 
+                    index={1}
+                    _focus={{
+                      boxShadow: "0 0 0 3px rgba(0, 128, 128, 0.2)"
+                    }}
+                  >
+                    <Box color="teal" as={BsCurrencyDollar} />
+                  </RangeSliderThumb>
+                </Tooltip>
+              </RangeSlider>
+            </Box>
           </Box>
 
-          <Box
-            className="sliderFilter"
-            key={router.query?.carbon_footprint as string}
-            pb="10px"
-            mr="30px"
-          >
-            <Slider
-              onChangeEnd={(value: number) =>
-                paramHandler("carbon_footprint", value)
-              }
-              name="carbonFootprintDefaultValue"
-              defaultValue={
-                router?.query?.carbon_footprint
-                  ? +(router?.query?.carbon_footprint as string)
-                  : 2
-              }
-              min={0}
-              max={3}
-              step={1}
-            >
-              <SliderTrack bg="teal.100">
-                <SliderFilledTrack bg="teal" />
-              </SliderTrack>
-              <Tooltip
-                placement="top"
-                hasArrow
-                label={buildTooltipDescription(
-                  +(router?.query?.carbon_footprint as string),
-                  t
-                )}
+          <Box className="filter-group">
+            <Box className="filter-label">{t("carbonFootprint")}</Box>
+            <Box className="sliderFilter" pb="10px" mr="30px">
+              <Slider
+                onChangeEnd={(value: number) =>
+                  paramHandler("carbon_footprint", value)
+                }
+                name="carbonFootprintDefaultValue"
+                defaultValue={
+                  router?.query?.carbon_footprint
+                    ? +(router?.query?.carbon_footprint as string)
+                    : 2
+                }
+                min={0}
+                max={3}
+                step={1}
+                aria-label="Carbon footprint"
+                focusThumbOnChange={true}
               >
-                <SliderThumb boxSize={6}>
-                  <Box color="teal" as={GiEarthAmerica} />
-                </SliderThumb>
-              </Tooltip>
-            </Slider>
+                <SliderTrack bg="teal.100" h="3px">
+                  <SliderFilledTrack bg="teal" />
+                </SliderTrack>
+                <Tooltip
+                  placement="top"
+                  hasArrow
+                  label={buildTooltipDescription(
+                    +(router?.query?.carbon_footprint as string),
+                    t
+                  )}
+                  openDelay={500}
+                >
+                  <SliderThumb 
+                    boxSize={6}
+                    _focus={{
+                      boxShadow: "0 0 0 3px rgba(0, 128, 128, 0.2)"
+                    }}
+                  >
+                    <Box color="teal" as={GiEarthAmerica} />
+                  </SliderThumb>
+                </Tooltip>
+              </Slider>
+            </Box>
           </Box>
-          <Box>
-            <Badge
-              variant={router.query.children_accessible ? "solid" : "outline"}
-              cursor="pointer"
-              id="children_accessible"
-              onClick={() =>
-                paramHandler(
-                  "children_accessible",
-                  !router.query.children_accessible ? "true" : null
-                )
-              }
-              mr="1"
-              fontSize="1em"
-              borderRadius="full"
-              px="2"
-              colorScheme="teal"
-            >
+
+          <Box className="filter-group">
+            <Box className="filter-label">{t("accessibility")}</Box>
+              <Badge
+                variant={router.query.children_accessible ? "solid" : "outline"}
+                cursor="pointer"
+                id="children_accessible"
+                onClick={() =>
+                  paramHandler(
+                    "children_accessible",
+                    !router.query.children_accessible ? "true" : null
+                  )
+                }
+                mr="2"
+                fontSize="1em"
+                borderRadius="full"
+                px="4"
+                py="2"
+                colorScheme="teal"
+                transition="all 0.2s"
+                _hover={{
+                  transform: "translateY(-1px)",
+                  boxShadow: "sm"
+                }}
+                role="button"
+                aria-pressed={!!router.query.children_accessible}
+              >
               {t("childrenAccessible")}
             </Badge>
           </Box>
         </Box>
-        <Box h="100vh" padding="15px">
+
+        <Box pt="0" px="15px" pb="15px">
           {isLoading ? (
             <Box textAlign="center">
               <CircularProgress isIndeterminate color="teal" />
@@ -420,12 +517,8 @@ export default function Activities() {
           )}
         </Box>
       </Box>
-      <Link
-        href={{
-          pathname: "/map",
-          query: router.query,
-        }}
-      >
+      
+      <Link href={{ pathname: "/map", query: router.query }}>
         <Box className="floating-button">
           <Icon h="1.8em" as={BsMap} />
         </Box>

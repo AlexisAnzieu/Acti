@@ -9,6 +9,11 @@
         "description": "Explorez des itinéraires de voyage lents au départ du Québec"
     },
     "searchActivity": "Rechercher",
+    "filters": "Filtres",
+    "accessibility": "Accessibilité",
+    "carbonFootprint": "Empreinte carbone",
+    "price": "Prix",
+    "seasons": "Saisons",
     "season": {
         "summer": "été",
         "winter": "hiver",
