@@ -6,7 +6,15 @@
     },
     "trips": {
         "title": "Voyages",
-        "description": "Explorez des itinéraires de voyage lents au départ du Québec"
+        "description": "Explorez des itinéraires de voyage lents au départ du Québec",
+        "transcanadian": {
+            "title": "Aventure Transcanadienne",
+            "description": "Un voyage d'un océan à l'autre à travers le Canada en train"
+        },
+        "bostontrip": {
+            "title": "Montréal à Boston",
+            "description": "Une aventure cycliste de Montréal à Boston"
+        }
     },
     "searchActivity": "Rechercher",
     "filters": "Filtres",

@@ -6,7 +6,15 @@
     },
     "trips": {
         "title": "Trips",
-        "description": "Explore curated slow travel itineraries from Québec"
+        "description": "Explore curated slow travel itineraries from Québec",
+        "transcanadian": {
+            "title": "Transcanadian Adventure",
+            "description": "A coast-to-coast journey across Canada by train"
+        },
+        "bostontrip": {
+            "title": "Montreal to Boston",
+            "description": "A cycling adventure from Montreal to Boston"
+        }
     },
     "searchActivity": "Search",
     "filters": "Filters",

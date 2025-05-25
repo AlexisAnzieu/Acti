@@ -5,23 +5,20 @@ import {
   SimpleGrid,
   Text,
   useColorModeValue,
-  Icon,
+  Image,
 } from "@chakra-ui/react";
 import { GetStaticPropsContext } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import React from "react";
-import { BiTrip } from "react-icons/bi";
-import { MdLocalActivity } from "react-icons/md";
 
-import { Locale } from "../component/NavbarComponent";
+import { Locale } from "../../component/NavbarComponent";
 
-const ChoiceCard = ({ title, description, icon, href }: {
+const TripCard = ({ title, description, imageSrc, href }: {
   title: string;
   description: string;
-  icon: React.ElementType;
+  imageSrc: string;
   href: string;
 }) => {
   const bg = useColorModeValue("white", "gray.800");
@@ -30,7 +27,7 @@ const ChoiceCard = ({ title, description, icon, href }: {
   return (
     <Link href={href}>
       <Box
-        p={8}
+        p={6}
         bg={bg}
         borderWidth="1px"
         borderColor={borderColor}
@@ -44,13 +41,16 @@ const ChoiceCard = ({ title, description, icon, href }: {
           borderColor: "teal.500",
         }}
         height="100%"
-        display="flex"
-        flexDirection="column"
-        alignItems="center"
-        justifyContent="center"
-        textAlign="center"
       >
-        <Icon as={icon} w={16} h={16} color="teal.500" mb={4} />
+        <Image
+          src={imageSrc}
+          alt={title}
+          borderRadius="md"
+          mb={4}
+          width="100%"
+          height="200px"
+          objectFit="cover"
+        />
         <Heading size="lg" mb={2}>
           {title}
         </Heading>
@@ -62,27 +62,17 @@ const ChoiceCard = ({ title, description, icon, href }: {
   );
 };
 
-export default function Home() {
+export default function Trips() {
   const { t } = useTranslation("common");
 
   return (
     <>
       <Head>
-        <title>{t("documentTitle.index")}</title>
+        <title>{t("trips.title")} - Acti</title>
         <meta
           property="og:title"
-          content={t("documentTitle.index")}
+          content={`${t("trips.title")} - Acti`}
           key="ogtitle"
-        />
-        <meta
-          property="og:description"
-          content={t("ogDescription")}
-          key="ogdesc"
-        />
-        <meta
-          property="og:image"
-          content="https://xyzfqjxmadywqhwvcqxh.supabase.in/storage/v1/object/public/activities/ogFB.png"
-          key="ogpic"
         />
       </Head>
       <Container maxW="container.lg" py={20}>
@@ -93,20 +83,20 @@ export default function Home() {
           bgGradient="linear(to-r, teal.500, teal.300)"
           bgClip="text"
         >
-          {t("chooseYourAdventure")}
+          {t("trips.title")}
         </Heading>
-        <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10} mt={8}>
-          <ChoiceCard
-            title={t("activities.title")}
-            description={t("activities.description")}
-            icon={MdLocalActivity}
-            href="/activities"
+        <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
+          <TripCard
+            title={t("trips.transcanadian.title")}
+            description={t("trips.transcanadian.description")}
+            imageSrc="/images/transcanadian-cover.jpg"
+            href="/trip/transcanadian"
           />
-          <ChoiceCard
-            title={t("trips.title")}
-            description={t("trips.description")}
-            icon={BiTrip}
-            href="/trip"
+          <TripCard
+            title={t("trips.bostontrip.title")}
+            description={t("trips.bostontrip.description")}
+            imageSrc="/images/bostontrip/cover4.JPG"
+            href="/trip/montreal-to-boston"
           />
         </SimpleGrid>
       </Container>
