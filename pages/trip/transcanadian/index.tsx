@@ -126,6 +126,9 @@ export default function TransCanadian() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [currentDay, setCurrentDay] = useState(0);
   const [showInstructions, setShowInstructions] = useState(true);
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragStartX, setDragStartX] = useState(0);
+  const [dragStartProgress, setDragStartProgress] = useState(0);
 
   useEffect(() => {
     const timer = setTimeout(() => setShowInstructions(false), 4000);
@@ -172,6 +175,78 @@ export default function TransCanadian() {
       container.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  const handleRailClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const rect = event.currentTarget.getBoundingClientRect();
+    const clickX = event.clientX - rect.left;
+    const clickProgress = clickX / rect.width;
+    
+    const { scrollHeight, clientHeight } = container;
+    const maxScroll = Math.max(0, scrollHeight - clientHeight);
+    const targetScroll = clickProgress * maxScroll;
+    
+    container.scrollTo({
+      top: targetScroll,
+      behavior: 'smooth'
+    });
+  };
+
+  const handleTrainMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
+    event.preventDefault();
+    event.stopPropagation();
+    setIsDragging(true);
+    setDragStartX(event.clientX);
+    setDragStartProgress(scrollProgress);
+  };
+
+  const handleMouseMove = (event: MouseEvent) => {
+    if (!isDragging) return;
+    
+    const container = containerRef.current;
+    if (!container) return;
+
+    const deltaX = event.clientX - dragStartX;
+    const trackWidth = window.innerWidth;
+    const deltaProgress = deltaX / trackWidth;
+    const newProgress = Math.max(0, Math.min(1, dragStartProgress + deltaProgress));
+    
+    const { scrollHeight, clientHeight } = container;
+    const maxScroll = Math.max(0, scrollHeight - clientHeight);
+    const targetScroll = newProgress * maxScroll;
+    
+    container.scrollTo({
+      top: targetScroll,
+      behavior: 'auto'
+    });
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+  };
+
+  useEffect(() => {
+    if (isDragging) {
+      document.addEventListener('mousemove', handleMouseMove);
+      document.addEventListener('mouseup', handleMouseUp);
+      document.body.style.cursor = 'grabbing';
+      document.body.style.userSelect = 'none';
+    } else {
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseup', handleMouseUp);
+      document.body.style.cursor = '';
+      document.body.style.userSelect = '';
+    }
+
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseup', handleMouseUp);
+      document.body.style.cursor = '';
+      document.body.style.userSelect = '';
+    };
+  }, [isDragging, dragStartX, dragStartProgress]);
 
   const currentContent = getTransCanadianContent("fr");
 
@@ -253,6 +328,12 @@ export default function TransCanadian() {
           backgroundColor="gray.400"
           borderRadius="2px"
           overflow="hidden"
+          cursor="pointer"
+          onClick={handleRailClick}
+          _hover={{
+            backgroundColor: "gray.500"
+          }}
+          transition="background-color 0.2s ease"
         >
           {/* Animated rail shine effect */}
           <Box
@@ -291,75 +372,20 @@ export default function TransCanadian() {
           </Box>
         ))}
 
-        {/* Speed lines effect */}
-        {scrollProgress > 0.1 && (
-          <Box
-            position="absolute"
-            bottom="70px"
-            left="0"
-            width="100%"
-            height="20px"
-            overflow="hidden"
-          >
-            {[...Array(8)].map((_, i) => {
-              const trainPositionPercent = scrollProgress * 85;
-              
-              // Calculate train length based on visible cars
-              const trainLength = 
-                (scrollProgress > 0.2 ? 1 : 0) + 
-                (scrollProgress > 0.5 ? 1 : 0) + 
-                (scrollProgress > 0.8 ? 1 : 0);
-              const trainWidthPercent = 2 + (trainLength * 1.5); // Approximate train width in percentage
-              
-              // Add randomness to positioning (slower updates)
-              const baseOffset = -(5 + (i * 2.5));
-              const randomOffset = (Math.sin(Date.now() * 0.0003 + i * 1.5) * 1.5); // Slower, smaller horizontal variation
-              const lineOffsetPercent = baseOffset + randomOffset;
-              const lineLeftPercent = trainPositionPercent - trainWidthPercent + lineOffsetPercent;
-              
-              // Random vertical positioning (slower)
-              const randomVertical = Math.sin(Date.now() * 0.0002 + i * 2) * 3;
-              const verticalPosition = (i * 2.5) + randomVertical;
-              
-              // Random line properties (slower changes)
-              const randomWidth = 25 + (Math.sin(Date.now() * 0.0004 + i * 0.8) * 10); // 15-35px width, slower change
-              const randomOpacity = 0.25 + (Math.sin(Date.now() * 0.0003 + i * 1.2) * 0.15); // 0.1-0.4 opacity, slower change
-              const randomDuration = 0.8 + (Math.sin(Date.now() * 0.0002 + i * 0.6) * 0.4); // 0.8-1.2s duration (slower)
-              const randomDelay = Math.sin(Date.now() * 0.0001 + i * 0.9) * 0.2; // Smaller delay variation
-              
-              // Only show lines that are within reasonable bounds (0% to 100%)
-              if (lineLeftPercent < -10 || lineLeftPercent > 110) return null;
-              
-              return (
-                <Box
-                  key={i}
-                  position="absolute"
-                  bottom={`${Math.max(0, verticalPosition)}px`}
-                  left={`${lineLeftPercent}%`} // Dynamic position based on train location in percentage
-                  width={`${randomWidth}px`}
-                  height="2px"
-                  backgroundColor={`rgba(100,100,100,${randomOpacity})`}
-                  animation={`${speedLinesAnimation} ${randomDuration}s infinite linear`}
-                  style={{
-                    animationDelay: `${randomDelay}s`,
-                  }}
-                />
-              );
-            })}
-          </Box>
-        )}
-
         {/* Enhanced train with multiple smoke puffs and wobble */}
         <Box
           position="absolute"
           bottom="54px"
-          left={`${scrollProgress * 85}%`}
+          left={`${scrollProgress * 100}%`}
           animation={scrollProgress > 0.05 ? `${trainWobbleAnimation} 0.6s infinite` : 'none'}
-          transition="left 0.1s ease-out" // Faster transition for real-time feel
+          transition="left 0.1s ease-out"
           fontSize="2.2rem"
           filter="drop-shadow(0 3px 6px rgba(0,0,0,0.3))"
           zIndex={2}
-          transform="translateX(-50%)" // Center the train on its position
+          transform={`translateX(-${scrollProgress * 100}%)`}
+          cursor={isDragging ? 'grabbing' : 'grab'}
+          onMouseDown={handleTrainMouseDown}
+          userSelect="none"
         >
           {/* Multiple smoke puffs - positioned relative to locomotive */}
           {[...Array(4)].map((_, i) => {
@@ -433,16 +459,74 @@ export default function TransCanadian() {
           </Box>
         </Box>
 
+        {/* Speed lines effect */}
+        {scrollProgress > 0.1 && (
+          <Box
+            position="absolute"
+            bottom="70px"
+            left="0"
+            width="100%"
+            height="20px"
+            overflow="hidden"
+          >
+            {[...Array(8)].map((_, i) => {
+              const trainPositionPercent = scrollProgress * 100;
+              
+              // Calculate train length based on visible cars
+              const trainLength = 
+                (scrollProgress > 0.2 ? 1 : 0) + 
+                (scrollProgress > 0.5 ? 1 : 0) + 
+                (scrollProgress > 0.8 ? 1 : 0);
+              const trainWidthPercent = 2 + (trainLength * 1.5);
+              
+              // Add randomness to positioning (slower updates)
+              const baseOffset = -(5 + (i * 2.5));
+              const randomOffset = (Math.sin(Date.now() * 0.0003 + i * 1.5) * 1.5);
+              const lineOffsetPercent = baseOffset + randomOffset;
+              const lineLeftPercent = trainPositionPercent - trainWidthPercent + lineOffsetPercent;
+              
+              // Random vertical positioning (slower)
+              const randomVertical = Math.sin(Date.now() * 0.0002 + i * 2) * 3;
+              const verticalPosition = (i * 2.5) + randomVertical;
+              
+              // Random line properties (slower changes)
+              const randomWidth = 25 + (Math.sin(Date.now() * 0.0004 + i * 0.8) * 10);
+              const randomOpacity = 0.25 + (Math.sin(Date.now() * 0.0003 + i * 1.2) * 0.15);
+              const randomDuration = 0.8 + (Math.sin(Date.now() * 0.0002 + i * 0.6) * 0.4);
+              const randomDelay = Math.sin(Date.now() * 0.0001 + i * 0.9) * 0.2;
+              
+              // Only show lines that are within reasonable bounds (0% to 100%)
+              if (lineLeftPercent < -10 || lineLeftPercent > 110) return null;
+              
+              return (
+                <Box
+                  key={i}
+                  position="absolute"
+                  bottom={`${Math.max(0, verticalPosition)}px`}
+                  left={`${lineLeftPercent}%`}
+                  width={`${randomWidth}px`}
+                  height="2px"
+                  backgroundColor={`rgba(100,100,100,${randomOpacity})`}
+                  animation={`${speedLinesAnimation} ${randomDuration}s infinite linear`}
+                  style={{
+                    animationDelay: `${randomDelay}s`,
+                  }}
+                />
+              );
+            })}
+          </Box>
+        )}
+
         {/* Station markers */}
         {['Montréal', 'Ottawa', 'Toronto', 'Winnipeg', 'Vancouver'].map((station, index) => (
           <Box
             key={index}
             position="absolute"
             bottom="20px"
-            left={`${index * 21.25}%`}
+            left={`${index * 25}%`}
             fontSize="1.2rem"
             opacity={scrollProgress >= (index * 0.25) ? "1" : "0.3"}
-            transition="opacity 0.2s ease" // Faster transition
+            transition="opacity 0.2s ease"
             transform="translateX(-50%)"
             textAlign="center"
           >
