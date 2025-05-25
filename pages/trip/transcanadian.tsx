@@ -162,9 +162,21 @@ const DayCard = ({ title, content, imageUrl, index }: any) => (
 export default function TransCanadian() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [currentDay, setCurrentDay] = useState(0);
   const [showInstructions, setShowInstructions] = useState(true);
+  
+  // Performance optimization: cache DOM elements
+  const dayElementsRef = useRef<HTMLElement[]>([]);
+  const animationFrameRef = useRef<number>();
+  const isScrollingRef = useRef(false);
+  const isMobileRef = useRef(false);
 
   useEffect(() => {
+    // Detect mobile device
+    isMobileRef.current = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
+                         ('ontouchstart' in window) || 
+                         (window.innerWidth <= 768);
+    
     const timer = setTimeout(() => setShowInstructions(false), 4000);
     return () => clearTimeout(timer);
   }, []);
@@ -173,127 +185,142 @@ export default function TransCanadian() {
     const container = containerRef.current;
     if (!container) return;
 
+    // Cache day content elements for performance
+    const updateDayElementsCache = () => {
+      dayElementsRef.current = Array.from(container.querySelectorAll('[data-day-content]')) as HTMLElement[];
+    };
+    
+    updateDayElementsCache();
+
     let isMouseDown = false;
     let startX: number;
+    let startY: number;
     let scrollLeft: number;
-    let isScrolling = false;
+    let lastTouchX: number;
+    let lastTouchY: number;
+    let touchStartTime: number;
+    let isHorizontalSwipe = false;
 
-    const handleScroll = () => {
+    // Optimized scroll progress calculation using requestAnimationFrame
+    const updateScrollProgress = () => {
+      if (!container) return;
+      
       const { scrollLeft, scrollWidth, clientWidth } = container;
-      const progress = scrollLeft / (scrollWidth - clientWidth);
-      setScrollProgress(progress);
+      const dayPosition = scrollLeft / clientWidth;
+      const currentDayIndex = Math.max(0, Math.min(3, Math.floor(dayPosition)));
+      
+      // Get vertical scroll progress for current day
+      let verticalProgress = 0;
+      const currentDayElement = dayElementsRef.current[currentDayIndex];
+      
+      if (currentDayElement) {
+        const { scrollTop, scrollHeight, clientHeight } = currentDayElement;
+        const maxScroll = Math.max(0, scrollHeight - clientHeight);
+        verticalProgress = maxScroll > 0 ? Math.min(1, scrollTop / maxScroll) : 0;
+      }
+      
+      // Calculate combined progress more efficiently
+      const dayProgressBase = currentDayIndex / 4; // 0, 0.25, 0.5, 0.75
+      const dayProgressIncrement = verticalProgress / 4; // 0 to 0.25 within each day
+      const totalProgress = Math.min(1, dayProgressBase + dayProgressIncrement);
+      
+      // Batch state updates
+      setScrollProgress(totalProgress);
+      setCurrentDay(currentDayIndex);
+    };
+
+    // Throttled scroll handler using requestAnimationFrame
+    const handleScroll = () => {
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
+      
+      animationFrameRef.current = requestAnimationFrame(updateScrollProgress);
     };
 
     const handleWheel = (e: WheelEvent) => {
-      // Find the day content element that's being scrolled
+      // Skip wheel handling on mobile devices (they use touch)
+      if (isMobileRef.current) return;
+      
       const target = e.target as HTMLElement;
       const dayContentElement = target.closest('[data-day-content]') as HTMLElement;
       
-      // If we're not scrolling within a day's content, use the old behavior
+      // Update progress immediately for real-time feedback
+      handleScroll();
+      
       if (!dayContentElement) {
         e.preventDefault();
+        if (isScrollingRef.current) return;
         
-        // Prevent multiple rapid scrolls
-        if (isScrolling) return;
+        const currentScrollLeft = container.scrollLeft;
+        const currentDay = Math.floor(currentScrollLeft / window.innerWidth);
         
-        // Use vertical scroll to advance to next/previous day
         if (e.deltaY > 0) {
-          // Scrolling down - go to next day
-          const currentScrollLeft = container.scrollLeft;
-          const currentDay = Math.floor(currentScrollLeft / window.innerWidth);
-          const nextDay = Math.min(currentDay + 1, 3); // Max 4 days (0-3)
-          
+          const nextDay = Math.min(currentDay + 1, 3);
           if (nextDay !== currentDay) {
-            isScrolling = true;
+            isScrollingRef.current = true;
             container.scrollTo({
               left: nextDay * window.innerWidth,
               behavior: "smooth"
             });
-            
-            // Reset scroll lock after animation
-            setTimeout(() => {
-              isScrolling = false;
-            }, 600);
+            setTimeout(() => { isScrollingRef.current = false; }, 600);
           }
         } else if (e.deltaY < 0) {
-          // Scrolling up - go to previous day
-          const currentScrollLeft = container.scrollLeft;
-          const currentDay = Math.ceil(currentScrollLeft / window.innerWidth);
-          const prevDay = Math.max(currentDay - 1, 0); // Min day 0
-          
+          const prevDay = Math.max(currentDay - 1, 0);
           if (prevDay !== currentDay) {
-            isScrolling = true;
+            isScrollingRef.current = true;
             container.scrollTo({
               left: prevDay * window.innerWidth,
               behavior: "smooth"
             });
-            
-            // Reset scroll lock after animation
-            setTimeout(() => {
-              isScrolling = false;
-            }, 600);
+            setTimeout(() => { isScrollingRef.current = false; }, 600);
           }
         }
-        handleScroll();
         return;
       }
 
-      // We're scrolling within day content - check if we've reached the boundaries
       const { scrollTop, scrollHeight, clientHeight } = dayContentElement;
       const isAtTop = scrollTop === 0;
-      const isAtBottom = scrollTop + clientHeight >= scrollHeight - 1; // -1 for rounding errors
+      const isAtBottom = scrollTop + clientHeight >= scrollHeight - 1;
 
-      // Prevent multiple rapid scrolls between days
-      if (isScrolling) {
+      if (isScrollingRef.current) {
         e.preventDefault();
         return;
       }
 
       if (e.deltaY > 0 && isAtBottom) {
-        // Scrolling down and at bottom - go to next day
         e.preventDefault();
         const currentScrollLeft = container.scrollLeft;
         const currentDay = Math.floor(currentScrollLeft / window.innerWidth);
-        const nextDay = Math.min(currentDay + 1, 3); // Max 4 days (0-3)
+        const nextDay = Math.min(currentDay + 1, 3);
         
         if (nextDay !== currentDay) {
-          isScrolling = true;
+          isScrollingRef.current = true;
           container.scrollTo({
             left: nextDay * window.innerWidth,
             behavior: "smooth"
           });
-          
-          // Reset scroll lock after animation
-          setTimeout(() => {
-            isScrolling = false;
-          }, 600);
+          setTimeout(() => { isScrollingRef.current = false; }, 600);
         }
-        handleScroll();
       } else if (e.deltaY < 0 && isAtTop) {
-        // Scrolling up and at top - go to previous day
         e.preventDefault();
         const currentScrollLeft = container.scrollLeft;
         const currentDay = Math.ceil(currentScrollLeft / window.innerWidth);
-        const prevDay = Math.max(currentDay - 1, 0); // Min day 0
+        const prevDay = Math.max(currentDay - 1, 0);
         
         if (prevDay !== currentDay) {
-          isScrolling = true;
+          isScrollingRef.current = true;
           container.scrollTo({
             left: prevDay * window.innerWidth,
             behavior: "smooth"
           });
-          
-          // Reset scroll lock after animation
-          setTimeout(() => {
-            isScrolling = false;
-          }, 600);
+          setTimeout(() => { isScrollingRef.current = false; }, 600);
         }
-        handleScroll();
       }
-      // If not at boundaries, allow normal scrolling (don't preventDefault)
     };
 
     const handleMouseDown = (e: MouseEvent) => {
+      if (isMobileRef.current) return; // Skip on mobile
       isMouseDown = true;
       startX = e.pageX - container.offsetLeft;
       scrollLeft = container.scrollLeft;
@@ -305,40 +332,160 @@ export default function TransCanadian() {
       container.style.cursor = "grab";
     };
 
-    const handleMouseLeave = () => {
-      isMouseDown = false;
-      container.style.cursor = "grab";
-    };
-
     const handleMouseMove = (e: MouseEvent) => {
-      if (!isMouseDown) return;
+      if (!isMouseDown || isMobileRef.current) return;
       e.preventDefault();
       const x = e.pageX - container.offsetLeft;
-      const walk = (x - startX) * 3;
+      const walk = (x - startX) * 2; // Reduced sensitivity
       container.scrollLeft = scrollLeft - walk;
+      handleScroll();
     };
 
-    // Touch events
     const handleTouchStart = (e: TouchEvent) => {
-      isMouseDown = true;
-      startX = e.touches[0].pageX - container.offsetLeft;
+      if (e.touches.length !== 1) return; // Only handle single touch
+      
+      const touch = e.touches[0];
+      const target = e.target as HTMLElement;
+      const dayContentElement = target.closest('[data-day-content]') as HTMLElement;
+      
+      startX = touch.pageX - container.offsetLeft;
+      startY = touch.pageY;
+      lastTouchX = touch.pageX;
+      lastTouchY = touch.pageY;
       scrollLeft = container.scrollLeft;
+      touchStartTime = Date.now();
+      isHorizontalSwipe = false;
+      isMouseDown = true;
+      
+      // Store initial day content scroll position for boundary detection
+      if (dayContentElement) {
+        (dayContentElement as any).initialScrollTop = dayContentElement.scrollTop;
+      }
     };
 
     const handleTouchMove = (e: TouchEvent) => {
+      if (!isMouseDown || e.touches.length !== 1) return;
+      
+      const touch = e.touches[0];
+      const currentX = touch.pageX;
+      const currentY = touch.pageY;
+      const target = e.target as HTMLElement;
+      const dayContentElement = target.closest('[data-day-content]') as HTMLElement;
+      
+      const deltaX = Math.abs(currentX - lastTouchX);
+      const deltaY = Math.abs(currentY - lastTouchY);
+      const totalDeltaY = currentY - startY;
+      
+      // Determine if this is a horizontal swipe (for day navigation)
+      if (!isHorizontalSwipe && (deltaX > 10 || deltaY > 10)) {
+        isHorizontalSwipe = deltaX > deltaY * 1.5; // Horizontal dominance
+      }
+      
+      // Handle vertical scrolling within day content with boundary detection
+      if (!isHorizontalSwipe && dayContentElement) {
+        const { scrollTop, scrollHeight, clientHeight } = dayContentElement;
+        const isAtTop = scrollTop === 0;
+        const isAtBottom = scrollTop + clientHeight >= scrollHeight - 1;
+        
+        // Check if trying to scroll beyond boundaries
+        if ((totalDeltaY > 30 && isAtTop) || (totalDeltaY < -30 && isAtBottom)) {
+          e.preventDefault();
+          
+          if (isScrollingRef.current) return;
+          
+          const currentScrollLeft = container.scrollLeft;
+          const currentDay = Math.floor(currentScrollLeft / window.innerWidth);
+          
+          if (totalDeltaY < -30 && isAtBottom) {
+            // Scrolling down at bottom - go to next day
+            const nextDay = Math.min(currentDay + 1, 3);
+            if (nextDay !== currentDay) {
+              isScrollingRef.current = true;
+              isMouseDown = false; // Stop touch tracking
+              container.scrollTo({
+                left: nextDay * window.innerWidth,
+                behavior: "smooth"
+              });
+              setTimeout(() => { isScrollingRef.current = false; }, 600);
+              handleScroll();
+              return;
+            }
+          } else if (totalDeltaY > 30 && isAtTop) {
+            // Scrolling up at top - go to previous day
+            const prevDay = Math.max(currentDay - 1, 0);
+            if (prevDay !== currentDay) {
+              isScrollingRef.current = true;
+              isMouseDown = false; // Stop touch tracking
+              container.scrollTo({
+                left: prevDay * window.innerWidth,
+                behavior: "smooth"
+              });
+              setTimeout(() => { isScrollingRef.current = false; }, 600);
+              handleScroll();
+              return;
+            }
+          }
+        }
+      }
+      
+      // If it's a horizontal swipe, handle day navigation
+      if (isHorizontalSwipe) {
+        e.preventDefault();
+        const x = currentX - container.offsetLeft;
+        const walk = (x - startX) * 1.5; // Mobile-optimized sensitivity
+        container.scrollLeft = scrollLeft - walk;
+        handleScroll();
+      }
+      // Otherwise, let the browser handle vertical scrolling within day content
+      
+      lastTouchX = currentX;
+      lastTouchY = currentY;
+    };
+
+    const handleTouchEnd = (e: TouchEvent) => {
       if (!isMouseDown) return;
-      e.preventDefault();
-      const x = e.touches[0].pageX - container.offsetLeft;
-      const walk = (x - startX) * 3;
-      container.scrollLeft = scrollLeft - walk;
-    };
-
-    const handleTouchEnd = () => {
+      
+      const touchDuration = Date.now() - touchStartTime;
+      const touch = e.changedTouches[0];
+      const deltaX = touch.pageX - (startX + container.offsetLeft);
+      const deltaY = touch.pageY - startY;
+      
       isMouseDown = false;
+      
+      // Handle quick swipe gestures for day navigation
+      if (isHorizontalSwipe && touchDuration < 300 && Math.abs(deltaX) > 50) {
+        e.preventDefault();
+        const currentScrollLeft = container.scrollLeft;
+        const currentDay = Math.round(currentScrollLeft / window.innerWidth);
+        
+        if (deltaX < -50) { // Swipe left - next day
+          const nextDay = Math.min(currentDay + 1, 3);
+          container.scrollTo({
+            left: nextDay * window.innerWidth,
+            behavior: "smooth"
+          });
+        } else if (deltaX > 50) { // Swipe right - previous day
+          const prevDay = Math.max(currentDay - 1, 0);
+          container.scrollTo({
+            left: prevDay * window.innerWidth,
+            behavior: "smooth"
+          });
+        }
+      } else if (isHorizontalSwipe) {
+        // Snap to nearest day if not a quick swipe
+        const currentScrollLeft = container.scrollLeft;
+        const nearestDay = Math.round(currentScrollLeft / window.innerWidth);
+        container.scrollTo({
+          left: nearestDay * window.innerWidth,
+          behavior: "smooth"
+        });
+      }
+      
+      handleScroll();
     };
 
-    // Handle keyboard navigation
     const handleKeyDown = (e: KeyboardEvent) => {
+      if (isMobileRef.current) return; // Skip on mobile
       const delta = window.innerWidth * 0.8;
       if (e.key === "ArrowRight") {
         container.scrollBy({ left: delta, behavior: "smooth" });
@@ -347,33 +494,57 @@ export default function TransCanadian() {
       }
     };
 
-    // Mouse events
-    container.addEventListener("scroll", handleScroll);
-    container.addEventListener("wheel", handleWheel, { passive: false });
-    container.addEventListener("mousedown", handleMouseDown);
-    container.addEventListener("mouseup", handleMouseUp);
-    container.addEventListener("mouseleave", handleMouseLeave);
-    container.addEventListener("mousemove", handleMouseMove);
-    window.addEventListener("keydown", handleKeyDown);
+    // Event listeners with mobile-specific handling
+    container.addEventListener("scroll", handleScroll, { passive: true });
+    
+    if (!isMobileRef.current) {
+      container.addEventListener("wheel", handleWheel, { passive: false });
+      container.addEventListener("mousedown", handleMouseDown);
+      container.addEventListener("mouseup", handleMouseUp);
+      container.addEventListener("mouseleave", handleMouseUp);
+      container.addEventListener("mousemove", handleMouseMove);
+      window.addEventListener("keydown", handleKeyDown);
+    }
+    
+    // Touch events for mobile
+    container.addEventListener("touchstart", handleTouchStart, { passive: true });
+    container.addEventListener("touchmove", handleTouchMove, { passive: false });
+    container.addEventListener("touchend", handleTouchEnd, { passive: false });
 
-    // Touch events
-    container.addEventListener("touchstart", handleTouchStart);
-    container.addEventListener("touchmove", handleTouchMove, {
-      passive: false,
+    // Add scroll listeners to day content elements
+    dayElementsRef.current.forEach(element => {
+      element.addEventListener("scroll", handleScroll, { passive: true });
     });
-    container.addEventListener("touchend", handleTouchEnd);
+
+    // Initial progress calculation
+    updateScrollProgress();
 
     return () => {
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
+      
       container.removeEventListener("scroll", handleScroll);
       container.removeEventListener("wheel", handleWheel);
       container.removeEventListener("mousedown", handleMouseDown);
       container.removeEventListener("mouseup", handleMouseUp);
-      container.removeEventListener("mouseleave", handleMouseLeave);
+      container.removeEventListener("mouseleave", handleMouseUp);
       container.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("keydown", handleKeyDown);
       container.removeEventListener("touchstart", handleTouchStart);
       container.removeEventListener("touchmove", handleTouchMove);
       container.removeEventListener("touchend", handleTouchEnd);
+      window.removeEventListener("keydown", handleKeyDown);
+      
+      dayElementsRef.current.forEach(element => {
+        element.removeEventListener("scroll", handleScroll);
+        if (isMobileRef.current) {
+          // Remove mobile-specific listeners if they exist
+          const mobileHandler = (element as any).mobileScrollHandler;
+          if (mobileHandler) {
+            element.removeEventListener("scroll", mobileHandler);
+          }
+        }
+      });
     };
   }, []);
 
@@ -456,15 +627,22 @@ export default function TransCanadian() {
           scrollbarWidth: "none",
           msOverflowStyle: "none",
           WebkitOverflowScrolling: "touch",
-          cursor: "grab",
+          cursor: isMobileRef.current ? "default" : "grab",
           scrollBehavior: "smooth",
-          scrollSnapType: "x mandatory",
+          scrollSnapType: isMobileRef.current ? "x mandatory" : "x mandatory",
+          touchAction: "pan-x pan-y", // Allow both horizontal and vertical panning
           "&:active": {
-            cursor: "grabbing",
+            cursor: isMobileRef.current ? "default" : "grabbing",
           },
           "@media (hover: none)": {
             scrollSnapType: "x proximity",
+            cursor: "default",
           },
+          // Improve touch responsiveness on mobile
+          "@media (max-width: 768px)": {
+            scrollSnapType: "x proximity",
+            overscrollBehavior: "contain",
+          }
         }}
       >
         {currentContent.days.map((day, index) => (
@@ -615,10 +793,11 @@ export default function TransCanadian() {
           bottom="54px"
           left={`${scrollProgress * 85}%`}
           animation={scrollProgress > 0.05 ? `${trainWobbleAnimation} 0.6s infinite` : 'none'}
-          transition="left 0.15s ease-out"
+          transition="left 0.1s ease-out" // Faster transition for real-time feel
           fontSize="2.2rem"
           filter="drop-shadow(0 3px 6px rgba(0,0,0,0.3))"
           zIndex={2}
+          transform="translateX(-50%)" // Center the train on its position
         >
           {/* Multiple smoke puffs - positioned relative to locomotive */}
           {[...Array(4)].map((_, i) => {
@@ -693,18 +872,22 @@ export default function TransCanadian() {
         </Box>
 
         {/* Station markers */}
-        {[0, 25, 50, 75, 100].map((position, index) => (
+        {['Montréal', 'Ottawa', 'Toronto', 'Winnipeg', 'Vancouver'].map((station, index) => (
           <Box
             key={index}
             position="absolute"
             bottom="20px"
-            left={`${position * 0.85}%`}
+            left={`${index * 21.25}%`}
             fontSize="1.2rem"
-            opacity={scrollProgress * 100 >= position ? "1" : "0.3"}
-            transition="opacity 0.3s ease"
+            opacity={scrollProgress >= (index * 0.25) ? "1" : "0.3"}
+            transition="opacity 0.2s ease" // Faster transition
             transform="translateX(-50%)"
+            textAlign="center"
           >
             🚉
+            <Text fontSize="0.6rem" color="gray.600" mt={1}>
+              {station}
+            </Text>
           </Box>
         ))}
       </Box>
