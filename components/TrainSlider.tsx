@@ -227,19 +227,6 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
         />
       </Box>
 
-      {/* Rail markers at different positions */}
-      {[20, 40, 60, 80].map((position, index) => (
-        <Box
-          key={index}
-          position="absolute"
-          bottom="60px"
-          left={`${position}%`}
-          fontSize="0.8rem"
-          opacity="0.4"
-        >
-          🏔️
-        </Box>
-      ))}
 
       {/* Enhanced train with multiple smoke puffs and wobble */}
       <Box
@@ -380,25 +367,6 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
         </Box>
       )}
 
-      {/* Station markers */}
-      {['Montréal', 'Ottawa', 'Toronto', 'Winnipeg', 'Vancouver'].map((station, index) => (
-        <Box
-          key={index}
-          position="absolute"
-          bottom="20px"
-          left={`${index * 25}%`}
-          fontSize="1.2rem"
-          opacity={scrollProgress >= (index * 0.25) ? "1" : "0.3"}
-          transition="opacity 0.2s ease"
-          transform="translateX(-50%)"
-          textAlign="center"
-        >
-          🚉
-          <Text fontSize="0.6rem" color="gray.600" mt={1}>
-            {station}
-          </Text>
-        </Box>
-      ))}
     </Box>
   );
 };
