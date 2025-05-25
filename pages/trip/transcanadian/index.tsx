@@ -8,7 +8,7 @@ import { useRef, useState } from "react";
 
 import { Locale } from "../../../component/NavbarComponent";
 import { TrainSlider } from "../../../components/TrainSlider";
-import { getTransCanadianContent } from "./content/";
+import { getTransCanadianContent } from "../../../content/trip/transcanadian/";
 
 const fadeInAnimation = keyframes`
   0% {
