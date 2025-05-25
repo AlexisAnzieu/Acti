@@ -192,20 +192,31 @@ export default function TransCanadian() {
     
     updateDayElementsCache();
 
-    let isMouseDown = false;
-    let startX: number;
-    let startY: number;
-    let scrollLeft: number;
-    let lastTouchX: number;
-    let lastTouchY: number;
-    let touchStartTime: number;
-    let isHorizontalSwipe = false;
+    // Common navigation helper functions
+    const navigateToDay = (targetDay: number) => {
+      const clampedDay = Math.max(0, Math.min(3, targetDay));
+      if (clampedDay !== Math.floor(container.scrollLeft / window.innerWidth)) {
+        isScrollingRef.current = true;
+        container.scrollTo({
+          left: clampedDay * window.innerWidth,
+          behavior: "smooth"
+        });
+        setTimeout(() => { isScrollingRef.current = false; }, 600);
+      }
+    };
+
+    const getCurrentDay = () => Math.floor(container.scrollLeft / window.innerWidth);
+
+    const isAtVerticalBoundary = (element: HTMLElement, direction: 'top' | 'bottom') => {
+      const { scrollTop, scrollHeight, clientHeight } = element;
+      return direction === 'top' ? scrollTop === 0 : scrollTop + clientHeight >= scrollHeight - 1;
+    };
 
     // Optimized scroll progress calculation using requestAnimationFrame
     const updateScrollProgress = () => {
       if (!container) return;
       
-      const { scrollLeft, scrollWidth, clientWidth } = container;
+      const { scrollLeft, clientWidth } = container;
       const dayPosition = scrollLeft / clientWidth;
       const currentDayIndex = Math.max(0, Math.min(3, Math.floor(dayPosition)));
       
@@ -252,36 +263,13 @@ export default function TransCanadian() {
         e.preventDefault();
         if (isScrollingRef.current) return;
         
-        const currentScrollLeft = container.scrollLeft;
-        const currentDay = Math.floor(currentScrollLeft / window.innerWidth);
-        
-        if (e.deltaY > 0) {
-          const nextDay = Math.min(currentDay + 1, 3);
-          if (nextDay !== currentDay) {
-            isScrollingRef.current = true;
-            container.scrollTo({
-              left: nextDay * window.innerWidth,
-              behavior: "smooth"
-            });
-            setTimeout(() => { isScrollingRef.current = false; }, 600);
-          }
-        } else if (e.deltaY < 0) {
-          const prevDay = Math.max(currentDay - 1, 0);
-          if (prevDay !== currentDay) {
-            isScrollingRef.current = true;
-            container.scrollTo({
-              left: prevDay * window.innerWidth,
-              behavior: "smooth"
-            });
-            setTimeout(() => { isScrollingRef.current = false; }, 600);
-          }
-        }
+        const currentDay = getCurrentDay();
+        navigateToDay(currentDay + (e.deltaY > 0 ? 1 : -1));
         return;
       }
 
-      const { scrollTop, scrollHeight, clientHeight } = dayContentElement;
-      const isAtTop = scrollTop === 0;
-      const isAtBottom = scrollTop + clientHeight >= scrollHeight - 1;
+      const isAtTop = isAtVerticalBoundary(dayContentElement, 'top');
+      const isAtBottom = isAtVerticalBoundary(dayContentElement, 'bottom');
 
       if (isScrollingRef.current) {
         e.preventDefault();
@@ -290,34 +278,17 @@ export default function TransCanadian() {
 
       if (e.deltaY > 0 && isAtBottom) {
         e.preventDefault();
-        const currentScrollLeft = container.scrollLeft;
-        const currentDay = Math.floor(currentScrollLeft / window.innerWidth);
-        const nextDay = Math.min(currentDay + 1, 3);
-        
-        if (nextDay !== currentDay) {
-          isScrollingRef.current = true;
-          container.scrollTo({
-            left: nextDay * window.innerWidth,
-            behavior: "smooth"
-          });
-          setTimeout(() => { isScrollingRef.current = false; }, 600);
-        }
+        navigateToDay(getCurrentDay() + 1);
       } else if (e.deltaY < 0 && isAtTop) {
         e.preventDefault();
-        const currentScrollLeft = container.scrollLeft;
-        const currentDay = Math.ceil(currentScrollLeft / window.innerWidth);
-        const prevDay = Math.max(currentDay - 1, 0);
-        
-        if (prevDay !== currentDay) {
-          isScrollingRef.current = true;
-          container.scrollTo({
-            left: prevDay * window.innerWidth,
-            behavior: "smooth"
-          });
-          setTimeout(() => { isScrollingRef.current = false; }, 600);
-        }
+        navigateToDay(getCurrentDay() - 1);
       }
     };
+
+    // Mouse interaction state
+    let isMouseDown = false;
+    let startX: number;
+    let scrollLeft: number;
 
     const handleMouseDown = (e: MouseEvent) => {
       if (isMobileRef.current) return; // Skip on mobile
@@ -339,6 +310,34 @@ export default function TransCanadian() {
       const walk = (x - startX) * 2; // Reduced sensitivity
       container.scrollLeft = scrollLeft - walk;
       handleScroll();
+    };
+
+    // Touch interaction state
+    let startY: number;
+    let lastTouchX: number;
+    let lastTouchY: number;
+    let touchStartTime: number;
+    let isHorizontalSwipe = false;
+
+    const handleBoundaryNavigation = (deltaY: number, dayContentElement: HTMLElement) => {
+      const isAtTop = isAtVerticalBoundary(dayContentElement, 'top');
+      const isAtBottom = isAtVerticalBoundary(dayContentElement, 'bottom');
+      
+      if ((deltaY < -30 && isAtBottom) || (deltaY > 30 && isAtTop)) {
+        if (isScrollingRef.current) return true;
+        
+        const currentDay = getCurrentDay();
+        const targetDay = deltaY < -30 ? currentDay + 1 : currentDay - 1;
+        
+        if (targetDay >= 0 && targetDay <= 3 && targetDay !== currentDay) {
+          isScrollingRef.current = true;
+          isMouseDown = false; // Stop touch tracking
+          navigateToDay(targetDay);
+          handleScroll();
+          return true;
+        }
+      }
+      return false;
     };
 
     const handleTouchStart = (e: TouchEvent) => {
@@ -383,48 +382,9 @@ export default function TransCanadian() {
       
       // Handle vertical scrolling within day content with boundary detection
       if (!isHorizontalSwipe && dayContentElement) {
-        const { scrollTop, scrollHeight, clientHeight } = dayContentElement;
-        const isAtTop = scrollTop === 0;
-        const isAtBottom = scrollTop + clientHeight >= scrollHeight - 1;
-        
-        // Check if trying to scroll beyond boundaries
-        if ((totalDeltaY > 30 && isAtTop) || (totalDeltaY < -30 && isAtBottom)) {
+        if (handleBoundaryNavigation(totalDeltaY, dayContentElement)) {
           e.preventDefault();
-          
-          if (isScrollingRef.current) return;
-          
-          const currentScrollLeft = container.scrollLeft;
-          const currentDay = Math.floor(currentScrollLeft / window.innerWidth);
-          
-          if (totalDeltaY < -30 && isAtBottom) {
-            // Scrolling down at bottom - go to next day
-            const nextDay = Math.min(currentDay + 1, 3);
-            if (nextDay !== currentDay) {
-              isScrollingRef.current = true;
-              isMouseDown = false; // Stop touch tracking
-              container.scrollTo({
-                left: nextDay * window.innerWidth,
-                behavior: "smooth"
-              });
-              setTimeout(() => { isScrollingRef.current = false; }, 600);
-              handleScroll();
-              return;
-            }
-          } else if (totalDeltaY > 30 && isAtTop) {
-            // Scrolling up at top - go to previous day
-            const prevDay = Math.max(currentDay - 1, 0);
-            if (prevDay !== currentDay) {
-              isScrollingRef.current = true;
-              isMouseDown = false; // Stop touch tracking
-              container.scrollTo({
-                left: prevDay * window.innerWidth,
-                behavior: "smooth"
-              });
-              setTimeout(() => { isScrollingRef.current = false; }, 600);
-              handleScroll();
-              return;
-            }
-          }
+          return;
         }
       }
       
@@ -448,29 +408,14 @@ export default function TransCanadian() {
       const touchDuration = Date.now() - touchStartTime;
       const touch = e.changedTouches[0];
       const deltaX = touch.pageX - (startX + container.offsetLeft);
-      const deltaY = touch.pageY - startY;
       
       isMouseDown = false;
       
       // Handle quick swipe gestures for day navigation
       if (isHorizontalSwipe && touchDuration < 300 && Math.abs(deltaX) > 50) {
         e.preventDefault();
-        const currentScrollLeft = container.scrollLeft;
-        const currentDay = Math.round(currentScrollLeft / window.innerWidth);
-        
-        if (deltaX < -50) { // Swipe left - next day
-          const nextDay = Math.min(currentDay + 1, 3);
-          container.scrollTo({
-            left: nextDay * window.innerWidth,
-            behavior: "smooth"
-          });
-        } else if (deltaX > 50) { // Swipe right - previous day
-          const prevDay = Math.max(currentDay - 1, 0);
-          container.scrollTo({
-            left: prevDay * window.innerWidth,
-            behavior: "smooth"
-          });
-        }
+        const currentDay = getCurrentDay();
+        navigateToDay(currentDay + (deltaX < -50 ? 1 : -1));
       } else if (isHorizontalSwipe) {
         // Snap to nearest day if not a quick swipe
         const currentScrollLeft = container.scrollLeft;
