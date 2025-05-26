@@ -877,7 +877,7 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
       <Box
         position="absolute"
         bottom="13px"
-        left={`calc(${scrollProgress * 90}% + ${scrollProgress * 10}px)`}
+        left={`calc(${scrollProgress * 85}% + ${scrollProgress * 5}px)`}
         // Remove transition for real-time movement
         fontSize={isMobile ? "2rem" : "2.2rem"}
         filter={isMobile ? "none" : "drop-shadow(0 2px 4px rgba(0,0,0,0.3))"}
@@ -930,7 +930,9 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
               position="relative" 
               fontSize={isMobile ? "2rem" : "2.2rem"}
               animation={!isMobile ? `${locomotiveWobbleAnimation} 0.6s infinite` : 'none'}
-              style={{ transform: 'translate3d(0, 0, 0)' }}
+              style={{ 
+                transform: isMobile ? 'scaleX(-1) translate3d(0, 0, 0)' : 'translate3d(0, 0, 0)'
+              }}
             >
               🚂
               {/* Animated wheels - simplified on mobile */}
