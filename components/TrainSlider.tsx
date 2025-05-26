@@ -342,7 +342,7 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
     const rect = event.currentTarget.getBoundingClientRect();
     const clickX = event.clientX - rect.left;
     const clickProgress = clickX / rect.width;
-    onProgressChange(clickProgress);
+    onProgressChange(Math.max(0, Math.min(1, clickProgress)));
   };
 
   const handleTrainMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
@@ -877,7 +877,7 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
       <Box
         position="absolute"
         bottom="13px"
-        left={`${scrollProgress * 100}%`}
+        left={`calc(${scrollProgress * 90}% + ${scrollProgress * 10}px)`}
         // Remove transition for real-time movement
         fontSize={isMobile ? "2rem" : "2.2rem"}
         filter={isMobile ? "none" : "drop-shadow(0 2px 4px rgba(0,0,0,0.3))"}
