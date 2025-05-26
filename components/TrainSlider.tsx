@@ -1,5 +1,5 @@
 import { Box, keyframes, Tooltip } from "@chakra-ui/react";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef,useState } from "react";
 
 const smokeAnimation = keyframes`
   0% {
@@ -32,36 +32,43 @@ const createWagonWobbleAnimation = (baseOffset: number) => keyframes`
   }
 `;
 
-// Reusable City Building component
+// Reusable City Building component - optimized for performance
 const CityBuilding = ({ building, buildingId, windowCount = 3 }: { 
   building: { left: string; width: string; height: string; color: string }, 
   buildingId: string,
   windowCount?: number 
-}) => (
-  <Box
-    position="absolute"
-    bottom="8px"
-    left={building.left}
-    width={building.width}
-    height={building.height}
-    backgroundColor={building.color}
-    opacity="0.8"
-  >
-    {/* Building windows */}
-    {[...Array(windowCount)].map((_, j) => (
-      <Box
-        key={`${buildingId}-window-${j}`}
-        position="absolute"
-        top={`${8 + j * 6}px`}
-        left="2px"
-        width="2px"
-        height="2px"
-        backgroundColor="#FFD700"
-        opacity="0.6"
-      />
-    ))}
-  </Box>
-);
+}) => {
+  // Reduce window count on mobile for better performance
+  const isMobileDevice = typeof window !== 'undefined' && window.innerWidth <= 768;
+  const actualWindowCount = isMobileDevice ? Math.min(2, windowCount) : windowCount;
+  
+  return (
+    <Box
+      position="absolute"
+      bottom="8px"
+      left={building.left}
+      width={building.width}
+      height={building.height}
+      backgroundColor={building.color}
+      opacity="0.8"
+      style={{ transform: 'translate3d(0, 0, 0)' }}
+    >
+      {/* Building windows */}
+      {[...Array(actualWindowCount)].map((_, j) => (
+        <Box
+          key={`${buildingId}-window-${j}`}
+          position="absolute"
+          top={`${8 + j * 6}px`}
+          left="2px"
+          width="2px"
+          height="2px"
+          backgroundColor="#FFD700"
+          opacity="0.6"
+        />
+      ))}
+    </Box>
+  );
+};
 
 // Helper function to get farm element emoji
 const getFarmElementEmoji = (elementType: number): string => {
@@ -147,7 +154,7 @@ const wheelRotateAnimation = keyframes`
   }
 `;
 
-// Reusable Wagon component
+// Reusable Wagon component - optimized for performance
 const Wagon = ({ 
   config, 
   animationIndex, 
@@ -158,42 +165,54 @@ const Wagon = ({
   animationIndex: number,
   scrollProgress: number,
   wagonAnimations: any[]
-}) => (
-  <Box 
-    position="relative" 
-    fontSize={config.size}
-    marginRight="1px"
-    animation={scrollProgress > 0.05 ? `${wagonAnimations[animationIndex]} ${config.duration} infinite` : 'none'}
-    style={{ animationDelay: config.delay }}
-    transform={scrollProgress <= 0.05 ? `translateY(${config.offset}px)` : "none"}
-  >
-    {config.emoji}
-    {/* Wagon wheels */}
-    <Box
-      position="absolute"
-      bottom="-1px"
-      left={config.wheelLeft}
-      fontSize="0.5rem"
-      animation={scrollProgress > 0.05 ? `${wheelRotateAnimation} 0.3s infinite linear` : 'none'}
+}) => {
+  // Detect mobile for reduced animations
+  const isMobileDevice = typeof window !== 'undefined' && (window.innerWidth <= 768 || 'ontouchstart' in window);
+  
+  return (
+    <Box 
+      position="relative" 
+      fontSize={config.size}
+      marginRight="1px"
+      animation={scrollProgress > 0.05 && !isMobileDevice ? `${wagonAnimations[animationIndex]} ${config.duration} infinite` : 'none'}
+      style={{ 
+        animationDelay: config.delay,
+        transform: 'translate3d(0, 0, 0)', // Hardware acceleration
+      }}
+      transform={scrollProgress <= 0.05 ? `translateY(${config.offset}px)` : "none"}
     >
-      ⚙️
+      {config.emoji}
+      {/* Wagon wheels - simplified on mobile */}
+      {!isMobileDevice && (
+        <>
+          <Box
+            position="absolute"
+            bottom="-1px"
+            left={config.wheelLeft}
+            fontSize="0.5rem"
+            animation={scrollProgress > 0.05 ? `${wheelRotateAnimation} 0.3s infinite linear` : 'none'}
+          >
+            ⚙️
+          </Box>
+          <Box
+            position="absolute"
+            bottom="-1px"
+            right={config.wheelRight}
+            fontSize="0.5rem"
+            animation={scrollProgress > 0.05 ? `${wheelRotateAnimation} 0.3s infinite linear` : 'none'}
+            style={{ animationDelay: '0.1s' }}
+          >
+            ⚙️
+          </Box>
+        </>
+      )}
     </Box>
-    <Box
-      position="absolute"
-      bottom="-1px"
-      right={config.wheelRight}
-      fontSize="0.5rem"
-      animation={scrollProgress > 0.05 ? `${wheelRotateAnimation} 0.3s infinite linear` : 'none'}
-      style={{ animationDelay: '0.1s' }}
-    >
-      ⚙️
-    </Box>
-  </Box>
-);
+  );
+};
 
 interface TrainSliderProps {
   scrollProgress: number;
-  onProgressChange: (progress: number) => void;
+  onProgressChange: (newProgress: number) => void;
 }
 
 export const TrainSlider: React.FC<TrainSliderProps> = ({
@@ -204,11 +223,112 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
   const [dragStartX, setDragStartX] = useState(0);
   const [dragStartProgress, setDragStartProgress] = useState(0);
   const [showTooltip, setShowTooltip] = useState(false);
+  
+  // Detect mobile for performance optimizations
+  const isMobile = useMemo(() => {
+    if (typeof window === 'undefined') return false;
+    return window.innerWidth <= 768 || 'ontouchstart' in window;
+  }, []);
 
-  // Generate wagon wobble animations dynamically
-  const wagonAnimations = wagonConfigs.map(config => 
-    createWagonWobbleAnimation(config.offset)
+  // Memoize wagon animations to prevent recreation on every render
+  const wagonAnimations = useMemo(() => 
+    wagonConfigs.map(config => createWagonWobbleAnimation(config.offset)),
+    []
   );
+
+  // Throttle speed lines animation timestamp to reduce re-renders
+  const [animationTime, setAnimationTime] = useState(0);
+  const lastUpdateRef = useRef(0);
+  
+  useEffect(() => {
+    if (scrollProgress <= 0.1) return;
+    
+    const updateTime = () => {
+      const now = Date.now();
+      if (now - lastUpdateRef.current > 100) { // Throttle to 10fps instead of 60fps
+        setAnimationTime(now);
+        lastUpdateRef.current = now;
+      }
+    };
+    
+    const interval = setInterval(updateTime, 100);
+    return () => clearInterval(interval);
+  }, [scrollProgress]);
+
+  // Memoize complex speed lines calculations
+  const speedLines = useMemo(() => {
+    if (scrollProgress <= 0.1 || isMobile) return [];
+    
+    const trainPositionPercent = scrollProgress * 100;
+    const lines = [];
+    
+    // Reduce number of speed lines on mobile for better performance
+    const lineCount = isMobile ? 4 : 6;
+    
+    for (let i = 0; i < lineCount; i++) {
+      const baseOffset = (i * 1.5);
+      const randomOffset = (Math.sin(animationTime * 0.0003 + i * 1.5) * 1.5);
+      const lineOffsetPercent = baseOffset + randomOffset;
+      const lineLeftPercent = trainPositionPercent - lineOffsetPercent;
+      
+      if (lineLeftPercent < -10 || lineLeftPercent > 110) continue;
+      
+      const randomVertical = Math.sin(animationTime * 0.0002 + i * 2) * 3;
+      const verticalPosition = (i * 3) + randomVertical;
+      
+      const screenWidthPx = typeof window !== 'undefined' ? window.innerWidth : 1200;
+      const locomotiveWidthPercent = (50 / screenWidthPx) * 100;
+      const baseWidth = 25 + (Math.sin(animationTime * 0.0004 + i * 0.8) * 8);
+      const randomWidth = baseWidth + locomotiveWidthPercent;
+      
+      const randomOpacity = 0.25 + (Math.sin(animationTime * 0.0003 + i * 1.2) * 0.1);
+      const randomDuration = 0.9 + (Math.sin(animationTime * 0.0002 + i * 0.6) * 0.3);
+      const randomDelay = Math.sin(animationTime * 0.0001 + i * 0.9) * 0.2;
+      
+      lines.push({
+        id: `speed-line-${i}-${Math.round(lineLeftPercent * 5)}`,
+        bottom: Math.max(0, verticalPosition),
+        left: lineLeftPercent,
+        width: randomWidth,
+        opacity: randomOpacity,
+        duration: randomDuration,
+        delay: randomDelay,
+      });
+    }
+    
+    return lines;
+  }, [scrollProgress, animationTime, isMobile]);
+
+  // Memoize landscape elements to reduce DOM complexity
+  const landscapeElements = useMemo(() => {
+    const treeCount = isMobile ? 5 : 8;
+    const farmCount = isMobile ? 12 : 20;
+    const scenicCount = isMobile ? 4 : 6;
+    
+    return {
+      trees: [...Array(treeCount)].map((_, i) => ({
+        id: `tree-${i}`,
+        left: (i * (96 / treeCount)) + (Math.sin(i * 2) * 3),
+        height: 14 + (Math.sin(i * 1.5) * 5),
+        bottom: 15 + (Math.sin(i * 0.8) * 3),
+        emoji: getTreeEmoji(i % 3),
+      })),
+      farmElements: [...Array(farmCount)].map((_, i) => ({
+        id: `farm-${i}`,
+        left: (i * (90 / farmCount)) + (Math.sin(i * 2) * 2),
+        height: 10 + (Math.sin(i * 1.5) * 3),
+        bottom: 15 + (Math.sin(i * 0.8) * 2),
+        emoji: getFarmElementEmoji(i % 6),
+      })),
+      scenicElements: [...Array(scenicCount)].map((_, i) => ({
+        id: `scenic-${i}`,
+        left: (i * (85 / scenicCount)) + (Math.sin(i * 3) * 5),
+        height: 12 + (Math.sin(i * 2) * 3),
+        bottom: 15 + (Math.sin(i * 1.5) * 3),
+        emoji: getScenicElementEmoji(i % 3),
+      })),
+    };
+  }, [isMobile]);
 
   // Helper function to calculate new progress from drag movement
   const calculateDragProgress = useCallback((clientX: number) => {
@@ -323,7 +443,8 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
           right="0"
           height="100%"
           background="linear-gradient(to bottom, rgba(135, 206, 235, 0.3) 0%, rgba(224, 246, 255, 0.6) 50%, rgba(255, 255, 255, 0.8) 100%)"
-          backdropFilter="blur(2px)"
+          backdropFilter={isMobile ? "none" : "blur(2px)"}
+          style={{ willChange: 'transform' }}
         />
 
       {/* Sun */}
@@ -439,27 +560,19 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
         />
         
         {/* Trees */}
-        {[...Array(8)].map((_, i) => {
-          const leftPercent = (i * 12) + (Math.sin(i * 2) * 3);
-          const height = 14 + (Math.sin(i * 1.5) * 5);
-          const bottom = 15 + (Math.sin(i * 0.8) * 3);
-          const treeType = i % 3;
-          const treeEmoji = getTreeEmoji(treeType);
-          
-          return (
-            <Box
-              key={`tree-${i}-${leftPercent.toFixed(1)}`}
-              position="absolute"
-              bottom={`${bottom}px`}
-              left={`${leftPercent}%`}
-              fontSize={`${height}px`}
-              opacity="0.7"
-              filter="drop-shadow(0 1px 2px rgba(0,0,0,0.2))"
-            >
-              {treeEmoji}
-            </Box>
-          );
-        })}
+        {landscapeElements.trees.map((tree) => (
+          <Box
+            key={tree.id}
+            position="absolute"
+            bottom={`${tree.bottom}px`}
+            left={`${tree.left}%`}
+            fontSize={`${tree.height}px`}
+            opacity="0.7"
+            filter="drop-shadow(0 1px 2px rgba(0,0,0,0.2))"
+          >
+            {tree.emoji}
+          </Box>
+        ))}
       </Box>
 
       {/* Farm landscape for second quarter */}
@@ -534,27 +647,19 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
         </Box>
         
         {/* Farm animals and crops */}
-        {[...Array(20)].map((_, i) => {
-          const leftPercent = (i * 4.5) + (Math.sin(i * 2) * 2);
-          const height = 10 + (Math.sin(i * 1.5) * 3);
-          const bottom = 15 + (Math.sin(i * 0.8) * 2);
-          const elementType = i % 6;
-          const farmEmoji = getFarmElementEmoji(elementType);
-          
-          return (
-            <Box
-              key={`farm-element-${i}-${leftPercent.toFixed(1)}`}
-              position="absolute"
-              bottom={`${bottom}px`}
-              left={`${leftPercent}%`}
-              fontSize={`${height}px`}
-              opacity="0.7"
-              filter="drop-shadow(0 1px 2px rgba(0,0,0,0.2))"
-            >
-              {farmEmoji}
-            </Box>
-          );
-        })}
+        {landscapeElements.farmElements.map((element) => (
+          <Box
+            key={element.id}
+            position="absolute"
+            bottom={`${element.bottom}px`}
+            left={`${element.left}%`}
+            fontSize={`${element.height}px`}
+            opacity="0.7"
+            filter="drop-shadow(0 1px 2px rgba(0,0,0,0.2))"
+          >
+            {element.emoji}
+          </Box>
+        ))}
         
         {/* Fence posts */}
         {[...Array(8)].map((_, i) => (
@@ -633,27 +738,19 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
         />
         
         {/* Scenic elements */}
-        {[...Array(6)].map((_, i) => {
-          const leftPercent = (i * 15) + (Math.sin(i * 3) * 5);
-          const height = 12 + (Math.sin(i * 2) * 3);
-          const bottom = 15 + (Math.sin(i * 1.5) * 3);
-          const elementType = i % 3;
-          const scenicEmoji = getScenicElementEmoji(elementType);
-          
-          return (
-            <Box
-              key={`scenic-element-${i}-${leftPercent.toFixed(1)}`}
-              position="absolute"
-              bottom={`${bottom}px`}
-              left={`${leftPercent}%`}
-              fontSize={`${height}px`}
-              opacity="0.7"
-              filter="drop-shadow(0 1px 2px rgba(0,0,0,0.2))"
-            >
-              {scenicEmoji}
-            </Box>
-          );
-        })}
+        {landscapeElements.scenicElements.map((element) => (
+          <Box
+            key={element.id}
+            position="absolute"
+            bottom={`${element.bottom}px`}
+            left={`${element.left}%`}
+            fontSize={`${element.height}px`}
+            opacity="0.7"
+            filter="drop-shadow(0 1px 2px rgba(0,0,0,0.2))"
+          >
+            {element.emoji}
+          </Box>
+        ))}
       </Box>
 
       {/* Vancouver city skyline at end */}
@@ -750,17 +847,19 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
         }}
         transition="background-color 0.2s ease"
       >
-        {/* Animated rail shine effect */}
-        <Box
-          position="absolute"
-          top="0"
-          left="0"
-          width="100%"
-          height="100%"
-          background="linear-gradient(90deg, transparent, rgba(255,255,255,0.3) 50%, transparent)"
-          backgroundSize="200px 100%"
-          animation={`${railShineAnimation} 3s infinite linear`}
-        />
+        {/* Animated rail shine effect - disabled on mobile */}
+        {!isMobile && (
+          <Box
+            position="absolute"
+            top="0"
+            left="0"
+            width="100%"
+            height="100%"
+            background="linear-gradient(90deg, transparent, rgba(255,255,255,0.3) 50%, transparent)"
+            backgroundSize="200px 100%"
+            animation={`${railShineAnimation} 3s infinite linear`}
+          />
+        )}
         
         {/* Rail ties/sleepers */}
         <Box
@@ -779,29 +878,33 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
         position="absolute"
         bottom="13px"
         left={`${scrollProgress * 100}%`}
-        transition="left 0.1s ease-out"
-        fontSize="2.2rem"
-        filter="drop-shadow(0 2px 4px rgba(0,0,0,0.3))"
+        transition={isMobile ? "none" : "left 0.1s ease-out"}
+        fontSize={isMobile ? "2rem" : "2.2rem"}
+        filter={isMobile ? "none" : "drop-shadow(0 2px 4px rgba(0,0,0,0.3))"}
         zIndex={3}
         cursor={isDragging ? 'grabbing' : 'grab'}
         onMouseDown={handleTrainMouseDown}
         onTouchStart={handleTrainTouchStart}
         userSelect="none"
-        style={{ touchAction: 'none' }}
+        style={{ 
+          touchAction: 'none',
+          transform: 'translate3d(0, 0, 0)', // Enable hardware acceleration
+        }}
       >
-          {/* Multiple smoke puffs */}
-          {[...Array(4)].map((_, i) => {
+          {/* Multiple smoke puffs - reduced on mobile */}
+          {(isMobile ? ['smoke-1', 'smoke-2'] : ['smoke-1', 'smoke-2', 'smoke-3', 'smoke-4']).map((smokeId, i) => {
             return (
               <Box
-                key={`smoke-puff-${i}`}
+                key={smokeId}
                 position="absolute"
                 top={`${-4 - i * 5}px`}
                 left={`${100 + i * 3}px`}
                 animation={scrollProgress > 0.05 ? `${smokeAnimation} ${1.5 + i * 0.2}s infinite` : 'none'}
                 opacity="0.7"
-                fontSize="1.0rem"
+                fontSize={isMobile ? "0.8rem" : "1.0rem"}
                 style={{
                   animationDelay: `${i * 0.3}s`,
+                  transform: 'translate3d(0, 0, 0)', // Hardware acceleration
                 }}
               >
                 💨
@@ -814,7 +917,7 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
             {/* Render wagons using the reusable component */}
             {wagonConfigs.map((config, index) => (
               <Wagon 
-                key={`wagon-${config.emoji}-${index}`} 
+                key={`wagon-${config.emoji}-${config.duration}-${index}`}
                 config={config} 
                 animationIndex={index} 
                 scrollProgress={scrollProgress}
@@ -825,37 +928,42 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
             {/* Locomotive */}
             <Box 
               position="relative" 
-              fontSize="2.2rem"
-              animation={scrollProgress > 0.05 ? `${locomotiveWobbleAnimation} 0.6s infinite` : 'none'}
+              fontSize={isMobile ? "2rem" : "2.2rem"}
+              animation={scrollProgress > 0.05 && !isMobile ? `${locomotiveWobbleAnimation} 0.6s infinite` : 'none'}
               transform={scrollProgress <= 0.05 ? "scaleX(-1)" : "none"}
+              style={{ transform: 'translate3d(0, 0, 0)' }}
             >
               🚂
-              {/* Animated wheels */}
-              <Box
-                position="absolute"
-                bottom="-1px"
-                left="7px"
-                fontSize="0.5rem"
-                animation={scrollProgress > 0.05 ? `${wheelRotateAnimation} 0.3s infinite linear` : 'none'}
-              >
-                ⚙️
-              </Box>
-              <Box
-                position="absolute"
-                bottom="-1px"
-                right="7px"
-                fontSize="0.5rem"
-                animation={scrollProgress > 0.05 ? `${wheelRotateAnimation} 0.3s infinite linear` : 'none'}
-                style={{ animationDelay: '0.15s' }}
-              >
-                ⚙️
-              </Box>
+              {/* Animated wheels - simplified on mobile */}
+              {!isMobile && (
+                <>
+                  <Box
+                    position="absolute"
+                    bottom="-1px"
+                    left="7px"
+                    fontSize="0.5rem"
+                    animation={scrollProgress > 0.05 ? `${wheelRotateAnimation} 0.3s infinite linear` : 'none'}
+                  >
+                    ⚙️
+                  </Box>
+                  <Box
+                    position="absolute"
+                    bottom="-1px"
+                    right="7px"
+                    fontSize="0.5rem"
+                    animation={scrollProgress > 0.05 ? `${wheelRotateAnimation} 0.3s infinite linear` : 'none'}
+                    style={{ animationDelay: '0.15s' }}
+                  >
+                    ⚙️
+                  </Box>
+                </>
+              )}
             </Box>
           </Box>
         </Box>
 
-      {/* Speed lines effect */}
-      {scrollProgress > 0.1 && (
+      {/* Speed lines effect - optimized */}
+      {scrollProgress > 0.1 && speedLines.length > 0 && (
         <Box
           position="absolute"
           bottom="35px"
@@ -865,46 +973,21 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
           overflow="hidden"
           zIndex={1}
         >
-          {[...Array(8)].map((_, i) => {
-            const trainPositionPercent = scrollProgress * 100;
-            
-            const baseOffset = (i * 1.0); // Reduced from 2.5 to 1.0 to start closer to train
-            const randomOffset = (Math.sin(Date.now() * 0.0003 + i * 1.5) * 1.5);
-            const lineOffsetPercent = baseOffset + randomOffset;
-            const lineLeftPercent = trainPositionPercent - lineOffsetPercent;
-            
-            const randomVertical = Math.sin(Date.now() * 0.0002 + i * 2) * 3;
-            const verticalPosition = (i * 2.5) + randomVertical;
-            
-            // Extend width to reach 50px after locomotive
-            const locomotiveWidthPx = 50;
-            const screenWidthPx = window.innerWidth;
-            const locomotiveWidthPercent = (locomotiveWidthPx / screenWidthPx) * 100;
-            const baseWidth = 25 + (Math.sin(Date.now() * 0.0004 + i * 0.8) * 10);
-            const randomWidth = baseWidth + locomotiveWidthPercent;
-            
-            const randomOpacity = 0.25 + (Math.sin(Date.now() * 0.0003 + i * 1.2) * 0.15);
-            const randomDuration = 0.8 + (Math.sin(Date.now() * 0.0002 + i * 0.6) * 0.4);
-            const randomDelay = Math.sin(Date.now() * 0.0001 + i * 0.9) * 0.2;
-            
-            if (lineLeftPercent < -10 || lineLeftPercent > 110) return null;
-            
-            return (
-              <Box
-                key={`speed-line-${i}-${Math.round(lineLeftPercent * 10)}`}
-                position="absolute"
-                bottom={`${Math.max(0, verticalPosition)}px`}
-                left={`${lineLeftPercent}%`}
-                width={`${randomWidth}px`}
-                height="2px"
-                backgroundColor={`rgba(100,100,100,${randomOpacity})`}
-                animation={`${speedLinesAnimation} ${randomDuration}s infinite linear`}
-                style={{
-                  animationDelay: `${randomDelay}s`,
-                }}
-              />
-            );
-          })}
+          {speedLines.map((line) => (
+            <Box
+              key={line.id}
+              position="absolute"
+              bottom={`${line.bottom}px`}
+              left={`${line.left}%`}
+              width={`${line.width}px`}
+              height="2px"
+              backgroundColor={`rgba(100,100,100,${line.opacity})`}
+              animation={`${speedLinesAnimation} ${line.duration}s infinite linear`}
+              style={{
+                animationDelay: `${line.delay}s`,
+              }}
+            />
+          ))}
         </Box>
       )}
 
