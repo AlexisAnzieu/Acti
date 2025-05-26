@@ -1,151 +1,22 @@
 import { 
   Box, 
   Text, 
-  VStack, 
-  HStack, 
-  Badge, 
-  Card, 
-  CardBody,
-  Heading,
-  SimpleGrid,
-  Icon,
-  Progress
+  VStack
 } from "@chakra-ui/react";
-import { MdLocationOn, MdSchedule, MdTerrain, MdGrass } from "react-icons/md";
 
 export const Day3Content = () => (
-  <VStack spacing={8} align="stretch">
+  <VStack spacing={6} align="stretch">
     <Box>
-      <HStack spacing={3} mb={4} flexWrap="wrap">
-        <Badge colorScheme="orange" fontSize="sm" px={3} py={1}>
-          <HStack spacing={1}>
-            <Icon as={MdLocationOn} />
-            <Text>Toronto → Winnipeg</Text>
-          </HStack>
-        </Badge>
-        <Badge colorScheme="red" fontSize="sm" px={3} py={1}>
-          <HStack spacing={1}>
-            <Icon as={MdSchedule} />
-            <Text>Plus longue étape</Text>
-          </HStack>
-        </Badge>
-      </HStack>
-    </Box>
+      <Text lineHeight="1.8" mb={4}>
+        Deuxième réveil à bord. Il semblerait que mon corps se soit déjà habitué aux secousses intermittentes nocturnes. Une routine s'installe petit à petit dans les cinq mètres carrés d'habitacle partagées avec Carla et s'optimise heures après heures. À l'ouverture du store de la chambre une surprise non des moindres nous attend. Le paysage a totalement changé. Sommes-nous dans le même hémisphère ? Les forêts marécageuses jouxtant les lacs gelés font maintenant place à de vastes étendues arides et sèches: les fameuses prairies canadiennes. Les animaux n'ont pas d'habitat où se cacher des regards, si bien que nous apercevons des biches et des coyotes. De nombreuses fermes accompagnées de leurs gigantesques silos à grains font leur apparition de temps à autre le long de la voie ferrée.
+      </Text>
 
-    <Card bg="red.50">
-      <CardBody>
-        <Heading size="md" mb={4} color="red.700">
-          ⚠️ La Plus Longue Étape
-        </Heading>
-        <Text fontSize="lg" lineHeight="1.8" mb={4}>
-          La plus longue étape de notre voyage commence. Nous nous apprêtons à traverser 
-          des paysages qui vont radicalement changer au fil des heures, nous emmenant 
-          du Bouclier canadien aux vastes prairies de l'Ouest.
-        </Text>
-        
-        <Progress value={75} colorScheme="red" size="lg" borderRadius="md" />
-        <Text fontSize="sm" color="gray.600" mt={2} textAlign="center">
-          Segment le plus long du voyage transcanadie
-        </Text>
-      </CardBody>
-    </Card>
+      <Text lineHeight="1.8" mb={4}>
+        Après le petit-déjeuner, un court arrêt nous permet de nous dégourdir les jambes pour la journée. Cette gare est située au milieu d'un bien étrange environnement composé de milliers de containers, hauts de plusieurs étages, une ville de métal sans aucune habitation à l'horizon. La nouvelle équipe à bord apporte un peu de renouvellement de visages au sein du quartier, Nous partageons maintenant entre voyageurs les souvenirs de l'ancienne équipe. Autre nouveauté notable, les égouts sont bouchés dans le wagon adjacent, ses occupants se font disperser à travers les différents quartiers du village-train afin de pouvoir accéder à leurs besoins primaires. Aussi, aujourd'hui au programme: c'est bingo et dégustation de vin. Allons-y ! Nous avons passé le restant de notre après-midi dans le wagon panoramique à se laisser envoûter par notre musique tout en regardant au dehors, un vrai safari ! On ne s'en lasse pas.
+      </Text>
 
-    <Card bg="gray.50">
-      <CardBody>
-        <Heading size="md" mb={4} color="gray.700">
-          🪨 Le Bouclier Canadien
-        </Heading>
-        <Text fontSize="lg" lineHeight="1.8" mb={4}>
-          Nous traversons le Bouclier canadien, un terrain accidenté de formations rocheuses 
-          anciennes et d'innombrables lacs. Cette région géologique fascinate par son âge 
-          et sa beauté sauvage.
-        </Text>
-        
-        <SimpleGrid columns={{ base: 1, md: 3 }} spacing={4}>
-          <Box p={4} bg="white" borderRadius="md" textAlign="center">
-            <Text fontSize="2xl" mb={2}>⛰️</Text>
-            <Text fontWeight="medium">Formations Rocheuses</Text>
-            <Text fontSize="sm" color="gray.600">Anciennes comme la Terre</Text>
-          </Box>
-          <Box p={4} bg="white" borderRadius="md" textAlign="center">
-            <Text fontSize="2xl" mb={2}>🏔️</Text>
-            <Text fontWeight="medium">Terrain Accidenté</Text>
-            <Text fontSize="sm" color="gray.600">Relief sculptée par les glaciers</Text>
-          </Box>
-          <Box p={4} bg="white" borderRadius="md" textAlign="center">
-            <Text fontSize="2xl" mb={2}>💧</Text>
-            <Text fontWeight="medium">Innombrables Lacs</Text>
-            <Text fontSize="sm" color="gray.600">Miroirs d'eau cristalline</Text>
-          </Box>
-        </SimpleGrid>
-      </CardBody>
-    </Card>
-
-    <Card bg="yellow.50">
-      <CardBody>
-        <Heading size="md" mb={4} color="yellow.700">
-          🌾 Transformation vers les Prairies
-        </Heading>
-        <Text fontSize="lg" lineHeight="1.8" mb={4}>
-          En poursuivant vers l'ouest, le paysage se transforme progressivement. 
-          Les rochers laissent place à une terre plus douce, annonçant l'arrivée 
-          des vastes prairies canadiennes.
-        </Text>
-        
-        <Box p={4} bg="white" borderRadius="md">
-          <HStack spacing={4} align="center">
-            <Icon as={MdTerrain} boxSize={6} color="gray.600" />
-            <Text flex={1}>Bouclier Canadien</Text>
-            <Text fontSize="2xl">→</Text>
-            <Icon as={MdGrass} boxSize={6} color="green.500" />
-            <Text flex={1}>Prairies</Text>
-          </HStack>
-        </Box>
-      </CardBody>
-    </Card>
-
-    <Card bg="green.50">
-      <CardBody>
-        <Heading size="md" mb={4} color="green.700">
-          🌾 La Mer d'Or des Prairies
-        </Heading>
-        <Text fontSize="lg" lineHeight="1.8" mb={4}>
-          Les champs de blé infinis s'étendent jusqu'à l'horizon, créant une mer d'or 
-          hypnotisante sous l'immense ciel des prairies. C'est un spectacle à couper le souffle 
-          qui définit le cœur agricole du Canada.
-        </Text>
-        
-        <SimpleGrid columns={{ base: 1, md: 2 }} spacing={4}>
-          <Box p={4} bg="white" borderRadius="md">
-            <Text fontSize="xl" mb={2}>🌾</Text>
-            <Text fontWeight="medium" mb={2}>Champs de Blé Infinis</Text>
-            <Text fontSize="sm" color="gray.600">
-              Des étendues dorées qui se perdent à l'horizon, ondulant sous le vent 
-              comme les vagues d'un océan terrestre.
-            </Text>
-          </Box>
-          <Box p={4} bg="white" borderRadius="md">
-            <Text fontSize="xl" mb={2}>☁️</Text>
-            <Text fontWeight="medium" mb={2}>Immense Ciel des Prairies</Text>
-            <Text fontSize="sm" color="gray.600">
-              Un dôme céleste qui semble toucher la terre, offrant des couchers de soleil 
-              spectaculaires sur cette mer dorée.
-            </Text>
-          </Box>
-        </SimpleGrid>
-        
-        <Box p={4} bg="white" borderRadius="md" borderLeft="4px solid" borderColor="green.400" mt={4}>
-          <Text fontSize="md" fontWeight="medium" color="green.700" fontStyle="italic">
-            "Une mer d'or hypnotisante sous l'immense ciel des prairies - 
-            le cœur battant de l'agriculture canadienne."
-          </Text>
-        </Box>
-      </CardBody>
-    </Card>
-
-    <Box textAlign="center" p={4} bg="blue.100" borderRadius="md">
-      <Text fontSize="md" color="blue.800" fontWeight="medium">
-        🚂 Direction : Winnipeg, Porte de l'Ouest Canadien
+      <Text lineHeight="1.8" mb={4}>
+        Le train, fidèle à lui-même, file à toute allure, il est cependant temps de parler de la partie logistique de ce monstre. Deux fois par jour, il s'arrête au milieu de zones désertiques dans des gares esseulées afin de faire le plein d'essence, de se ravitailler en eau et de vider les poubelles qui s'accumulent lors des trois repas quotidiens à bord. En trois jours, il y a déjà eu une panne d'eau, des sinistres dans les canalisations et une panne de courant dans certains wagons. Cependant, le destrier continue sa progression à travers monts et vallées, transportant 400 passagers sans que rien ne parvienne à le ralentir. Les mécaniciens réparent les avaries à la volée. Mon seul objectif demain est de parvenir à trouver le temps de dessiner un plan du wagon-lit. Finalement, plus que les paysages, c'est le temps qui file à toute allure.
       </Text>
     </Box>
   </VStack>

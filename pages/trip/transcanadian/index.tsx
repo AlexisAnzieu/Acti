@@ -1,10 +1,11 @@
+
 /* eslint-disable react/no-unescaped-entities */
 import { Box, Heading, keyframes } from "@chakra-ui/react";
 import { GetStaticPropsContext } from "next";
 import Head from "next/head";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { useEffect } from "react";
-import { useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { Tooltip } from "react-tooltip";
 
 import { Locale } from "../../../component/NavbarComponent";
 import { TrainSlider } from "../../../components/TrainSlider";
@@ -69,11 +70,103 @@ export default function TransCanadian() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [currentDay, setCurrentDay] = useState(0);
   const [showInstructions, setShowInstructions] = useState(true);
+  const [preloadedMedia, setPreloadedMedia] = useState<Map<string, HTMLVideoElement | HTMLImageElement>>(new Map());
+  const [isClient, setIsClient] = useState(false);
+
+  // Preload all tooltip media
+  const preloadMedia = useCallback(async () => {
+    if (typeof window === 'undefined') return; // Guard for SSR
+    
+    const mediaUrls: string[] = [];
+    
+    // Wait a bit for DOM to be fully rendered
+    await new Promise(resolve => setTimeout(resolve, 500));
+    
+    // Collect all data-tooltip-id anchors with href attributes
+    const tooltipAnchors = document.querySelectorAll('[data-tooltip-id="my-tooltip"][href]');
+    tooltipAnchors.forEach((anchor) => {
+      const href = anchor.getAttribute('href');
+      if (href) {
+        mediaUrls.push(href);
+      }
+    });
+
+    console.log('Preloading media:', mediaUrls);
+    const mediaMap = new Map<string, HTMLVideoElement | HTMLImageElement>();
+
+    for (const url of mediaUrls) {
+      try {
+        if (url.endsWith('.mov') || url.includes('video') || url.endsWith('.mp4')) {
+          // Preload video
+          const video = document.createElement('video');
+          video.src = url;
+          video.preload = 'auto';
+          video.muted = true;
+          video.loop = true;
+          video.playsInline = true;
+          video.style.display = 'none';
+          document.body.appendChild(video);
+          
+          await Promise.race([
+            new Promise((resolve, reject) => {
+              video.addEventListener('loadeddata', resolve);
+              video.addEventListener('error', reject);
+              video.load();
+            }),
+            new Promise((_, reject) => setTimeout(() => reject(new Error('Timeout')), 10000))
+          ]);
+          
+          console.log('Video preloaded:', url);
+          mediaMap.set(url, video);
+        } else {
+          // Preload image
+          const img = new Image();
+          img.crossOrigin = 'anonymous';
+          await Promise.race([
+            new Promise((resolve, reject) => {
+              img.onload = resolve;
+              img.onerror = reject;
+              img.src = url;
+            }),
+            new Promise((_, reject) => setTimeout(() => reject(new Error('Timeout')), 5000))
+          ]);
+          console.log('Image preloaded:', url);
+          mediaMap.set(url, img);
+        }
+      } catch (error) {
+        console.warn(`Failed to preload media: ${url}`, error);
+      }
+    }
+
+    setPreloadedMedia(mediaMap);
+    console.log('Media preloading complete:', mediaMap.size, 'items');
+  }, []);
 
   useEffect(() => {
-    const timer = setTimeout(() => setShowInstructions(false), 4000);
-    return () => clearTimeout(timer);
+    setIsClient(true);
   }, []);
+
+  useEffect(() => {
+    if (!isClient) return;
+    
+    const timer = setTimeout(() => {
+      setShowInstructions(false);
+      // Start preloading after initial render
+      preloadMedia();
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, [preloadMedia, isClient]);
+
+  // Cleanup preloaded video elements on unmount
+  useEffect(() => {
+    return () => {
+      preloadedMedia.forEach((element) => {
+        if (element instanceof HTMLVideoElement && element.parentNode) {
+          element.parentNode.removeChild(element);
+        }
+      });
+    };
+  }, [preloadedMedia]);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -138,6 +231,68 @@ export default function TransCanadian() {
         <title>{currentContent.title}</title>
         <meta name="description" content={currentContent.subtitle} />
       </Head>
+
+      {isClient && (
+        <Tooltip
+          place="left"
+          opacity={1}
+          noArrow={true}
+          float={true}
+          id="my-tooltip"
+          style={{
+            maxWidth: "600px",
+            width: "40%",
+            borderRadius: "5%",
+            zIndex: 999,
+            padding: 0,
+          }}
+          render={({ activeAnchor }) => {
+            // Guard for SSR
+            if (typeof window === 'undefined' || typeof document === 'undefined') {
+              return null;
+            }
+
+            const href = activeAnchor?.getAttribute("href") ?? "";
+            
+            if (href.endsWith(".mov") || href.includes("video") || href.endsWith(".mp4")) {
+              // Return JSX video element instead of DOM element
+              return (
+                <video
+                  src={href}
+                  style={{ 
+                    borderRadius: "5%", 
+                    maxWidth: "100%",
+                    display: "block"
+                  }}
+                  autoPlay
+                  muted
+                  loop
+                  controls
+                  playsInline
+                  onLoadedData={(e) => {
+                    const video = e.target as HTMLVideoElement;
+                    video.play().catch((error) => {
+                      console.warn('Video autoplay failed:', error);
+                    });
+                  }}
+                />
+              );
+            }
+            
+            // Return JSX img element instead of DOM element
+            return (
+              <img
+                src={href}
+                style={{ 
+                  borderRadius: "5%", 
+                  maxWidth: "100%" 
+                }}
+                alt=""
+              />
+            );
+          }}
+        />
+      )}
 
       <Box
         ref={containerRef}

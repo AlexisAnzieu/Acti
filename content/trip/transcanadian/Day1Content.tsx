@@ -1,6 +1,7 @@
+
 import { 
   Box, 
-  Text, 
+  Highlight,  Text, 
   VStack} from "@chakra-ui/react";
 
 export const Day1Content = () => (
@@ -8,11 +9,49 @@ export const Day1Content = () => (
     <Box>
       
       <Text lineHeight="1.8" mb={4}>
-        Remontons le fil du récit jusqu'au J-0, lorsque le mardi 29 mai en fin d'après-midi nous entamons notre aventure ferroviaire. Il faut en effet se rendre à Toronto afin d'embarquer sur le Transcanadien. Qu'à cela ne tienne, nous avons déjà fait le trajet de cinq heures reliant Montréal à Toronto plusieurs fois. Les confortables wagons récemment mis en service nous permettent de nous délecter d'un beau coucher de soleil. Seul bémol, les coups de klaxon intempestifs qui surviennent à la moindre petite intersection dénuée de barrières de signalisation. Casque antibruit sur les oreilles et livre de poche en main, un avant-goût de notre aventure se dessine.
+        Remontons le fil du récit jusqu'au J-0, lorsque le mardi 29 mai en fin d'après-midi nous entamons notre aventure ferroviaire. Il faut en effet se rendre à Toronto afin d'embarquer sur le Transcanadien. Qu'à cela ne tienne, nous avons déjà fait le trajet de cinq heures reliant Montréal à Toronto plusieurs fois. Les confortables wagons récemment mis en service nous permettent de nous délecter{" "}
+        <a
+          data-tooltip-id="my-tooltip"
+          href="https://acti.anzieu.com/assets/4929f680-6103-4eb9-b156-b3366befc011.mov"
+        >
+          <Highlight
+            query="d'un beau coucher de soleil"
+            styles={{
+              borderRadius: "50px",
+              px: "2",
+              py: "1",
+              bg: "orange.100",
+              textDecoration: "underline",
+              cursor: "pointer"
+            }}
+          >
+            d'un beau coucher de soleil
+          </Highlight>
+        </a>{" "}
+        . Seul bémol, les coups de klaxon intempestifs qui surviennent à la moindre petite intersection dénuée de barrières de signalisation. Casque antibruit sur les oreilles et livre de poche en main, un avant-goût de notre aventure se dessine.
       </Text>
 
       <Text lineHeight="1.8" mb={4}>
-        Notre arrivée à Toronto débute par une petite marche nocturne de 15 minutes jusqu'à l'auberge de jeunesse la plus proche. S'ensuit une nuit passablement bruyante due à une isolation douteuse. Le transcanadien part à 10h, le réveil est mis à 8h, ce serait dommage de louper le départ hebdomadaire.
+        Notre arrivée à Toronto débute par une petite marche nocturne de 15 minutes jusqu'à l'auberge de jeunesse la plus proche. S'ensuit une nuit passablement bruyante due à une{' '}
+        <a
+          data-tooltip-id="my-tooltip"
+          href="https://acti.anzieu.com/assets/0d7c1add-65fa-4e06-b104-408e821be3f0.MOV"
+        >
+          <Highlight
+            query="isolation douteuse"
+            styles={{
+              borderRadius: "50px",
+              px: "2",
+              py: "1",
+              bg: "orange.100",
+              textDecoration: "underline",
+              cursor: "pointer"
+            }}
+          >
+            isolation douteuse
+          </Highlight>
+        </a>{" "}
+        . Le transcanadien part à 10h, le réveil est mis à 8h, ce serait dommage de louper le départ hebdomadaire.
       </Text>
 
       <Text lineHeight="1.8" mb={4}>

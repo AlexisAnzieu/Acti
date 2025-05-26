@@ -1,116 +1,55 @@
 import { 
   Box, 
   Text, 
-  VStack, 
-  HStack, 
-  Badge, 
-  Card, 
-  CardBody,
-  Heading,
-  SimpleGrid,
-  Icon
+  VStack
 } from "@chakra-ui/react";
-import { MdLocationOn, MdSchedule, MdNature } from "react-icons/md";
 
 export const Day2Content = () => (
-  <VStack spacing={8} align="stretch">
+  <VStack spacing={6} align="stretch">
     <Box>
-      <HStack spacing={3} mb={4} flexWrap="wrap">
-        <Badge colorScheme="green" fontSize="sm" px={3} py={1}>
-          <HStack spacing={1}>
-            <Icon as={MdLocationOn} />
-            <Text>Ottawa → Toronto</Text>
-          </HStack>
-        </Badge>
-        <Badge colorScheme="blue" fontSize="sm" px={3} py={1}>
-          <HStack spacing={1}>
-            <Icon as={MdSchedule} />
-            <Text>Jour 2</Text>
-          </HStack>
-        </Badge>
-      </HStack>
+      <Text lineHeight="1.8" mb={4}>
+        Des discussions dans le couloir nous réveillent. La nuit fut bonne, malgré quelques secousses agitées. Le monstre de fer mécanique a continué sa lente progression vers l'Ouest pendant que nous étions dans les bras de Morphée. Il a également traversé une poche de couverture réseau, laissant nos smartphones capturer une dizaine de notifications de la civilisation que nous avions maintenant laissée derrière nous.
+      </Text>
+
+      <Text lineHeight="1.8" mb={4}>
+        Dix minutes après notre réveil, nous voici attelés à notre table de petit déjeuner. Ici encore un menu en quatre options: carnivore, piscivore, végétarien ou même végétalien. Nous mangeons sans trop avoir faim, notre corps n'ayant pas dépensé les calories de la veille.
+      </Text>
+
+      <Text lineHeight="1.8" mb={4}>
+        Ensuite, le schéma de la journée se répète: lecture, déjeuner, activités ludiques, dîner et relecture. Nous allons effectivement manquer de lecture avant la fin du périple. Me doutant de cette éventualité, j'avais téléchargé en amont quelques tutoriels de production musicale afin de m'y replonger. Peut-être un album à la fin du mois, seul l'avenir nous le dira ! À 11 h 30 du matin, le train s'arrête enfin en gare et nous sommes autorisés à descendre. L'air frais sur le visage nous revigore et nous fait prendre de plus en plus conscience du confinement subi dans ce train. Nous observons les passagers faire des joggings impromptus et des étirements en tout genre. Bref, des choses du quotidien impensables dans un train. Notre retour dans le passé s'est exacerbé en apercevant un groupe d'amish au loin montant dans le train. Le sifflet sonne, les marches d'accès remontent et nous voici repartis pour la chevauchée fantastique.
+      </Text>
+
+      <Text lineHeight="1.8" mb={4}>
+        S'enchaîne ensuite le repas du midi durant lequel nous avons de nouveau rencontré deux inconnus. Deux australiens, travaillant dans le monde médical: une experte en santé mentale et un orthopédiste. Bien que la discussion fut quelque peu laborieuse (pas facile l'accent australien), nous restons intéressés à l'idée de découvrir l'hétérogénéité des autres habitants de ce train-village.
+      </Text>
+
+      <Text lineHeight="1.8" mb={4}>
+        Après ce bref déjeuner, retour dans notre cabine. Nos livres étant finis, nous nous attaquons à notre deuxième activité prévue: les jeux de société. Nous allons donc dans le wagon-jeux pour entamer une partie d'escape game, aussitôt interrompue par le responsable des activités du wagon qui proposa à tous un Trivial-Pursuit. N'ayant ni le niveau d'anglais, ni la culture suffisante sur cette région, nous décidons de nous éclipser discrètement. Au passage, nous prenons note du tableau des activités sur lequel s'accumulent tous les événements. Aujourd'hui, un musicien organise un concert à la guitare à 16 h et une dégustation de bière à 18 h. Les repas gargantuesques et les activités plurielles pourraient presque s'apparenter à un Club Med sur rail !
+      </Text>
+
+      <Text lineHeight="1.8" mb={4}>
+        Nous remarquons que les passagers du train ont déjà commencé à former des petits groupes. Ils jouent entre eux aux cartes ou boivent des bières. Il semblerait que tout le monde ait déserté sa cabine car les wagons-jeux sont comblés. Une fois notre aventure résolue, nous grimpons dans le wagon panoramique afin de profiter d'une vue à 360 degrés vers l'extérieur. Nous sortons de notre sac un calepin sur lequel nous nous mettons à dessiner ce que nous voyons. C'est une activité qui prend du temps, mais cela tombe bien car nous en avons à profusion !
+      </Text>
+
+      <Text lineHeight="1.8" mb={4}>
+        Nous sentons la curiosité des nombreux passagers anglophones sextagénaires envers ces deux Français âgés d'une trentaine d'années. Étant au milieu du train, nous ne croisons que très rarement les individus en tête et en queue car elles ont leurs propres wagon-jeux et de restaurant. Telle une ville divisée en quartiers.
+      </Text>
+
+      <Text lineHeight="1.8" mb={4}>
+        Le temps file, nous voilà de retour à l'une de nos activités phare: le dîner. Cette fois-ci, nous faisons la connaissance de la seule personne de notre âge dans notre quartier. C'est une jeune étudiante en socio-politique, en provenance de la République tchèque, qui est restée plusieurs semaines dans une ferme en Abitibi. Elle voyage seule et va rejoindre ses amis à Vancouver. Une seconde tête se mêle à notre groupe hétéroclite. Un Indien quadragénaire, travaillant dans l'immobilier, nous explique avec une certaine urgence qu'il a désespérément besoin d'Internet. Il n'avait pas compris que les arrêts ne duraient que quelques minutes, bien trop peu pour profiter du Wi-Fi. Nous prenons conscience de la liberté que nous avons de pouvoir nous déconnecter du réseau sans impact.
+      </Text>
+
+      <Text lineHeight="1.8" mb={4}>
+        Au cours de la discussion, il nous invite à dîner chez lui en compagnie de sa femme dès notre arrivée. Nous déclinons poliment car ses sources de discussions tournaient principalement autour du profit et de l'argent. Il nous a d'ailleurs remis sa carte de visite à la fin du repas.
+      </Text>
+
+      <Text lineHeight="1.8" mb={4}>
+        S'ensuit une partie de cartes avant notre arrivée à Winnipeg. Seulement deux heures de retard sur le programme. Quelle aubaine ! Nous voici sur les quais de cette ville au milieu du Canada à 22 h. Nous en profitons pour faire une petite balade nocturne sur un curieux pont fluorescent et quelques minutes de jogging, le temps que le train se remplisse de victuailles pour les prochains jours et que l'équipage effectue une rotation.
+      </Text>
+
+      <Text lineHeight="1.8" mb={4}>
+        De retour dans le convoi, nous avons hâte de l'entendre de nouveau ronronner sous nos pieds, nous enfilons nos pyjamas après une douche spartiate et c'est reparti pour la seconde nuit. Et attention car cette nuit encore nous traversons un nouveau fuseau horaire.
+      </Text>
     </Box>
-
-    <Card bg="green.50">
-      <CardBody>
-        <Heading size="md" mb={4} color="green.700">
-          🏛️ Départ d'Ottawa
-        </Heading>
-        <Text fontSize="lg" lineHeight="1.8">
-          Au départ de la magnifique gare restaurée d'Ottawa, nous traversons le cœur de l'Ontario. 
-          La capitale canadienne nous offre ses derniers regards avant que nous ne nous dirigions 
-          vers la plus grande ville du pays.
-        </Text>
-      </CardBody>
-    </Card>
-
-    <Card bg="blue.50">
-      <CardBody>
-        <Heading size="md" mb={4} color="blue.700">
-          🌿 Transformation du Paysage
-        </Heading>
-        <Text fontSize="lg" lineHeight="1.8" mb={4}>
-          Le paysage se transforme progressivement, passant de l'étalement urbain à une nature 
-          sauvage immaculée. C'est un spectacle fascinant de voir cette transition s'opérer 
-          sous nos yeux.
-        </Text>
-        
-        <SimpleGrid columns={{ base: 1, md: 2 }} spacing={4}>
-          <Box p={4} bg="white" borderRadius="md" textAlign="center">
-            <Text fontSize="2xl" mb={2}>🏙️</Text>
-            <Text fontWeight="medium">Étalement Urbain</Text>
-            <Text fontSize="sm" color="gray.600">Les derniers faubourgs d'Ottawa</Text>
-          </Box>
-          <Box p={4} bg="white" borderRadius="md" textAlign="center">
-            <Text fontSize="2xl" mb={2}>🌲</Text>
-            <Text fontWeight="medium">Nature Sauvage</Text>
-            <Text fontSize="sm" color="gray.600">Forêts immaculées de l'Ontario</Text>
-          </Box>
-        </SimpleGrid>
-      </CardBody>
-    </Card>
-
-    <Card bg="yellow.50">
-      <CardBody>
-        <Heading size="md" mb={4} color="yellow.700">
-          🌅 L'Après-midi Doré
-        </Heading>
-        <Text fontSize="lg" lineHeight="1.8" mb={4}>
-          D'innombrables lacs et forêts défilent devant nos fenêtres. Le soleil de l'après-midi 
-          peint le paysage de teintes dorées alors que nous approchons de Toronto.
-        </Text>
-        
-        <Box p={4} bg="white" borderRadius="md" borderLeft="4px solid" borderColor="yellow.400">
-          <Text fontSize="md" fontWeight="medium" color="yellow.700">
-            "Le soleil de l'après-midi transforme chaque lac en miroir doré, 
-            chaque forêt en cathédrale de lumière."
-          </Text>
-        </Box>
-      </CardBody>
-    </Card>
-
-    <Card bg="purple.50">
-      <CardBody>
-        <Heading size="md" mb={4} color="purple.700">
-          🏙️ Approche de Toronto
-        </Heading>
-        <Text fontSize="lg" lineHeight="1.8">
-          Toronto, la plus grande ville du Canada, se dessine à l'horizon. Ses gratte-ciels 
-          percent le ciel et annoncent notre arrivée dans cette métropole cosmopolite qui 
-          sera notre prochaine étape vers l'Ouest canadien.
-        </Text>
-        
-        <HStack spacing={3} mt={4} flexWrap="wrap">
-          <Badge colorScheme="purple" variant="subtle">
-            <HStack spacing={1}>
-              <Icon as={MdNature} />
-              <Text>Cœur de l'Ontario</Text>
-            </HStack>
-          </Badge>
-          <Badge colorScheme="blue" variant="subtle">Plus grande ville du Canada</Badge>
-          <Badge colorScheme="green" variant="subtle">Métropole cosmopolite</Badge>
-        </HStack>
-      </CardBody>
-    </Card>
   </VStack>
 );
