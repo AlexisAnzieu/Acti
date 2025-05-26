@@ -506,12 +506,12 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
         
         {/* City buildings */}
         {[
-          { left: "10%", width: "8px", height: "25px", color: "#4A4A4A" },
-          { left: "20%", width: "10px", height: "32px", color: "#5A5A5A" },
-          { left: "40%", width: "12px", height: "28px", color: "#6A6A6A" },
-          { left: "55%", width: "9px", height: "26px", color: "#4A4A4A" },
-          { left: "67%", width: "11px", height: "30px", color: "#5A5A5A" },
-          { left: "80%", width: "8px", height: "22px", color: "#6A6A6A" },
+          { left: "10%", width: "8px", height: "35px", color: "#4A4A4A" },
+          { left: "20%", width: "10px", height: "45px", color: "#5A5A5A" },
+          { left: "40%", width: "12px", height: "40px", color: "#6A6A6A" },
+          { left: "55%", width: "9px", height: "38px", color: "#4A4A4A" },
+          { left: "67%", width: "11px", height: "42px", color: "#5A5A5A" },
+          { left: "80%", width: "8px", height: "32px", color: "#6A6A6A" },
         ].map((building, i) => (
           <CityBuilding 
             key={`toronto-building-${building.left}-${i}`} 
@@ -847,13 +847,13 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
         
         {/* City buildings */}
         {[
-          { left: "5%", width: "9px", height: "30px", color: "#4A4A4A" },
-          { left: "18%", width: "11px", height: "35px", color: "#5A5A5A" },
-          { left: "32%", width: "10px", height: "26px", color: "#6A6A6A" },
-          { left: "45%", width: "12px", height: "38px", color: "#4A4A4A" },
-          { left: "60%", width: "8px", height: "24px", color: "#5A5A5A" },
-          { left: "72%", width: "10px", height: "32px", color: "#6A6A6A" },
-          { left: "85%", width: "9px", height: "28px", color: "#4A4A4A" },
+          { left: "5%", width: "9px", height: "42px", color: "#4A4A4A" },
+          { left: "18%", width: "11px", height: "50px", color: "#5A5A5A" },
+          { left: "32%", width: "10px", height: "38px", color: "#6A6A6A" },
+          { left: "45%", width: "12px", height: "55px", color: "#4A4A4A" },
+          { left: "60%", width: "8px", height: "35px", color: "#5A5A5A" },
+          { left: "72%", width: "10px", height: "45px", color: "#6A6A6A" },
+          { left: "85%", width: "9px", height: "40px", color: "#4A4A4A" },
         ].map((building, i) => (
           <CityBuilding 
             key={`vancouver-building-${building.left}-${i}`} 
