@@ -1148,7 +1148,6 @@ export default function Trip({ lang }: any) {
           </Box>
           <br />
           <Box className="timeline">
-            <Box className="outer">
               <Box className="card">
                 <Box className="info">
                   <Box className="title">
@@ -2113,7 +2112,6 @@ export default function Trip({ lang }: any) {
                   </Text>
                 </Box>
               </Box>
-            </Box>
           </Box>
           <Box marginTop={30}>
             <Center mb={10}>
