@@ -1,5 +1,6 @@
 import { 
   Box, 
+  Highlight,
   Text, 
   VStack
 } from "@chakra-ui/react";
@@ -24,11 +25,106 @@ export const Day2Content = () => (
       </Text>
 
       <Text lineHeight="1.8" mb={4}>
-        Après ce bref déjeuner, retour dans notre cabine. Nos livres étant finis, nous nous attaquons à notre deuxième activité prévue: les jeux de société. Nous allons donc dans le wagon-jeux pour entamer une partie d'escape game, aussitôt interrompue par le responsable des activités du wagon qui proposa à tous un Trivial-Pursuit. N'ayant ni le niveau d'anglais, ni la culture suffisante sur cette région, nous décidons de nous éclipser discrètement. Au passage, nous prenons note du tableau des activités sur lequel s'accumulent tous les événements. Aujourd'hui, un musicien organise un concert à la guitare à 16 h et une dégustation de bière à 18 h. Les repas gargantuesques et les activités plurielles pourraient presque s'apparenter à un Club Med sur rail !
+        Après ce bref déjeuner, retour dans notre cabine.{" "}
+        <a
+          data-tooltip-id="my-tooltip"
+          href="https://acti.anzieu.com/assets/4961c2fe-93f4-4f82-b04d-fda79f7ec626.jpg?quality=30"
+        >
+          <Highlight
+            query="Nos livres étant finis"
+            styles={{
+              borderRadius: "50px",
+              px: "2",
+              py: "1",
+              bg: "orange.100",
+              textDecoration: "underline",
+              cursor: "pointer"
+            }}
+          >
+            Nos livres étant finis
+          </Highlight>
+        </a>{" "}
+        , nous nous attaquons à notre deuxième activité prévue: les jeux de société. Nous allons donc dans le wagon-jeux pour entamer une partie d'escape game, aussitôt interrompue par le responsable des activités du wagon qui proposa à tous un Trivial-Pursuit. N'ayant ni le niveau d'anglais, ni la culture suffisante sur cette région, nous décidons de nous éclipser discrètement. Au passage, nous prenons note du{" "}
+        <a
+          data-tooltip-id="my-tooltip"
+          href="https://acti.anzieu.com/assets/70e0566f-31dd-41cc-974a-130c5e190ef3.jpg?quality=30"
+        >
+          <Highlight
+            query="tableau des activités"
+            styles={{
+              borderRadius: "50px",
+              px: "2",
+              py: "1",
+              bg: "orange.100",
+              textDecoration: "underline",
+              cursor: "pointer"
+            }}
+          >
+            tableau des activités
+          </Highlight>
+        </a>{" "}
+        sur lequel s'accumulent tous les événements. Aujourd'hui, un musicien organise un concert à la guitare à 16 h et une{" "}
+        <a
+          data-tooltip-id="my-tooltip"
+          href="https://acti.anzieu.com/assets/6bd929ec-3d56-448a-8e40-1e59469cc488.MOV"
+        >
+          <Highlight
+            query="dégustation de vin"
+            styles={{
+              borderRadius: "50px",
+              px: "2",
+              py: "1",
+              bg: "orange.100",
+              textDecoration: "underline",
+              cursor: "pointer"
+            }}
+          >
+            dégustation de vin
+          </Highlight>
+        </a>{" "}
+        à 18 h. Les repas gargantuesques et les activités plurielles pourraient presque s'apparenter à un Club Med sur rail !
       </Text>
 
       <Text lineHeight="1.8" mb={4}>
-        Nous remarquons que les passagers du train ont déjà commencé à former des petits groupes. Ils jouent entre eux aux cartes ou boivent des bières. Il semblerait que tout le monde ait déserté sa cabine car les wagons-jeux sont comblés. Une fois notre aventure résolue, nous grimpons dans le wagon panoramique afin de profiter d'une vue à 360 degrés vers l'extérieur. Nous sortons de notre sac un calepin sur lequel nous nous mettons à dessiner ce que nous voyons. C'est une activité qui prend du temps, mais cela tombe bien car nous en avons à profusion !
+        Nous remarquons que les passagers du train ont déjà commencé à former des petits groupes. Ils jouent entre eux aux cartes ou boivent des bières. Il semblerait que tout le monde ait déserté sa cabine car les wagons-jeux sont comblés. Une fois notre aventure résolue, nous grimpons{" "}
+        <a
+          data-tooltip-id="my-tooltip"
+          href="https://acti.anzieu.com/assets/08613dfe-f54f-4820-8751-3fbd4cfdfb36.jpg?quality=30"
+        >
+          <Highlight
+            query="dans le wagon panoramique"
+            styles={{
+              borderRadius: "50px",
+              px: "2",
+              py: "1",
+              bg: "orange.100",
+              textDecoration: "underline",
+              cursor: "pointer"
+            }}
+          >
+            dans le wagon panoramique
+          </Highlight>
+        </a>{" "}
+        afin de profiter d'une vue à 360 degrés vers l'extérieur. Nous sortons de notre sac un calepin sur lequel{" "}
+        <a
+          data-tooltip-id="my-tooltip"
+          href="https://acti.anzieu.com/assets/9cb85178-bf6e-49ed-be40-21f265c0145a.jpg?quality=30"
+        >
+          <Highlight
+            query="nous nous mettons à dessiner ce que nous voyons"
+            styles={{
+              borderRadius: "50px",
+              px: "2",
+              py: "1",
+              bg: "orange.100",
+              textDecoration: "underline",
+              cursor: "pointer"
+            }}
+          >
+            nous nous mettons à dessiner ce que nous voyons
+          </Highlight>
+        </a>{" "}
+        . C'est une activité qui prend du temps, mais cela tombe bien car nous en avons à profusion !
       </Text>
 
       <Text lineHeight="1.8" mb={4}>
@@ -44,7 +140,45 @@ export const Day2Content = () => (
       </Text>
 
       <Text lineHeight="1.8" mb={4}>
-        S'ensuit une partie de cartes avant notre arrivée à Winnipeg. Seulement deux heures de retard sur le programme. Quelle aubaine ! Nous voici sur les quais de cette ville au milieu du Canada à 22 h. Nous en profitons pour faire une petite balade nocturne sur un curieux pont fluorescent et quelques minutes de jogging, le temps que le train se remplisse de victuailles pour les prochains jours et que l'équipage effectue une rotation.
+        S'ensuit une partie de cartes avant notre arrivée à Winnipeg. Seulement deux heures de retard sur le programme. Quelle aubaine ! Nous voici sur les quais de cette ville au milieu du Canada à 22 h. Nous en profitons pour faire une{" "}
+        <a
+          data-tooltip-id="my-tooltip"
+          href="https://acti.anzieu.com/assets/a012867d-fcba-471c-a600-ee996715a170.jpg?quality=30"
+        >
+          <Highlight
+            query="petite balade nocturne"
+            styles={{
+              borderRadius: "50px",
+              px: "2",
+              py: "1",
+              bg: "orange.100",
+              textDecoration: "underline",
+              cursor: "pointer"
+            }}
+          >
+            petite balade nocturne
+          </Highlight>
+        </a>{" "}
+        sur un curieux{" "}
+        <a
+          data-tooltip-id="my-tooltip"
+          href="https://acti.anzieu.com/assets/ba44bc0d-dfaa-4c3b-a19e-ee12e7ad0742.jpg?quality=30"
+        >
+          <Highlight
+            query="pont fluorescent"
+            styles={{
+              borderRadius: "50px",
+              px: "2",
+              py: "1",
+              bg: "orange.100",
+              textDecoration: "underline",
+              cursor: "pointer"
+            }}
+          >
+            pont fluorescent
+          </Highlight>
+        </a>{" "}
+        et quelques minutes de jogging, le temps que le train se remplisse de victuailles pour les prochains jours et que l'équipage effectue une rotation.
       </Text>
 
       <Text lineHeight="1.8" mb={4}>

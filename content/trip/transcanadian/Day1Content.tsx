@@ -59,7 +59,26 @@ export const Day1Content = () => (
       </Text>
 
       <Text lineHeight="1.8" mb={4}>
-        Café en main, nous nous rendons sur le quai et nous apercevons enfin se prolongeant devant nous, ce monstre de fer et d'acier brillant sous les miroirs ensoleillés des gratte-ciels. Je remonte la rame à la recherche de la locomotive, mais me fait stopper net dans mon élan par un garde de la sécurité qui ne souhaitait apparemment pas me voir m'aventurer jusque-là. Défi relevé, je réussirai à capturer une photo de cette locomotive d'ici la fin du séjour.
+        Café en main, nous nous rendons sur le quai et nous apercevons enfin se prolongeant devant nous,{" "}
+        <a
+          data-tooltip-id="my-tooltip"
+          href="https://acti.anzieu.com/assets/0a7e877e-2836-46f5-bfbe-47a62fb2879f.MOV"
+        >
+          <Highlight
+            query="ce monstre de fer et d'acier brillant"
+            styles={{
+              borderRadius: "50px",
+              px: "2",
+              py: "1",
+              bg: "orange.100",
+              textDecoration: "underline",
+              cursor: "pointer"
+            }}
+          >
+            ce monstre de fer et d'acier brillant
+          </Highlight>
+        </a>{" "}
+        sous les miroirs ensoleillés des gratte-ciels. Je remonte la rame à la recherche de la locomotive, mais me fait stopper net dans mon élan par un garde de la sécurité qui ne souhaitait apparemment pas me voir m'aventurer jusque-là. Défi relevé, je réussirai à capturer une photo de cette locomotive d'ici la fin du séjour.
       </Text>
 
       <Text lineHeight="1.8" mb={4}>
@@ -75,7 +94,26 @@ export const Day1Content = () => (
       </Text>
 
       <Text lineHeight="1.8" mb={4}>
-        Et maintenant, comment occuper tout ce temps disponible auquel nous ne sommes plus habitués ? Par chance, nous avons embarqué avec nous des romans mais ces derniers ne vont sûrement pas suffire. À 14h, c'est l'appel pour le troisième service de déjeuner. Voici venu le temps du double date entre inconnus. L'idée à bord est de mélanger les passagers de tout horizon lors des repas. Deux retraités nous racontent leur ancien métier d'architecte: paysagiste dans les parcs pour l'un et dans les cimetières pour l'autre. Cette discussion d'abord confuse et maladroite s'éclaircit peu à peu malgré la différence de langues et de générations. Bien que formelle, elle nous projette dans un univers différent. Mais l'exercice de traduction vers l'anglais est fatigant, notamment avec le bruit du train et des accents.
+        Et maintenant, comment occuper tout ce temps disponible auquel nous ne sommes plus habitués ? Par chance, nous avons embarqué avec nous des romans mais ces derniers ne vont sûrement pas suffire. À 14h,{" "}
+        <a
+          data-tooltip-id="my-tooltip"
+          href="https://acti.anzieu.com/assets/0dc37f25-e0df-43b2-b808-ebd9f506dc17.jpg?quality=30"
+        >
+          <Highlight
+            query="c'est l'appel pour le troisième service"
+            styles={{
+              borderRadius: "50px",
+              px: "2",
+              py: "1",
+              bg: "orange.100",
+              textDecoration: "underline",
+              cursor: "pointer"
+            }}
+          >
+            c'est l'appel pour le troisième service
+          </Highlight>
+        </a>{" "}
+        de déjeuner. Voici venu le temps du double date entre inconnus. L'idée à bord est de mélanger les passagers de tout horizon lors des repas. Deux retraités nous racontent leur ancien métier d'architecte: paysagiste dans les parcs pour l'un et dans les cimetières pour l'autre. Cette discussion d'abord confuse et maladroite s'éclaircit peu à peu malgré la différence de langues et de générations. Bien que formelle, elle nous projette dans un univers différent. Mais l'exercice de traduction vers l'anglais est fatigant, notamment avec le bruit du train et des accents.
       </Text>
 
       <Text lineHeight="1.8" mb={4}>
@@ -83,7 +121,45 @@ export const Day1Content = () => (
       </Text>
 
       <Text lineHeight="1.8" mb={4}>
-        Nous n'en sommes qu'à notre première journée et un fil conducteur commence déjà à émerger: le mouvement perpétuel sous nos pieds et le paysage qui défile en continu. Les hauts pins vert et les arbres dénués de feuilles, sortent tout juste de l'hiver. Les lacs, à peine dégelés, sur lesquels sont parsemées des traces de motoneige. Les quelques maisons alignées le long de la voie ferrée. Et enfin le bouquet final, le coucher de soleil en dégustant notre crème de champignons au dîner. La serveuse nous prévient du changement de fuseau horaire car cela fait plusieurs heures que nous n'avons plus de réseau et donc plus de synchronisation automatique. Ça serait bête de louper le petit déjeuner !
+        Nous n'en sommes qu'à notre première journée et un fil conducteur commence déjà à émerger: le mouvement perpétuel sous nos pieds et le paysage qui défile en continu. Les hauts pins vert et les arbres dénués de feuilles, sortent tout juste de l'hiver.{" "}
+        <a
+          data-tooltip-id="my-tooltip"
+          href="https://acti.anzieu.com/assets/75eb81fd-f620-4287-9321-818c1d7b5478.MOV"
+        >
+          <Highlight
+            query="Les lacs, à peine dégelés"
+            styles={{
+              borderRadius: "50px",
+              px: "2",
+              py: "1",
+              bg: "orange.100",
+              textDecoration: "underline",
+              cursor: "pointer"
+            }}
+          >
+            Les lacs, à peine dégelés
+          </Highlight>
+        </a>{" "}
+        , sur lesquels sont parsemées des traces de motoneige. Les quelques maisons alignées le long de la voie ferrée. Et enfin le bouquet final,{" "}
+        <a
+          data-tooltip-id="my-tooltip"
+          href="https://acti.anzieu.com/assets/280a4968-7598-4bd1-9698-2f8740f828fb.jpg?quality=30"
+        >
+          <Highlight
+            query="le coucher de soleil"
+            styles={{
+              borderRadius: "50px",
+              px: "2",
+              py: "1",
+              bg: "orange.100",
+              textDecoration: "underline",
+              cursor: "pointer"
+            }}
+          >
+            le coucher de soleil
+          </Highlight>
+        </a>{" "}
+        en dégustant notre crème de champignons au dîner. La serveuse nous prévient du changement de fuseau horaire car cela fait plusieurs heures que nous n'avons plus de réseau et donc plus de synchronisation automatique. Ça serait bête de louper le petit déjeuner !
       </Text>
     </Box>
   </VStack>

@@ -1,5 +1,6 @@
 import { 
   Box, 
+  Highlight,
   Text, 
   VStack
 } from "@chakra-ui/react";
@@ -8,7 +9,45 @@ export const Day3Content = () => (
   <VStack spacing={6} align="stretch">
     <Box>
       <Text lineHeight="1.8" mb={4}>
-        Deuxième réveil à bord. Il semblerait que mon corps se soit déjà habitué aux secousses intermittentes nocturnes. Une routine s'installe petit à petit dans les cinq mètres carrés d'habitacle partagées avec Carla et s'optimise heures après heures. À l'ouverture du store de la chambre une surprise non des moindres nous attend. Le paysage a totalement changé. Sommes-nous dans le même hémisphère ? Les forêts marécageuses jouxtant les lacs gelés font maintenant place à de vastes étendues arides et sèches: les fameuses prairies canadiennes. Les animaux n'ont pas d'habitat où se cacher des regards, si bien que nous apercevons des biches et des coyotes. De nombreuses fermes accompagnées de leurs gigantesques silos à grains font leur apparition de temps à autre le long de la voie ferrée.
+        Deuxième réveil à bord. Il semblerait que mon corps se soit déjà habitué aux secousses intermittentes nocturnes. Une routine s'installe petit à petit dans les cinq mètres carrés d'habitacle partagées avec Carla et s'optimise heures après heures. À l'ouverture du store de la chambre une surprise non des moindres nous attend. Le paysage a totalement changé. Sommes-nous dans le même hémisphère ? Les forêts marécageuses jouxtant les lacs gelés font maintenant place à de vastes{" "}
+        <a
+          data-tooltip-id="my-tooltip"
+          href="https://acti.anzieu.com/assets/b1eda295-80f0-4b16-9702-101046e1542e.jpg?quality=30"
+        >
+          <Highlight
+            query="étendues arides et sèches"
+            styles={{
+              borderRadius: "50px",
+              px: "2",
+              py: "1",
+              bg: "orange.100",
+              textDecoration: "underline",
+              cursor: "pointer"
+            }}
+          >
+            étendues arides et sèches
+          </Highlight>
+        </a>{" "}
+        : les fameuses prairies canadiennes. Les animaux n'ont pas d'habitat où se cacher des regards, si bien que nous apercevons des biches et des coyotes. De nombreuses fermes accompagnées de leurs{" "}
+        <a
+          data-tooltip-id="my-tooltip"
+          href="https://acti.anzieu.com/assets/9ec2d6e1-6b8c-4455-98a4-9c2f505dd8fa.jpg?quality=30"
+        >
+          <Highlight
+            query="gigantesques silos à grains"
+            styles={{
+              borderRadius: "50px",
+              px: "2",
+              py: "1",
+              bg: "orange.100",
+              textDecoration: "underline",
+              cursor: "pointer"
+            }}
+          >
+            gigantesques silos à grains
+          </Highlight>
+        </a>{" "}
+        font leur apparition de temps à autre le long de la voie ferrée.
       </Text>
 
       <Text lineHeight="1.8" mb={4}>
