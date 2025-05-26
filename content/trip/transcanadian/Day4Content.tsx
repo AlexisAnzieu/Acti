@@ -12,7 +12,7 @@ export const Day4Content = () => (
         Nous sommes réveillés à 8h par la voix sortant des haut-parleurs de la chambre « arrivé à Jasper dans 10 minutes ! ». J'ouvre grand le store, impatient de découvrir ce nouveau paysage-surprise. Quel contraste par rapport à celui de la veille ! Les plateaux s'allongeant à l'horizontale font maintenant place à des montagnes s'érigeant à la verticale, effleurant les nuages à leur sommet. Nous décidons de rompre notre rituel et d'aller prendre{" "}
         <a
           data-tooltip-id="my-tooltip"
-          href="https://acti.anzieu.com/assets/5aa5ff5f-aad8-44b8-aaba-8d236e171a74.jpg?quality=30"
+          href="https://acti.anzieu.com/assets/5aa5ff5f-aad8-44b8-aaba-8d236e171a74.jpg"
         >
           <Highlight
             query="un café dans le village"
@@ -35,7 +35,7 @@ export const Day4Content = () => (
         Une fois notre tour du propriétaire fini, je n'ai pas oublié mon pari et arrive à me faufiler suffisamment proche de la locomotive pour une photo-souvenir.{" "}
         <a
           data-tooltip-id="my-tooltip"
-          href="https://acti.anzieu.com/assets/c3c2f9d5-83aa-40f2-847a-a4c7a939c77d.jpg?quality=30"
+          href="https://acti.anzieu.com/assets/c3c2f9d5-83aa-40f2-847a-a4c7a939c77d.jpg"
         >
           <Highlight
             query="Deux autres y sont attelés"
@@ -77,7 +77,7 @@ export const Day4Content = () => (
         Au loin, un lac couleur émeraude se détache des conifères majestueux qui s'accordent parfaitement avec quelques bouleaux environnants, en pleine floraison, laissant tout juste paraître un pelage vert pâle. Quel magnifique{" "}
         <a
           data-tooltip-id="my-tooltip"
-          href="https://acti.anzieu.com/assets/258e7f55-509b-43fd-b4a0-66e6017772db.jpg?quality=30"
+          href="https://acti.anzieu.com/assets/258e7f55-509b-43fd-b4a0-66e6017772db.jpg"
         >
           <Highlight
             query="yin yang naturel"
@@ -158,7 +158,7 @@ export const Day4Content = () => (
         À la sortie de la gare, nous nous émerveillons devant les arbres verts, les roses, les tulipes violettes et les mille odeurs flottant dans l'air. Le fait d'avoir été entravé de nos sens durant quatre jours catalysa un puissant élan de liberté. Au loin, nous entendons des cris, nous nous approchons et nous réalisons que nous sommes arrivés en plein marathon de Vancouver. Une aubaine incroyable car une grande partie{" "}
         <a
           data-tooltip-id="my-tooltip"
-          href="https://acti.anzieu.com/assets/8e7a17fa-396e-46a7-98b3-d6f6ce653a2d.jpg?quality=30"
+          href="https://acti.anzieu.com/assets/8e7a17fa-396e-46a7-98b3-d6f6ce653a2d.jpg"
         >
           <Highlight
             query="de cette ville"

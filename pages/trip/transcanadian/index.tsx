@@ -3,6 +3,7 @@
 import { Box, Heading, keyframes } from "@chakra-ui/react";
 import { GetStaticPropsContext } from "next";
 import Head from "next/head";
+import Image from "next/image";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Tooltip } from "react-tooltip";
@@ -120,7 +121,7 @@ export default function TransCanadian() {
           mediaMap.set(url, video);
         } else {
           // Preload image
-          const img = new Image();
+          const img = new window.Image();
           img.crossOrigin = 'anonymous';
           await Promise.race([
             new Promise((resolve, reject) => {
@@ -279,7 +280,26 @@ export default function TransCanadian() {
               );
             }
             
-            // Return JSX img element instead of DOM element
+            // For images (jpg), use Next.js Image for optimization
+            if (href.endsWith(".jpg") || href.endsWith(".jpeg") || href.endsWith(".png")) {
+              return (
+                <Image
+                  src={href}
+                  alt=""
+                  width={600}
+                  height={400}
+                  style={{ 
+                    borderRadius: "5%", 
+                    maxWidth: "100%",
+                    height: "auto"
+                  }}
+                  quality={30}
+                  sizes="(max-width: 600px) 100vw, 600px"
+                />
+              );
+            }
+            
+            // Return regular img element for other formats
             return (
               <img
                 src={href}

@@ -97,7 +97,7 @@ export const Day1Content = () => (
         Et maintenant, comment occuper tout ce temps disponible auquel nous ne sommes plus habitués ? Par chance, nous avons embarqué avec nous des romans mais ces derniers ne vont sûrement pas suffire. À 14h,{" "}
         <a
           data-tooltip-id="my-tooltip"
-          href="https://acti.anzieu.com/assets/0dc37f25-e0df-43b2-b808-ebd9f506dc17.jpg?quality=30"
+          href="https://acti.anzieu.com/assets/0dc37f25-e0df-43b2-b808-ebd9f506dc17.jpg"
         >
           <Highlight
             query="c'est l'appel pour le troisième service"
@@ -143,7 +143,7 @@ export const Day1Content = () => (
         , sur lesquels sont parsemées des traces de motoneige. Les quelques maisons alignées le long de la voie ferrée. Et enfin le bouquet final,{" "}
         <a
           data-tooltip-id="my-tooltip"
-          href="https://acti.anzieu.com/assets/280a4968-7598-4bd1-9698-2f8740f828fb.jpg?quality=30"
+          href="https://acti.anzieu.com/assets/280a4968-7598-4bd1-9698-2f8740f828fb.jpg"
         >
           <Highlight
             query="le coucher de soleil"

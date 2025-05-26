@@ -12,7 +12,7 @@ export const Day3Content = () => (
         Deuxième réveil à bord. Il semblerait que mon corps se soit déjà habitué aux secousses intermittentes nocturnes. Une routine s'installe petit à petit dans les cinq mètres carrés d'habitacle partagées avec Carla et s'optimise heures après heures. À l'ouverture du store de la chambre une surprise non des moindres nous attend. Le paysage a totalement changé. Sommes-nous dans le même hémisphère ? Les forêts marécageuses jouxtant les lacs gelés font maintenant place à de vastes{" "}
         <a
           data-tooltip-id="my-tooltip"
-          href="https://acti.anzieu.com/assets/b1eda295-80f0-4b16-9702-101046e1542e.jpg?quality=30"
+          href="https://acti.anzieu.com/assets/b1eda295-80f0-4b16-9702-101046e1542e.jpg"
         >
           <Highlight
             query="étendues arides et sèches"
@@ -31,7 +31,7 @@ export const Day3Content = () => (
         : les fameuses prairies canadiennes. Les animaux n'ont pas d'habitat où se cacher des regards, si bien que nous apercevons des biches et des coyotes. De nombreuses fermes accompagnées de leurs{" "}
         <a
           data-tooltip-id="my-tooltip"
-          href="https://acti.anzieu.com/assets/9ec2d6e1-6b8c-4455-98a4-9c2f505dd8fa.jpg?quality=30"
+          href="https://acti.anzieu.com/assets/9ec2d6e1-6b8c-4455-98a4-9c2f505dd8fa.jpg"
         >
           <Highlight
             query="gigantesques silos à grains"
