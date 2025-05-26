@@ -973,7 +973,7 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
         }}
       >
           {/* Multiple smoke puffs - reduced on mobile */}
-          {(isMobile ? ['smoke-1', 'smoke-2'] : ['smoke-1', 'smoke-2', 'smoke-3', 'smoke-4']).map((smokeId, i) => {
+          {(isMobile ? [] : ['smoke-1', 'smoke-2', 'smoke-3', 'smoke-4']).map((smokeId, i) => {
             return (
               <Box
                 key={smokeId}
