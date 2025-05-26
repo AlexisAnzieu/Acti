@@ -667,20 +667,6 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
         zIndex={2}
         opacity="0.7"
       >
-        {/* Rolling hills */}
-        <Box
-          position="absolute"
-          bottom="22px"
-          left="0"
-          width="100%"
-          height="18px"
-          backgroundColor="#7CB342"
-          opacity="0.6"
-          style={{
-            clipPath: "polygon(0 100%, 20% 20%, 40% 40%, 60% 10%, 80% 30%, 100% 20%, 100% 100%)"
-          }}
-        />
-        
         {/* Farm fields */}
         <Box
           position="absolute"
