@@ -783,7 +783,6 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
         fontSize="2.2rem"
         filter="drop-shadow(0 2px 4px rgba(0,0,0,0.3))"
         zIndex={3}
-        transform={`translateX(-${scrollProgress * 100}%)`}
         cursor={isDragging ? 'grabbing' : 'grab'}
         onMouseDown={handleTrainMouseDown}
         onTouchStart={handleTrainTouchStart}
