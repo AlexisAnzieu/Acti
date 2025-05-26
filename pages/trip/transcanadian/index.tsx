@@ -3,12 +3,12 @@
 import { Box, Heading, keyframes } from "@chakra-ui/react";
 import { GetStaticPropsContext } from "next";
 import Head from "next/head";
-import Image from "next/image";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useEffect, useRef, useState } from "react";
 import { Tooltip } from "react-tooltip";
 
 import { Locale } from "../../../component/NavbarComponent";
+import LazyTooltipImage from "../../../components/LazyTooltipImage";
 import { TrainSlider } from "../../../components/TrainSlider";
 import { getTransCanadianContent } from "../../../content/trip/transcanadian/";
 
@@ -197,21 +197,21 @@ export default function TransCanadian() {
               );
             }
             
-            // For images (jpg), use Next.js Image for optimization
+            // For images (jpg), use Next.js Image for optimization with forced lazy loading
             if (href.endsWith(".jpg") || href.endsWith(".jpeg") || href.endsWith(".png")) {
               return (
-                <Image
+                <LazyTooltipImage
                   src={href}
                   alt=""
                   width={600}
                   height={400}
+                  quality={30}
+                  sizes="(max-width: 600px) 100vw, 600px"
                   style={{ 
                     borderRadius: "5%", 
                     maxWidth: "100%",
                     height: "auto"
                   }}
-                  quality={30}
-                  sizes="(max-width: 600px) 100vw, 600px"
                 />
               );
             }
