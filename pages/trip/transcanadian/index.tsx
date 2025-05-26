@@ -5,7 +5,7 @@ import { GetStaticPropsContext } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Tooltip } from "react-tooltip";
 
 import { Locale } from "../../../component/NavbarComponent";
@@ -71,77 +71,7 @@ export default function TransCanadian() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [currentDay, setCurrentDay] = useState(0);
   const [showInstructions, setShowInstructions] = useState(true);
-  const [preloadedMedia, setPreloadedMedia] = useState<Map<string, HTMLVideoElement | HTMLImageElement>>(new Map());
   const [isClient, setIsClient] = useState(false);
-
-  // Preload all tooltip media
-  const preloadMedia = useCallback(async () => {
-    if (typeof window === 'undefined') return; // Guard for SSR
-    
-    const mediaUrls: string[] = [];
-    
-    // Wait a bit for DOM to be fully rendered
-    await new Promise(resolve => setTimeout(resolve, 500));
-    
-    // Collect all data-tooltip-id anchors with href attributes
-    const tooltipAnchors = document.querySelectorAll('[data-tooltip-id="my-tooltip"][href]');
-    tooltipAnchors.forEach((anchor) => {
-      const href = anchor.getAttribute('href');
-      if (href) {
-        mediaUrls.push(href);
-      }
-    });
-
-    console.log('Preloading media:', mediaUrls);
-    const mediaMap = new Map<string, HTMLVideoElement | HTMLImageElement>();
-
-    for (const url of mediaUrls) {
-      try {
-        if (url.endsWith('.mov') || url.includes('video') || url.endsWith('.mp4')) {
-          // Preload video
-          const video = document.createElement('video');
-          video.src = url;
-          video.preload = 'auto';
-          video.muted = true;
-          video.loop = true;
-          video.playsInline = true;
-          video.style.display = 'none';
-          document.body.appendChild(video);
-          
-          await Promise.race([
-            new Promise((resolve, reject) => {
-              video.addEventListener('loadeddata', resolve);
-              video.addEventListener('error', reject);
-              video.load();
-            }),
-            new Promise((_, reject) => setTimeout(() => reject(new Error('Timeout')), 10000))
-          ]);
-          
-          console.log('Video preloaded:', url);
-          mediaMap.set(url, video);
-        } else {
-          // Preload image
-          const img = new window.Image();
-          img.crossOrigin = 'anonymous';
-          await Promise.race([
-            new Promise((resolve, reject) => {
-              img.onload = resolve;
-              img.onerror = reject;
-              img.src = url;
-            }),
-            new Promise((_, reject) => setTimeout(() => reject(new Error('Timeout')), 5000))
-          ]);
-          console.log('Image preloaded:', url);
-          mediaMap.set(url, img);
-        }
-      } catch (error) {
-        console.warn(`Failed to preload media: ${url}`, error);
-      }
-    }
-
-    setPreloadedMedia(mediaMap);
-    console.log('Media preloading complete:', mediaMap.size, 'items');
-  }, []);
 
   useEffect(() => {
     setIsClient(true);
@@ -152,22 +82,9 @@ export default function TransCanadian() {
     
     const timer = setTimeout(() => {
       setShowInstructions(false);
-      // Start preloading after initial render
-      preloadMedia();
     }, 1000);
     return () => clearTimeout(timer);
-  }, [preloadMedia, isClient]);
-
-  // Cleanup preloaded video elements on unmount
-  useEffect(() => {
-    return () => {
-      preloadedMedia.forEach((element) => {
-        if (element instanceof HTMLVideoElement && element.parentNode) {
-          element.parentNode.removeChild(element);
-        }
-      });
-    };
-  }, [preloadedMedia]);
+  }, [isClient]);
 
   useEffect(() => {
     const container = containerRef.current;
