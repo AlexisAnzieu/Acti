@@ -112,13 +112,13 @@ const locomotiveWobbleAnimation = keyframes`
     transform: scaleX(-1) translateY(0px) rotate(0deg);
   }
   25% {
-    transform: scaleX(-1) translateY(-1px) rotate(0.5deg);
+    transform: scaleX(-1) translateY(-1px) rotate(-0.5deg);
   }
   50% {
     transform: scaleX(-1) translateY(0px) rotate(0deg);
   }
   75% {
-    transform: scaleX(-1) translateY(1px) rotate(-0.5deg);
+    transform: scaleX(-1) translateY(1px) rotate(0.5deg);
   }
 `;
 
@@ -878,7 +878,7 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
         position="absolute"
         bottom="13px"
         left={`${scrollProgress * 100}%`}
-        transition={isMobile ? "none" : "left 0.1s ease-out"}
+        // Remove transition for real-time movement
         fontSize={isMobile ? "2rem" : "2.2rem"}
         filter={isMobile ? "none" : "drop-shadow(0 2px 4px rgba(0,0,0,0.3))"}
         zIndex={3}
@@ -929,8 +929,7 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
             <Box 
               position="relative" 
               fontSize={isMobile ? "2rem" : "2.2rem"}
-              animation={scrollProgress > 0.05 && !isMobile ? `${locomotiveWobbleAnimation} 0.6s infinite` : 'none'}
-              transform={scrollProgress <= 0.05 ? "scaleX(-1)" : "none"}
+              animation={!isMobile ? `${locomotiveWobbleAnimation} 0.6s infinite` : 'none'}
               style={{ transform: 'translate3d(0, 0, 0)' }}
             >
               🚂
