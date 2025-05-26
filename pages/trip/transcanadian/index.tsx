@@ -36,7 +36,7 @@ const DayCard = ({ title, content, imageUrl, index }: any) => (
       paddingTop="2rem"
       animation={`${fadeInAnimation} 0.5s ease-out`}
     >
-      <Heading mb={6} size="2xl" textAlign="center">
+      <Heading mb={6} size="xl" textAlign="center">
         {title}
       </Heading>
       <Box>
@@ -145,7 +145,7 @@ export default function TransCanadian() {
         height="100vh"
         overflowY="auto"
         position="fixed"
-        top="0"
+        top="10px"
         left="0"
         css={{
           "&::-webkit-scrollbar": { 

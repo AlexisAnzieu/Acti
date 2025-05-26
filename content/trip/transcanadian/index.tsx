@@ -1,8 +1,8 @@
-import { TripContent } from './types';
 import { Day1Content } from './Day1Content';
 import { Day2Content } from './Day2Content';
 import { Day3Content } from './Day3Content';
 import { Day4Content } from './Day4Content';
+import { TripContent } from './types';
 
 export const getTransCanadianContent = (locale: 'en' | 'fr'): TripContent => {
   const contentMap = {
@@ -11,7 +11,7 @@ export const getTransCanadianContent = (locale: 'en' | 'fr'): TripContent => {
       subtitle: "Un voyage de 4 jours à travers les paysages majestueux du Canada",
       days: [
         {
-          title: "Jour 1: Montréal à Toronto",
+          title: "Le grand départ",
           content: <Day1Content />,
         },
         {
