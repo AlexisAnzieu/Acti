@@ -435,16 +435,27 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
         onMouseEnter={() => setShowTooltip(true)}
         onMouseLeave={() => setShowTooltip(false)}
       >
-        {/* Sky background - more transparent and blended */}
+        {/* Sky background - top 50% only */}
+        <Box
+          position="absolute"
+          top="0"
+          left="0"
+          right="0"
+          height="50%"
+          background="linear-gradient(to bottom, rgba(87, 160, 235, 0.4) 0%, rgba(135, 206, 250, 0.7) 40%, rgba(176, 224, 255, 0.8) 70%, rgba(240, 248, 255, 0.9) 100%)"
+          backdropFilter={isMobile ? "none" : "blur(2px)"}
+          style={{ willChange: 'transform' }}
+        />
+
+        {/* White background - bottom 50% */}
         <Box
           position="absolute"
           bottom="0"
           left="0"
           right="0"
-          height="100%"
-          background="linear-gradient(to bottom, rgba(135, 206, 235, 0.3) 0%, rgba(224, 246, 255, 0.6) 50%, rgba(255, 255, 255, 0.8) 100%)"
-          backdropFilter={isMobile ? "none" : "blur(2px)"}
-          style={{ willChange: 'transform' }}
+          height="50%"
+          backgroundColor="#7CB342"
+          opacity={1}
         />
 
       {/* Sun */}
@@ -529,11 +540,25 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
           bottom="22px"
           left="0"
           width="100%"
-          height="12px"
+          height="20px"
           backgroundColor="#7CB342"
           opacity="0.6"
           style={{
-            clipPath: "polygon(0 100%, 15% 50%, 35% 70%, 55% 40%, 75% 60%, 90% 45%, 100% 55%, 100% 100%)"
+            clipPath: "polygon(0 100%, 15% 30%, 35% 50%, 55% 20%, 75% 40%, 90% 25%, 100% 35%, 100% 100%)"
+          }}
+        />
+        
+        {/* Dense forest background layer */}
+        <Box
+          position="absolute"
+          bottom="28px"
+          left="0"
+          width="100%"
+          height="15px"
+          backgroundColor="#5D8A3A"
+          opacity="0.5"
+          style={{
+            clipPath: "polygon(0 100%, 12% 40%, 28% 60%, 45% 30%, 62% 55%, 78% 35%, 95% 45%, 100% 100%)"
           }}
         />
         
@@ -559,7 +584,49 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
           opacity="0.7"
         />
         
-        {/* Trees */}
+        {/* Additional small pond */}
+        <Box
+          position="absolute"
+          bottom="8px"
+          left="35%"
+          width="12%"
+          height="4px"
+          backgroundColor="#4A90E2"
+          borderRadius="50px"
+          opacity="0.6"
+        />
+        
+        {/* Dense forest trees - first layer */}
+        {[...Array(15)].map((_, i) => (
+          <Box
+            key={`forest-tree-${i}`}
+            position="absolute"
+            bottom={`${18 + (Math.sin(i * 1.2) * 4)}px`}
+            left={`${(i * 6.5) + (Math.sin(i * 2.1) * 3)}%`}
+            fontSize={`${12 + (Math.sin(i * 1.8) * 3)}px`}
+            opacity="0.8"
+            filter="drop-shadow(0 1px 2px rgba(0,0,0,0.2))"
+          >
+            {i % 4 === 0 ? '🌲' : i % 4 === 1 ? '🌳' : i % 4 === 2 ? '🌿' : '🌲'}
+          </Box>
+        ))}
+        
+        {/* Dense forest trees - second layer (background) */}
+        {[...Array(12)].map((_, i) => (
+          <Box
+            key={`forest-bg-${i}`}
+            position="absolute"
+            bottom={`${25 + (Math.sin(i * 1.5) * 3)}px`}
+            left={`${(i * 8) + (Math.sin(i * 2.5) * 4)}%`}
+            fontSize={`${8 + (Math.sin(i * 1.3) * 2)}px`}
+            opacity="0.5"
+            filter="drop-shadow(0 1px 2px rgba(0,0,0,0.1))"
+          >
+            {i % 3 === 0 ? '🌲' : i % 3 === 1 ? '🌳' : '🌿'}
+          </Box>
+        ))}
+        
+        {/* Original trees layer (foreground) */}
         {landscapeElements.trees.map((tree) => (
           <Box
             key={tree.id}
@@ -567,10 +634,24 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
             bottom={`${tree.bottom}px`}
             left={`${tree.left}%`}
             fontSize={`${tree.height}px`}
-            opacity="0.7"
-            filter="drop-shadow(0 1px 2px rgba(0,0,0,0.2))"
+            opacity="0.9"
+            filter="drop-shadow(0 1px 2px rgba(0,0,0,0.3))"
           >
             {tree.emoji}
+          </Box>
+        ))}
+        
+        {/* Forest undergrowth */}
+        {[...Array(8)].map((_, i) => (
+          <Box
+            key={`undergrowth-${i}`}
+            position="absolute"
+            bottom={`${15 + (Math.sin(i * 0.8) * 2)}px`}
+            left={`${(i * 12) + (Math.sin(i * 3) * 2)}%`}
+            fontSize="8px"
+            opacity="0.6"
+          >
+            🌿
           </Box>
         ))}
       </Box>
@@ -592,11 +673,11 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
           bottom="22px"
           left="0"
           width="100%"
-          height="8px"
+          height="18px"
           backgroundColor="#7CB342"
           opacity="0.6"
           style={{
-            clipPath: "polygon(0 100%, 20% 40%, 40% 60%, 60% 30%, 80% 50%, 100% 40%, 100% 100%)"
+            clipPath: "polygon(0 100%, 20% 20%, 40% 40%, 60% 10%, 80% 30%, 100% 20%, 100% 100%)"
           }}
         />
         
@@ -693,11 +774,11 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
           bottom="18px"
           left="0"
           width="100%"
-          height="15px"
+          height="25px"
           backgroundColor="#6B7C93"
           opacity="0.6"
           style={{
-            clipPath: "polygon(0 100%, 20% 30%, 40% 60%, 60% 20%, 80% 50%, 100% 40%, 100% 100%)"
+            clipPath: "polygon(0 100%, 20% 10%, 40% 40%, 60% 0%, 80% 30%, 100% 20%, 100% 100%)"
           }}
         />
         <Box
@@ -705,11 +786,11 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
           bottom="22px"
           left="0"
           width="100%"
-          height="10px"
+          height="20px"
           backgroundColor="#8B9DC3"
           opacity="0.5"
           style={{
-            clipPath: "polygon(0 100%, 25% 40%, 50% 10%, 75% 45%, 100% 25%, 100% 100%)"
+            clipPath: "polygon(0 100%, 25% 20%, 50% 0%, 75% 25%, 100% 5%, 100% 100%)"
           }}
         />
         
@@ -770,11 +851,11 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
           bottom="30px"
           left="0"
           width="100%"
-          height="18px"
+          height="28px"
           backgroundColor="#6B7C93"
           opacity="0.4"
           style={{
-            clipPath: "polygon(0 100%, 30% 20%, 60% 40%, 80% 10%, 100% 30%, 100% 100%)"
+            clipPath: "polygon(0 100%, 30% 0%, 60% 20%, 80% 0%, 100% 10%, 100% 100%)"
           }}
         />
         
