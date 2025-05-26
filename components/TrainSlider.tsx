@@ -1,5 +1,5 @@
-import { Box, keyframes, Text, Tooltip } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { Box, keyframes, Tooltip } from "@chakra-ui/react";
+import { useCallback, useEffect, useState } from "react";
 
 const smokeAnimation = keyframes`
   0% {
@@ -16,20 +16,89 @@ const smokeAnimation = keyframes`
   }
 `;
 
-const trainWobbleAnimation = keyframes`
+// Function to create wagon wobble animation with specific offset
+const createWagonWobbleAnimation = (baseOffset: number) => keyframes`
   0%, 100% {
-    transform: translateY(0px) rotate(0deg);
+    transform: translateY(${baseOffset}px) rotate(0deg);
   }
   25% {
-    transform: translateY(-1px) rotate(0.5deg);
+    transform: translateY(${baseOffset - 1}px) rotate(0.5deg);
   }
   50% {
-    transform: translateY(0px) rotate(0deg);
+    transform: translateY(${baseOffset}px) rotate(0deg);
   }
   75% {
-    transform: translateY(1px) rotate(-0.5deg);
+    transform: translateY(${baseOffset + 1}px) rotate(-0.5deg);
   }
 `;
+
+// Reusable City Building component
+const CityBuilding = ({ building, buildingId, windowCount = 3 }: { 
+  building: { left: string; width: string; height: string; color: string }, 
+  buildingId: string,
+  windowCount?: number 
+}) => (
+  <Box
+    position="absolute"
+    bottom="8px"
+    left={building.left}
+    width={building.width}
+    height={building.height}
+    backgroundColor={building.color}
+    opacity="0.8"
+  >
+    {/* Building windows */}
+    {[...Array(windowCount)].map((_, j) => (
+      <Box
+        key={`${buildingId}-window-${j}`}
+        position="absolute"
+        top={`${8 + j * 6}px`}
+        left="2px"
+        width="2px"
+        height="2px"
+        backgroundColor="#FFD700"
+        opacity="0.6"
+      />
+    ))}
+  </Box>
+);
+
+// Helper function to get farm element emoji
+const getFarmElementEmoji = (elementType: number): string => {
+  switch (elementType) {
+    case 0: return '🐄';
+    case 1: return '🌾';
+    case 2: return '🐎';
+    case 3: return '🌽';
+    case 4: return '🐑';
+    default: return '🚜';
+  }
+};
+
+// Helper function to get tree type emoji
+const getTreeEmoji = (treeType: number): string => {
+  switch (treeType) {
+    case 0: return '🌲';
+    case 1: return '🌳';
+    default: return '🌿';
+  }
+};
+
+// Helper function to get scenic element emoji
+const getScenicElementEmoji = (elementType: number): string => {
+  switch (elementType) {
+    case 0: return '🏔️';
+    case 1: return '🦅';
+    default: return '🌲';
+  }
+};
+
+// Wagon configurations
+const wagonConfigs = [
+  { emoji: '🚃', size: '1.8rem', offset: 5, duration: '0.7s', delay: '0.3s', wheelLeft: '6px', wheelRight: '6px' },
+  { emoji: '🚃', size: '1.8rem', offset: 5, duration: '0.7s', delay: '0.2s', wheelLeft: '6px', wheelRight: '6px' },
+  { emoji: '🚃', size: '1.8rem', offset: 5, duration: '0.9s', delay: '0.1s', wheelLeft: '6px', wheelRight: '6px' },
+];
 
 const locomotiveWobbleAnimation = keyframes`
   0%, 100% {
@@ -78,6 +147,50 @@ const wheelRotateAnimation = keyframes`
   }
 `;
 
+// Reusable Wagon component
+const Wagon = ({ 
+  config, 
+  animationIndex, 
+  scrollProgress, 
+  wagonAnimations 
+}: { 
+  config: typeof wagonConfigs[0], 
+  animationIndex: number,
+  scrollProgress: number,
+  wagonAnimations: any[]
+}) => (
+  <Box 
+    position="relative" 
+    fontSize={config.size}
+    marginRight="1px"
+    animation={scrollProgress > 0.05 ? `${wagonAnimations[animationIndex]} ${config.duration} infinite` : 'none'}
+    style={{ animationDelay: config.delay }}
+    transform={scrollProgress <= 0.05 ? `translateY(${config.offset}px)` : "none"}
+  >
+    {config.emoji}
+    {/* Wagon wheels */}
+    <Box
+      position="absolute"
+      bottom="-1px"
+      left={config.wheelLeft}
+      fontSize="0.5rem"
+      animation={scrollProgress > 0.05 ? `${wheelRotateAnimation} 0.3s infinite linear` : 'none'}
+    >
+      ⚙️
+    </Box>
+    <Box
+      position="absolute"
+      bottom="-1px"
+      right={config.wheelRight}
+      fontSize="0.5rem"
+      animation={scrollProgress > 0.05 ? `${wheelRotateAnimation} 0.3s infinite linear` : 'none'}
+      style={{ animationDelay: '0.1s' }}
+    >
+      ⚙️
+    </Box>
+  </Box>
+);
+
 interface TrainSliderProps {
   scrollProgress: number;
   onProgressChange: (progress: number) => void;
@@ -91,6 +204,19 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
   const [dragStartX, setDragStartX] = useState(0);
   const [dragStartProgress, setDragStartProgress] = useState(0);
   const [showTooltip, setShowTooltip] = useState(false);
+
+  // Generate wagon wobble animations dynamically
+  const wagonAnimations = wagonConfigs.map(config => 
+    createWagonWobbleAnimation(config.offset)
+  );
+
+  // Helper function to calculate new progress from drag movement
+  const calculateDragProgress = useCallback((clientX: number) => {
+    const deltaX = clientX - dragStartX;
+    const trackWidth = window.innerWidth;
+    const deltaProgress = deltaX / trackWidth;
+    return Math.max(0, Math.min(1, dragStartProgress + deltaProgress));
+  }, [dragStartX, dragStartProgress]);
 
   const handleRailClick = (event: React.MouseEvent<HTMLDivElement>) => {
     const rect = event.currentTarget.getBoundingClientRect();
@@ -115,28 +241,18 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
     setDragStartProgress(scrollProgress);
   };
 
-  const handleMouseMove = (event: MouseEvent) => {
+  const handleMouseMove = useCallback((event: MouseEvent) => {
     if (!isDragging) return;
-
-    const deltaX = event.clientX - dragStartX;
-    const trackWidth = window.innerWidth;
-    const deltaProgress = deltaX / trackWidth;
-    const newProgress = Math.max(0, Math.min(1, dragStartProgress + deltaProgress));
-    
+    const newProgress = calculateDragProgress(event.clientX);
     onProgressChange(newProgress);
-  };
+  }, [isDragging, calculateDragProgress, onProgressChange]);
 
-  const handleTouchMove = (event: TouchEvent) => {
+  const handleTouchMove = useCallback((event: TouchEvent) => {
     if (!isDragging) return;
     event.preventDefault();
-
-    const deltaX = event.touches[0].clientX - dragStartX;
-    const trackWidth = window.innerWidth;
-    const deltaProgress = deltaX / trackWidth;
-    const newProgress = Math.max(0, Math.min(1, dragStartProgress + deltaProgress));
-    
+    const newProgress = calculateDragProgress(event.touches[0].clientX);
     onProgressChange(newProgress);
-  };
+  }, [isDragging, calculateDragProgress, onProgressChange]);
 
   const handleMouseUp = () => {
     setIsDragging(false);
@@ -174,27 +290,41 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
       document.body.style.userSelect = '';
       document.body.style.touchAction = '';
     };
-  }, [isDragging, dragStartX, dragStartProgress]);
+  }, [isDragging, handleMouseMove, handleTouchMove]);
 
   return (
-    <Box
-      position="fixed"
-      bottom="0"
-      left="0"
-      right="0"
-      height="80px"
-      zIndex={1}
+    <Tooltip
+      label="Drag the train or click on the rails to navigate through the journey"
+      placement="top"
+      bg="gray.800"
+      color="white"
+      fontSize="sm"
+      px={3}
+      py={2}
+      borderRadius="md"
+      isOpen={showTooltip && !isDragging}
+      hasArrow
     >
-      {/* Sky background - more transparent and blended */}
       <Box
-        position="absolute"
+        position="fixed"
         bottom="0"
         left="0"
         right="0"
-        height="100%"
-        background="linear-gradient(to bottom, rgba(135, 206, 235, 0.3) 0%, rgba(224, 246, 255, 0.6) 50%, rgba(255, 255, 255, 0.8) 100%)"
-        backdropFilter="blur(2px)"
-      />
+        height="80px"
+        zIndex={1}
+        onMouseEnter={() => setShowTooltip(true)}
+        onMouseLeave={() => setShowTooltip(false)}
+      >
+        {/* Sky background - more transparent and blended */}
+        <Box
+          position="absolute"
+          bottom="0"
+          left="0"
+          right="0"
+          height="100%"
+          background="linear-gradient(to bottom, rgba(135, 206, 235, 0.3) 0%, rgba(224, 246, 255, 0.6) 50%, rgba(255, 255, 255, 0.8) 100%)"
+          backdropFilter="blur(2px)"
+        />
 
       {/* Sun */}
       <Box
@@ -251,30 +381,12 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
           { left: "67%", width: "11px", height: "30px", color: "#5A5A5A" },
           { left: "80%", width: "8px", height: "22px", color: "#6A6A6A" },
         ].map((building, i) => (
-          <Box
-            key={`toronto-${i}`}
-            position="absolute"
-            bottom="8px"
-            left={building.left}
-            width={building.width}
-            height={building.height}
-            backgroundColor={building.color}
-            opacity="0.8"
-          >
-            {/* Building windows */}
-            {[...Array(3)].map((_, j) => (
-              <Box
-                key={j}
-                position="absolute"
-                top={`${8 + j * 6}px`}
-                left="2px"
-                width="2px"
-                height="2px"
-                backgroundColor="#FFD700"
-                opacity="0.6"
-              />
-            ))}
-          </Box>
+          <CityBuilding 
+            key={`toronto-building-${building.left}-${i}`} 
+            building={building} 
+            buildingId={`toronto-building-${i}`} 
+            windowCount={3}
+          />
         ))}
         
       </Box>
@@ -332,10 +444,11 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
           const height = 14 + (Math.sin(i * 1.5) * 5);
           const bottom = 15 + (Math.sin(i * 0.8) * 3);
           const treeType = i % 3;
+          const treeEmoji = getTreeEmoji(treeType);
           
           return (
             <Box
-              key={i}
+              key={`tree-${i}-${leftPercent.toFixed(1)}`}
               position="absolute"
               bottom={`${bottom}px`}
               left={`${leftPercent}%`}
@@ -343,7 +456,7 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
               opacity="0.7"
               filter="drop-shadow(0 1px 2px rgba(0,0,0,0.2))"
             >
-              {treeType === 0 ? '🌲' : treeType === 1 ? '🌳' : '🌿'}
+              {treeEmoji}
             </Box>
           );
         })}
@@ -426,10 +539,11 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
           const height = 10 + (Math.sin(i * 1.5) * 3);
           const bottom = 15 + (Math.sin(i * 0.8) * 2);
           const elementType = i % 6;
+          const farmEmoji = getFarmElementEmoji(elementType);
           
           return (
             <Box
-              key={i}
+              key={`farm-element-${i}-${leftPercent.toFixed(1)}`}
               position="absolute"
               bottom={`${bottom}px`}
               left={`${leftPercent}%`}
@@ -437,11 +551,7 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
               opacity="0.7"
               filter="drop-shadow(0 1px 2px rgba(0,0,0,0.2))"
             >
-              {elementType === 0 ? '🐄' : 
-               elementType === 1 ? '🌾' : 
-               elementType === 2 ? '🐎' : 
-               elementType === 3 ? '🌽' : 
-               elementType === 4 ? '🐑' : '🚜'}
+              {farmEmoji}
             </Box>
           );
         })}
@@ -449,7 +559,7 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
         {/* Fence posts */}
         {[...Array(8)].map((_, i) => (
           <Box
-            key={`fence-${i}`}
+            key={`fence-post-${i}-${5 + i * 12}`}
             position="absolute"
             bottom="15px"
             left={`${5 + i * 12}%`}
@@ -528,10 +638,11 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
           const height = 12 + (Math.sin(i * 2) * 3);
           const bottom = 15 + (Math.sin(i * 1.5) * 3);
           const elementType = i % 3;
+          const scenicEmoji = getScenicElementEmoji(elementType);
           
           return (
             <Box
-              key={i}
+              key={`scenic-element-${i}-${leftPercent.toFixed(1)}`}
               position="absolute"
               bottom={`${bottom}px`}
               left={`${leftPercent}%`}
@@ -539,7 +650,7 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
               opacity="0.7"
               filter="drop-shadow(0 1px 2px rgba(0,0,0,0.2))"
             >
-              {elementType === 0 ? '🏔️' : elementType === 1 ? '🦅' : '🌲'}
+              {scenicEmoji}
             </Box>
           );
         })}
@@ -580,30 +691,12 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
           { left: "72%", width: "10px", height: "32px", color: "#6A6A6A" },
           { left: "85%", width: "9px", height: "28px", color: "#4A4A4A" },
         ].map((building, i) => (
-          <Box
-            key={`vancouver-${i}`}
-            position="absolute"
-            bottom="8px"
-            left={building.left}
-            width={building.width}
-            height={building.height}
-            backgroundColor={building.color}
-            opacity="0.8"
-          >
-            {/* Building windows */}
-            {[...Array(4)].map((_, j) => (
-              <Box
-                key={j}
-                position="absolute"
-                top={`${6 + j * 5}px`}
-                left="2px"
-                width="2px"
-                height="2px"
-                backgroundColor="#FFD700"
-                opacity="0.6"
-              />
-            ))}
-          </Box>
+          <CityBuilding 
+            key={`vancouver-building-${building.left}-${i}`} 
+            building={building} 
+            buildingId={`vancouver-building-${i}`} 
+            windowCount={4}
+          />
         ))}
 
         
@@ -682,40 +775,26 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
 
 
       {/* Enhanced train with multiple smoke puffs and wobble */}
-      <Tooltip
-        label="Drag the train or click on the rails to navigate through the journey"
-        placement="top"
-        bg="gray.800"
-        color="white"
-        fontSize="sm"
-        px={3}
-        py={2}
-        borderRadius="md"
-        isOpen={showTooltip && !isDragging}
-        hasArrow
+      <Box
+        position="absolute"
+        bottom="13px"
+        left={`${scrollProgress * 100}%`}
+        transition="left 0.1s ease-out"
+        fontSize="2.2rem"
+        filter="drop-shadow(0 2px 4px rgba(0,0,0,0.3))"
+        zIndex={3}
+        transform={`translateX(-${scrollProgress * 100}%)`}
+        cursor={isDragging ? 'grabbing' : 'grab'}
+        onMouseDown={handleTrainMouseDown}
+        onTouchStart={handleTrainTouchStart}
+        userSelect="none"
+        style={{ touchAction: 'none' }}
       >
-        <Box
-          position="absolute"
-          bottom="13px"
-          left={`${scrollProgress * 100}%`}
-          transition="left 0.1s ease-out"
-          fontSize="2.2rem"
-          filter="drop-shadow(0 2px 4px rgba(0,0,0,0.3))"
-          zIndex={3}
-          transform={`translateX(-${scrollProgress * 100}%)`}
-          cursor={isDragging ? 'grabbing' : 'grab'}
-          onMouseDown={handleTrainMouseDown}
-          onTouchStart={handleTrainTouchStart}
-          onMouseEnter={() => setShowTooltip(true)}
-          onMouseLeave={() => setShowTooltip(false)}
-          userSelect="none"
-          style={{ touchAction: 'none' }}
-        >
           {/* Multiple smoke puffs */}
           {[...Array(4)].map((_, i) => {
             return (
               <Box
-                key={i}
+                key={`smoke-puff-${i}`}
                 position="absolute"
                 top={`${-4 - i * 5}px`}
                 left={`${100 + i * 3}px`}
@@ -733,98 +812,16 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
           
           {/* Train cars */}
           <Box display="flex" alignItems="center">
-            {/* Wagon 1 */}
-            <Box 
-              position="relative" 
-              fontSize="1.6rem" 
-              marginRight="1px"
-              animation={scrollProgress > 0.05 ? `${trainWobbleAnimation} 0.8s infinite` : 'none'}
-              style={{ animationDelay: '0.3s' }}
-            >
-              🚋
-              {/* Wagon wheels */}
-              <Box
-                position="absolute"
-                bottom="-2px"
-                left="5px"
-                fontSize="0.5rem"
-                animation={scrollProgress > 0.05 ? `${wheelRotateAnimation} 0.3s infinite linear` : 'none'}
-              >
-                ⚙️
-              </Box>
-              <Box
-                position="absolute"
-                bottom="-2px"
-                right="5px"
-                fontSize="0.5rem"
-                animation={scrollProgress > 0.05 ? `${wheelRotateAnimation} 0.3s infinite linear` : 'none'}
-                style={{ animationDelay: '0.1s' }}
-              >
-                ⚙️
-              </Box>
-            </Box>
-            
-            {/* Wagon 2 */}
-            <Box 
-              position="relative" 
-              fontSize="1.8rem" 
-              marginRight="1px"
-              animation={scrollProgress > 0.05 ? `${trainWobbleAnimation} 0.7s infinite` : 'none'}
-              style={{ animationDelay: '0.2s' }}
-            >
-              🚃
-              {/* Wagon wheels */}
-              <Box
-                position="absolute"
-                bottom="-2px"
-                left="6px"
-                fontSize="0.5rem"
-                animation={scrollProgress > 0.05 ? `${wheelRotateAnimation} 0.3s infinite linear` : 'none'}
-              >
-                ⚙️
-              </Box>
-              <Box
-                position="absolute"
-                bottom="-2px"
-                right="6px"
-                fontSize="0.5rem"
-                animation={scrollProgress > 0.05 ? `${wheelRotateAnimation} 0.3s infinite linear` : 'none'}
-                style={{ animationDelay: '0.05s' }}
-              >
-                ⚙️
-              </Box>
-            </Box>
-            
-            {/* Wagon 3 */}
-            <Box 
-              position="relative" 
-              fontSize="1.8rem" 
-              marginRight="1px"
-              animation={scrollProgress > 0.05 ? `${trainWobbleAnimation} 0.9s infinite` : 'none'}
-              style={{ animationDelay: '0.1s' }}
-            >
-              🚃
-              {/* Wagon wheels */}
-              <Box
-                position="absolute"
-                bottom="-2px"
-                left="6px"
-                fontSize="0.5rem"
-                animation={scrollProgress > 0.05 ? `${wheelRotateAnimation} 0.3s infinite linear` : 'none'}
-              >
-                ⚙️
-              </Box>
-              <Box
-                position="absolute"
-                bottom="-2px"
-                right="6px"
-                fontSize="0.5rem"
-                animation={scrollProgress > 0.05 ? `${wheelRotateAnimation} 0.3s infinite linear` : 'none'}
-                style={{ animationDelay: '0.2s' }}
-              >
-                ⚙️
-              </Box>
-            </Box>
+            {/* Render wagons using the reusable component */}
+            {wagonConfigs.map((config, index) => (
+              <Wagon 
+                key={`wagon-${config.emoji}-${index}`} 
+                config={config} 
+                animationIndex={index} 
+                scrollProgress={scrollProgress}
+                wagonAnimations={wagonAnimations}
+              />
+            ))}
             
             {/* Locomotive */}
             <Box 
@@ -837,7 +834,7 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
               {/* Animated wheels */}
               <Box
                 position="absolute"
-                bottom="-2px"
+                bottom="-1px"
                 left="7px"
                 fontSize="0.5rem"
                 animation={scrollProgress > 0.05 ? `${wheelRotateAnimation} 0.3s infinite linear` : 'none'}
@@ -846,7 +843,7 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
               </Box>
               <Box
                 position="absolute"
-                bottom="-2px"
+                bottom="-1px"
                 right="7px"
                 fontSize="0.5rem"
                 animation={scrollProgress > 0.05 ? `${wheelRotateAnimation} 0.3s infinite linear` : 'none'}
@@ -857,7 +854,6 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
             </Box>
           </Box>
         </Box>
-      </Tooltip>
 
       {/* Speed lines effect */}
       {scrollProgress > 0.1 && (
@@ -896,7 +892,7 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
             
             return (
               <Box
-                key={i}
+                key={`speed-line-${i}-${Math.round(lineLeftPercent * 10)}`}
                 position="absolute"
                 bottom={`${Math.max(0, verticalPosition)}px`}
                 left={`${lineLeftPercent}%`}
@@ -913,6 +909,7 @@ export const TrainSlider: React.FC<TrainSliderProps> = ({
         </Box>
       )}
 
-    </Box>
+      </Box>
+    </Tooltip>
   );
 };
