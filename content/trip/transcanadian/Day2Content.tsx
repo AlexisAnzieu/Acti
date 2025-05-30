@@ -66,7 +66,7 @@ export const Day2Content = () => (
         sur lequel s'accumulent tous les événements. Aujourd'hui, un musicien organise un concert à la guitare à 16 h et une{" "}
         <a
           data-tooltip-id="my-tooltip"
-          href="https://acti.anzieu.com/assets/6bd929ec-3d56-448a-8e40-1e59469cc488.MOV"
+          href="https://acti.anzieu.com/assets/b69c76dc-c0e8-44c0-861b-bc505ee2057d.mp4"
         >
           <Highlight
             query="dégustation de vin"

@@ -54,7 +54,7 @@ export const Day4Content = () => (
         car aujourd'hui nous allons grimper du dénivelé ! Nous remontons ensuite dans le train, accompagné d'une cinquantaine de nouvelles têtes faisant le trajet de Jasper à Vancouver. Ayant été témoins du lavage des vitres panoramique, nous n'avons qu'une seule idée stratégique en tête à ce moment-là, s'octroyer une place dans notre wagon fétiche afin de découvrir{" "}
         <a
           data-tooltip-id="my-tooltip"
-          href="https://acti.anzieu.com/assets/8eb3e3db-95e9-497c-8ad9-84863b92d195.MOV"
+          href="https://acti.anzieu.com/assets/f93b7916-ff73-478e-8521-e1edbb6aa768.mp4"
         >
           <Highlight
             query="les Rocheuses à 360"
@@ -97,10 +97,29 @@ export const Day4Content = () => (
       </Text>
 
       <Text lineHeight="1.8" mb={4}>
-        Nous avons passé notre après-midi tout entier sous le dôme de verre à explorer les environs d'un œil aguerri. Cinq heures à ne faire que ça. Nous apercevons des lacs immenses qui se déploient en bas des falaises, des cascades aux hectolitres de débit par milliers, des hectares entiers de végétation brûlée par les nombreux incendies des années précédentes ou bien encore{" "}
+        Nous avons passé notre après-midi tout entier sous le dôme de verre à explorer les environs d'un œil aguerri. Cinq heures à ne faire que ça. Nous apercevons{" "}
         <a
           data-tooltip-id="my-tooltip"
-          href="https://acti.anzieu.com/assets/01cf0b40-a8da-413d-b203-9c9c4b45e5c7.MOV"
+          href="https://acti.anzieu.com/assets/841acae1-818d-430e-a361-0449346a0ebc.mp4"
+        >
+          <Highlight
+            query="des lacs immenses"
+            styles={{
+              borderRadius: "50px",
+              px: "2",
+              py: "1",
+              bg: "orange.100",
+              textDecoration: "underline",
+              cursor: "pointer"
+            }}
+          >
+            des lacs immenses
+          </Highlight>
+        </a>{" "}
+        qui se déploient en bas des falaises, des cascades aux hectolitres de débit par milliers, des hectares entiers de végétation brûlée par les nombreux incendies des années précédentes ou bien encore{" "}
+        <a
+          data-tooltip-id="my-tooltip"
+          href="https://acti.anzieu.com/assets/09f6ac79-7b7a-42e8-bfa0-8221bc064100.mp4"
         >
           <Highlight
             query="des trains de plusieurs kilomètres de long"
@@ -127,7 +146,7 @@ export const Day4Content = () => (
         À 22 h, nous entendons des bruits de talkies-walkies dans le couloir. Notre voisin de droite a appuyé sur le bouton d'alarme dans sa chambre, dédié à l'intendant du wagon. Une ambulance est en chemin, son état est apparemment inquiétant. C'est une observation que j'ai placée plus ou moins sous silence au cours de ce récit mais en cette période, la très grande majorité des passagers ont 70 années révolues. Beaucoup se déplacent avec une canne et ont du mal à déambuler dans ces couloirs qui ondulent en fonction de l'état des rails. À 22 h 30 le convoi s'arrête pour la première fois hors d'une gare et nous apercevons{" "}
         <a
           data-tooltip-id="my-tooltip"
-          href="https://acti.anzieu.com/assets/bfe81b76-5d86-425d-94f7-4d33163d8994.MOV"
+          href="https://acti.anzieu.com/assets/fe50f6a4-bca4-4b61-8bad-12eef5925e21.mp4"
         >
           <Highlight
             query="des gyrophares"
@@ -177,7 +196,7 @@ export const Day4Content = () => (
         est interdite aux voitures. Nous pouvons{" "}
         <a
           data-tooltip-id="my-tooltip"
-          href="https://acti.anzieu.com/assets/04c81622-f2f2-4d6f-a15f-cf5644447e2d.MOV"
+          href="https://acti.anzieu.com/assets/b8bc360f-49f1-4785-a02a-18453120b894.mp4"
         >
           <Highlight
             query="déambuler librement"

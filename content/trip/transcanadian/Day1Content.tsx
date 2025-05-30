@@ -12,7 +12,7 @@ export const Day1Content = () => (
         Remontons le fil du récit jusqu'au J-0, lorsque le mardi 29 mai en fin d'après-midi nous entamons notre aventure ferroviaire. Il faut en effet se rendre à Toronto afin d'embarquer sur le Transcanadien. Qu'à cela ne tienne, nous avons déjà fait le trajet de cinq heures reliant Montréal à Toronto plusieurs fois. Les confortables wagons récemment mis en service nous permettent de nous délecter{" "}
         <a
           data-tooltip-id="my-tooltip"
-          href="https://acti.anzieu.com/assets/4929f680-6103-4eb9-b156-b3366befc011.mov"
+          href="https://acti.anzieu.com/assets/6d30d870-6278-4097-8792-19eccb0e1c11.mp4"
         >
           <Highlight
             query="d'un beau coucher de soleil"
@@ -35,7 +35,7 @@ export const Day1Content = () => (
         Notre arrivée à Toronto débute par une petite marche nocturne de 15 minutes jusqu'à l'auberge de jeunesse la plus proche. S'ensuit une nuit passablement bruyante due à une{' '}
         <a
           data-tooltip-id="my-tooltip"
-          href="https://acti.anzieu.com/assets/0d7c1add-65fa-4e06-b104-408e821be3f0.MOV"
+          href="https://acti.anzieu.com/assets/eced5293-246a-4096-8004-5a4999907186.mp4"
         >
           <Highlight
             query="isolation douteuse"
@@ -62,7 +62,7 @@ export const Day1Content = () => (
         Café en main, nous nous rendons sur le quai et nous apercevons enfin se prolongeant devant nous,{" "}
         <a
           data-tooltip-id="my-tooltip"
-          href="https://acti.anzieu.com/assets/0a7e877e-2836-46f5-bfbe-47a62fb2879f.MOV"
+          href="https://acti.anzieu.com/assets/4a263a8f-07c4-4596-b1ed-ba740b04b0c2.mp4"
         >
           <Highlight
             query="ce monstre de fer et d'acier brillant"
@@ -124,7 +124,7 @@ export const Day1Content = () => (
         Nous n'en sommes qu'à notre première journée et un fil conducteur commence déjà à émerger: le mouvement perpétuel sous nos pieds et le paysage qui défile en continu. Les hauts pins vert et les arbres dénués de feuilles, sortent tout juste de l'hiver.{" "}
         <a
           data-tooltip-id="my-tooltip"
-          href="https://acti.anzieu.com/assets/75eb81fd-f620-4287-9321-818c1d7b5478.MOV"
+          href="https://acti.anzieu.com/assets/fd6e58a8-16ba-44fb-b34b-3e721dab0eb7.mp4"
         >
           <Highlight
             query="Les lacs, à peine dégelés"
