@@ -1,4 +1,3 @@
-
 /* eslint-disable react/no-unescaped-entities */
 import { Box, Heading, keyframes } from "@chakra-ui/react";
 import { GetStaticPropsContext } from "next";
@@ -67,11 +66,14 @@ const DayCard = ({ title, content, imageUrl, index }: any) => (
   </Box>
 );
 
-export default function TransCanadian() {
+interface TransCanadianProps {
+  lang: Locale;
+}
+
+export default function TransCanadian({ lang }: TransCanadianProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
-  // Track day for potential future use
-  const [, setCurrentDay] = useState(0); 
+  const [, setCurrentDay] = useState(0);
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
@@ -89,7 +91,6 @@ export default function TransCanadian() {
       const maxScroll = Math.max(0, scrollHeight - clientHeight);
       const progress = maxScroll > 0 ? Math.min(1, scrollTop / maxScroll) : 0;
       
-      // Calculate current day based on scroll position
       const dayCards = container.querySelectorAll('.day-card');
       let newCurrentDay = 0;
       
@@ -97,7 +98,6 @@ export default function TransCanadian() {
         const rect = card.getBoundingClientRect();
         const containerRect = container.getBoundingClientRect();
         
-        // If the card is visible (top is above the middle of the viewport)
         if (rect.top <= containerRect.height / 2) {
           newCurrentDay = index;
         }
@@ -129,11 +129,11 @@ export default function TransCanadian() {
     
     container.scrollTo({
       top: targetScroll,
-      behavior: 'auto' // Use 'auto' for instant scrolling during drag
+      behavior: 'auto'
     });
   };
 
-  const currentContent = getTransCanadianContent("fr");
+  const currentContent = getTransCanadianContent(lang);
 
   return (
     <Box>
@@ -157,7 +157,6 @@ export default function TransCanadian() {
             padding: 0,
           }}
           render={({ activeAnchor }) => {
-            // Guard for SSR
             if (typeof window === 'undefined' || typeof document === 'undefined') {
               return null;
             }
@@ -165,7 +164,6 @@ export default function TransCanadian() {
             const href = activeAnchor?.getAttribute("href") ?? "";
             
             if (href.endsWith(".mov") || href.includes("video") || href.endsWith(".mp4")) {
-              // Use the new LazyTooltipVideo component for videos
               return (
                 <LazyTooltipVideo
                   src={href}
@@ -178,7 +176,6 @@ export default function TransCanadian() {
               );
             }
             
-            // For images (jpg), use Next.js Image for optimization with forced lazy loading
             if (href.endsWith(".jpg") || href.endsWith(".jpeg") || href.endsWith(".png")) {
               return (
                 <LazyTooltipImage
@@ -197,7 +194,6 @@ export default function TransCanadian() {
               );
             }
             
-            // Use LazyTooltipImage for other formats as well
             return (
               <LazyTooltipImage
                 src={href}
@@ -238,7 +234,7 @@ export default function TransCanadian() {
           "&::-webkit-scrollbar-thumb:hover": {
             display: "none"
           },
-          scrollbarWidth: "none" // Firefox
+          scrollbarWidth: "none"
         }}
       >
         {currentContent.days.map((day, index) => (
