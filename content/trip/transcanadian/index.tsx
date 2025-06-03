@@ -2,56 +2,55 @@ import dynamic from 'next/dynamic';
 
 import { TripContent } from './types';
 
-export const getTransCanadianContent = (locale: 'en' | 'fr'): TripContent => {
+type TranslateFunction = (key: string) => string;
+
+export const getTransCanadianContent = (locale: 'en' | 'fr', t: TranslateFunction): TripContent => {
   const Day1Content = dynamic(() => import(`./${locale}/Day1Content`).then(mod => mod.Day1Content));
   const Day2Content = dynamic(() => import(`./${locale}/Day2Content`).then(mod => mod.Day2Content));
   const Day3Content = dynamic(() => import(`./${locale}/Day3Content`).then(mod => mod.Day3Content));
   const Day4Content = dynamic(() => import(`./${locale}/Day4Content`).then(mod => mod.Day4Content));
 
-  const getTitleKey = (key: string) => `trips.transcanadian.${key}`;
-  const getDayTitleKey = (day: number) => `trips.transcanadian.days.day${day}.title`;
-
   const contentMap = {
     fr: {
-      title: getTitleKey("pageTitle"),
-      subtitle: getTitleKey("subtitle"),
+      title: t('trips.transcanadian.pageTitle'),
+      subtitle: t('trips.transcanadian.subtitle'),
       days: [
         {
-          title: getDayTitleKey(1),
+          title: t('trips.transcanadian.days.day1.title'),
           content: <Day1Content />,
         },
         {
-          title: getDayTitleKey(2),
+          title: t('trips.transcanadian.days.day2.title'),
           content: <Day2Content />,
         },
         {
-          title: getDayTitleKey(3),
+          title: t('trips.transcanadian.days.day3.title'),
           content: <Day3Content />,
         },
         {
-          title: getDayTitleKey(4),
+          title: t('trips.transcanadian.days.day4.title'),
           content: <Day4Content />,
         },
       ],
     },
     en: {
-      title: getTitleKey("pageTitle"),
-      subtitle: getTitleKey("subtitle"),
+      title: t('trips.transcanadian.pageTitle'),
+      subtitle: t('trips.transcanadian.subtitle'),
       days: [
         {
-          title: getDayTitleKey(1),
+          title: t('trips.transcanadian.days.day1.title'),
           content: <Day1Content />,
         },
         {
-          title: getDayTitleKey(2),
+          title: t('trips.transcanadian.days.day2.title'),
           content: <Day2Content />,
         },
         {
-          title: getDayTitleKey(3),
+          title: t('trips.transcanadian.days.day3.title'),
           content: <Day3Content />,
         },
         {
-          title: getDayTitleKey(4),
+          title: t('trips.transcanadian.days.day4.title'),
           content: <Day4Content />,
         },
       ],

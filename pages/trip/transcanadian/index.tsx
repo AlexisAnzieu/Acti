@@ -2,6 +2,7 @@
 import { Box, Heading, keyframes } from "@chakra-ui/react";
 import { GetStaticPropsContext } from "next";
 import Head from "next/head";
+import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useEffect, useRef, useState } from "react";
 import { Tooltip } from "react-tooltip";
@@ -71,6 +72,7 @@ interface TransCanadianProps {
 }
 
 export default function TransCanadian({ lang }: TransCanadianProps) {
+  const { t } = useTranslation('common');
   const containerRef = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [, setCurrentDay] = useState(0);
@@ -133,7 +135,7 @@ export default function TransCanadian({ lang }: TransCanadianProps) {
     });
   };
 
-  const currentContent = getTransCanadianContent(lang);
+  const currentContent = getTransCanadianContent(lang, t);
 
   return (
     <Box>
