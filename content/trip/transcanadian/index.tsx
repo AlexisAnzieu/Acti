@@ -8,47 +8,50 @@ export const getTransCanadianContent = (locale: 'en' | 'fr'): TripContent => {
   const Day3Content = dynamic(() => import(`./${locale}/Day3Content`).then(mod => mod.Day3Content));
   const Day4Content = dynamic(() => import(`./${locale}/Day4Content`).then(mod => mod.Day4Content));
 
+  const getTitleKey = (key: string) => `trips.transcanadian.${key}`;
+  const getDayTitleKey = (day: number) => `trips.transcanadian.days.day${day}.title`;
+
   const contentMap = {
     fr: {
-      title: "Aventure Ferroviaire Transcanadienne",
-      subtitle: "Un voyage de 4 jours à travers les paysages majestueux du Canada",
+      title: getTitleKey("pageTitle"),
+      subtitle: getTitleKey("subtitle"),
       days: [
         {
-          title: "Le grand départ",
+          title: getDayTitleKey(1),
           content: <Day1Content />,
         },
         {
-          title: "Jour 2: Toronto à Ottawa", 
+          title: getDayTitleKey(2),
           content: <Day2Content />,
         },
         {
-          title: "Jour 3: Toronto à Winnipeg",
+          title: getDayTitleKey(3),
           content: <Day3Content />,
         },
         {
-          title: "Jour 4: Winnipeg à Vancouver",
+          title: getDayTitleKey(4),
           content: <Day4Content />,
         },
       ],
     },
     en: {
-      title: "Trans-Canadian Railway Adventure",
-      subtitle: "A 4-day journey across Canada's majestic landscapes",
+      title: getTitleKey("pageTitle"),
+      subtitle: getTitleKey("subtitle"),
       days: [
         {
-          title: "The Great Departure",
+          title: getDayTitleKey(1),
           content: <Day1Content />,
         },
         {
-          title: "Day 2: Journey Through the Prairies",
+          title: getDayTitleKey(2),
           content: <Day2Content />,
         },
         {
-          title: "Day 3: Across the Plains",
+          title: getDayTitleKey(3),
           content: <Day3Content />,
         },
         {
-          title: "Day 4: Through the Rockies to Vancouver",
+          title: getDayTitleKey(4),
           content: <Day4Content />,
         },
       ],

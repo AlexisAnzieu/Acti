@@ -9,7 +9,23 @@
         "description": "Explorez des itinéraires de voyage lents au départ du Québec",
         "transcanadian": {
             "title": "Aventure Transcanadienne",
-            "description": "Un voyage d'un océan à l'autre à travers le Canada en train"
+            "description": "Un voyage d'un océan à l'autre à travers le Canada en train",
+            "pageTitle": "Aventure Ferroviaire Transcanadienne",
+            "subtitle": "Un voyage de 4 jours à travers les paysages majestueux du Canada",
+            "days": {
+                "day1": {
+                    "title": "Le grand départ"
+                },
+                "day2": {
+                    "title": "Jour 2: Toronto à Ottawa"
+                },
+                "day3": {
+                    "title": "Jour 3: Toronto à Winnipeg"
+                },
+                "day4": {
+                    "title": "Jour 4: Winnipeg à Vancouver"
+                }
+            }
         },
         "bostontrip": {
             "title": "Montréal à Boston",
