@@ -9,6 +9,7 @@ import { Tooltip } from "react-tooltip";
 
 import { Locale } from "../../../component/NavbarComponent";
 import LazyTooltipImage from "../../../components/LazyTooltipImage";
+import LazyTooltipVideo from "../../../components/LazyTooltipVideo";
 import { TrainSlider } from "../../../components/TrainSlider";
 import { getTransCanadianContent } from "../../../content/trip/transcanadian/";
 
@@ -69,22 +70,13 @@ const DayCard = ({ title, content, imageUrl, index }: any) => (
 export default function TransCanadian() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
-  const [currentDay, setCurrentDay] = useState(0);
-  const [showInstructions, setShowInstructions] = useState(true);
+  // Track day for potential future use
+  const [, setCurrentDay] = useState(0); 
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
     setIsClient(true);
   }, []);
-
-  useEffect(() => {
-    if (!isClient) return;
-    
-    const timer = setTimeout(() => {
-      setShowInstructions(false);
-    }, 1000);
-    return () => clearTimeout(timer);
-  }, [isClient]);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -173,25 +165,14 @@ export default function TransCanadian() {
             const href = activeAnchor?.getAttribute("href") ?? "";
             
             if (href.endsWith(".mov") || href.includes("video") || href.endsWith(".mp4")) {
-              // Return JSX video element instead of DOM element
+              // Use the new LazyTooltipVideo component for videos
               return (
-                <video
+                <LazyTooltipVideo
                   src={href}
                   style={{ 
                     borderRadius: "5%", 
                     maxWidth: "100%",
-                    display: "block"
-                  }}
-                  autoPlay
-                  muted
-                  loop
-                  controls
-                  playsInline
-                  onLoadedData={(e) => {
-                    const video = e.target as HTMLVideoElement;
-                    video.play().catch((error) => {
-                      console.warn('Video autoplay failed:', error);
-                    });
+                    width: "100%"
                   }}
                 />
               );
@@ -216,15 +197,20 @@ export default function TransCanadian() {
               );
             }
             
-            // Return regular img element for other formats
+            // Use LazyTooltipImage for other formats as well
             return (
-              <img
+              <LazyTooltipImage
                 src={href}
+                alt=""
+                width={600}
+                height={400}
+                quality={30}
+                sizes="(max-width: 600px) 100vw, 600px"
                 style={{ 
                   borderRadius: "5%", 
-                  maxWidth: "100%" 
+                  maxWidth: "100%",
+                  height: "auto"
                 }}
-                alt=""
               />
             );
           }}
