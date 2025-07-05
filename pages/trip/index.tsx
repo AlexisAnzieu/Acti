@@ -17,7 +17,12 @@ import { FaArrowRight } from "react-icons/fa";
 
 import { Locale } from "../../component/NavbarComponent";
 
-const TripCard = ({ title, description, imageSrc, href }: {
+const TripCard = ({
+  title,
+  description,
+  imageSrc,
+  href,
+}: {
   title: string;
   description: string;
   imageSrc: string;
@@ -48,7 +53,7 @@ const TripCard = ({ title, description, imageSrc, href }: {
           },
           "& .arrow-icon": {
             transform: "translateX(4px)",
-          }
+          },
         }}
         height="100%"
       >
@@ -79,22 +84,17 @@ const TripCard = ({ title, description, imageSrc, href }: {
             />
           </Box>
         </Box>
-        
+
         <Box p={6}>
-          <Heading 
-            size="lg" 
+          <Heading
+            size="lg"
             mb={3}
             bgGradient="linear(to-r, teal.500, teal.300)"
             bgClip="text"
           >
             {title}
           </Heading>
-          <Text 
-            fontSize="md" 
-            color={textColor} 
-            mb={4}
-            noOfLines={3}
-          >
+          <Text fontSize="md" color={textColor} mb={4} noOfLines={3}>
             {description}
           </Text>
           <Box
@@ -104,9 +104,9 @@ const TripCard = ({ title, description, imageSrc, href }: {
             fontWeight="bold"
           >
             <Text mr={2}>Explore</Text>
-            <Icon 
-              as={FaArrowRight} 
-              className="arrow-icon" 
+            <Icon
+              as={FaArrowRight}
+              className="arrow-icon"
               transition="transform 0.3s ease"
             />
           </Box>
@@ -140,12 +140,12 @@ export default function Trips() {
           {t("trips.title")}
         </Heading>
         <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
-          <TripCard
+          {/* <TripCard
             title={t("trips.transcanadian.title")}
             description={t("trips.transcanadian.description")}
             imageSrc="https://acti.anzieu.com/assets/0921f88e-0492-426c-ad79-563566b10dc9.jpg"
             href="/trip/transcanadian"
-          />
+          /> */}
           <TripCard
             title={t("trips.bostontrip.title")}
             description={t("trips.bostontrip.description")}
