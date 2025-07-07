@@ -14,16 +14,16 @@
       "subtitle": "A 4-day journey across Canada's majestic landscapes",
       "days": {
         "day1": {
-          "title": "The Great Departure"
+          "title": "All Aboard: The Adventure Begins"
         },
         "day2": {
-          "title": "Day 2: Journey Through the Prairies"
+          "title": "Life on Rails: Across the Prairies"
         },
         "day3": {
-          "title": "Day 3: Across the Plains"
+          "title": "Endless Plains and Prairie Skies"
         },
         "day4": {
-          "title": "Day 4: Through the Rockies to Vancouver"
+          "title": "Into the Rockies: Arrival in Vancouver"
         }
       },
       "backToTrips": "Back to all trips"

@@ -14,16 +14,16 @@
       "subtitle": "Un voyage de 4 jours à travers les paysages majestueux du Canada",
       "days": {
         "day1": {
-          "title": "Le grand départ"
+          "title": "Embarquement : L’aventure commence"
         },
         "day2": {
-          "title": "Jour 2: Toronto à Ottawa"
+          "title": "Vie à bord : À travers les prairies"
         },
         "day3": {
-          "title": "Jour 3: Toronto à Winnipeg"
+          "title": "Plaines sans fin et ciels des prairies"
         },
         "day4": {
-          "title": "Jour 4: Winnipeg à Vancouver"
+          "title": "Vers les Rocheuses : Arrivée à Vancouver"
         }
       },
       "backToTrips": "Retour à la liste des voyages"
