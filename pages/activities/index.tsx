@@ -3,7 +3,6 @@ import {
   Box,
   Center,
   CircularProgress,
-  Divider,
   Flex,
   Icon,
   Input,
@@ -28,7 +27,7 @@ import Link from "next/link";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import React, { useEffect, useState } from "react";
-import { BsCurrencyDollar, BsMap, BsSearch, BsChevronDown, BsFilter } from "react-icons/bs";
+import { BsChevronDown, BsCurrencyDollar, BsFilter,BsMap, BsSearch } from "react-icons/bs";
 import { GiEarthAmerica } from "react-icons/gi";
 
 import CarbonIconComponent, {

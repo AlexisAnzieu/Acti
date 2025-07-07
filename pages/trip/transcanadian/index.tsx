@@ -1,15 +1,16 @@
 /* eslint-disable react/no-unescaped-entities */
 import { Box, Button, Heading, keyframes } from "@chakra-ui/react";
-import { FaArrowLeft } from "react-icons/fa";
+import { GetStaticPropsContext } from "next";
 import Head from "next/head";
 import Link from "next/link";
-import { GetStaticPropsContext } from "next";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useEffect, useState } from "react";
+import { FaArrowLeft } from "react-icons/fa";
 import { Tooltip } from "react-tooltip";
-import LazyTooltipImage from "../../../components/LazyTooltipImage";
+
 import { Locale } from "../../../component/NavbarComponent";
+import LazyTooltipImage from "../../../components/LazyTooltipImage";
 import { getTransCanadianContent } from "../../../content/trip/transcanadian/";
 
 const fadeInAnimation = keyframes`

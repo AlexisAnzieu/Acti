@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef,useState } from "react";
 
 interface LazyTooltipImageProps {
   src: string;

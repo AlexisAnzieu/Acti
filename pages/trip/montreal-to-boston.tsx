@@ -10,12 +10,12 @@ import {
   Highlight,
   Text,
 } from "@chakra-ui/react";
-import Link from "next/link";
-import { FaArrowLeft } from "react-icons/fa";
-import { useTranslation } from "next-i18next";
 import { GetStaticPropsContext } from "next";
 import Head from "next/head";
+import Link from "next/link";
+import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { FaArrowLeft } from "react-icons/fa";
 import { Tooltip } from "react-tooltip";
 
 import { Locale } from "../../component/NavbarComponent";

@@ -2,10 +2,10 @@ import {
   Box,
   Container,
   Heading,
+  Icon,
   SimpleGrid,
   Text,
   useColorModeValue,
-  Icon,
 } from "@chakra-ui/react";
 import { GetStaticPropsContext } from "next";
 import Head from "next/head";
