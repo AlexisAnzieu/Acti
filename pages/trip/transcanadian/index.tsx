@@ -4,12 +4,11 @@ import { GetStaticPropsContext } from "next";
 import Head from "next/head";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Tooltip } from "react-tooltip";
 
 import { Locale } from "../../../component/NavbarComponent";
 import LazyTooltipImage from "../../../components/LazyTooltipImage";
-import { TrainSlider } from "../../../components/TrainSlider";
 import { getTransCanadianContent } from "../../../content/trip/transcanadian/";
 
 const fadeInAnimation = keyframes`
