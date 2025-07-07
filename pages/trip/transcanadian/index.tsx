@@ -1,12 +1,13 @@
 /* eslint-disable react/no-unescaped-entities */
-import { Box, Heading, keyframes } from "@chakra-ui/react";
-import { GetStaticPropsContext } from "next";
+import { Box, Button, Heading, keyframes } from "@chakra-ui/react";
+import { FaArrowLeft } from "react-icons/fa";
 import Head from "next/head";
+import Link from "next/link";
+import { GetStaticPropsContext } from "next";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useEffect, useState } from "react";
 import { Tooltip } from "react-tooltip";
-
 import { Locale } from "../../../component/NavbarComponent";
 import LazyTooltipImage from "../../../components/LazyTooltipImage";
 import { getTransCanadianContent } from "../../../content/trip/transcanadian/";
@@ -77,6 +78,20 @@ export default function TransCanadian({ lang }: TransCanadianProps) {
         <title>{currentContent.title}</title>
         <meta name="description" content={currentContent.subtitle} />
       </Head>
+      {/* Back to trips button */}
+      <Box maxWidth="800px" margin="2rem auto 0" textAlign="left">
+        <Link href="/trip" passHref legacyBehavior>
+          <Button
+            as="a"
+            colorScheme="teal"
+            variant="outline"
+            mb={6}
+            leftIcon={<FaArrowLeft />}
+          >
+            {t("trips.transcanadian.backToTrips")}
+          </Button>
+        </Link>
+      </Box>
 
       {isClient && (
         <Tooltip

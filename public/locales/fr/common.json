@@ -1,89 +1,90 @@
 {
-    "chooseYourAdventure": "Choisissez Votre Aventure",
-    "activities": {
-        "title": "Activités",
-        "description": "Découvrez des activités uniques à travers le Québec"
-    },
-    "trips": {
-        "title": "Voyages",
-        "description": "Explorez des itinéraires de voyage lents au départ du Québec",
-        "transcanadian": {
-            "title": "Aventure Transcanadienne",
-            "description": "Un voyage d'un océan à l'autre à travers le Canada en train",
-            "pageTitle": "Aventure Ferroviaire Transcanadienne",
-            "subtitle": "Un voyage de 4 jours à travers les paysages majestueux du Canada",
-            "days": {
-                "day1": {
-                    "title": "Le grand départ"
-                },
-                "day2": {
-                    "title": "Jour 2: Toronto à Ottawa"
-                },
-                "day3": {
-                    "title": "Jour 3: Toronto à Winnipeg"
-                },
-                "day4": {
-                    "title": "Jour 4: Winnipeg à Vancouver"
-                }
-            }
+  "chooseYourAdventure": "Choisissez Votre Aventure",
+  "activities": {
+    "title": "Activités",
+    "description": "Découvrez des activités uniques à travers le Québec"
+  },
+  "trips": {
+    "title": "Voyages",
+    "description": "Explorez des itinéraires de voyage lents au départ du Québec",
+    "transcanadian": {
+      "title": "Aventure Transcanadienne",
+      "description": "Un voyage d'un océan à l'autre à travers le Canada en train",
+      "pageTitle": "Aventure Ferroviaire Transcanadienne",
+      "subtitle": "Un voyage de 4 jours à travers les paysages majestueux du Canada",
+      "days": {
+        "day1": {
+          "title": "Le grand départ"
         },
-        "bostontrip": {
-            "title": "Montréal à Boston",
-            "description": "Une aventure cycliste de Montréal à Boston"
-        }
-    },
-    "searchActivity": "Rechercher",
-    "filters": "Filtres",
-    "accessibility": "Accessibilité",
-    "carbonFootprint": "Empreinte carbone",
-    "price": "Prix",
-    "seasons": "Saisons",
-    "season": {
-        "summer": "été",
-        "winter": "hiver",
-        "spring": "printemps",
-        "autumn": "automne"
-    },
-    "documentTitle": {
-        "index": "Actï - Activités au Québec",
-        "map": "Actï - Carte"
-    },
-    "carbonFilter": "Émission de CO2 générée par l'activité",
-    "carbonIcon": {
-        "free": "Cette activité est sans impact écologique directe",
-        "low": "Cette activité a peu d'impact écologique",
-        "medium": "Cette activité a un impact écologique élevé",
-        "high": "Cette activité a un lourd impact écologique"
-    },
-    "priceFilterMax": "Coût maximum de l'activité",
-    "priceFilterMin": "Coût minimum de l'activité",
-    "priceIcon": {
-        "free": "Cette activité est gratuite",
-        "low": "Cette activité coûte moins de 50$",
-        "medium": "Cette activité coûte entre 50$ et 150$",
-        "high": "Cette activité coûte plus de 150$"
-    },
-    "childrenAccessible": "Accessible aux enfants",
-    "by": "par",
-    "whoAreWe": "Qui sommes-nous?",
-    "whoAreWeModal": {
-        "text": "Nous sommes un jeune couple (<a style='color:#2E797B' href='https://www.linkedin.com/in/carla-fabregas/'>Carla</a> & <a style='color:#2E797B' href='https://www.linkedin.com/in/alexis-anzieu/'>Alexis</a>), arpentant le Québec à la recherche d'activités originales. Nos amis nous demandant regulièrement des retours d'expérience, l'idée nous est venue de développer un site web afin d'y capitaliser nos differentes trouvailles. \n \n Actï fait partie du projet <a style='color:#2E797B' href='https://h2t.club'>h2t.club</a> qui contribue à la création de communautés locales. Son code source est entièrement disponible sur <a style='color:#2E797B' href='https://github.com/AlexisAnzieu/Acti'>Github</a>. \n \n Pour toutes questions merci d'envoyer un courriel à <a style='color:#2E797B' href='mailto:contact@h2t.club'>contact@h2t.club</a>",
-        "endText": "Bonne visite!",
-        "welcome": "Nous sommes heureux de vous rencontrer!"
-    },
-    "ogDescription": "Actï est un blog permettant de trouver des activités à faire, payantes ou non, dans toutes les villes du Québec. Il est né d'une capitalisation des aventures de Carla et d'Alexis et contribue au projet h2t aidant au développement de communautés locales.",
-    "noActivityFound": "Aucune activité ne correspond à ces critères pour le moment, souhaitez-vous vous abonner à notre newsletter afin d'être tenu au courant?",
-    "noActivityMatching": "Aucune activité ne vous tente? Vous pouvez vous abonner à notre newsletter afin d'être tenu au courant de nos dernières trouvailles!",
-    "newsletter": {
-        "email": "Votre adresse courriel",
-        "submit": "S'abonner",
-        "title": {
-            "success": "Vous êtes maintenant abonné.e!",
-            "error": "Erreur lors de l'abonnement!"
+        "day2": {
+          "title": "Jour 2: Toronto à Ottawa"
         },
-        "description": {
-            "success": "Vous recevrez notre prochaine activité par courriel.",
-            "error": "Veuillez envoyer un courriel à contact@h2t.club si l'erreur persiste."
+        "day3": {
+          "title": "Jour 3: Toronto à Winnipeg"
+        },
+        "day4": {
+          "title": "Jour 4: Winnipeg à Vancouver"
         }
+      },
+      "backToTrips": "Retour à la liste des voyages"
+    },
+    "bostontrip": {
+      "title": "Montréal à Boston",
+      "description": "Une aventure cycliste de Montréal à Boston"
     }
+  },
+  "searchActivity": "Rechercher",
+  "filters": "Filtres",
+  "accessibility": "Accessibilité",
+  "carbonFootprint": "Empreinte carbone",
+  "price": "Prix",
+  "seasons": "Saisons",
+  "season": {
+    "summer": "été",
+    "winter": "hiver",
+    "spring": "printemps",
+    "autumn": "automne"
+  },
+  "documentTitle": {
+    "index": "Actï - Activités au Québec",
+    "map": "Actï - Carte"
+  },
+  "carbonFilter": "Émission de CO2 générée par l'activité",
+  "carbonIcon": {
+    "free": "Cette activité est sans impact écologique directe",
+    "low": "Cette activité a peu d'impact écologique",
+    "medium": "Cette activité a un impact écologique élevé",
+    "high": "Cette activité a un lourd impact écologique"
+  },
+  "priceFilterMax": "Coût maximum de l'activité",
+  "priceFilterMin": "Coût minimum de l'activité",
+  "priceIcon": {
+    "free": "Cette activité est gratuite",
+    "low": "Cette activité coûte moins de 50$",
+    "medium": "Cette activité coûte entre 50$ et 150$",
+    "high": "Cette activité coûte plus de 150$"
+  },
+  "childrenAccessible": "Accessible aux enfants",
+  "by": "par",
+  "whoAreWe": "Qui sommes-nous?",
+  "whoAreWeModal": {
+    "text": "Nous sommes un jeune couple (<a style='color:#2E797B' href='https://www.linkedin.com/in/carla-fabregas/'>Carla</a> & <a style='color:#2E797B' href='https://www.linkedin.com/in/alexis-anzieu/'>Alexis</a>), arpentant le Québec à la recherche d'activités originales. Nos amis nous demandant regulièrement des retours d'expérience, l'idée nous est venue de développer un site web afin d'y capitaliser nos differentes trouvailles. \n \n Actï fait partie du projet <a style='color:#2E797B' href='https://h2t.club'>h2t.club</a> qui contribue à la création de communautés locales. Son code source est entièrement disponible sur <a style='color:#2E797B' href='https://github.com/AlexisAnzieu/Acti'>Github</a>. \n \n Pour toutes questions merci d'envoyer un courriel à <a style='color:#2E797B' href='mailto:contact@h2t.club'>contact@h2t.club</a>",
+    "endText": "Bonne visite!",
+    "welcome": "Nous sommes heureux de vous rencontrer!"
+  },
+  "ogDescription": "Actï est un blog permettant de trouver des activités à faire, payantes ou non, dans toutes les villes du Québec. Il est né d'une capitalisation des aventures de Carla et d'Alexis et contribue au projet h2t aidant au développement de communautés locales.",
+  "noActivityFound": "Aucune activité ne correspond à ces critères pour le moment, souhaitez-vous vous abonner à notre newsletter afin d'être tenu au courant?",
+  "noActivityMatching": "Aucune activité ne vous tente? Vous pouvez vous abonner à notre newsletter afin d'être tenu au courant de nos dernières trouvailles!",
+  "newsletter": {
+    "email": "Votre adresse courriel",
+    "submit": "S'abonner",
+    "title": {
+      "success": "Vous êtes maintenant abonné.e!",
+      "error": "Erreur lors de l'abonnement!"
+    },
+    "description": {
+      "success": "Vous recevrez notre prochaine activité par courriel.",
+      "error": "Veuillez envoyer un courriel à contact@h2t.club si l'erreur persiste."
+    }
+  }
 }
