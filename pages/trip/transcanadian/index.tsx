@@ -64,67 +64,56 @@ interface TransCanadianProps {
 
 export default function TransCanadian({ lang }: TransCanadianProps) {
   const { t } = useTranslation("common");
-  const containerRef = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [, setCurrentDay] = useState(0);
   const [isClient, setIsClient] = useState(false);
+  const isProgrammaticScroll = useRef(false);
+  // const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     setIsClient(true);
   }, []);
 
+  // Debounced scroll handler
   useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-
+    let ticking = false;
     const updateScrollProgress = () => {
-      if (!container) return;
-
-      const { scrollTop, scrollHeight, clientHeight } = container;
+      if (isProgrammaticScroll.current) return;
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const scrollHeight = document.documentElement.scrollHeight;
+      const clientHeight = window.innerHeight;
       const maxScroll = Math.max(0, scrollHeight - clientHeight);
       const progress = maxScroll > 0 ? Math.min(1, scrollTop / maxScroll) : 0;
 
-      const dayCards = container.querySelectorAll(".day-card");
+      // Find current day by checking which .day-card is in the middle of the viewport
+      const dayCards = document.querySelectorAll(".day-card");
       let newCurrentDay = 0;
-
       dayCards.forEach((card, index) => {
         const rect = card.getBoundingClientRect();
-        const containerRect = container.getBoundingClientRect();
-
-        if (rect.top <= containerRect.height / 2) {
+        if (rect.top <= window.innerHeight / 2) {
           newCurrentDay = index;
         }
       });
-
       setScrollProgress(progress);
       setCurrentDay(newCurrentDay);
     };
 
-    const handleScroll = () => {
-      updateScrollProgress();
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          updateScrollProgress();
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
-    container.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("scroll", onScroll, { passive: true });
     updateScrollProgress();
-
     return () => {
-      container.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("scroll", onScroll);
     };
   }, []);
-
-  const handleProgressChange = (progress: number) => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    const { scrollHeight, clientHeight } = container;
-    const maxScroll = Math.max(0, scrollHeight - clientHeight);
-    const targetScroll = progress * maxScroll;
-
-    container.scrollTo({
-      top: targetScroll,
-      behavior: "auto",
-    });
-  };
 
   const currentContent = getTransCanadianContent(lang, t);
 
@@ -178,39 +167,12 @@ export default function TransCanadian({ lang }: TransCanadianProps) {
         />
       )}
 
-      <Box
-        ref={containerRef}
-        width="100%"
-        height="100vh"
-        overflowY="auto"
-        position="fixed"
-        top="10px"
-        left="0"
-        css={{
-          "&::-webkit-scrollbar": {
-            display: "none",
-          },
-          "&::-webkit-scrollbar-track": {
-            display: "none",
-          },
-          "&::-webkit-scrollbar-thumb": {
-            display: "none",
-          },
-          "&::-webkit-scrollbar-thumb:hover": {
-            display: "none",
-          },
-          scrollbarWidth: "none",
-        }}
-      >
-        {currentContent.days.map((day, index) => (
-          <DayCard key={index} {...day} index={index} />
-        ))}
-      </Box>
+      {/* Stack day cards as normal page content */}
+      {currentContent.days.map((day, index) => (
+        <DayCard key={index} {...day} index={index} />
+      ))}
 
-      <TrainSlider
-        scrollProgress={scrollProgress}
-        onProgressChange={handleProgressChange}
-      />
+      <TrainSlider scrollProgress={scrollProgress} />
     </Box>
   );
 }
