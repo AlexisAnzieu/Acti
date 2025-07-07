@@ -9,7 +9,6 @@ import { Tooltip } from "react-tooltip";
 
 import { Locale } from "../../../component/NavbarComponent";
 import LazyTooltipImage from "../../../components/LazyTooltipImage";
-import LazyTooltipVideo from "../../../components/LazyTooltipVideo";
 import { TrainSlider } from "../../../components/TrainSlider";
 import { getTransCanadianContent } from "../../../content/trip/transcanadian/";
 
@@ -42,9 +41,7 @@ const DayCard = ({ title, content, imageUrl, index }: any) => (
       <Heading mb={6} size="xl" textAlign="center">
         {title}
       </Heading>
-      <Box>
-        {content}
-      </Box>
+      <Box>{content}</Box>
       {imageUrl && (
         <Box
           maxWidth="600px"
@@ -54,13 +51,7 @@ const DayCard = ({ title, content, imageUrl, index }: any) => (
           overflow="hidden"
           mt={6}
         >
-          <Box
-            as="img"
-            src={imageUrl}
-            alt={title}
-            width="100%"
-            height="auto"
-          />
+          <Box as="img" src={imageUrl} alt={title} width="100%" height="auto" />
         </Box>
       )}
     </Box>
@@ -72,7 +63,7 @@ interface TransCanadianProps {
 }
 
 export default function TransCanadian({ lang }: TransCanadianProps) {
-  const { t } = useTranslation('common');
+  const { t } = useTranslation("common");
   const containerRef = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [, setCurrentDay] = useState(0);
@@ -88,23 +79,23 @@ export default function TransCanadian({ lang }: TransCanadianProps) {
 
     const updateScrollProgress = () => {
       if (!container) return;
-      
+
       const { scrollTop, scrollHeight, clientHeight } = container;
       const maxScroll = Math.max(0, scrollHeight - clientHeight);
       const progress = maxScroll > 0 ? Math.min(1, scrollTop / maxScroll) : 0;
-      
-      const dayCards = container.querySelectorAll('.day-card');
+
+      const dayCards = container.querySelectorAll(".day-card");
       let newCurrentDay = 0;
-      
+
       dayCards.forEach((card, index) => {
         const rect = card.getBoundingClientRect();
         const containerRect = container.getBoundingClientRect();
-        
+
         if (rect.top <= containerRect.height / 2) {
           newCurrentDay = index;
         }
       });
-      
+
       setScrollProgress(progress);
       setCurrentDay(newCurrentDay);
     };
@@ -128,10 +119,10 @@ export default function TransCanadian({ lang }: TransCanadianProps) {
     const { scrollHeight, clientHeight } = container;
     const maxScroll = Math.max(0, scrollHeight - clientHeight);
     const targetScroll = progress * maxScroll;
-    
+
     container.scrollTo({
       top: targetScroll,
-      behavior: 'auto'
+      behavior: "auto",
     });
   };
 
@@ -159,43 +150,15 @@ export default function TransCanadian({ lang }: TransCanadianProps) {
             padding: 0,
           }}
           render={({ activeAnchor }) => {
-            if (typeof window === 'undefined' || typeof document === 'undefined') {
+            if (
+              typeof window === "undefined" ||
+              typeof document === "undefined"
+            ) {
               return null;
             }
 
             const href = activeAnchor?.getAttribute("href") ?? "";
-            
-            if (href.endsWith(".mov") || href.includes("video") || href.endsWith(".mp4")) {
-              return (
-                <LazyTooltipVideo
-                  src={href}
-                  style={{ 
-                    borderRadius: "5%", 
-                    maxWidth: "100%",
-                    width: "100%"
-                  }}
-                />
-              );
-            }
-            
-            if (href.endsWith(".jpg") || href.endsWith(".jpeg") || href.endsWith(".png")) {
-              return (
-                <LazyTooltipImage
-                  src={href}
-                  alt=""
-                  width={600}
-                  height={400}
-                  quality={30}
-                  sizes="(max-width: 600px) 100vw, 600px"
-                  style={{ 
-                    borderRadius: "5%", 
-                    maxWidth: "100%",
-                    height: "auto"
-                  }}
-                />
-              );
-            }
-            
+
             return (
               <LazyTooltipImage
                 src={href}
@@ -204,10 +167,10 @@ export default function TransCanadian({ lang }: TransCanadianProps) {
                 height={400}
                 quality={30}
                 sizes="(max-width: 600px) 100vw, 600px"
-                style={{ 
-                  borderRadius: "5%", 
+                style={{
+                  borderRadius: "5%",
                   maxWidth: "100%",
-                  height: "auto"
+                  height: "auto",
                 }}
               />
             );
@@ -224,19 +187,19 @@ export default function TransCanadian({ lang }: TransCanadianProps) {
         top="10px"
         left="0"
         css={{
-          "&::-webkit-scrollbar": { 
-            display: "none"
+          "&::-webkit-scrollbar": {
+            display: "none",
           },
           "&::-webkit-scrollbar-track": {
-            display: "none"
+            display: "none",
           },
           "&::-webkit-scrollbar-thumb": {
-            display: "none"
+            display: "none",
           },
           "&::-webkit-scrollbar-thumb:hover": {
-            display: "none"
+            display: "none",
           },
-          scrollbarWidth: "none"
+          scrollbarWidth: "none",
         }}
       >
         {currentContent.days.map((day, index) => (
@@ -244,7 +207,7 @@ export default function TransCanadian({ lang }: TransCanadianProps) {
         ))}
       </Box>
 
-      <TrainSlider 
+      <TrainSlider
         scrollProgress={scrollProgress}
         onProgressChange={handleProgressChange}
       />

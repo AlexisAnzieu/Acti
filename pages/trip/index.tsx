@@ -140,12 +140,12 @@ export default function Trips() {
           {t("trips.title")}
         </Heading>
         <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
-          {/* <TripCard
+          <TripCard
             title={t("trips.transcanadian.title")}
             description={t("trips.transcanadian.description")}
             imageSrc="https://acti.anzieu.com/assets/0921f88e-0492-426c-ad79-563566b10dc9.jpg"
             href="/trip/transcanadian"
-          /> */}
+          />
           <TripCard
             title={t("trips.bostontrip.title")}
             description={t("trips.bostontrip.description")}
