@@ -64,55 +64,10 @@ interface TransCanadianProps {
 
 export default function TransCanadian({ lang }: TransCanadianProps) {
   const { t } = useTranslation("common");
-  const [scrollProgress, setScrollProgress] = useState(0);
-  const [, setCurrentDay] = useState(0);
   const [isClient, setIsClient] = useState(false);
-  const isProgrammaticScroll = useRef(false);
-  // const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     setIsClient(true);
-  }, []);
-
-  // Debounced scroll handler
-  useEffect(() => {
-    let ticking = false;
-    const updateScrollProgress = () => {
-      if (isProgrammaticScroll.current) return;
-      const scrollTop = window.scrollY || document.documentElement.scrollTop;
-      const scrollHeight = document.documentElement.scrollHeight;
-      const clientHeight = window.innerHeight;
-      const maxScroll = Math.max(0, scrollHeight - clientHeight);
-      const progress = maxScroll > 0 ? Math.min(1, scrollTop / maxScroll) : 0;
-
-      // Find current day by checking which .day-card is in the middle of the viewport
-      const dayCards = document.querySelectorAll(".day-card");
-      let newCurrentDay = 0;
-      dayCards.forEach((card, index) => {
-        const rect = card.getBoundingClientRect();
-        if (rect.top <= window.innerHeight / 2) {
-          newCurrentDay = index;
-        }
-      });
-      setScrollProgress(progress);
-      setCurrentDay(newCurrentDay);
-    };
-
-    const onScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          updateScrollProgress();
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
-
-    window.addEventListener("scroll", onScroll, { passive: true });
-    updateScrollProgress();
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-    };
   }, []);
 
   const currentContent = getTransCanadianContent(lang, t);
@@ -171,8 +126,6 @@ export default function TransCanadian({ lang }: TransCanadianProps) {
       {currentContent.days.map((day, index) => (
         <DayCard key={index} {...day} index={index} />
       ))}
-
-      <TrainSlider scrollProgress={scrollProgress} />
     </Box>
   );
 }
