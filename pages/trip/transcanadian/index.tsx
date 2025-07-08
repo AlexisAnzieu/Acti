@@ -91,6 +91,12 @@ As for the experience itself, I can only recommend it—at least once in a lifet
       <Head>
         <title>{currentContent.title}</title>
         <meta name="description" content={currentContent.subtitle} />
+        <meta name="og:description" content={currentContent.subtitle} />
+        <meta
+          name="image"
+          property="og:image"
+          content="https://acti.anzieu.com/assets/0921f88e-0492-426c-ad79-563566b10dc9.jpg?quality=30"
+        />
       </Head>
       {/* Back to trips button */}
       <Box maxWidth="800px" mt="2rem" textAlign="left" width="auto">
