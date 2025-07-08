@@ -88,15 +88,46 @@ export const Day2Content = () => (
           </Highlight>
         </a>{" "}
         where all events accumulate. Today, a musician is organizing a guitar
-        concert at 4 PM and a wine tasting at 6 PM. The gargantuan meals and
-        multiple activities could almost be likened to a Club Med on rails!
+        concert at 4 PM and a{" "}
+        <a
+          data-tooltip-id="my-tooltip"
+          href="https://acti.anzieu.com/assets/5457083a-1b23-4c5b-b5f7-8583c7f6da14.jpeg"
+        >
+          <Highlight
+            query="wine tasting"
+            styles={{
+              background: "orange.100",
+              textDecoration: "underline",
+              cursor: "pointer",
+            }}
+          >
+            wine tasting
+          </Highlight>
+        </a>{" "}
+        at 6 PM. The gargantuan meals and multiple activities could almost be
+        likened to a Club Med on rails!
       </Text>
 
       <Text lineHeight="1.8" mb={4}>
         We notice that the train passengers have already started forming small
-        groups. They play cards together or drink beers. It seems everyone has
-        deserted their cabins as the games cars are packed. Once our adventure
-        is solved, we climb{" "}
+        groups. They play{" "}
+        <a
+          data-tooltip-id="my-tooltip"
+          href="https://acti.anzieu.com/assets/ddab12c9-eff1-4bb1-a8a7-c06f67b2ec67.jpg"
+        >
+          <Highlight
+            query="cards"
+            styles={{
+              background: "orange.100",
+              textDecoration: "underline",
+              cursor: "pointer",
+            }}
+          >
+            cards
+          </Highlight>
+        </a>{" "}
+        together or drink beers. It seems everyone has deserted their cabins as
+        the games cars are packed. Once our adventure is solved, we climb{" "}
         <a
           data-tooltip-id="my-tooltip"
           href="https://acti.anzieu.com/assets/08613dfe-f54f-4820-8751-3fbd4cfdfb36.jpg"
@@ -143,8 +174,23 @@ export const Day2Content = () => (
         We sense the curiosity of the many English-speaking sexagenarian
         passengers towards these two thirty-something French people. Being in
         the middle of the train, we rarely cross paths with individuals at the
-        front and rear as they have their own games and restaurant cars. Like a
-        city divided into neighborhoods.
+        front and rear as they have their own games and{" "}
+        <a
+          data-tooltip-id="my-tooltip"
+          href="https://acti.anzieu.com/assets/e501390e-6168-4f89-9823-462870c2581d.jpeg"
+        >
+          <Highlight
+            query="restaurant cars"
+            styles={{
+              background: "orange.100",
+              textDecoration: "underline",
+              cursor: "pointer",
+            }}
+          >
+            restaurant cars
+          </Highlight>
+        </a>
+        . Like a city divided into neighborhoods.
       </Text>
 
       <Text lineHeight="1.8" mb={4}>

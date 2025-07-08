@@ -1,4 +1,5 @@
-import { Box, Highlight, Text, VStack } from "@chakra-ui/react";
+import { Box, Highlight, Text, VStack, Tooltip } from "@chakra-ui/react";
+import LazyTooltipImage from "../../../../components/LazyTooltipImage";
 
 export const Day1Content = () => (
   <VStack spacing={6} align="stretch">
@@ -144,7 +145,22 @@ export const Day1Content = () => (
             Deux sièges
           </Highlight>
         </a>{" "}
-        sont disposés ici, repliés en soirée afin de laisser place à un lit
+        sont disposés ici, repliés en soirée afin de{" "}
+        <a
+          data-tooltip-id="my-tooltip"
+          href="https://acti.anzieu.com/assets/c9c86f6c-f059-462e-beb0-13c50ba0fd99.jpg"
+        >
+          <Highlight
+            query="laisser place à un lit"
+            styles={{
+              background: "orange.100",
+              textDecoration: "underline",
+              cursor: "pointer",
+            }}
+          >
+            laisser place à un lit
+          </Highlight>
+        </a>
         superposé. L'odeur du vieux cuir monte aux narines, accompagnée de cette
         nostalgie du passé que nous n'avions vue que dans des vieux films.
       </Text>
@@ -163,12 +179,27 @@ export const Day1Content = () => (
         que le meurtre ne concerne aucun d'entre nous. Au besoin, nous avions
         acheté un escape game en chemin afin d'assouvir notre soif de mystère
         (et aussi pour nous occuper). La première voiture que nous abordons, et
-        de loin la plus importante, est la voiture-restaurant. Les assiettes
-        tintent au rythme des soubresauts des rails qui nous offrent une douce
-        mélodie. Nous remontons une voiture de plus et tombons sur celle des
-        activités. Quelques jeux de société à la boîte en carton délabré,
-        victimes de leur succès, s'empilent dans un coin de table. Une dame
-        m'interpelle tout au bout et me demande si je souhaite goûter au
+        de loin la plus importante, est la{" "}
+        <a
+          data-tooltip-id="my-tooltip"
+          href="https://acti.anzieu.com/assets/e501390e-6168-4f89-9823-462870c2581d.jpeg"
+        >
+          <Highlight
+            query="voiture-restaurant"
+            styles={{
+              background: "orange.100",
+              textDecoration: "underline",
+              cursor: "pointer",
+            }}
+          >
+            voiture-restaurant
+          </Highlight>
+        </a>
+        . Les assiettes tintent au rythme des soubresauts des rails qui nous
+        offrent une douce mélodie. Nous remontons une voiture de plus et tombons
+        sur celle des activités. Quelques jeux de société à la boîte en carton
+        délabré, victimes de leur succès, s'empilent dans un coin de table. Une
+        dame m'interpelle tout au bout et me demande si je souhaite goûter au
         cocktail mimosa de bienvenue. Il est 10 heures mais après tout pourquoi
         pas. Cette première matinée consista à s'approprier ce véhicule d'un
         kilomètre et nous dépensâmes les heures suivantes à vagabonder de
@@ -214,9 +245,24 @@ export const Day1Content = () => (
       <Text lineHeight="1.8" mb={4}>
         À 17h, premier arrêt au milieu de l'inconnu, il fait à peine 10 degrés
         mais tout le monde se précipite dehors afin d'apprécier la caresse du
-        vent frais et l'espace non exigu. Tous étudient avec curiosité ce
-        sous-marin roulant, voguant en équipage vers l'inconnu à travers un
-        environnement désertique.
+        vent frais et l'espace non exigu.{" "}
+        <a
+          data-tooltip-id="my-tooltip"
+          href="https://acti.anzieu.com/assets/ca1abab7-af0d-4a3e-892b-eb7e903de607.jpg"
+        >
+          <Highlight
+            query="Tous étudient"
+            styles={{
+              background: "orange.100",
+              textDecoration: "underline",
+              cursor: "pointer",
+            }}
+          >
+            Tous étudient
+          </Highlight>
+        </a>{" "}
+        avec curiosité ce sous-marin roulant, voguant en équipage vers l'inconnu
+        à travers un environnement désertique.
       </Text>
 
       <Text lineHeight="1.8" mb={4}>

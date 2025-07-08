@@ -8,8 +8,23 @@ export const Day4Content = () => (
         chambre « arrivé à Jasper dans 10 minutes ! ». J'ouvre grand le store,
         impatient de découvrir ce nouveau paysage-surprise. Quel contraste par
         rapport à celui de la veille ! Les plateaux s'allongeant à l'horizontale
-        font maintenant place à des montagnes s'érigeant à la verticale,
-        effleurant les nuages à leur sommet. Nous décidons de rompre notre
+        font maintenant place à des{" "}
+        <a
+          data-tooltip-id="my-tooltip"
+          href="https://acti.anzieu.com/assets/e016de22-fd25-4e37-8790-863d44c7fefa.jpg"
+        >
+          <Highlight
+            query="montagnes s'érigeant à la verticale"
+            styles={{
+              background: "orange.100",
+              textDecoration: "underline",
+              cursor: "pointer",
+            }}
+          >
+            montagnes s'érigeant à la verticale
+          </Highlight>
+        </a>
+        , effleurant les nuages à leur sommet. Nous décidons de rompre notre
         rituel et d'aller prendre{" "}
         <a
           data-tooltip-id="my-tooltip"
@@ -57,7 +72,22 @@ export const Day4Content = () => (
         </a>{" "}
         car aujourd'hui nous allons grimper du dénivelé ! Nous remontons ensuite
         dans le train, accompagné d'une cinquantaine de nouvelles têtes faisant
-        le trajet de Jasper à Vancouver. Ayant été témoins du lavage des vitres
+        le trajet de Jasper à Vancouver. Ayant été témoins du{" "}
+        <a
+          data-tooltip-id="my-tooltip"
+          href="https://acti.anzieu.com/assets/cabbdb97-3caf-4156-bb31-b21a3fab6704.jpeg"
+        >
+          <Highlight
+            query="lavage des vitres"
+            styles={{
+              background: "orange.100",
+              textDecoration: "underline",
+              cursor: "pointer",
+            }}
+          >
+            lavage des vitres
+          </Highlight>
+        </a>{" "}
         panoramique, nous n'avons qu'une seule idée stratégique en tête à ce
         moment-là, s'octroyer une place dans notre wagon fétiche afin de
         découvrir les{" "}
@@ -115,13 +145,29 @@ export const Day4Content = () => (
       <Text lineHeight="1.8" mb={4}>
         Nous avons passé notre après-midi tout entier sous le dôme de verre à
         explorer les environs d'un œil aguerri. Cinq heures à ne faire que ça.
-        Nous apercevons des lacs immenses qui se déploient en bas des falaises,
-        des cascades aux hectolitres de débit par milliers, des hectares entiers
-        de végétation brûlée par les nombreux incendies des années précédentes
-        ou bien encore des trains de plusieurs kilomètres de long ! Le dernier
-        tableau que nous voyons, avant d'aller dîner, ressemble à un paysage
-        écossais, les montagnes et les conifères ont disparu pour laisser place
-        à de vastes étendues d'herbe vallonnées.
+        Nous apercevons des{" "}
+        <a
+          data-tooltip-id="my-tooltip"
+          href="https://acti.anzieu.com/assets/26d252ea-822a-4f23-bf66-b6051a3a5407.jpeg"
+        >
+          <Highlight
+            query="lacs immenses"
+            styles={{
+              background: "orange.100",
+              textDecoration: "underline",
+              cursor: "pointer",
+            }}
+          >
+            lacs immenses
+          </Highlight>
+        </a>{" "}
+        qui se déploient en bas des falaises, des cascades aux hectolitres de
+        débit par milliers, des hectares entiers de végétation brûlée par les
+        nombreux incendies des années précédentes ou bien encore des trains de
+        plusieurs kilomètres de long ! Le dernier tableau que nous voyons, avant
+        d'aller dîner, ressemble à un paysage écossais, les montagnes et les
+        conifères ont disparu pour laisser place à de vastes étendues d'herbe
+        vallonnées.
       </Text>
 
       <Text lineHeight="1.8" mb={4}>

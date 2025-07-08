@@ -119,7 +119,25 @@ export const Day1Content = () => (
         just a door we're crossing but a genuine time machine. One step inside
         is enough to transport us 70 years back, to an era when carpet on walls
         was fashionable. Our car attendant shows us the room where we'll be
-        sleeping for the next four days. Two seats are arranged here, to be
+        sleeping for the next four days. <a
+          data-tooltip-id="my-tooltip"
+          href="https://acti.anzieu.com/assets/318f7597-6020-4157-865a-799bd5eba3af.jpeg"
+          title="deux sièges"
+        >
+          <Highlight
+            query="Two seats"
+            styles={{
+              borderRadius: "50px",
+              px: "2",
+              py: "1",
+              bg: "orange.100",
+              textDecoration: "underline",
+              cursor: "pointer",
+            }}
+          >
+            Two seats
+          </Highlight>
+        </a> are arranged here, to be
         folded away in the evening to make way for a bunk bed. The smell of old
         leather rises to our nostrils, accompanied by this nostalgia for a past
         we'd only seen in old movies.

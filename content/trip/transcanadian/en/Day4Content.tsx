@@ -7,9 +7,24 @@ export const Day4Content = () => (
         We're awakened at 8 AM by the voice coming from the room speakers
         "arriving in Jasper in 10 minutes!" I open the blind wide, eager to
         discover this new surprise landscape. What a contrast from yesterday!
-        The plateaus stretching horizontally now give way to mountains rising
-        vertically, grazing the clouds at their peaks. We decide to break our
-        ritual and go get{" "}
+        The plateaus stretching horizontally now give way to
+        <a
+          data-tooltip-id="my-tooltip"
+          href="https://acti.anzieu.com/assets/e016de22-fd25-4e37-8790-863d44c7fefa.jpg"
+        >
+          <Highlight
+            query="mountains rising vertically"
+            styles={{
+              background: "orange.100",
+              textDecoration: "underline",
+              cursor: "pointer",
+            }}
+          >
+            mountains rising vertically
+          </Highlight>
+        </a>
+        , grazing the clouds at their peaks. We decide to break our ritual and
+        go get{" "}
         <a
           data-tooltip-id="my-tooltip"
           href="https://acti.anzieu.com/assets/5aa5ff5f-aad8-44b8-aaba-8d236e171a74.jpg"

@@ -90,8 +90,23 @@ export const Day2Content = () => (
           </Highlight>
         </a>{" "}
         sur lequel s'accumulent tous les événements. Aujourd'hui, un musicien
-        organise un concert à la guitare à 16 h et une dégustation de vin à 18
-        h. Les repas gargantuesques et les activités plurielles pourraient
+        organise un concert à la guitare à 16 h et une{" "}
+        <a
+          data-tooltip-id="my-tooltip"
+          href="https://acti.anzieu.com/assets/5457083a-1b23-4c5b-b5f7-8583c7f6da14.jpeg"
+        >
+          <Highlight
+            query="dégustation de vin"
+            styles={{
+              background: "orange.100",
+              textDecoration: "underline",
+              cursor: "pointer",
+            }}
+          >
+            dégustation de vin
+          </Highlight>
+        </a>{" "}
+        à 18 h. Les repas gargantuesques et les activités plurielles pourraient
         presque s'apparenter à un Club Med sur rail !
       </Text>
 
@@ -174,10 +189,40 @@ export const Day2Content = () => (
       </Text>
 
       <Text lineHeight="1.8" mb={4}>
-        S'ensuit une partie de cartes avant notre arrivée à Winnipeg. Seulement
-        deux heures de retard sur le programme. Quelle aubaine ! Nous voici sur
-        les quais de cette ville au milieu du Canada à 22 h. Nous en profitons
-        pour faire une{" "}
+        S'ensuit{" "}
+        <a
+          data-tooltip-id="my-tooltip"
+          href="https://acti.anzieu.com/assets/ddab12c9-eff1-4bb1-a8a7-c06f67b2ec67.jpg"
+        >
+          <Highlight
+            query="une partie de cartes"
+            styles={{
+              background: "orange.100",
+              textDecoration: "underline",
+              cursor: "pointer",
+            }}
+          >
+            une partie de cartes
+          </Highlight>
+        </a>{" "}
+        avant notre arrivée à Winnipeg. Seulement deux heures de retard sur le
+        programme. Quelle aubaine ! Nous voici sur les quais de{" "}
+        <a
+          data-tooltip-id="my-tooltip"
+          href="https://acti.anzieu.com/assets/8e7a17fa-396e-46a7-98b3-d6f6ce653a2d.jpg"
+        >
+          <Highlight
+            query="de cette ville"
+            styles={{
+              background: "orange.100",
+              textDecoration: "underline",
+              cursor: "pointer",
+            }}
+          >
+            de cette ville
+          </Highlight>
+        </a>{" "}
+        au milieu du Canada à 22 h. Nous en profitons pour faire une{" "}
         <a
           data-tooltip-id="my-tooltip"
           href="https://acti.anzieu.com/assets/a012867d-fcba-471c-a600-ee996715a170.jpg"
