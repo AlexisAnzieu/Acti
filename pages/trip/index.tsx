@@ -1,15 +1,7 @@
-import {
-  Box,
-  Container,
-  Heading,
-  Icon,
-  Image,
-  SimpleGrid,
-  Text,
-  useColorModeValue,
-} from "@chakra-ui/react";
+import { Box, Container, Heading, Icon, SimpleGrid, Text, useColorModeValue } from "@chakra-ui/react";
 import { GetStaticPropsContext } from "next";
 import Head from "next/head";
+import NextImage from "next/image";
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -67,12 +59,13 @@ const TripCard = ({
             right={0}
             bottom={0}
           >
-            <Image
+            <NextImage
               src={imageSrc}
               alt={title}
-              width="100%"
-              height="100%"
-              objectFit="cover"
+              fill
+              style={{ objectFit: "cover", width: "100%", height: "100%" }}
+              sizes="(max-width: 768px) 100vw, 50vw"
+              priority
             />
             <Box
               position="absolute"
