@@ -3,9 +3,9 @@ import {
   Avatar,
   Box,
   Button,
+  Container,
   Divider,
   Heading,
-  keyframes,
   Text,
 } from "@chakra-ui/react";
 import { GetStaticPropsContext } from "next";
@@ -21,48 +21,15 @@ import { Locale } from "../../../component/NavbarComponent";
 import LazyTooltipImage from "../../../components/LazyTooltipImage";
 import { getTransCanadianContent } from "../../../content/trip/transcanadian/";
 
-const fadeInAnimation = keyframes`
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-`;
-
-const DayCard = ({ title, content, imageUrl, index }: any) => (
-  <Box
-    className="day-card"
-    minHeight="100vh"
-    backgroundColor={`hsl(${index * 45}, 85%, 97%)`}
-    position="relative"
-    padding="2rem"
-    paddingBottom="100px"
-  >
-    <Box
-      maxWidth="800px"
-      margin="0 auto"
-      paddingTop="2rem"
-      animation={`${fadeInAnimation} 0.5s ease-out`}
-    >
-      <Heading mb={6} size="xl" textAlign="center">
+const TimelineCard = ({ title, content }: any) => (
+  <Box className="card">
+    <Box className="info">
+      <Box className="title">
         {title}
-      </Heading>
-      <Box>{content}</Box>
-      {imageUrl && (
-        <Box
-          maxWidth="600px"
-          margin="0 auto"
-          boxShadow="xl"
-          borderRadius="lg"
-          overflow="hidden"
-          mt={6}
-        >
-          <Box as="img" src={imageUrl} alt={title} width="100%" height="auto" />
-        </Box>
-      )}
+      </Box>
+      <Box>
+        {content}
+      </Box>
     </Box>
   </Box>
 );
@@ -199,10 +166,16 @@ As for the experience itself, I can only recommend it—at least once in a lifet
         />
       )}
 
-      {/* Stack day cards as normal page content */}
-      {currentContent.days.map((day, index) => (
-        <DayCard key={index} {...day} index={index} />
-      ))}
+      <Container maxW={1000} mb={100}>
+        {/* Timeline Section */}
+        <Box className="timeline">
+          <Box className="outer">
+            {currentContent.days.map((day, index) => (
+              <TimelineCard key={index} {...day} index={index} />
+            ))}
+          </Box>
+        </Box>
+      </Container>
 
       {/* Rétrospectives Section */}
       <Box marginTop={30} px={{ base: 5, md: 0 }}>
