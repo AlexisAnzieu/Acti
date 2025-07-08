@@ -1,5 +1,13 @@
 /* eslint-disable react/no-unescaped-entities */
-import { Box, Button, Heading, keyframes } from "@chakra-ui/react";
+import {
+  Avatar,
+  Box,
+  Button,
+  Divider,
+  Heading,
+  keyframes,
+  Text,
+} from "@chakra-ui/react";
 import { GetStaticPropsContext } from "next";
 import Head from "next/head";
 import Link from "next/link";
@@ -112,13 +120,13 @@ As for the experience itself, I can only recommend it—at least once in a lifet
   ];
 
   return (
-    <Box>
+    <Box width="100%" maxWidth="100%" overflowX="hidden">
       <Head>
         <title>{currentContent.title}</title>
         <meta name="description" content={currentContent.subtitle} />
       </Head>
       {/* Back to trips button */}
-      <Box maxWidth="800px" margin="2rem auto 0" textAlign="left">
+      <Box maxWidth="800px" mt="2rem" textAlign="left" width="auto">
         <Link href="/trip" passHref legacyBehavior>
           <Button
             as="a"
@@ -126,6 +134,8 @@ As for the experience itself, I can only recommend it—at least once in a lifet
             variant="outline"
             mb={6}
             leftIcon={<FaArrowLeft />}
+            width="auto"
+            minW={0}
           >
             {t("trips.transcanadian.backToTrips")}
           </Button>
@@ -195,51 +205,52 @@ As for the experience itself, I can only recommend it—at least once in a lifet
       ))}
 
       {/* Rétrospectives Section */}
-      <Box marginTop={30}>
+      <Box marginTop={30} px={{ base: 5, md: 0 }}>
         <Box textAlign="center" mb={10}>
           <Heading size="xl">
             {lang === "fr" ? "Rétrospectives" : "Reflections"}
           </Heading>
         </Box>
         {retrospectives.map((r, i) => (
-          <Box
-            key={i}
-            my={40}
-            fontStyle="italic"
-            lineHeight="25px"
-            textAlign="justify"
-            display="flex"
-            alignItems="flex-start"
-            maxWidth={900}
-            margin="0 auto"
-          >
-            <Box
-              as="img"
-              src={r.avatar}
-              alt={r.name}
-              width="80px"
-              height="80px"
-              borderRadius="full"
-              mr={4}
-              style={{ float: "left" }}
-            />
-            <Box>{r.text}</Box>
+          <Box key={i}>
+            <Text
+              my={10}
+              fontStyle="italic"
+              lineHeight="25px"
+              textAlign="justify"
+              maxWidth={900}
+              margin="0 auto"
+              width="100%"
+              display="block"
+              mx={{ base: "5px", md: 0 }}
+            >
+              <Avatar
+                size={"2xl"}
+                mr={4}
+                style={{ float: "left" }}
+                name={r.name}
+                src={r.avatar}
+              />
+              {r.text}
+            </Text>
+            {i < retrospectives.length - 1 && <Divider />}
           </Box>
         ))}
-      </Box>
-
-      {/* Signature */}
-      <Box
-        fontSize={30}
-        fontFamily={"autography"}
-        textAlign={"right"}
-        mt={10}
-        mb={20}
-      >
-        {lang === "fr"
-          ? "Écrit en juillet 2025 à Montréal par"
-          : "Written in July 2025 in Montreal by"}
-        <Box fontSize={80}>Carla & Alexis</Box>
+        <Box
+          fontSize={30}
+          fontFamily={"autography"}
+          textAlign={"right"}
+          maxWidth={900}
+          margin="0 auto"
+          mt={10}
+        >
+          {lang === "fr"
+            ? "Écrit en juillet 2025 à Montréal par"
+            : "Written in July 2025 in Montreal by"}
+          <Box fontSize={80} mt={-2} textAlign="right">
+            Carla & Alexis
+          </Box>
+        </Box>
       </Box>
     </Box>
   );

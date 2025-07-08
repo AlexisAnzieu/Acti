@@ -38,6 +38,20 @@ export default function Trip({ lang }: any) {
             content="/images/bostontrip/cover4.JPG"
           />
         </Head>
+        {/* Back to trips button */}
+        <Box maxWidth="800px" margin="2rem auto 0" textAlign="left">
+          <Link href="/trip" passHref legacyBehavior>
+            <Button
+              as="a"
+              colorScheme="teal"
+              variant="outline"
+              mb={6}
+              leftIcon={<FaArrowLeft />}
+            >
+              {t("trips.transcanadian.backToTrips", "Back to Trips")}
+            </Button>
+          </Link>
+        </Box>
         <Container maxW={1000} mb={100}>
           <Tooltip
             place="left"
