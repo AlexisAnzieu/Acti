@@ -91,11 +91,29 @@ As for the experience itself, I can only recommend it—at least once in a lifet
       <Head>
         <title>{currentContent.title}</title>
         <meta name="description" content={currentContent.subtitle} />
-        <meta name="og:description" content={currentContent.subtitle} />
+
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content={currentContent.title} />
+        <meta property="og:description" content={currentContent.subtitle} />
+        {/* The og:image URL should be a direct link to an image file. 
+        Directus asset URLs are suitable for this. 
+        For best results, use an image with a 1.91:1 aspect ratio, 
+        at least 1200x630 pixels. */}
         <meta
-          name="image"
           property="og:image"
-          content="https://acti.anzieu.com/assets/0921f88e-0492-426c-ad79-563566b10dc9.jpg?quality=30"
+          content="https://acti.anzieu.com/assets/0921f88e-0492-426c-ad79-563566b10dc9?width=1200&height=630&fit=cover"
+        />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta
+          property="og:url"
+          content="https://acti.anzieu.com/trip/transcanadian"
+        />
+        <meta property="og:site_name" content="Acti" />
+        <meta
+          property="og:locale"
+          content={lang === "fr" ? "fr_FR" : "en_US"}
         />
       </Head>
       {/* Back to trips button */}
