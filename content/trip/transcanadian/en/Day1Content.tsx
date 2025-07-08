@@ -16,25 +16,97 @@ export const Day1Content = () => (
 
       <Text lineHeight="1.8" mb={4}>
         Our arrival in Toronto began with a 15-minute night walk to the nearest
-        youth hostel. What followed was a rather noisy night due to questionable
-        insulation. The Trans-Canadian departs at 10 AM, so we set the alarm for
-        8 AM - it would be a shame to miss the weekly departure.
+        youth hostel. What followed was a rather noisy night due to{" "}
+        <a
+          data-tooltip-id="my-tooltip"
+          href="https://acti.anzieu.com/assets/bd1f809a-c28a-4991-9757-7ab4a1f4715d.jpeg"
+        >
+          <Highlight
+            query="questionable insulation"
+            styles={{
+              borderRadius: "50px",
+              px: "2",
+              py: "1",
+              bg: "orange.100",
+              textDecoration: "underline",
+              cursor: "pointer",
+            }}
+          >
+            questionable insulation
+          </Highlight>
+        </a>
+        . The Trans-Canadian departs at 10 AM, so we set the alarm for 8 AM - it
+        would be a shame to miss the weekly departure.
       </Text>
 
       <Text lineHeight="1.8" mb={4}>
-        And here we are on Day 1! Back at the station an hour early, looking for
-        train number 001. Check-in takes place in the business lounge, which
-        owes its name only to its time-worn armchairs. The filter coffee
-        dispenser available doesn't really impress us. We decide to search for a
-        Starbucks, hoping to blend a touch of the present with these vestiges of
-        the past.
+        And here we are on Day 1!{" "}
+        <a
+          data-tooltip-id="my-tooltip"
+          href="https://acti.anzieu.com/assets/f7ea270c-367d-48b8-afe6-de8483714c38.jpeg"
+        >
+          <Highlight
+            query="Back at the station"
+            styles={{
+              borderRadius: "50px",
+              px: "2",
+              py: "1",
+              bg: "orange.100",
+              textDecoration: "underline",
+              cursor: "pointer",
+            }}
+          >
+            Back at the station
+          </Highlight>
+        </a>{" "}
+        an hour early, looking for{" "}
+        <a
+          data-tooltip-id="my-tooltip"
+          href="https://acti.anzieu.com/assets/4ff82893-51d0-47bc-b3e5-7c794e69c641.jpeg"
+        >
+          <Highlight
+            query="train number 001"
+            styles={{
+              borderRadius: "50px",
+              px: "2",
+              py: "1",
+              bg: "orange.100",
+              textDecoration: "underline",
+              cursor: "pointer",
+            }}
+          >
+            train number 001
+          </Highlight>
+        </a>
+        . Check-in takes place in the business lounge, which owes its name only
+        to its time-worn armchairs. The filter coffee dispenser available
+        doesn't really impress us. We decide to search for a Starbucks, hoping
+        to blend a touch of the present with these vestiges of the past.
       </Text>
 
       <Text lineHeight="1.8" mb={4}>
         Coffee in hand, we head to the platform and finally see stretching
-        before us, this gleaming monster of iron and steel under the sunlit
-        mirrors of skyscrapers. I walk along the train looking for the
-        locomotive but get stopped in my tracks by a security guard who
+        before us,{" "}
+        <a
+          data-tooltip-id="my-tooltip"
+          href="https://acti.anzieu.com/assets/708cbfb4-4bce-4f78-9d3e-61ea57c99dbf.jpeg"
+        >
+          <Highlight
+            query="this gleaming monster of iron and steel"
+            styles={{
+              borderRadius: "50px",
+              px: "2",
+              py: "1",
+              bg: "orange.100",
+              textDecoration: "underline",
+              cursor: "pointer",
+            }}
+          >
+            this gleaming monster of iron and steel
+          </Highlight>
+        </a>{" "}
+        under the sunlit mirrors of skyscrapers. I walk along the train looking
+        for the locomotive but get stopped in my tracks by a security guard who
         apparently didn't want me venturing that far. Challenge accepted - I'll
         manage to capture a photo of this locomotive before the end of the
         journey.
@@ -86,7 +158,7 @@ export const Day1Content = () => (
         enough. At 2 PM,{" "}
         <a
           data-tooltip-id="my-tooltip"
-          href="https://acti.anzieu.com/assets/0dc37f25-e0df-43b2-b808-ebd9f506dc17.jpg"
+          href="https://acti.anzieu.com/assets/0dc37f25-e0df-43b2-b808-ebd9f506dc17.jpeg"
         >
           <Highlight
             query="it's the call for the third service"
@@ -123,12 +195,49 @@ export const Day1Content = () => (
         We're only on our first day and a common thread is already emerging: the
         perpetual movement under our feet and the continuously changing
         landscape. The tall green pines and leafless trees are just emerging
-        from winter. The lakes, barely thawed, with snowmobile tracks scattered
-        across them. The few houses lined up along the railway tracks. And
-        finally the grand finale, the sunset while savoring our mushroom soup at
-        dinner. The waitress warns us about the time zone change as we've been
-        without network coverage for several hours and thus no automatic
-        synchronization. It would be a shame to miss breakfast!
+        from winter.{" "}
+        <a
+          data-tooltip-id="my-tooltip"
+          href="https://acti.anzieu.com/assets/41a4bc35-0846-409c-9716-febc27ec57c7.jpeg"
+        >
+          <Highlight
+            query="The lakes, barely thawed"
+            styles={{
+              borderRadius: "50px",
+              px: "2",
+              py: "1",
+              bg: "orange.100",
+              textDecoration: "underline",
+              cursor: "pointer",
+            }}
+          >
+            The lakes, barely thawed
+          </Highlight>
+        </a>
+        , with snowmobile tracks scattered across them. The few houses lined up
+        along the railway tracks. And finally the grand finale,{" "}
+        <a
+          data-tooltip-id="my-tooltip"
+          href="https://acti.anzieu.com/assets/280a4968-7598-4bd1-9698-2f8740f828fb.jpeg"
+        >
+          <Highlight
+            query="the sunset"
+            styles={{
+              borderRadius: "50px",
+              px: "2",
+              py: "1",
+              bg: "orange.100",
+              textDecoration: "underline",
+              cursor: "pointer",
+            }}
+          >
+            the sunset
+          </Highlight>
+        </a>{" "}
+        while savoring our mushroom soup at dinner. The waitress warns us about
+        the time zone change as we've been without network coverage for several
+        hours and thus no automatic synchronization. It would be a shame to miss
+        breakfast!
       </Text>
     </Box>
   </VStack>

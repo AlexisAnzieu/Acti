@@ -19,28 +19,101 @@ export const Day1Content = () => (
       <Text lineHeight="1.8" mb={4}>
         Notre arrivée à Toronto débute par une petite marche nocturne de 15
         minutes jusqu'à l'auberge de jeunesse la plus proche. S'ensuit une nuit
-        passablement bruyante due à une isolation douteuse . Le transcanadien
-        part à 10h, le réveil est mis à 8h, ce serait dommage de louper le
-        départ hebdomadaire.
+        passablement bruyante due à{" "}
+        <a
+          data-tooltip-id="my-tooltip"
+          href="https://acti.anzieu.com/assets/bd1f809a-c28a-4991-9757-7ab4a1f4715d.jpeg"
+        >
+          <Highlight
+            query="une isolation douteuse"
+            styles={{
+              borderRadius: "50px",
+              px: "2",
+              py: "1",
+              bg: "orange.100",
+              textDecoration: "underline",
+              cursor: "pointer",
+            }}
+          >
+            une isolation douteuse
+          </Highlight>
+        </a>
+        . Le transcanadien part à 10h, le réveil est mis à 8h, ce serait dommage
+        de louper le départ hebdomadaire.
       </Text>
 
       <Text lineHeight="1.8" mb={4}>
-        Nous voilà enfin au Jour 1 ! De retour à la gare avec une bonne heure
-        d'avance à la recherche du train numéro 001. L'enregistrement se déroule
-        dans le salon business, qui ne doit son nom qu'à ses fauteuils émaillés
-        par le temps. Le distributeur de café-filtre à disposition ne nous
-        émerveille pas vraiment. Nous décidons de partir à la recherche d'un
-        Starbucks, afin d'allier un soupçon de présent à ces vestiges du passé.
+        Nous voilà enfin au Jour 1 !{" "}
+        <a
+          data-tooltip-id="my-tooltip"
+          href="https://acti.anzieu.com/assets/f7ea270c-367d-48b8-afe6-de8483714c38.jpeg"
+        >
+          <Highlight
+            query="De retour à la gare"
+            styles={{
+              borderRadius: "50px",
+              px: "2",
+              py: "1",
+              bg: "orange.100",
+              textDecoration: "underline",
+              cursor: "pointer",
+            }}
+          >
+            De retour à la gare
+          </Highlight>
+        </a>{" "}
+        avec une bonne heure d'avance à la recherche du{" "}
+        <a
+          data-tooltip-id="my-tooltip"
+          href="https://acti.anzieu.com/assets/4ff82893-51d0-47bc-b3e5-7c794e69c641.jpeg"
+        >
+          <Highlight
+            query="train numéro 001"
+            styles={{
+              borderRadius: "50px",
+              px: "2",
+              py: "1",
+              bg: "orange.100",
+              textDecoration: "underline",
+              cursor: "pointer",
+            }}
+          >
+            train numéro 001
+          </Highlight>
+        </a>
+        . L'enregistrement se déroule dans le salon business, qui ne doit son
+        nom qu'à ses fauteuils émaillés par le temps. Le distributeur de
+        café-filtre à disposition ne nous émerveille pas vraiment. Nous décidons
+        de partir à la recherche d'un Starbucks, afin d'allier un soupçon de
+        présent à ces vestiges du passé.
       </Text>
 
       <Text lineHeight="1.8" mb={4}>
         Café en main, nous nous rendons sur le quai et nous apercevons enfin se
-        prolongeant devant nous, ce monstre de fer et d'acier brillant sous les
-        miroirs ensoleillés des gratte-ciels. Je remonte la rame à la recherche
-        de la locomotive, mais me fait stopper net dans mon élan par un garde de
-        la sécurité qui ne souhaitait apparemment pas me voir m'aventurer
-        jusque-là. Défi relevé, je réussirai à capturer une photo de cette
-        locomotive d'ici la fin du séjour.
+        prolongeant devant nous,{" "}
+        <a
+          data-tooltip-id="my-tooltip"
+          href="https://acti.anzieu.com/assets/708cbfb4-4bce-4f78-9d3e-61ea57c99dbf.jpeg"
+        >
+          <Highlight
+            query="ce monstre de fer et d'acier brillant"
+            styles={{
+              borderRadius: "50px",
+              px: "2",
+              py: "1",
+              bg: "orange.100",
+              textDecoration: "underline",
+              cursor: "pointer",
+            }}
+          >
+            ce monstre de fer et d'acier brillant
+          </Highlight>
+        </a>{" "}
+        sous les miroirs ensoleillés des gratte-ciels. Je remonte la rame à la
+        recherche de la locomotive, mais me fait stopper net dans mon élan par
+        un garde de la sécurité qui ne souhaitait apparemment pas me voir
+        m'aventurer jusque-là. Défi relevé, je réussirai à capturer une photo de
+        cette locomotive d'ici la fin du séjour.
       </Text>
 
       <Text lineHeight="1.8" mb={4}>
@@ -52,10 +125,28 @@ export const Day1Content = () => (
         l'intérieur suffit à nous projeter 70 ans en arrière, à l'ère où la
         moquette sur les murs était de mise. Notre intendante de wagon nous
         présente la chambre dans laquelle nous allons dormir ces quatre
-        prochains jours. Deux sièges sont disposés ici, repliés en soirée afin
-        de laisser place à un lit superposé. L'odeur du vieux cuir monte aux
-        narines, accompagnée de cette nostalgie du passé que nous n'avions vue
-        que dans des vieux films.
+        prochains jours.{" "}
+        <a
+          data-tooltip-id="my-tooltip"
+          href="https://acti.anzieu.com/assets/318f7597-6020-4157-865a-799bd5eba3af.jpeg"
+        >
+          <Highlight
+            query="Deux sièges"
+            styles={{
+              borderRadius: "50px",
+              px: "2",
+              py: "1",
+              bg: "orange.100",
+              textDecoration: "underline",
+              cursor: "pointer",
+            }}
+          >
+            Deux sièges
+          </Highlight>
+        </a>{" "}
+        sont disposés ici, repliés en soirée afin de laisser place à un lit
+        superposé. L'odeur du vieux cuir monte aux narines, accompagnée de cette
+        nostalgie du passé que nous n'avions vue que dans des vieux films.
       </Text>
 
       <Text lineHeight="1.8" mb={4}>
@@ -94,7 +185,7 @@ export const Day1Content = () => (
         romans mais ces derniers ne vont sûrement pas suffire. À 14h,{" "}
         <a
           data-tooltip-id="my-tooltip"
-          href="https://acti.anzieu.com/assets/0dc37f25-e0df-43b2-b808-ebd9f506dc17.jpg"
+          href="https://acti.anzieu.com/assets/0dc37f25-e0df-43b2-b808-ebd9f506dc17.jpeg"
         >
           <Highlight
             query="c'est l'appel pour le troisième service"
@@ -132,8 +223,26 @@ export const Day1Content = () => (
         Nous n'en sommes qu'à notre première journée et un fil conducteur
         commence déjà à émerger: le mouvement perpétuel sous nos pieds et le
         paysage qui défile en continu. Les hauts pins vert et les arbres dénués
-        de feuilles, sortent tout juste de l'hiver. Les lacs, à peine dégelés ,
-        sur lesquels sont parsemées des traces de motoneige. Les quelques
+        de feuilles, sortent tout juste de l'hiver.{" "}
+        <a
+          data-tooltip-id="my-tooltip"
+          href="https://acti.anzieu.com/assets/41a4bc35-0846-409c-9716-febc27ec57c7.jpeg"
+        >
+          <Highlight
+            query="Les lacs, à peine dégelés"
+            styles={{
+              borderRadius: "50px",
+              px: "2",
+              py: "1",
+              bg: "orange.100",
+              textDecoration: "underline",
+              cursor: "pointer",
+            }}
+          >
+            Les lacs, à peine dégelés
+          </Highlight>
+        </a>
+        , sur lesquels sont parsemées des traces de motoneige. Les quelques
         maisons alignées le long de la voie ferrée. Et enfin le bouquet final,{" "}
         <a
           data-tooltip-id="my-tooltip"

@@ -57,8 +57,26 @@ export const Day4Content = () => (
         train, joined by about fifty new faces making the Jasper to Vancouver
         journey. Having witnessed the washing of the panoramic windows, we have
         only one strategic idea in mind at that moment, to secure a place in our
-        favorite car to discover the Rockies in 360 degrees from above. Mission
-        accomplished.
+        favorite car to discover the{" "}
+        <a
+          data-tooltip-id="my-tooltip"
+          href="https://acti.anzieu.com/assets/c7241aed-b61a-403d-bb39-d4253f2cfbfd.jpeg"
+        >
+          <Highlight
+            query="Rockies"
+            styles={{
+              borderRadius: "50px",
+              px: "2",
+              py: "1",
+              bg: "orange.100",
+              textDecoration: "underline",
+              cursor: "pointer",
+            }}
+          >
+            Rockies
+          </Highlight>
+        </a>{" "}
+        in 360 degrees from above. Mission accomplished.
       </Text>
 
       <Text lineHeight="1.8" mb={4}>

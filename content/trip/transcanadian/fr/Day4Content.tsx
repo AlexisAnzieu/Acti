@@ -60,7 +60,26 @@ export const Day4Content = () => (
         le trajet de Jasper à Vancouver. Ayant été témoins du lavage des vitres
         panoramique, nous n'avons qu'une seule idée stratégique en tête à ce
         moment-là, s'octroyer une place dans notre wagon fétiche afin de
-        découvrir les Rocheuses à 360 degrés vues d'en haut. Mission accomplie.
+        découvrir les{" "}
+        <a
+          data-tooltip-id="my-tooltip"
+          href="https://acti.anzieu.com/assets/c7241aed-b61a-403d-bb39-d4253f2cfbfd.jpeg"
+        >
+          <Highlight
+            query="Rocheuses"
+            styles={{
+              borderRadius: "50px",
+              px: "2",
+              py: "1",
+              bg: "orange.100",
+              textDecoration: "underline",
+              cursor: "pointer",
+            }}
+          >
+            Rocheuses
+          </Highlight>
+        </a>{" "}
+        à 360 degrés vues d'en haut. Mission accomplie.
       </Text>
 
       <Text lineHeight="1.8" mb={4}>
@@ -146,27 +165,9 @@ export const Day4Content = () => (
         l'air. Le fait d'avoir été entravé de nos sens durant quatre jours
         catalysa un puissant élan de liberté. Au loin, nous entendons des cris,
         nous nous approchons et nous réalisons que nous sommes arrivés en plein
-        marathon de Vancouver. Une aubaine incroyable car une grande partie{" "}
-        <a
-          data-tooltip-id="my-tooltip"
-          href="https://acti.anzieu.com/assets/8e7a17fa-396e-46a7-98b3-d6f6ce653a2d.jpg"
-        >
-          <Highlight
-            query="de cette ville"
-            styles={{
-              borderRadius: "50px",
-              px: "2",
-              py: "1",
-              bg: "orange.100",
-              textDecoration: "underline",
-              cursor: "pointer",
-            }}
-          >
-            de cette ville
-          </Highlight>
-        </a>{" "}
-        est interdite aux voitures. Nous pouvons déambuler librement en
-        compagnie de nos cinq sens retrouvés, sans le bruit ni l'odeur des
+        marathon de Vancouver. Une aubaine incroyable car une grande partie de
+        cette ville est interdite aux voitures. Nous pouvons déambuler librement
+        en compagnie de nos cinq sens retrouvés, sans le bruit ni l'odeur des
         moteurs thermiques. Nos trois prochaines semaines immergés en pleine
         nature en camping-car s'annoncent enivrantes.
       </Text>
