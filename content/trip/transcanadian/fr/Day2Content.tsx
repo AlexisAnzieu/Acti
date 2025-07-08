@@ -125,7 +125,7 @@ export const Day2Content = () => (
           href="https://acti.anzieu.com/assets/9cb85178-bf6e-49ed-be40-21f265c0145a.jpg"
         >
           <Highlight
-            query="nous nous mettons à dessiner ce que nous voyons"
+            query="nous nous mettons à dessiner"
             styles={{
               borderRadius: "50px",
               px: "2",
@@ -135,11 +135,11 @@ export const Day2Content = () => (
               cursor: "pointer",
             }}
           >
-            nous nous mettons à dessiner ce que nous voyons
+            nous nous mettons à dessiner
           </Highlight>
         </a>{" "}
-        . C'est une activité qui prend du temps, mais cela tombe bien car nous
-        en avons à profusion !
+        ce que nous voyons . C'est une activité qui prend du temps, mais cela
+        tombe bien car nous en avons à profusion !
       </Text>
 
       <Text lineHeight="1.8" mb={4}>

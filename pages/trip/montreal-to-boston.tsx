@@ -46,6 +46,7 @@ export default function Trip({ lang }: any) {
               colorScheme="teal"
               variant="outline"
               mb={6}
+              ml="1rem"
               leftIcon={<FaArrowLeft />}
             >
               {t("trips.transcanadian.backToTrips", "Back to Trips")}

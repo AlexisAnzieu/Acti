@@ -24,12 +24,8 @@ import { getTransCanadianContent } from "../../../content/trip/transcanadian/";
 const TimelineCard = ({ title, content }: any) => (
   <Box className="card">
     <Box className="info">
-      <Box className="title">
-        {title}
-      </Box>
-      <Box>
-        {content}
-      </Box>
+      <Box className="title">{title}</Box>
+      <Box>{content}</Box>
     </Box>
   </Box>
 );
@@ -52,7 +48,8 @@ export default function TransCanadian({ lang }: TransCanadianProps) {
   const retrospectives = [
     {
       name: "Alexis Anzieu",
-      avatar: "/images/bostontrip/alexis.jpeg",
+      avatar:
+        "https://acti.anzieu.com/assets/ebaed129-92c2-499f-bcaa-f1f6a1c18765",
       text:
         lang === "fr"
           ? `Je suis passionné par les récits, ces gouttes de péripéties qui fusionnent en un doux ruisseau de vie. Ils sont exposés sur une multitude de supports : la littérature, la musique, la peinture… Les mots s’alignent, les notes se répondent, les couleurs se mêlent pour dévoiler la vérité de l’artiste. Prendre le temps de les contempler permet d’en saisir le sens. J’ai du mal à retenir les citations, mais l’écrivain José Rodrigues dos Santos disait : “la beauté est la couleur avec laquelle on peint la vérité.”
@@ -68,13 +65,16 @@ A month later, I was on a plane, returning to Montreal. Through the tiny windows
     },
     {
       name: "Carla Fabregas",
-      avatar: "/images/bostontrip/carla.jpeg",
+      avatar:
+        "https://acti.anzieu.com/assets/e4848cd3-25a6-47c0-9b87-38ba696358f8",
       text:
         lang === "fr"
           ? `Mission : mettre sur papier quelques mots, quelques pensées, quelques sensations, quelques souvenirs de notre expérience ferroviaire transcanadienne.
 Je n'avais aucune attente particulière pour ce voyage. Seulement un désir profond de déconnexion, une vraie coupure avec le quotidien professionnel, une reconnection à l’instant présent. Prendre du temps pour moi, pour nous.
+
 Quand nos proches nous demandent comment nous avons vécu cette traversée, j’aime répondre que cela m’a fait du bien. J’étais apaisée d’avoir pu déléguer toute la charge mentale liée à l’organisation, et comme je n’attendais rien de précis, chaque journée s’est construite au fil de petites surprises.
 Quatre jours, quatre nuits à bord d’un train : cela peut sembler long, et pourtant le temps a filé. Entre les repas, les découvertes depuis la voiture panoramique, la faune et la flore à couper le souffle, les activités proposées par l’équipage, les moments de lecture, les jeux, et les sorties improvisées sur les quais lors des escales, notre quotidien ferroviaire a trouvé très vite son propre rythme.
+
 Si je devais ne retenir que quelques instants marquants, ce seraient sans doute ceux passés dans la voiture panoramique, à contempler des paysages qui défilent sans jamais se ressembler. J’ai été impressionnée par la richesse des panoramas canadiens qui s’étendent sur plus de 7 800 kilomètres, d’un océan à l’autre. Plaines, prairies, montagnes, lacs, rivières, marécages, terres rocailleuses… La diversité des horizons m’a tout simplement fascinée.
 Quant à l’expérience en elle-même, je ne peux que la recommander, au moins une fois dans sa vie si l’occasion se présente. Le personnel est attentionné, le souci du détail – que ce soit dans les divertissements, les repas ou le confort des passagers – est remarquable. Aucune logistique à gérer : il suffisait simplement de se présenter à l’heure pour profiter de tout ce que le voyage avait à offrir.`
           : `Mission: Put on paper a few words, thoughts, sensations, and memories from our trans-Canadian rail experience.
@@ -100,6 +100,7 @@ As for the experience itself, I can only recommend it—at least once in a lifet
             colorScheme="teal"
             variant="outline"
             mb={6}
+            ml="1rem"
             leftIcon={<FaArrowLeft />}
             width="auto"
             minW={0}
@@ -112,9 +113,7 @@ As for the experience itself, I can only recommend it—at least once in a lifet
       {/* Big Title and Subtitle */}
       <Box marginTop={30} marginBottom={30} textAlign={"center"}>
         <Heading fontFamily={"autography"} fontSize={85} mb={10}>
-          {lang === "fr"
-            ? "D’un océan à l’autre"
-            : "Transcanadian: Coast to Coast"}
+          {lang === "fr" ? "D’un océan à l’autre" : "Coast to Coast"}
         </Heading>
         <Heading fontStyle={"italic"} size="l">
           {lang === "fr"
@@ -196,6 +195,7 @@ As for the experience itself, I can only recommend it—at least once in a lifet
               width="100%"
               display="block"
               mx={{ base: "5px", md: 0 }}
+              whiteSpace="pre-line"
             >
               <Avatar
                 size={"2xl"}
