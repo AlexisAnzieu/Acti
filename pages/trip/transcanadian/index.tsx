@@ -8,6 +8,7 @@ import {
   Heading,
   Text,
 } from "@chakra-ui/react";
+import { useMediaQuery } from "@chakra-ui/react";
 import { GetStaticPropsContext } from "next";
 import Head from "next/head";
 import Link from "next/link";
@@ -37,6 +38,7 @@ interface TransCanadianProps {
 export default function TransCanadian({ lang }: TransCanadianProps) {
   const { t } = useTranslation("common");
   const [isClient, setIsClient] = useState(false);
+  const [isLargerThan768] = useMediaQuery("(min-width: 768px)");
 
   useEffect(() => {
     setIsClient(true);
@@ -159,6 +161,7 @@ As for the experience itself, I can only recommend it—at least once in a lifet
             borderRadius: "5%",
             zIndex: 999,
             padding: 0,
+            display: isLargerThan768 ? "block" : "none",
           }}
           render={({ activeAnchor }) => {
             if (
