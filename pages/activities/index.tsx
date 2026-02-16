@@ -471,159 +471,64 @@ export default function Activities() {
             </Text>
           </Button>
         </Flex>
+      </Box>
 
-        {/* Collapsible filters */}
+      {/* Filter modal overlay */}
+      {showFilters && (
         <Box
-          className="filters"
-          height={showFilters ? "auto" : "0"}
-          opacity={showFilters ? "1" : "0"}
-          overflow="hidden"
-          transition="all 0.3s ease"
-          mt={showFilters ? "4" : "0"}
-        >
-          <Box className="filter-group" mb="20px">
-            <Box className="filter-label">{t("seasons")}</Box>
-            {seasons.map((season) => (
-              <Badge
-                cursor="pointer"
-                variant={router.query.season === season ? "solid" : "outline"}
-                id={season}
-                key={season}
-                onClick={(e) =>
-                  paramHandler("season", (e.target as HTMLTextAreaElement).id)
-                }
-                mr="2"
-                mb="2"
-                fontSize="1em"
-                borderRadius="full"
-                px="4"
-                py="2"
-                colorScheme="teal"
-                transition="all 0.2s"
-                _hover={{
-                  transform: "translateY(-1px)",
-                  boxShadow: "sm",
-                }}
-                role="button"
-                aria-pressed={router.query.season === season}
-              >
-                {t(`season.${season}`)}
-              </Badge>
-            ))}
+          position="fixed"
+          top="0"
+          left="0"
+          right="0"
+          bottom="0"
+          bg="blackAlpha.500"
+          zIndex={200}
+          onClick={() => setShowFilters(false)}
+        />
+      )}
+      <Box
+        position="fixed"
+        top="50%"
+        left="50%"
+        transform="translate(-50%, -50%)"
+        bg="white"
+        borderRadius="2xl"
+        boxShadow="2xl"
+        p="8"
+        zIndex={201}
+        maxW="600px"
+        w="90%"
+        maxH="80vh"
+        overflowY="auto"
+        display={showFilters ? "block" : "none"}
+      >
+        <Flex justifyContent="space-between" alignItems="center" mb="6">
+          <Box fontSize="lg" fontWeight="bold" color="gray.700">
+            {t("filters")}
           </Box>
+          <Icon
+            as={BsX}
+            fontSize="24px"
+            cursor="pointer"
+            color="gray.500"
+            _hover={{ color: "gray.700" }}
+            onClick={() => setShowFilters(false)}
+          />
+        </Flex>
 
-          <Box className="filter-group">
-            <Box className="filter-label">{t("price")}</Box>
-            <Box className="sliderFilter">
-              <RangeSlider
-                onChangeEnd={(value: number[]) => paramHandler("price", value)}
-                defaultValue={
-                  router?.query?.price
-                    ? (router?.query?.price as string).split(",").map((v) => +v)
-                    : [0, 3]
-                }
-                min={0}
-                max={3}
-                step={1}
-                aria-label={["Minimum price", "Maximum price"]}
-                focusThumbOnChange={true}
-              >
-                <RangeSliderTrack bg="teal.100" h="3px">
-                  <RangeSliderFilledTrack bg="teal" />
-                </RangeSliderTrack>
-                <Tooltip
-                  placement="top"
-                  hasArrow
-                  label={t("priceFilterMin")}
-                  openDelay={500}
-                >
-                  <RangeSliderThumb
-                    boxSize={6}
-                    index={0}
-                    _focus={{
-                      boxShadow: "0 0 0 3px rgba(0, 128, 128, 0.2)",
-                    }}
-                  >
-                    <Box color="teal" as={BsCurrencyDollar} />
-                  </RangeSliderThumb>
-                </Tooltip>
-                <Tooltip
-                  placement="top"
-                  hasArrow
-                  label={t("priceFilterMax")}
-                  openDelay={500}
-                >
-                  <RangeSliderThumb
-                    boxSize={6}
-                    index={1}
-                    _focus={{
-                      boxShadow: "0 0 0 3px rgba(0, 128, 128, 0.2)",
-                    }}
-                  >
-                    <Box color="teal" as={BsCurrencyDollar} />
-                  </RangeSliderThumb>
-                </Tooltip>
-              </RangeSlider>
-            </Box>
-          </Box>
-
-          <Box className="filter-group">
-            <Box className="filter-label">{t("carbonFootprint")}</Box>
-            <Box className="sliderFilter" pb="10px" mr="30px">
-              <Slider
-                onChangeEnd={(value: number) =>
-                  paramHandler("carbon_footprint", value)
-                }
-                name="carbonFootprintDefaultValue"
-                defaultValue={
-                  router?.query?.carbon_footprint
-                    ? +(router?.query?.carbon_footprint as string)
-                    : 0
-                }
-                min={0}
-                max={3}
-                step={1}
-                aria-label="Carbon footprint"
-                focusThumbOnChange={true}
-              >
-                <SliderTrack bg="teal.100" h="3px">
-                  <SliderFilledTrack bg="teal" />
-                </SliderTrack>
-                <Tooltip
-                  placement="top"
-                  hasArrow
-                  label={buildTooltipDescription(
-                    +(router?.query?.carbon_footprint as string),
-                    t,
-                  )}
-                  openDelay={500}
-                >
-                  <SliderThumb
-                    boxSize={6}
-                    _focus={{
-                      boxShadow: "0 0 0 3px rgba(0, 128, 128, 0.2)",
-                    }}
-                  >
-                    <Box color="teal" as={GiEarthAmerica} />
-                  </SliderThumb>
-                </Tooltip>
-              </Slider>
-            </Box>
-          </Box>
-
-          <Box className="filter-group">
-            <Box className="filter-label">{t("accessibility")}</Box>
+        <Box className="filter-group" mb="6">
+          <Box className="filter-label">{t("seasons")}</Box>
+          {seasons.map((season) => (
             <Badge
-              variant={router.query.children_accessible ? "solid" : "outline"}
               cursor="pointer"
-              id="children_accessible"
-              onClick={() =>
-                paramHandler(
-                  "children_accessible",
-                  !router.query.children_accessible ? "true" : null,
-                )
+              variant={router.query.season === season ? "solid" : "outline"}
+              id={season}
+              key={season}
+              onClick={(e) =>
+                paramHandler("season", (e.target as HTMLTextAreaElement).id)
               }
               mr="2"
+              mb="2"
               fontSize="1em"
               borderRadius="full"
               px="4"
@@ -635,11 +540,140 @@ export default function Activities() {
                 boxShadow: "sm",
               }}
               role="button"
-              aria-pressed={!!router.query.children_accessible}
+              aria-pressed={router.query.season === season}
             >
-              {t("childrenAccessible")}
+              {t(`season.${season}`)}
             </Badge>
+          ))}
+        </Box>
+
+        <Box className="filter-group" mb="6">
+          <Box className="filter-label">{t("price")}</Box>
+          <Box className="sliderFilter">
+            <RangeSlider
+              onChangeEnd={(value: number[]) => paramHandler("price", value)}
+              defaultValue={
+                router?.query?.price
+                  ? (router?.query?.price as string).split(",").map((v) => +v)
+                  : [0, 3]
+              }
+              min={0}
+              max={3}
+              step={1}
+              aria-label={["Minimum price", "Maximum price"]}
+              focusThumbOnChange={true}
+            >
+              <RangeSliderTrack bg="teal.100" h="3px">
+                <RangeSliderFilledTrack bg="teal" />
+              </RangeSliderTrack>
+              <Tooltip
+                placement="top"
+                hasArrow
+                label={t("priceFilterMin")}
+                openDelay={500}
+              >
+                <RangeSliderThumb
+                  boxSize={6}
+                  index={0}
+                  _focus={{
+                    boxShadow: "0 0 0 3px rgba(0, 128, 128, 0.2)",
+                  }}
+                >
+                  <Box color="teal" as={BsCurrencyDollar} />
+                </RangeSliderThumb>
+              </Tooltip>
+              <Tooltip
+                placement="top"
+                hasArrow
+                label={t("priceFilterMax")}
+                openDelay={500}
+              >
+                <RangeSliderThumb
+                  boxSize={6}
+                  index={1}
+                  _focus={{
+                    boxShadow: "0 0 0 3px rgba(0, 128, 128, 0.2)",
+                  }}
+                >
+                  <Box color="teal" as={BsCurrencyDollar} />
+                </RangeSliderThumb>
+              </Tooltip>
+            </RangeSlider>
           </Box>
+        </Box>
+
+        <Box className="filter-group" mb="6">
+          <Box className="filter-label">{t("carbonFootprint")}</Box>
+          <Box className="sliderFilter" pb="10px" mr="30px">
+            <Slider
+              onChangeEnd={(value: number) =>
+                paramHandler("carbon_footprint", value)
+              }
+              name="carbonFootprintDefaultValue"
+              defaultValue={
+                router?.query?.carbon_footprint
+                  ? +(router?.query?.carbon_footprint as string)
+                  : 0
+              }
+              min={0}
+              max={3}
+              step={1}
+              aria-label="Carbon footprint"
+              focusThumbOnChange={true}
+            >
+              <SliderTrack bg="teal.100" h="3px">
+                <SliderFilledTrack bg="teal" />
+              </SliderTrack>
+              <Tooltip
+                placement="top"
+                hasArrow
+                label={buildTooltipDescription(
+                  +(router?.query?.carbon_footprint as string),
+                  t,
+                )}
+                openDelay={500}
+              >
+                <SliderThumb
+                  boxSize={6}
+                  _focus={{
+                    boxShadow: "0 0 0 3px rgba(0, 128, 128, 0.2)",
+                  }}
+                >
+                  <Box color="teal" as={GiEarthAmerica} />
+                </SliderThumb>
+              </Tooltip>
+            </Slider>
+          </Box>
+        </Box>
+
+        <Box className="filter-group">
+          <Box className="filter-label">{t("accessibility")}</Box>
+          <Badge
+            variant={router.query.children_accessible ? "solid" : "outline"}
+            cursor="pointer"
+            id="children_accessible"
+            onClick={() =>
+              paramHandler(
+                "children_accessible",
+                !router.query.children_accessible ? "true" : null,
+              )
+            }
+            mr="2"
+            fontSize="1em"
+            borderRadius="full"
+            px="4"
+            py="2"
+            colorScheme="teal"
+            transition="all 0.2s"
+            _hover={{
+              transform: "translateY(-1px)",
+              boxShadow: "sm",
+            }}
+            role="button"
+            aria-pressed={!!router.query.children_accessible}
+          >
+            {t("childrenAccessible")}
+          </Badge>
         </Box>
       </Box>
 
