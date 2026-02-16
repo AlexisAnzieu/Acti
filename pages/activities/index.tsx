@@ -27,7 +27,13 @@ import Link from "next/link";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import React, { useEffect, useState } from "react";
-import { BsChevronDown, BsCurrencyDollar, BsFilter,BsMap, BsSearch } from "react-icons/bs";
+import {
+  BsChevronDown,
+  BsCurrencyDollar,
+  BsFilter,
+  BsMap,
+  BsSearch,
+} from "react-icons/bs";
 import { GiEarthAmerica } from "react-icons/gi";
 
 import CarbonIconComponent, {
@@ -79,12 +85,7 @@ const BuildNewsletterActivity = () => {
       flexDirection="column"
       justifyContent="center"
     >
-      <Box
-        mb="4"
-        fontSize="lg"
-        fontWeight="bold"
-        color="gray.700"
-      >
+      <Box mb="4" fontSize="lg" fontWeight="bold" color="gray.700">
         {t("noActivityMatching")}
       </Box>
       <NewsletterComponent />
@@ -144,14 +145,20 @@ const BuildActivity = (activity: definitions["activity"], locale: Locale) => {
                   ? activity.description[locale]
                   : `${activity.description[locale].substring(
                       0,
-                      MAX_DESCRIPTION_LENGTH
+                      MAX_DESCRIPTION_LENGTH,
                     )} [...]`}
               </Box>
             </Box>
           )}
         </Box>
 
-        <Box p="6" flex="1" display="flex" flexDirection="column" justifyContent="space-between">
+        <Box
+          p="6"
+          flex="1"
+          display="flex"
+          flexDirection="column"
+          justifyContent="space-between"
+        >
           <Flex flexWrap="wrap" gap="2" mb="3">
             {(activity.seasons || []).map((s: string) => (
               <Badge
@@ -217,7 +224,7 @@ const ActivityList = (props: {
     <Box className="activity-grid">
       {[
         ...props?.activities.map((activity) =>
-          BuildActivity(activity, props.locale)
+          BuildActivity(activity, props.locale),
         ),
         BuildNewsletterActivity(),
       ]}
@@ -279,7 +286,7 @@ export default function Activities() {
       undefined,
       {
         shallow: true,
-      }
+      },
     );
   }
 
@@ -305,8 +312,8 @@ export default function Activities() {
       </Head>
       <Box className="activity-list">
         <Flex mb="4" px="6" gap="3" alignItems="center">
-          <Flex 
-            className="filter-header" 
+          <Flex
+            className="filter-header"
             onClick={() => setShowFilters(!showFilters)}
             cursor="pointer"
             alignItems="center"
@@ -319,7 +326,9 @@ export default function Activities() {
             _hover={{ bg: "gray.50" }}
           >
             <Icon as={BsFilter} fontSize="16px" mr="2" color="gray.600" />
-            <Box fontSize="sm" color="gray.600" mr="2">{t("filters")}</Box>
+            <Box fontSize="sm" color="gray.600" mr="2">
+              {t("filters")}
+            </Box>
             <Icon
               as={BsChevronDown}
               fontSize="12px"
@@ -347,7 +356,7 @@ export default function Activities() {
           </InputGroup>
         </Flex>
 
-        <Box 
+        <Box
           className="filters"
           height={showFilters ? "auto" : "0"}
           opacity={showFilters ? "1" : "0"}
@@ -376,7 +385,7 @@ export default function Activities() {
                 transition="all 0.2s"
                 _hover={{
                   transform: "translateY(-1px)",
-                  boxShadow: "sm"
+                  boxShadow: "sm",
                 }}
                 role="button"
                 aria-pressed={router.query.season === season}
@@ -405,23 +414,33 @@ export default function Activities() {
                 <RangeSliderTrack bg="teal.100" h="3px">
                   <RangeSliderFilledTrack bg="teal" />
                 </RangeSliderTrack>
-                <Tooltip placement="top" hasArrow label={t("priceFilterMin")} openDelay={500}>
-                  <RangeSliderThumb 
-                    boxSize={6} 
+                <Tooltip
+                  placement="top"
+                  hasArrow
+                  label={t("priceFilterMin")}
+                  openDelay={500}
+                >
+                  <RangeSliderThumb
+                    boxSize={6}
                     index={0}
                     _focus={{
-                      boxShadow: "0 0 0 3px rgba(0, 128, 128, 0.2)"
+                      boxShadow: "0 0 0 3px rgba(0, 128, 128, 0.2)",
                     }}
                   >
                     <Box color="teal" as={BsCurrencyDollar} />
                   </RangeSliderThumb>
                 </Tooltip>
-                <Tooltip placement="top" hasArrow label={t("priceFilterMax")} openDelay={500}>
-                  <RangeSliderThumb 
-                    boxSize={6} 
+                <Tooltip
+                  placement="top"
+                  hasArrow
+                  label={t("priceFilterMax")}
+                  openDelay={500}
+                >
+                  <RangeSliderThumb
+                    boxSize={6}
                     index={1}
                     _focus={{
-                      boxShadow: "0 0 0 3px rgba(0, 128, 128, 0.2)"
+                      boxShadow: "0 0 0 3px rgba(0, 128, 128, 0.2)",
                     }}
                   >
                     <Box color="teal" as={BsCurrencyDollar} />
@@ -442,7 +461,7 @@ export default function Activities() {
                 defaultValue={
                   router?.query?.carbon_footprint
                     ? +(router?.query?.carbon_footprint as string)
-                    : 2
+                    : 0
                 }
                 min={0}
                 max={3}
@@ -458,14 +477,14 @@ export default function Activities() {
                   hasArrow
                   label={buildTooltipDescription(
                     +(router?.query?.carbon_footprint as string),
-                    t
+                    t,
                   )}
                   openDelay={500}
                 >
-                  <SliderThumb 
+                  <SliderThumb
                     boxSize={6}
                     _focus={{
-                      boxShadow: "0 0 0 3px rgba(0, 128, 128, 0.2)"
+                      boxShadow: "0 0 0 3px rgba(0, 128, 128, 0.2)",
                     }}
                   >
                     <Box color="teal" as={GiEarthAmerica} />
@@ -477,30 +496,30 @@ export default function Activities() {
 
           <Box className="filter-group">
             <Box className="filter-label">{t("accessibility")}</Box>
-              <Badge
-                variant={router.query.children_accessible ? "solid" : "outline"}
-                cursor="pointer"
-                id="children_accessible"
-                onClick={() =>
-                  paramHandler(
-                    "children_accessible",
-                    !router.query.children_accessible ? "true" : null
-                  )
-                }
-                mr="2"
-                fontSize="1em"
-                borderRadius="full"
-                px="4"
-                py="2"
-                colorScheme="teal"
-                transition="all 0.2s"
-                _hover={{
-                  transform: "translateY(-1px)",
-                  boxShadow: "sm"
-                }}
-                role="button"
-                aria-pressed={!!router.query.children_accessible}
-              >
+            <Badge
+              variant={router.query.children_accessible ? "solid" : "outline"}
+              cursor="pointer"
+              id="children_accessible"
+              onClick={() =>
+                paramHandler(
+                  "children_accessible",
+                  !router.query.children_accessible ? "true" : null,
+                )
+              }
+              mr="2"
+              fontSize="1em"
+              borderRadius="full"
+              px="4"
+              py="2"
+              colorScheme="teal"
+              transition="all 0.2s"
+              _hover={{
+                transform: "translateY(-1px)",
+                boxShadow: "sm",
+              }}
+              role="button"
+              aria-pressed={!!router.query.children_accessible}
+            >
               {t("childrenAccessible")}
             </Badge>
           </Box>
@@ -516,7 +535,7 @@ export default function Activities() {
           )}
         </Box>
       </Box>
-      
+
       <Link href={{ pathname: "/map", query: router.query }}>
         <Box className="floating-button">
           <Icon h="1.8em" as={BsMap} />
@@ -528,7 +547,7 @@ export default function Activities() {
 
 export function searchApi(
   queryParam: QueryParam = {},
-  locale: Locale = "en"
+  locale: Locale = "en",
 ): string {
   const host = process.env.NEXT_PUBLIC_BASE_URL;
   const apiUrl = new URL(`${host}/api/activities`);
@@ -537,7 +556,7 @@ export function searchApi(
     locale,
   };
   Object.entries(queryParamLocaleAdded).forEach(([key, value]) =>
-    apiUrl.searchParams.append(key, `${value}`)
+    apiUrl.searchParams.append(key, `${value}`),
   );
   return apiUrl.href;
 }
