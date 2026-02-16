@@ -195,7 +195,7 @@ const MapComponent = (props: MapComponentProps) => {
   return (
     <MapContainer
       className={resolvedClassName}
-      center={centerLocation as [number, number]}
+      center={centerLocation as unknown as [number, number]}
       zoom={zoom}
       scrollWheelZoom={true}
     >
