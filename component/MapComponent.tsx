@@ -75,7 +75,7 @@ const FitBounds = ({
   useEffect(() => {
     const validLocations = activities
       .filter((a) => a.location)
-      .map((a) => a.location as { lat: number; lng: number });
+      .map((a) => a.location as unknown as { lat: number; lng: number });
 
     if (validLocations.length > 1) {
       const bounds = L.latLngBounds(

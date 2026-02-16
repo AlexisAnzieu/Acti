@@ -390,8 +390,6 @@ export default function Activities() {
         top="0"
         zIndex={100}
         bg="white"
-        borderBottom="1px solid"
-        borderColor="gray.200"
         px={{ base: "4", md: "6" }}
         py="2"
       >
