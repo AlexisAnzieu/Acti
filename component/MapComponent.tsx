@@ -1,6 +1,8 @@
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 import { Box, Flex, Link as ChakraLink } from "@chakra-ui/react";
 import L from "leaflet";
+import "leaflet-fullscreen";
+import "leaflet-fullscreen/dist/leaflet.fullscreen.css";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { useEffect } from "react";
@@ -172,6 +174,19 @@ const Markers = ({ activities, locale }: MapProps) => {
   );
 };
 
+const FullscreenControl = () => {
+  const map = useMap();
+  useEffect(() => {
+    (L.control as any).fullscreen({ position: "topleft" }).addTo(map);
+    return () => {
+      const container = map.getContainer();
+      const btn = container.querySelector(".leaflet-control-fullscreen");
+      if (btn) btn.remove();
+    };
+  }, [map]);
+  return null;
+};
+
 type MapComponentProps = {
   activities: definitions["activity"][];
   onBoundsChange?: (bounds: MapBounds) => void;
@@ -200,6 +215,7 @@ const MapComponent = (props: MapComponentProps) => {
       scrollWheelZoom={true}
     >
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+      <FullscreenControl />
       <Markers activities={props.activities} locale={router.locale as Locale} />
       {props.onBoundsChange && (
         <MapEventsHandler onBoundsChange={props.onBoundsChange} />

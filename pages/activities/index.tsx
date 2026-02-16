@@ -191,15 +191,23 @@ const ActivityCard = ({
             ))}
           </Flex>
 
-          <Box
-            as="h3"
-            color="gray.700"
-            fontWeight="bold"
-            fontSize={isCompact ? "md" : "lg"}
-            mb="2"
-            isTruncated
-          >
-            {activity.name?.[locale]} {activity.compagny}
+          <Box mb="2">
+            <Box
+              as="h3"
+              color="gray.700"
+              fontWeight="bold"
+              fontSize={isCompact ? "md" : "lg"}
+              isTruncated
+            >
+              {activity.name?.[locale]}
+            </Box>
+            <Box
+              color="gray.500"
+              fontSize={isCompact ? "xs" : "sm"}
+              isTruncated
+            >
+              {activity.compagny}
+            </Box>
           </Box>
 
           <Flex gap="4">
