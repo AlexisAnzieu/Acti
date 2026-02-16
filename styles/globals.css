@@ -80,7 +80,7 @@ a:hover {
 
 .activity-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 24px;
   padding: 0 24px 24px 24px;
   width: 100%;
@@ -92,9 +92,10 @@ a:hover {
 }
 
 .activity-list {
-  padding: 24px;
+  padding: 8px 24px 24px;
   min-height: 100vh;
   background: #fafafa;
+  width: 100%;
 }
 
 .filter-label {
@@ -160,6 +161,51 @@ a:hover {
   box-shadow: 0 6px 16px rgba(0, 128, 128, 0.4);
 }
 
+/* ===== Split-screen Airbnb layout ===== */
+
+.split-layout {
+  display: flex;
+  height: calc(100vh - 65px);
+  overflow: hidden;
+}
+
+.split-list-panel {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+  background: #fafafa;
+  padding-top: 8px;
+}
+
+.split-map-panel {
+  width: 50%;
+  flex-shrink: 0;
+  position: relative;
+  border-left: 1px solid #e2e8f0;
+}
+
+.split-map-panel .leaflet-container {
+  height: 100% !important;
+  width: 100%;
+  z-index: 50;
+}
+
+.split-map {
+  height: 100% !important;
+  width: 100%;
+}
+
+.activity-grid--split {
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)) !important;
+  gap: 16px !important;
+  padding: 0 16px 16px 16px !important;
+}
+
+/* Search bar container */
+.search-bar-container {
+  box-shadow: none;
+}
+
 .help-button-desktop {
   display: block !important;
 }
@@ -195,6 +241,29 @@ a:hover {
   .filter-header {
     margin: 0 16px;
     font-size: 14px;
+  }
+
+  /* Split layout: stack vertically on mobile */
+  .split-layout {
+    flex-direction: column-reverse;
+    height: auto;
+    overflow: visible;
+  }
+
+  .split-list-panel {
+    overflow-y: visible;
+    height: auto;
+  }
+
+  .split-map-panel {
+    width: 100%;
+    height: 40vh;
+    border-left: none;
+    border-bottom: 1px solid #e2e8f0;
+  }
+
+  .activity-grid--split {
+    grid-template-columns: minmax(0, 1fr) !important;
   }
 
   .filters {

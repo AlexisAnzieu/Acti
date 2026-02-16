@@ -1,6 +1,7 @@
 import {
   Badge,
   Box,
+  Button,
   Center,
   CircularProgress,
   Flex,
@@ -17,9 +18,11 @@ import {
   SliderFilledTrack,
   SliderThumb,
   SliderTrack,
+  Text,
   Tooltip,
 } from "@chakra-ui/react";
-import { GetStaticPropsContext } from "next";
+import type { GetStaticPropsContext } from "next";
+import dynamic from "next/dynamic";
 import { useRouter } from "next/dist/client/router";
 import Head from "next/head";
 import NextImage from "next/legacy/image";
@@ -33,16 +36,22 @@ import {
   BsFilter,
   BsMap,
   BsSearch,
+  BsX,
 } from "react-icons/bs";
 import { GiEarthAmerica } from "react-icons/gi";
 
 import CarbonIconComponent, {
   buildTooltipDescription,
 } from "../../component/CarbonIconComponent";
-import { Locale } from "../../component/NavbarComponent";
+import type { MapBounds } from "../../component/MapComponent";
+import type { Locale } from "../../component/NavbarComponent";
 import NewsletterComponent from "../../component/NewsletterComponent";
 import PriceIconComponent from "../../component/PriceIconComponent";
-import { definitions } from "../../type/supabase";
+import type { definitions } from "../../type/supabase";
+
+const MapWithNoSSR = dynamic(() => import("../../component/MapComponent"), {
+  ssr: false,
+});
 
 const MAX_DESCRIPTION_LENGTH = 250;
 
@@ -63,12 +72,11 @@ export type GetServerSideProps = {
   };
 };
 
-const BuildNewsletterActivity = () => {
+const NewsletterActivity = () => {
   const { t } = useTranslation("common");
 
   return (
     <Box
-      key="newsletterActivity"
       borderRadius="xl"
       borderWidth="1px"
       boxShadow="lg"
@@ -93,15 +101,19 @@ const BuildNewsletterActivity = () => {
   );
 };
 
-const BuildActivity = (activity: definitions["activity"], locale: Locale) => {
+const ActivityCard = ({
+  activity,
+  locale,
+  isCompact,
+}: {
+  activity: definitions["activity"];
+  locale: Locale;
+  isCompact: boolean;
+}) => {
   const { t } = useTranslation("common");
 
   return (
-    <ChakraLink
-      as={Link}
-      key={activity.slug}
-      href={`${locale}/activities/${activity.slug}`}
-    >
+    <ChakraLink as={Link} href={`${locale}/activities/${activity.slug}`}>
       <Box
         borderRadius="xl"
         borderWidth="1px"
@@ -116,11 +128,15 @@ const BuildActivity = (activity: definitions["activity"], locale: Locale) => {
           boxShadow: "2xl",
         }}
         bg="white"
-        height="400px"
+        height={isCompact ? "340px" : "400px"}
         display="flex"
         flexDirection="column"
       >
-        <Box position="relative" height="200px" overflow="hidden">
+        <Box
+          position="relative"
+          height={isCompact ? "160px" : "200px"}
+          overflow="hidden"
+        >
           <NextImage
             layout="fill"
             objectFit="cover"
@@ -135,7 +151,7 @@ const BuildActivity = (activity: definitions["activity"], locale: Locale) => {
               right="0"
               bg="rgba(255, 255, 255, 0.95)"
               p="6"
-              height="200px"
+              height={isCompact ? "160px" : "200px"}
               overflowY="auto"
               transition="all 0.3s ease"
               _groupHover={{ top: "0" }}
@@ -153,13 +169,13 @@ const BuildActivity = (activity: definitions["activity"], locale: Locale) => {
         </Box>
 
         <Box
-          p="6"
+          p={isCompact ? "4" : "6"}
           flex="1"
           display="flex"
           flexDirection="column"
           justifyContent="space-between"
         >
-          <Flex flexWrap="wrap" gap="2" mb="3">
+          <Flex flexWrap="wrap" gap="2" mb="2">
             {(activity.seasons || []).map((s: string) => (
               <Badge
                 borderRadius="full"
@@ -179,8 +195,8 @@ const BuildActivity = (activity: definitions["activity"], locale: Locale) => {
             as="h3"
             color="gray.700"
             fontWeight="bold"
-            fontSize="lg"
-            mb="3"
+            fontSize={isCompact ? "md" : "lg"}
+            mb="2"
             isTruncated
           >
             {activity.name?.[locale]} {activity.compagny}
@@ -206,12 +222,15 @@ const BuildActivity = (activity: definitions["activity"], locale: Locale) => {
 const ActivityList = (props: {
   activities: GetServerSideProps["props"]["activities"];
   locale: Locale;
+  isMapVisible: boolean;
 }) => {
   const { t } = useTranslation("common");
   if (!props.activities?.length) {
     return (
       <>
-        <Center fontSize="20px">{t("noActivityFound")}</Center>
+        <Center fontSize="20px" py="10">
+          {t("noActivityFound")}
+        </Center>
         <Center>
           <Box width="300px" margin="3%">
             <NewsletterComponent />
@@ -221,13 +240,22 @@ const ActivityList = (props: {
     );
   }
   return (
-    <Box className="activity-grid">
-      {[
-        ...props?.activities.map((activity) =>
-          BuildActivity(activity, props.locale),
-        ),
-        BuildNewsletterActivity(),
-      ]}
+    <Box
+      className={
+        props.isMapVisible
+          ? "activity-grid activity-grid--split"
+          : "activity-grid"
+      }
+    >
+      {props.activities.map((activity) => (
+        <ActivityCard
+          key={activity.slug}
+          activity={activity}
+          locale={props.locale}
+          isCompact={props.isMapVisible}
+        />
+      ))}
+      <NewsletterActivity />
     </Box>
   );
 };
@@ -238,19 +266,52 @@ export default function Activities() {
   const [locale] = useState(router.locale as Locale);
   const { t } = useTranslation("common");
   const [showFilters, setShowFilters] = useState(false);
-
-  const [activities, setActivities] = useState([]);
+  const [showMap, setShowMap] = useState(false);
+  const [allActivities, setAllActivities] = useState<definitions["activity"][]>(
+    [],
+  );
+  const [filteredActivities, setFilteredActivities] = useState<
+    definitions["activity"][]
+  >([]);
+  const [mapBounds, setMapBounds] = useState<MapBounds | null>(null);
 
   useEffect(() => {
     if (!router.isReady) return;
-    console.log(router.query, locale);
     fetch(searchApi(router.query, locale))
       .then((res: Response) => res.json())
       .then((result) => {
-        setActivities(result);
+        setAllActivities(result);
+        setFilteredActivities(result);
         setIsLoading(false);
       });
   }, [router.isReady, router.query, locale]);
+
+  // Filter activities by map bounds when map is visible
+  useEffect(() => {
+    if (!showMap || !mapBounds) {
+      setFilteredActivities(allActivities);
+      return;
+    }
+
+    const visible = allActivities.filter((activity) => {
+      const loc = activity.location as unknown as {
+        lat: number;
+        lng: number;
+      } | null;
+      if (!loc) return false;
+      return (
+        loc.lat >= mapBounds.south &&
+        loc.lat <= mapBounds.north &&
+        loc.lng >= mapBounds.west &&
+        loc.lng <= mapBounds.east
+      );
+    });
+    setFilteredActivities(visible);
+  }, [mapBounds, allActivities, showMap]);
+
+  const handleBoundsChange = (bounds: MapBounds) => {
+    setMapBounds(bounds);
+  };
 
   function paramHandler(param: string, value: any): void {
     if (isLoading) {
@@ -290,6 +351,17 @@ export default function Activities() {
     );
   }
 
+  const toggleMap = () => {
+    setShowMap((prev) => {
+      if (prev) {
+        // When closing map, reset to show all activities
+        setMapBounds(null);
+        setFilteredActivities(allActivities);
+      }
+      return !prev;
+    });
+  };
+
   return (
     <>
       <Head>
@@ -310,23 +382,42 @@ export default function Activities() {
           key="ogpic"
         />
       </Head>
-      <Box className="activity-list">
-        <Flex mb="4" px="6" gap="3" alignItems="center">
+
+      {/* Sticky search bar */}
+      <Box
+        className="search-bar-container"
+        position="sticky"
+        top="0"
+        zIndex={100}
+        bg="white"
+        borderBottom="1px solid"
+        borderColor="gray.200"
+        px={{ base: "4", md: "6" }}
+        py="2"
+      >
+        <Flex gap="3" alignItems="center" maxW="100%" mx="auto">
           <Flex
             className="filter-header"
             onClick={() => setShowFilters(!showFilters)}
             cursor="pointer"
             alignItems="center"
             bg="white"
+            border="1px solid"
+            borderColor="gray.200"
             p="2"
             px="3"
             borderRadius="full"
-            boxShadow="sm"
             height="40px"
-            _hover={{ bg: "gray.50" }}
+            _hover={{ bg: "gray.50", borderColor: "gray.300" }}
+            flexShrink={0}
           >
             <Icon as={BsFilter} fontSize="16px" mr="2" color="gray.600" />
-            <Box fontSize="sm" color="gray.600" mr="2">
+            <Box
+              fontSize="sm"
+              color="gray.600"
+              mr="2"
+              display={{ base: "none", md: "block" }}
+            >
               {t("filters")}
             </Box>
             <Icon
@@ -337,6 +428,7 @@ export default function Activities() {
               color="gray.600"
             />
           </Flex>
+
           <InputGroup size="md" flex="1">
             <InputLeftElement
               pointerEvents="none"
@@ -346,23 +438,48 @@ export default function Activities() {
               defaultValue={router.query.query}
               onChange={(e) => paramHandler("query", e.target.value)}
               placeholder={t("searchActivity")}
-              variant="filled"
+              variant="outline"
               bg="white"
-              _hover={{ bg: "gray.50" }}
-              _focus={{ bg: "white" }}
+              borderColor="gray.200"
+              _hover={{ borderColor: "gray.300" }}
+              _focus={{ borderColor: "teal.400", boxShadow: "0 0 0 1px teal" }}
               fontSize="sm"
               borderRadius="full"
             />
           </InputGroup>
+
+          <Button
+            onClick={toggleMap}
+            leftIcon={<Icon as={showMap ? BsX : BsMap} fontSize="16px" />}
+            variant={showMap ? "solid" : "outline"}
+            colorScheme={showMap ? "teal" : "gray"}
+            borderRadius="full"
+            size="md"
+            height="40px"
+            px="5"
+            flexShrink={0}
+            fontWeight="500"
+            fontSize="sm"
+            borderColor={showMap ? undefined : "gray.200"}
+            _hover={{
+              bg: showMap ? "teal.600" : "gray.50",
+              borderColor: showMap ? undefined : "gray.300",
+            }}
+          >
+            <Text display={{ base: "none", md: "block" }}>
+              {showMap ? t("hideMap") || "Hide map" : t("showMap") || "Map"}
+            </Text>
+          </Button>
         </Flex>
 
+        {/* Collapsible filters */}
         <Box
           className="filters"
           height={showFilters ? "auto" : "0"}
           opacity={showFilters ? "1" : "0"}
           overflow="hidden"
           transition="all 0.3s ease"
-          mb={showFilters ? "6" : "0"}
+          mt={showFilters ? "4" : "0"}
         >
           <Box className="filter-group" mb="20px">
             <Box className="filter-label">{t("seasons")}</Box>
@@ -524,23 +641,50 @@ export default function Activities() {
             </Badge>
           </Box>
         </Box>
-
-        <Box pt="0" px="15px" pb="15px">
-          {isLoading ? (
-            <Box textAlign="center">
-              <CircularProgress isIndeterminate color="teal" />
-            </Box>
-          ) : (
-            <ActivityList activities={activities} locale={locale as Locale} />
-          )}
-        </Box>
       </Box>
 
-      <Link href={{ pathname: "/map", query: router.query }}>
-        <Box className="floating-button">
-          <Icon h="1.8em" as={BsMap} />
+      {/* Main content area: split view or full list */}
+      <Flex className={showMap ? "split-layout" : ""} w="100%">
+        {/* Activities list panel */}
+        <Box
+          className={showMap ? "split-list-panel" : "activity-list"}
+          overflowY={showMap ? "auto" : undefined}
+          w="100%"
+        >
+          {showMap && filteredActivities.length > 0 && (
+            <Text fontSize="sm" color="gray.500" px="6" pt="4" pb="2">
+              {filteredActivities.length}{" "}
+              {filteredActivities.length === 1
+                ? t("activityFound") || "activity"
+                : t("activitiesFound") || "activities"}
+            </Text>
+          )}
+          <Box pt="0" px="15px" pb="15px">
+            {isLoading ? (
+              <Box textAlign="center" py="20">
+                <CircularProgress isIndeterminate color="teal" />
+              </Box>
+            ) : (
+              <ActivityList
+                activities={filteredActivities}
+                locale={locale as Locale}
+                isMapVisible={showMap}
+              />
+            )}
+          </Box>
         </Box>
-      </Link>
+
+        {/* Map panel */}
+        {showMap && (
+          <Box className="split-map-panel">
+            <MapWithNoSSR
+              activities={allActivities}
+              onBoundsChange={handleBoundsChange}
+              className="split-map"
+            />
+          </Box>
+        )}
+      </Flex>
     </>
   );
 }
