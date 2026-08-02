@@ -229,6 +229,9 @@ const MapComponent = (props: MapComponentProps) => {
 
   const syncable = isMapPage || isSplitView;
 
+  // Wait for router.query to be populated before mounting the map (query is empty on first render)
+  if (syncable && !router.isReady) return null;
+
   const urlLat =
     syncable && router.query.lat
       ? parseFloat(router.query.lat as string)
