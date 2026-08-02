@@ -274,7 +274,7 @@ export default function Activities() {
   const [locale] = useState(router.locale as Locale);
   const { t } = useTranslation("common");
   const [showFilters, setShowFilters] = useState(false);
-  const [showMap, setShowMap] = useState(false);
+  const [showMap, setShowMap] = useState(true);
   const [allActivities, setAllActivities] = useState<definitions["activity"][]>(
     [],
   );
