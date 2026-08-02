@@ -67,6 +67,34 @@ const MapEventsHandler = ({ onBoundsChange }: MapEventsHandlerProps) => {
   return null;
 };
 
+const UrlSync = () => {
+  const router = useRouter();
+  const map = useMapEvents({
+    moveend: () => sync(),
+    zoomend: () => sync(),
+  });
+
+  const sync = () => {
+    const center = map.getCenter();
+    const zoom = map.getZoom();
+    router.replace(
+      {
+        pathname: router.pathname,
+        query: {
+          ...router.query,
+          lat: center.lat.toFixed(5),
+          lng: center.lng.toFixed(5),
+          zoom,
+        },
+      },
+      undefined,
+      { shallow: true },
+    );
+  };
+
+  return null;
+};
+
 const FitBounds = ({
   activities,
 }: {
@@ -198,14 +226,32 @@ const MapComponent = (props: MapComponentProps) => {
   const router = useRouter();
   const isMapPage = router.pathname === "/map";
   const isSplitView = props.className === "split-map";
+
+  const syncable = isMapPage || isSplitView;
+
+  const urlLat =
+    syncable && router.query.lat
+      ? parseFloat(router.query.lat as string)
+      : null;
+  const urlLng =
+    syncable && router.query.lng
+      ? parseFloat(router.query.lng as string)
+      : null;
+  const urlZoom =
+    syncable && router.query.zoom
+      ? parseInt(router.query.zoom as string)
+      : null;
+
   const centerLocation =
-    !isMapPage && !isSplitView && props.activities.length > 0
-      ? props.activities[0].location || MONTREAL_LOCATION
-      : MONTREAL_LOCATION;
+    urlLat != null && urlLng != null
+      ? { lat: urlLat, lng: urlLng }
+      : !isMapPage && !isSplitView && props.activities.length > 0
+        ? props.activities[0].location || MONTREAL_LOCATION
+        : MONTREAL_LOCATION;
 
   const resolvedClassName =
     props.className || (!isMapPage ? "detail-map" : "map");
-  const zoom = !isMapPage && !isSplitView ? 10 : 7;
+  const zoom = urlZoom ?? (!isMapPage && !isSplitView ? 10 : 7);
 
   return (
     <MapContainer
@@ -220,7 +266,8 @@ const MapComponent = (props: MapComponentProps) => {
       {props.onBoundsChange && (
         <MapEventsHandler onBoundsChange={props.onBoundsChange} />
       )}
-      {isSplitView && <FitBounds activities={props.activities} />}
+      {isSplitView && !urlLat && <FitBounds activities={props.activities} />}
+      {syncable && <UrlSync />}
     </MapContainer>
   );
 };
