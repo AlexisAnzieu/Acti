@@ -26,7 +26,6 @@ const LOCALES: Locale[] = ["fr", "en"];
 const NAV_LINKS = [
   { href: "/activities", label: "nav.activities" },
   { href: "/trip", label: "nav.trips" },
-  { href: "/map", label: "nav.map" },
 ];
 
 export const LogoMark = ({ size = 12 }: { size?: number }) => (

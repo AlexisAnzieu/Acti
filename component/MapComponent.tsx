@@ -18,7 +18,13 @@ import {
 import type { definitions } from "../type/supabase";
 import { CarbonLabel, PriceLabel } from "./ActivityCard";
 import type { Locale } from "./NavbarComponent";
-import { type Season, isSeason, SEASON_COLORS, SEASONS } from "./seasons";
+import {
+  type Season,
+  ALL_YEAR_PIN,
+  isSeason,
+  pinSeason,
+  SEASON_COLORS,
+} from "./seasons";
 
 // leaflet-fullscreen reads the global `L` set by Leaflet, so it must load after it.
 // A plain import would be moved above Leaflet by the import sorter.
@@ -124,38 +130,34 @@ const FitBounds = ({
   return null;
 };
 
-const markerIcon = (season: Season) =>
-  L.divIcon({
-    className: "acti-marker",
-    html: `<span style="background:${SEASON_COLORS[season].bg}"></span>`,
-    iconSize: [24, 24],
-    iconAnchor: [12, 12],
-    popupAnchor: [0, -14],
+// One icon per (colour, number) pair, so markers keep the same icon object
+// across renders and Leaflet does not redraw them needlessly.
+const iconCache = new Map<string, L.DivIcon>();
+
+const markerIcon = (season: Season | null, number?: number) => {
+  const key = `${season ?? "all"}-${number ?? ""}`;
+  const cached = iconCache.get(key);
+  if (cached) return cached;
+  const color = season ? SEASON_COLORS[season] : ALL_YEAR_PIN;
+  const numbered = number !== undefined;
+  const size = numbered ? 28 : 24;
+  const icon = L.divIcon({
+    className: `acti-marker${numbered ? " acti-marker--numbered" : ""}`,
+    html: `<span style="background:${color.bg};color:${color.ink}">${numbered ? number : ""}</span>`,
+    iconSize: [size, size],
+    iconAnchor: [size / 2, size / 2],
+    popupAnchor: [0, -(size / 2 + 2)],
   });
-
-const MARKER_ICONS = Object.fromEntries(
-  SEASONS.map((season) => [season, markerIcon(season)]),
-) as Record<Season, L.DivIcon>;
-
-const ALL_YEAR_ICON = L.divIcon({
-  className: "acti-marker acti-marker--all-year",
-  html: "<span></span>",
-  iconSize: [24, 24],
-  iconAnchor: [12, 12],
-  popupAnchor: [0, -14],
-});
-
-// With a season filter, every pin takes that season's colour. Otherwise an
-// activity open all year gets a neutral pin, and a seasonal one the colour of
-// its first season in the logo's order.
-const markerIconFor = (activity: definitions["activity"], filter?: Season) => {
-  const seasons = SEASONS.filter((season) => activity.seasons?.includes(season));
-  if (filter && seasons.includes(filter)) return MARKER_ICONS[filter];
-  if (seasons.length === 0 || seasons.length === SEASONS.length) return ALL_YEAR_ICON;
-  return MARKER_ICONS[seasons[0]];
+  iconCache.set(key, icon);
+  return icon;
 };
 
-const Markers = ({ activities, locale, season }: MapProps & { season?: Season }) => {
+const Markers = ({
+  activities,
+  locale,
+  season,
+  markerNumbers,
+}: MapProps & { season?: Season; markerNumbers?: Record<string, number> }) => {
   const { t } = useTranslation("common");
   return (
     <>
@@ -163,7 +165,10 @@ const Markers = ({ activities, locale, season }: MapProps & { season?: Season })
         <Marker
           key={`marker-${activity.id ?? activity.slug}`}
           position={(activity.location as any) || MONTREAL_LOCATION}
-          icon={markerIconFor(activity, season)}
+          icon={markerIcon(
+            pinSeason(activity.seasons, season),
+            activity.slug ? markerNumbers?.[activity.slug] : undefined,
+          )}
           title={activity.name?.[locale]}
         >
           <Popup>
@@ -221,43 +226,40 @@ const FullscreenControl = () => {
 type MapComponentProps = {
   activities: definitions["activity"][];
   onBoundsChange?: (bounds: MapBounds) => void;
+  // Number shown inside each pin, by activity slug (matches the list order).
+  markerNumbers?: Record<string, number>;
   className?: string;
-  id?: string;
 };
 
 const MapComponent = (props: MapComponentProps) => {
   const router = useRouter();
-  const isMapPage = router.pathname === "/map";
   const isSplitView = props.className === "split-map";
 
-  const syncable = isMapPage || isSplitView;
-
   // Wait for router.query to be populated before mounting the map (query is empty on first render)
-  if (syncable && !router.isReady) return null;
+  if (isSplitView && !router.isReady) return null;
 
   const urlLat =
-    syncable && router.query.lat
+    isSplitView && router.query.lat
       ? parseFloat(router.query.lat as string)
       : null;
   const urlLng =
-    syncable && router.query.lng
+    isSplitView && router.query.lng
       ? parseFloat(router.query.lng as string)
       : null;
   const urlZoom =
-    syncable && router.query.zoom
+    isSplitView && router.query.zoom
       ? parseInt(router.query.zoom as string)
       : null;
 
   const centerLocation =
     urlLat != null && urlLng != null
       ? { lat: urlLat, lng: urlLng }
-      : !isMapPage && !isSplitView && props.activities.length > 0
+      : !isSplitView && props.activities.length > 0
         ? props.activities[0].location || MONTREAL_LOCATION
         : MONTREAL_LOCATION;
 
-  const resolvedClassName =
-    props.className || (!isMapPage ? "detail-map" : "map");
-  const zoom = urlZoom ?? (!isMapPage && !isSplitView ? 10 : 7);
+  const resolvedClassName = props.className || "detail-map";
+  const zoom = urlZoom ?? (isSplitView ? 7 : 10);
 
   return (
     <MapContainer
@@ -272,12 +274,13 @@ const MapComponent = (props: MapComponentProps) => {
         activities={props.activities}
         locale={router.locale as Locale}
         season={isSeason(router.query.season) ? router.query.season : undefined}
+        markerNumbers={props.markerNumbers}
       />
       {props.onBoundsChange && (
         <MapEventsHandler onBoundsChange={props.onBoundsChange} />
       )}
       {isSplitView && !urlLat && <FitBounds activities={props.activities} />}
-      {syncable && <UrlSync />}
+      {isSplitView && <UrlSync />}
     </MapContainer>
   );
 };

@@ -46,8 +46,7 @@
     "autumn": "automne"
   },
   "documentTitle": {
-    "index": "Actï - Activités au Québec",
-    "map": "Actï - Carte"
+    "index": "Actï - Activités au Québec"
   },
   "carbonFilter": "Émission de CO2 générée par l'activité",
   "carbonIcon": {
@@ -96,16 +95,12 @@
     "home": "Actï, accueil",
     "language": "Langue",
     "activities": "Activités",
-    "trips": "Voyages",
-    "map": "Carte"
+    "trips": "Voyages"
   },
   "home": {
-    "eyebrow": "{{count}} activités · 2 voyages lents · Québec",
     "titleBefore": "Qu’est-ce qu’on fait au Québec",
     "titleAfter": " ?",
-    "intro": "Des idées de sorties repérées par Carla et Alexis, de la luge à Petite-Rivière-Saint-François au rafting à Valcartier. Triées par saison, par budget et par empreinte carbone.",
     "pickSeason": "Choisir une saison",
-    "seasonCaption": "Les quatre pastilles du logo, une par saison.",
     "seasonCount_one": "{{count}} activité {{det}} {{season}}",
     "seasonCount_other": "{{count}} activités {{det}} {{season}}",
     "latest": "Les dernières ajoutées",

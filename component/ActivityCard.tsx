@@ -26,6 +26,9 @@ type Props = {
   locale: Locale;
   accent?: SeasonColor;
   compact?: boolean;
+  // Number of the activity's pin on the map, shown as a badge on the picture.
+  pinNumber?: number;
+  pinColor?: SeasonColor;
 };
 
 export const PriceLabel = ({ price }: { price: number }) => {
@@ -76,7 +79,7 @@ export const CarbonLabel = ({ carbon }: { carbon: number }) => {
   );
 };
 
-const ActivityCard = ({ activity, locale, accent, compact }: Props) => {
+const ActivityCard = ({ activity, locale, accent, compact, pinNumber, pinColor }: Props) => {
   const { t } = useTranslation("common");
   const firstSeason = activity.seasons?.find(isSeason);
   const fallback = accent ?? (firstSeason ? SEASON_COLORS[firstSeason] : SEASON_COLORS.winter);
@@ -131,6 +134,30 @@ const ActivityCard = ({ activity, locale, accent, compact }: Props) => {
             letterSpacing="-0.03em"
           >
             {name}
+          </Flex>
+        )}
+        {pinNumber !== undefined && (
+          <Flex
+            aria-hidden="true"
+            position="absolute"
+            top="10px"
+            left="10px"
+            w="30px"
+            h="30px"
+            align="center"
+            justify="center"
+            borderRadius="full"
+            border="2px solid"
+            borderColor="ink"
+            bg={pinColor?.bg ?? "white"}
+            color={pinColor?.ink ?? "ink"}
+            fontSize="13px"
+            fontWeight={800}
+            lineHeight={1}
+            boxShadow="0 2px 0 rgba(15, 46, 45, 0.3)"
+            sx={{ fontVariantNumeric: "tabular-nums" }}
+          >
+            {pinNumber}
           </Flex>
         )}
       </Box>

@@ -14,7 +14,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { BsMap, BsSearch, BsX } from "react-icons/bs";
 
 import ActivityCard from "../../component/ActivityCard";
@@ -22,7 +22,15 @@ import type { MapBounds } from "../../component/MapComponent";
 import type { Locale } from "../../component/NavbarComponent";
 import NewsletterComponent from "../../component/NewsletterComponent";
 import { buildTooltipDescription as priceDescription } from "../../component/PriceIconComponent";
-import { type SeasonColor, isSeason, SEASON_COLORS, SEASONS } from "../../component/seasons";
+import {
+  type Season,
+  type SeasonColor,
+  ALL_YEAR_PIN,
+  isSeason,
+  pinSeason,
+  SEASON_COLORS,
+  SEASONS,
+} from "../../component/seasons";
 import type { definitions } from "../../type/supabase";
 
 const MapWithNoSSR = dynamic(() => import("../../component/MapComponent"), {
@@ -91,6 +99,7 @@ const ActivityList = (props: {
   locale: Locale;
   isMapVisible: boolean;
   accent?: SeasonColor;
+  season?: Season | null;
 }) => {
   const { t } = useTranslation("common");
   if (!props.activities.length) {
@@ -114,15 +123,20 @@ const ActivityList = (props: {
       }
       gap={props.isMapVisible ? "32px 20px" : "40px 24px"}
     >
-      {props.activities.map((activity) => (
-        <ActivityCard
-          key={activity.slug}
-          activity={activity}
-          locale={props.locale}
-          accent={props.accent}
-          compact={props.isMapVisible}
-        />
-      ))}
+      {props.activities.map((activity, index) => {
+        const pinSeasonValue = pinSeason(activity.seasons, props.season);
+        return (
+          <ActivityCard
+            key={activity.slug}
+            activity={activity}
+            locale={props.locale}
+            accent={props.accent}
+            compact={props.isMapVisible}
+            pinNumber={props.isMapVisible ? index + 1 : undefined}
+            pinColor={pinSeasonValue ? SEASON_COLORS[pinSeasonValue] : ALL_YEAR_PIN}
+          />
+        );
+      })}
       <NewsletterActivity accent={props.accent} />
     </Grid>
   );
@@ -237,6 +251,15 @@ export default function Activities() {
       return !prev;
     });
   };
+
+  // Each pin shows the position of its activity in the list on the left.
+  const markerNumbers = useMemo(
+    () =>
+      Object.fromEntries(
+        filteredActivities.map((activity, index) => [activity.slug, index + 1]),
+      ),
+    [filteredActivities],
+  );
 
   const count = filteredActivities.length;
   const countLabel = showMap
@@ -466,6 +489,7 @@ export default function Activities() {
                     locale={locale}
                     isMapVisible={showMap}
                     accent={accent}
+                    season={selectedSeason}
                   />
                 </Flex>
               )}
@@ -477,6 +501,7 @@ export default function Activities() {
               <MapWithNoSSR
                 activities={allActivities}
                 onBoundsChange={handleBoundsChange}
+                markerNumbers={markerNumbers}
                 className="split-map"
               />
             </Box>

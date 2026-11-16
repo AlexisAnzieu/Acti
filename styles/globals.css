@@ -23,25 +23,6 @@ a {
   height: 95vh;
 }
 
-/* Full-screen map page: button back to the home page */
-.floating-button {
-  cursor: pointer;
-  position: fixed;
-  bottom: calc(20px + env(safe-area-inset-bottom, 0px));
-  right: calc(20px + env(safe-area-inset-right, 0px));
-  width: 56px;
-  height: 56px;
-  font-size: 24px;
-  background-color: #0F2E2D;
-  color: #F4F6F5;
-  border-radius: 50%;
-  box-shadow: 0 4px 12px rgba(15, 46, 45, 0.3);
-  z-index: 100;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 /* Activity page: map in its own frame */
 .detail-map {
   height: 100% !important;
@@ -112,6 +93,21 @@ a {
 
 .acti-marker--all-year span {
   background: #F4F6F5;
+}
+
+.acti-marker--numbered span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-width: 2px;
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
 }
 
 .leaflet-popup-content-wrapper {

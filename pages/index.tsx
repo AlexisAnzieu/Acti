@@ -28,7 +28,6 @@ import { fetchPublishedActivities } from "../helpers/activities";
 const PREVIEW_SIZE = 8;
 
 type Props = {
-  total: number;
   counts: Record<Season, number>;
   previews: Record<Season, ActivityPreview[]>;
   initialSeason: Season;
@@ -40,7 +39,7 @@ const container = {
   px: { base: 4, md: 12 },
 };
 
-export default function Home({ total, counts, previews, initialSeason }: Props) {
+export default function Home({ counts, previews, initialSeason }: Props) {
   const { t } = useTranslation("common");
   const router = useRouter();
   const locale = (router.locale as Locale) ?? "fr";
@@ -81,9 +80,6 @@ export default function Home({ total, counts, previews, initialSeason }: Props) 
         gap={{ base: "40px", md: "48px 64px" }}
       >
         <Flex direction="column" gap={7} flex="999 1 560px" minW={0}>
-          <Text fontSize="sm" fontWeight={600} letterSpacing="0.08em" textTransform="uppercase" color="muted">
-            {t("home.eyebrow", { count: total })}
-          </Text>
           <Heading
             as="h1"
             fontWeight={800}
@@ -95,6 +91,7 @@ export default function Home({ total, counts, previews, initialSeason }: Props) 
             {t("home.titleBefore")} {det}{" "}
             <Box
               as="mark"
+              display="inline-block"
               bg={color.bg}
               color={color.ink}
               px="0.12em"
@@ -106,16 +103,10 @@ export default function Home({ total, counts, previews, initialSeason }: Props) 
             </Box>
             {t("home.titleAfter")}
           </Heading>
-          <Text maxW="34em" fontSize={{ base: "17px", md: "19px" }} color="#3B5553">
-            {t("home.intro")}
-          </Text>
         </Flex>
 
         <Flex direction="column" align="center" gap={4} flex="1 1 320px">
           <SeasonPicker value={season} onChange={setSeason} counts={counts} />
-          <Text fontSize="13px" color="muted">
-            {t("home.seasonCaption")}
-          </Text>
         </Flex>
       </Flex>
 
@@ -128,8 +119,6 @@ export default function Home({ total, counts, previews, initialSeason }: Props) 
           align="center"
           gap="12px 16px"
           py={5}
-          borderTop="2px solid"
-          borderColor="ink"
           borderBottom="1px solid"
           borderBottomColor="line"
         >
@@ -298,7 +287,6 @@ export async function getStaticProps({ locale }: GetStaticPropsContext) {
   return {
     props: {
       ...(await serverSideTranslations(locale as Locale, ["common"])),
-      total: activities.length,
       counts,
       previews,
       initialSeason: seasonOfMonth(new Date().getMonth()),

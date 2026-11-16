@@ -22,3 +22,19 @@ export const seasonOfMonth = (month: number): Season => {
   if (month <= 7) return "summer";
   return "autumn";
 };
+
+// Colour of an activity's map pin. With a season filter, every pin takes that
+// season's colour. Otherwise an activity open all year gets a neutral pin
+// (null), and a seasonal one the colour of its first season in the logo's order.
+export const pinSeason = (
+  activitySeasons: readonly string[] | null | undefined,
+  filter?: Season | null,
+): Season | null => {
+  const seasons = SEASONS.filter((season) => activitySeasons?.includes(season));
+  if (filter && seasons.includes(filter)) return filter;
+  if (seasons.length === 0 || seasons.length === SEASONS.length) return null;
+  return seasons[0];
+};
+
+// Neutral pin for activities open all year.
+export const ALL_YEAR_PIN: SeasonColor = { bg: "#F4F6F5", ink: "#0F2E2D" };
