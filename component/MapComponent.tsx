@@ -1,4 +1,3 @@
-import "leaflet-fullscreen";
 import "leaflet-fullscreen/dist/leaflet.fullscreen.css";
 
 import { Box, Flex, Link as ChakraLink } from "@chakra-ui/react";
@@ -20,6 +19,10 @@ import type { definitions } from "../type/supabase";
 import { CarbonLabel, PriceLabel } from "./ActivityCard";
 import type { Locale } from "./NavbarComponent";
 import { type Season, isSeason, SEASON_COLORS, SEASONS } from "./seasons";
+
+// leaflet-fullscreen reads the global `L` set by Leaflet, so it must load after it.
+// A plain import would be moved above Leaflet by the import sorter.
+require("leaflet-fullscreen");
 
 const MONTREAL_LOCATION = { lat: 45.524184, lng: -73.581435 };
 
@@ -130,18 +133,26 @@ const markerIcon = (season: Season) =>
     popupAnchor: [0, -14],
   });
 
-const MARKER_ICONS = SEASONS.reduce(
-  (icons, season) => ({ ...icons, [season]: markerIcon(season) }),
-  {} as Record<Season, L.DivIcon>,
-);
+const MARKER_ICONS = Object.fromEntries(
+  SEASONS.map((season) => [season, markerIcon(season)]),
+) as Record<Season, L.DivIcon>;
 
-// Colour each pin with the season being filtered, or the activity's first season.
-const markerSeason = (
-  activity: definitions["activity"],
-  preferred?: Season,
-): Season => {
-  if (preferred && activity.seasons?.includes(preferred)) return preferred;
-  return activity.seasons?.find(isSeason) ?? "winter";
+const ALL_YEAR_ICON = L.divIcon({
+  className: "acti-marker acti-marker--all-year",
+  html: "<span></span>",
+  iconSize: [24, 24],
+  iconAnchor: [12, 12],
+  popupAnchor: [0, -14],
+});
+
+// With a season filter, every pin takes that season's colour. Otherwise an
+// activity open all year gets a neutral pin, and a seasonal one the colour of
+// its first season in the logo's order.
+const markerIconFor = (activity: definitions["activity"], filter?: Season) => {
+  const seasons = SEASONS.filter((season) => activity.seasons?.includes(season));
+  if (filter && seasons.includes(filter)) return MARKER_ICONS[filter];
+  if (seasons.length === 0 || seasons.length === SEASONS.length) return ALL_YEAR_ICON;
+  return MARKER_ICONS[seasons[0]];
 };
 
 const Markers = ({ activities, locale, season }: MapProps & { season?: Season }) => {
@@ -152,7 +163,7 @@ const Markers = ({ activities, locale, season }: MapProps & { season?: Season })
         <Marker
           key={`marker-${activity.id ?? activity.slug}`}
           position={(activity.location as any) || MONTREAL_LOCATION}
-          icon={MARKER_ICONS[markerSeason(activity, season)]}
+          icon={markerIconFor(activity, season)}
           title={activity.name?.[locale]}
         >
           <Popup>

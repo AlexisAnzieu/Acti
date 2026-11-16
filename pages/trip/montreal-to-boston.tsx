@@ -998,6 +998,7 @@ export default function Trip({ lang }: any) {
               textAlign={"justify"}
             >
               <Avatar
+                ignoreFallback
                 size={"2xl"}
                 mr={4}
                 style={{ float: "left" }}
@@ -1036,6 +1037,7 @@ export default function Trip({ lang }: any) {
               textAlign={"justify"}
             >
               <Avatar
+                ignoreFallback
                 size={"2xl"}
                 mr={4}
                 style={{ float: "left" }}
@@ -2102,6 +2104,7 @@ export default function Trip({ lang }: any) {
               textAlign={"justify"}
             >
               <Avatar
+                ignoreFallback
                 size={"2xl"}
                 mr={4}
                 style={{ float: "left" }}
@@ -2143,6 +2146,7 @@ export default function Trip({ lang }: any) {
               textAlign={"justify"}
             >
               <Avatar
+                ignoreFallback
                 size={"2xl"}
                 mr={4}
                 style={{ float: "left" }}

@@ -110,6 +110,10 @@ a {
   box-shadow: 0 2px 0 rgba(15, 46, 45, 0.3);
 }
 
+.acti-marker--all-year span {
+  background: #F4F6F5;
+}
+
 .leaflet-popup-content-wrapper {
   border-radius: 14px;
   font-family: var(--font-body), system-ui, sans-serif;
@@ -117,6 +121,10 @@ a {
 
 .leaflet-popup-content {
   margin: 16px 18px;
+}
+
+.leaflet-container .leaflet-popup-content a {
+  color: #0F2E2D;
 }
 
 /* Trip stories: serpentine timeline, coloured like the trip card */
@@ -244,6 +252,7 @@ a {
 @media screen and (max-width: 600px) {
   .info {
     padding: 16px 18px;
+    text-align: left;
   }
 
   .card:nth-child(odd) > .info > .title::before {

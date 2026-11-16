@@ -208,6 +208,7 @@ As for the experience itself, I can only recommend it—at least once in a lifet
               mb={10}
             >
               <Avatar
+                ignoreFallback
                 size={"2xl"}
                 name={r.name}
                 src={r.avatar}
