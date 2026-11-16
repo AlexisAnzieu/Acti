@@ -90,5 +90,85 @@
       "success": "We'll keep you in touch for any new activities.",
       "error": "Please send an email to contact@h2t.club is the issue persists."
     }
+  },
+  "nav": {
+    "main": "Main",
+    "home": "Actï, home",
+    "language": "Language",
+    "activities": "Activities",
+    "trips": "Trips",
+    "map": "Map"
+  },
+  "home": {
+    "eyebrow": "{{count}} activities · 2 slow trips · Québec",
+    "titleBefore": "What should we do in Québec",
+    "titleAfter": "?",
+    "intro": "Outing ideas found by Carla and Alexis, from sledding in Petite-Rivière-Saint-François to rafting in Valcartier. Sorted by season, budget and carbon footprint.",
+    "pickSeason": "Pick a season",
+    "seasonCaption": "The four dots of the logo, one per season.",
+    "seasonCount_one": "{{count}} activity {{det}} {{season}}",
+    "seasonCount_other": "{{count}} activities {{det}} {{season}}",
+    "latest": "Latest additions",
+    "seeAll": "See all {{count}} activities",
+    "searchPlaceholder": "Ski, spa, sugar shack…",
+    "searchSubmit": "Search",
+    "seeMap": "See on the map",
+    "aboutTitle": "Who we are",
+    "aboutText": "A young couple, Carla and Alexis, roaming Québec in search of original activities. Our friends kept asking us for ideas, so we gathered them all here.",
+    "sourceCode": "The code is open on GitHub",
+    "newsletterTitle": "Get our next find by email"
+  },
+  "seasonDet": {
+    "winter": "this",
+    "spring": "this",
+    "summer": "this",
+    "autumn": "this"
+  },
+  "tripsSection": {
+    "title": "Slow trips",
+    "intro": "Travel without flying, one week at a time. Two itineraries told day by day.",
+    "day": "Day {{n}}"
+  },
+  "tripsMeta": {
+    "boston": "By bike · 7 days · 650 km",
+    "bostonStops": "Knowlton, Jeffersonville, Warren, Killington, Newbury, Merrimack.",
+    "transcanadian": "By train · 4 days"
+  },
+  "budget": {
+    "label": "Max budget",
+    "free": "Free"
+  },
+  "carbonLabel": {
+    "0": "Heavy impact",
+    "1": "High impact",
+    "2": "Low impact",
+    "3": "No impact"
+  },
+  "carbonSelect": {
+    "all": "Any",
+    "low": "Low or no impact",
+    "none": "No impact only"
+  },
+  "kidsWelcome": "Kids welcome",
+  "withKids": "With kids",
+  "activitiesCount_one": "{{count}} activity",
+  "activitiesCount_other": "{{count}} activities",
+  "allSeasons": "All",
+  "backToActivities": "All activities",
+  "activityPage": {
+    "experience": "Our experience",
+    "writtenAgo": "Written {{ago}}",
+    "budget": "Budget",
+    "kids": "Kids",
+    "kidsYes": "Welcome",
+    "kidsNo": "Better for adults",
+    "address": "Address",
+    "contact": "Contact",
+    "website": "Website",
+    "carbon": "Carbon",
+    "seeDetails": "See details"
+  },
+  "footer": {
+    "partOf": "Actï is part of h2t.club"
   }
 }

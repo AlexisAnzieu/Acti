@@ -27,7 +27,7 @@ export const Day1Content = () => (
               borderRadius: "50px",
               px: "2",
               py: "1",
-              bg: "orange.100",
+              bg: "highlight.train",
               textDecoration: "underline",
               cursor: "pointer",
             }}
@@ -51,7 +51,7 @@ export const Day1Content = () => (
               borderRadius: "50px",
               px: "2",
               py: "1",
-              bg: "orange.100",
+              bg: "highlight.train",
               textDecoration: "underline",
               cursor: "pointer",
             }}
@@ -70,7 +70,7 @@ export const Day1Content = () => (
               borderRadius: "50px",
               px: "2",
               py: "1",
-              bg: "orange.100",
+              bg: "highlight.train",
               textDecoration: "underline",
               cursor: "pointer",
             }}
@@ -97,7 +97,7 @@ export const Day1Content = () => (
               borderRadius: "50px",
               px: "2",
               py: "1",
-              bg: "orange.100",
+              bg: "highlight.train",
               textDecoration: "underline",
               cursor: "pointer",
             }}
@@ -130,7 +130,7 @@ export const Day1Content = () => (
               borderRadius: "50px",
               px: "2",
               py: "1",
-              bg: "orange.100",
+              bg: "highlight.train",
               textDecoration: "underline",
               cursor: "pointer",
             }}
@@ -184,7 +184,7 @@ export const Day1Content = () => (
               borderRadius: "50px",
               px: "2",
               py: "1",
-              bg: "orange.100",
+              bg: "highlight.train",
               textDecoration: "underline",
               cursor: "pointer",
             }}
@@ -224,7 +224,7 @@ export const Day1Content = () => (
               borderRadius: "50px",
               px: "2",
               py: "1",
-              bg: "orange.100",
+              bg: "highlight.train",
               textDecoration: "underline",
               cursor: "pointer",
             }}
@@ -244,7 +244,7 @@ export const Day1Content = () => (
               borderRadius: "50px",
               px: "2",
               py: "1",
-              bg: "orange.100",
+              bg: "highlight.train",
               textDecoration: "underline",
               cursor: "pointer",
             }}

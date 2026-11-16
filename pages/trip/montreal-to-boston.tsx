@@ -2,7 +2,6 @@
 import {
   Avatar,
   Box,
-  Button,
   Center,
   Container,
   Divider,
@@ -12,19 +11,18 @@ import {
 } from "@chakra-ui/react";
 import { GetStaticPropsContext } from "next";
 import Head from "next/head";
-import Link from "next/link";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { FaArrowLeft } from "react-icons/fa";
 import { Tooltip } from "react-tooltip";
 
 import { Locale } from "../../component/NavbarComponent";
+import StoryHero from "../../component/StoryHero";
 
 export default function Trip({ lang }: any) {
   const { t } = useTranslation("common");
   if (lang === "en") {
     return (
-      <Box>
+      <Box className="story story--bike">
         <Head>
           <title>Happy coincidence</title>
           <meta
@@ -38,22 +36,13 @@ export default function Trip({ lang }: any) {
             content="/images/bostontrip/cover4.JPG"
           />
         </Head>
-        {/* Back to trips button */}
-        <Box maxWidth="800px" margin="2rem auto 0" textAlign="left">
-          <Link href="/trip" passHref legacyBehavior>
-            <Button
-              as="a"
-              colorScheme="teal"
-              variant="outline"
-              mb={6}
-              ml="1rem"
-              leftIcon={<FaArrowLeft />}
-            >
-              {t("trips.transcanadian.backToTrips", "Back to Trips")}
-            </Button>
-          </Link>
-        </Box>
-        <Container maxW={1000} mb={100}>
+        <StoryHero
+          tone="bike"
+          eyebrow={t("tripsMeta.boston")}
+          title="Happy coincidences"
+          subtitle="From Montreal to Boston, the story of a joyful cycling odyssey."
+        />
+        <Container maxW={1000} mb={100} mt={12}>
           <Tooltip
             place="left"
             opacity={1}
@@ -75,23 +64,9 @@ export default function Trip({ lang }: any) {
               />
             )}
           />
-          <Box marginTop={30} textAlign={"center"}>
-            <Center>
-              {" "}
-              <Heading fontFamily={"autography"} fontSize={85} mb={10}>
-                {" "}
-                Happy coincidences
-              </Heading>
-            </Center>
-            <Center>
-              {" "}
-              <Heading fontStyle={"italic"} size="l">
-                {" "}
-                From Montreal to Boston, the story of a joyful cycling odyssey.
-              </Heading>
-            </Center>
+          <Box>
 
-            <Text mt={"35px"} lineHeight={"25px"} textAlign={"justify"}>
+            <Text lineHeight={1.7} fontSize="18px" textAlign={"justify"}>
               It was only two weeks before our departure that we realized what
               awaited us: 650 kilometers and 4000 meters of positive elevation
               gain, all in 6 days. In a moment of clarity, we asked ChatGPT to
@@ -121,7 +96,7 @@ export default function Trip({ lang }: any) {
                           borderRadius: "50px",
                           px: "2",
                           py: "1",
-                          bg: "green.100",
+                          bg: "highlight.bike",
                         }}
                       >
                         Day 1 (Montréal - Knowlton)
@@ -143,7 +118,7 @@ export default function Trip({ lang }: any) {
                           borderRadius: "50px",
                           px: "2",
                           py: "1",
-                          bg: "green.100",
+                          bg: "highlight.bike",
                         }}
                       >
                         A stop in Chambly
@@ -163,7 +138,7 @@ export default function Trip({ lang }: any) {
                           borderRadius: "50px",
                           px: "2",
                           py: "1",
-                          bg: "green.100",
+                          bg: "highlight.bike",
                         }}
                       >
                         our first lunch
@@ -204,7 +179,7 @@ export default function Trip({ lang }: any) {
                           borderRadius: "50px",
                           px: "2",
                           py: "1",
-                          bg: "green.100",
+                          bg: "highlight.bike",
                         }}
                       >
                         Day 2 (Knowlton - Jeffersonville)
@@ -226,7 +201,7 @@ export default function Trip({ lang }: any) {
                           borderRadius: "50px",
                           px: "2",
                           py: "1",
-                          bg: "green.100",
+                          bg: "highlight.bike",
                         }}
                       >
                         accompanied by oat milk cappuccino
@@ -257,7 +232,7 @@ export default function Trip({ lang }: any) {
                           borderRadius: "50px",
                           px: "2",
                           py: "1",
-                          bg: "green.100",
+                          bg: "highlight.bike",
                         }}
                       >
                         we cross the border
@@ -287,7 +262,7 @@ export default function Trip({ lang }: any) {
                           borderRadius: "50px",
                           px: "2",
                           py: "1",
-                          bg: "green.100",
+                          bg: "highlight.bike",
                         }}
                       >
                         Here we are devouring
@@ -311,7 +286,7 @@ export default function Trip({ lang }: any) {
                           borderRadius: "50px",
                           px: "2",
                           py: "1",
-                          bg: "green.100",
+                          bg: "highlight.bike",
                         }}
                       >
                         by a trail dedicated
@@ -333,7 +308,7 @@ export default function Trip({ lang }: any) {
                           borderRadius: "50px",
                           px: "2",
                           py: "1",
-                          bg: "green.100",
+                          bg: "highlight.bike",
                         }}
                       >
                         A trail dotted with small gravel
@@ -361,7 +336,7 @@ export default function Trip({ lang }: any) {
                           borderRadius: "50px",
                           px: "2",
                           py: "1",
-                          bg: "green.100",
+                          bg: "highlight.bike",
                         }}
                       >
                         Day 3 (Jeffersonville - Warren)
@@ -384,7 +359,7 @@ export default function Trip({ lang }: any) {
                           borderRadius: "50px",
                           px: "2",
                           py: "1",
-                          bg: "green.100",
+                          bg: "highlight.bike",
                         }}
                       >
                         old railway bridges
@@ -403,7 +378,7 @@ export default function Trip({ lang }: any) {
                           borderRadius: "50px",
                           px: "2",
                           py: "1",
-                          bg: "green.100",
+                          bg: "highlight.bike",
                         }}
                       >
                         the endless green mountains;
@@ -425,7 +400,7 @@ export default function Trip({ lang }: any) {
                           borderRadius: "50px",
                           px: "2",
                           py: "1",
-                          bg: "green.100",
+                          bg: "highlight.bike",
                         }}
                       >
                         the emergency lane
@@ -450,7 +425,7 @@ export default function Trip({ lang }: any) {
                           borderRadius: "50px",
                           px: "2",
                           py: "1",
-                          bg: "green.100",
+                          bg: "highlight.bike",
                         }}
                       >
                         starts to snore.
@@ -486,7 +461,7 @@ export default function Trip({ lang }: any) {
                           borderRadius: "50px",
                           px: "2",
                           py: "1",
-                          bg: "green.100",
+                          bg: "highlight.bike",
                         }}
                       >
                         to change the inner tube
@@ -512,7 +487,7 @@ export default function Trip({ lang }: any) {
                           borderRadius: "50px",
                           px: "2",
                           py: "1",
-                          bg: "green.100",
+                          bg: "highlight.bike",
                         }}
                       >
                         Day 4 (Warren - Killington)
@@ -534,7 +509,7 @@ export default function Trip({ lang }: any) {
                           borderRadius: "50px",
                           px: "2",
                           py: "1",
-                          bg: "green.100",
+                          bg: "highlight.bike",
                         }}
                       >
                         the first drops fall, oh joy!
@@ -556,7 +531,7 @@ export default function Trip({ lang }: any) {
                           borderRadius: "50px",
                           px: "2",
                           py: "1",
-                          bg: "green.100",
+                          bg: "highlight.bike",
                         }}
                       >
                         a magical atmosphere
@@ -579,7 +554,7 @@ export default function Trip({ lang }: any) {
                           borderRadius: "50px",
                           px: "2",
                           py: "1",
-                          bg: "green.100",
+                          bg: "highlight.bike",
                         }}
                       >
                         a true treasure trove.
@@ -604,7 +579,7 @@ export default function Trip({ lang }: any) {
                           borderRadius: "50px",
                           px: "2",
                           py: "1",
-                          bg: "green.100",
+                          bg: "highlight.bike",
                         }}
                       >
                         We watch as cyclists
@@ -634,7 +609,7 @@ export default function Trip({ lang }: any) {
                           borderRadius: "50px",
                           px: "2",
                           py: "1",
-                          bg: "green.100",
+                          bg: "highlight.bike",
                         }}
                       >
                         a semi-gourmet restaurant
@@ -660,7 +635,7 @@ export default function Trip({ lang }: any) {
                           borderRadius: "50px",
                           px: "2",
                           py: "1",
-                          bg: "green.100",
+                          bg: "highlight.bike",
                         }}
                       >
                         Day 5 (Killington - Newburry)
@@ -684,7 +659,7 @@ export default function Trip({ lang }: any) {
                           borderRadius: "50px",
                           px: "2",
                           py: "1",
-                          bg: "green.100",
+                          bg: "highlight.bike",
                         }}
                       >
                         dotted with lakes,
@@ -737,7 +712,7 @@ export default function Trip({ lang }: any) {
                           borderRadius: "50px",
                           px: "2",
                           py: "1",
-                          bg: "green.100",
+                          bg: "highlight.bike",
                         }}
                       >
                         in the parking lot.
@@ -756,7 +731,7 @@ export default function Trip({ lang }: any) {
                           borderRadius: "50px",
                           px: "2",
                           py: "1",
-                          bg: "green.100",
+                          bg: "highlight.bike",
                         }}
                       >
                         old railway bridge
@@ -800,7 +775,7 @@ export default function Trip({ lang }: any) {
                           borderRadius: "50px",
                           px: "2",
                           py: "1",
-                          bg: "green.100",
+                          bg: "highlight.bike",
                         }}
                       >
                         Day 6 (Newburry - Merrimack)
@@ -837,7 +812,7 @@ export default function Trip({ lang }: any) {
                           borderRadius: "50px",
                           px: "2",
                           py: "1",
-                          bg: "green.100",
+                          bg: "highlight.bike",
                         }}
                       >
                         the most polluted city in the world that day.
@@ -859,7 +834,7 @@ export default function Trip({ lang }: any) {
                           borderRadius: "50px",
                           px: "2",
                           py: "1",
-                          bg: "green.100",
+                          bg: "highlight.bike",
                         }}
                       >
                         a sign warning of danger
@@ -877,7 +852,7 @@ export default function Trip({ lang }: any) {
                           borderRadius: "50px",
                           px: "2",
                           py: "1",
-                          bg: "green.100",
+                          bg: "highlight.bike",
                         }}
                       >
                         a beautiful regional park
@@ -923,7 +898,7 @@ export default function Trip({ lang }: any) {
                           borderRadius: "50px",
                           px: "2",
                           py: "1",
-                          bg: "green.100",
+                          bg: "highlight.bike",
                         }}
                       >
                         Day 7 (Merrimack - Boston)
@@ -946,7 +921,7 @@ export default function Trip({ lang }: any) {
                           borderRadius: "50px",
                           px: "2",
                           py: "1",
-                          bg: "green.100",
+                          bg: "highlight.bike",
                         }}
                       >
                         industrial areas
@@ -968,7 +943,7 @@ export default function Trip({ lang }: any) {
                           borderRadius: "50px",
                           px: "2",
                           py: "1",
-                          bg: "green.100",
+                          bg: "highlight.bike",
                         }}
                       >
                         we have to dismount,
@@ -994,7 +969,7 @@ export default function Trip({ lang }: any) {
                           borderRadius: "50px",
                           px: "2",
                           py: "1",
-                          bg: "green.100",
+                          bg: "highlight.bike",
                         }}
                       >
                         the buildings grow
@@ -1014,7 +989,7 @@ export default function Trip({ lang }: any) {
           <Box marginTop={30}>
             <Center mb={10}>
               {" "}
-              <Heading size="xl">Reflections</Heading>
+              <Heading as="h2" fontWeight={800} fontSize={{ base: "32px", md: "44px" }}>Reflections</Heading>
             </Center>
             <Text
               my={10}
@@ -1096,7 +1071,7 @@ export default function Trip({ lang }: any) {
 
   if (lang === "fr") {
     return (
-      <Box>
+      <Box className="story story--bike">
         <Head>
           <title>Heureux hasards</title>
           <meta
@@ -1110,21 +1085,13 @@ export default function Trip({ lang }: any) {
             content="/images/bostontrip/cover4.JPG"
           />
         </Head>
-        {/* Back to trips button */}
-        <Box maxWidth="800px" margin="2rem auto 0" textAlign="left">
-          <Link href="/trip" passHref legacyBehavior>
-            <Button
-              as="a"
-              colorScheme="teal"
-              variant="outline"
-              mb={6}
-              leftIcon={<FaArrowLeft />}
-            >
-              {t("trips.transcanadian.backToTrips")}
-            </Button>
-          </Link>
-        </Box>
-        <Container maxW={1000} mb={100}>
+        <StoryHero
+          tone="bike"
+          eyebrow={t("tripsMeta.boston")}
+          title="Heureux hasards"
+          subtitle="De Montréal à Boston, récit d’une joyeuse odyssée cyclotouristique."
+        />
+        <Container maxW={1000} mb={100} mt={12}>
           <Tooltip
             place="left"
             opacity={1}
@@ -1146,24 +1113,9 @@ export default function Trip({ lang }: any) {
               />
             )}
           />
-          <Box marginTop={30} textAlign={"center"}>
-            <Center>
-              {" "}
-              <Heading fontFamily={"autography"} fontSize={100} mb={10}>
-                {" "}
-                Heureux hasards
-              </Heading>
-            </Center>
-            <Center>
-              {" "}
-              <Heading fontStyle={"italic"} size="l">
-                {" "}
-                De Montréal à Boston, récit d’une joyeuse odyssée
-                cyclotouristique.
-              </Heading>
-            </Center>
+          <Box>
 
-            <Text mt={"35px"} lineHeight={"25px"} textAlign={"justify"}>
+            <Text lineHeight={1.7} fontSize="18px" textAlign={"justify"}>
               Ce n’est que deux semaines précédant notre départ que nous
               réalisâmes ce qui nous attendait : 650 kilomètres et 4000 mètres
               de dénivelé positif, le tout en 6 jours. Dans un éclair de
@@ -1195,7 +1147,7 @@ export default function Trip({ lang }: any) {
                         borderRadius: "50px",
                         px: "2",
                         py: "1",
-                        bg: "green.100",
+                        bg: "highlight.bike",
                       }}
                     >
                       Jour 1 (Montréal - Knowlton)
@@ -1218,7 +1170,7 @@ export default function Trip({ lang }: any) {
                         borderRadius: "50px",
                         px: "2",
                         py: "1",
-                        bg: "green.100",
+                        bg: "highlight.bike",
                       }}
                     >
                       Un arrêt à Chambly
@@ -1238,7 +1190,7 @@ export default function Trip({ lang }: any) {
                         borderRadius: "50px",
                         px: "2",
                         py: "1",
-                        bg: "green.100",
+                        bg: "highlight.bike",
                       }}
                     >
                       notre premier déjeuner
@@ -1284,7 +1236,7 @@ export default function Trip({ lang }: any) {
                         borderRadius: "50px",
                         px: "2",
                         py: "1",
-                        bg: "green.100",
+                        bg: "highlight.bike",
                       }}
                     >
                       Jour 2 (Knowlton - Jeffersonville)
@@ -1307,7 +1259,7 @@ export default function Trip({ lang }: any) {
                         borderRadius: "50px",
                         px: "2",
                         py: "1",
-                        bg: "green.100",
+                        bg: "highlight.bike",
                       }}
                     >
                       accompagné de son cappuccino
@@ -1341,7 +1293,7 @@ export default function Trip({ lang }: any) {
                         borderRadius: "50px",
                         px: "2",
                         py: "1",
-                        bg: "green.100",
+                        bg: "highlight.bike",
                       }}
                     >
                       nous franchissons la frontière
@@ -1374,7 +1326,7 @@ export default function Trip({ lang }: any) {
                         borderRadius: "50px",
                         px: "2",
                         py: "1",
-                        bg: "green.100",
+                        bg: "highlight.bike",
                       }}
                     >
                       Nous voici en train de dévorer
@@ -1398,7 +1350,7 @@ export default function Trip({ lang }: any) {
                         borderRadius: "50px",
                         px: "2",
                         py: "1",
-                        bg: "green.100",
+                        bg: "highlight.bike",
                       }}
                     >
                       d’un sentier dédié
@@ -1421,7 +1373,7 @@ export default function Trip({ lang }: any) {
                         borderRadius: "50px",
                         px: "2",
                         py: "1",
-                        bg: "green.100",
+                        bg: "highlight.bike",
                       }}
                     >
                       Un sentier parsemé de petits graviers
@@ -1450,7 +1402,7 @@ export default function Trip({ lang }: any) {
                         borderRadius: "50px",
                         px: "2",
                         py: "1",
-                        bg: "green.100",
+                        bg: "highlight.bike",
                       }}
                     >
                       Jour 3 (Jeffersonville - Warren)
@@ -1474,7 +1426,7 @@ export default function Trip({ lang }: any) {
                         borderRadius: "50px",
                         px: "2",
                         py: "1",
-                        bg: "green.100",
+                        bg: "highlight.bike",
                       }}
                     >
                       d’anciens ponts ferroviaires
@@ -1493,7 +1445,7 @@ export default function Trip({ lang }: any) {
                         borderRadius: "50px",
                         px: "2",
                         py: "1",
-                        bg: "green.100",
+                        bg: "highlight.bike",
                       }}
                     >
                       des monts verdoyants à perte de vue,
@@ -1517,7 +1469,7 @@ export default function Trip({ lang }: any) {
                         borderRadius: "50px",
                         px: "2",
                         py: "1",
-                        bg: "green.100",
+                        bg: "highlight.bike",
                       }}
                     >
                       la bande d’arrêt d’urgence
@@ -1544,7 +1496,7 @@ export default function Trip({ lang }: any) {
                         borderRadius: "50px",
                         px: "2",
                         py: "1",
-                        bg: "green.100",
+                        bg: "highlight.bike",
                       }}
                     >
                       commence d’ailleurs à ronfler.
@@ -1582,7 +1534,7 @@ export default function Trip({ lang }: any) {
                         borderRadius: "50px",
                         px: "2",
                         py: "1",
-                        bg: "green.100",
+                        bg: "highlight.bike",
                       }}
                     >
                       changer la chambre à air
@@ -1609,7 +1561,7 @@ export default function Trip({ lang }: any) {
                         borderRadius: "50px",
                         px: "2",
                         py: "1",
-                        bg: "green.100",
+                        bg: "highlight.bike",
                       }}
                     >
                       Jour 4 (Warren - Killington)
@@ -1633,7 +1585,7 @@ export default function Trip({ lang }: any) {
                         borderRadius: "50px",
                         px: "2",
                         py: "1",
-                        bg: "green.100",
+                        bg: "highlight.bike",
                       }}
                     >
                       les premières gouttes tombent, ô joie !
@@ -1655,7 +1607,7 @@ export default function Trip({ lang }: any) {
                         borderRadius: "50px",
                         px: "2",
                         py: "1",
-                        bg: "green.100",
+                        bg: "highlight.bike",
                       }}
                     >
                       une atmosphère féerique
@@ -1680,7 +1632,7 @@ export default function Trip({ lang }: any) {
                         borderRadius: "50px",
                         px: "2",
                         py: "1",
-                        bg: "green.100",
+                        bg: "highlight.bike",
                       }}
                     >
                       une vraie caverne d’Ali Baba.
@@ -1705,7 +1657,7 @@ export default function Trip({ lang }: any) {
                         borderRadius: "50px",
                         px: "2",
                         py: "1",
-                        bg: "green.100",
+                        bg: "highlight.bike",
                       }}
                     >
                       Nous observons les cyclistes
@@ -1737,7 +1689,7 @@ export default function Trip({ lang }: any) {
                         borderRadius: "50px",
                         px: "2",
                         py: "1",
-                        bg: "green.100",
+                        bg: "highlight.bike",
                       }}
                     >
                       un restaurant semi-gastronomique
@@ -1764,7 +1716,7 @@ export default function Trip({ lang }: any) {
                         borderRadius: "50px",
                         px: "2",
                         py: "1",
-                        bg: "green.100",
+                        bg: "highlight.bike",
                       }}
                     >
                       Jour 5 (Killington - Newburry)
@@ -1789,7 +1741,7 @@ export default function Trip({ lang }: any) {
                         borderRadius: "50px",
                         px: "2",
                         py: "1",
-                        bg: "green.100",
+                        bg: "highlight.bike",
                       }}
                     >
                       parsemés de lacs,
@@ -1848,7 +1800,7 @@ export default function Trip({ lang }: any) {
                         borderRadius: "50px",
                         px: "2",
                         py: "1",
-                        bg: "green.100",
+                        bg: "highlight.bike",
                       }}
                     >
                       sur le parking.
@@ -1869,7 +1821,7 @@ export default function Trip({ lang }: any) {
                         borderRadius: "50px",
                         px: "2",
                         py: "1",
-                        bg: "green.100",
+                        bg: "highlight.bike",
                       }}
                     >
                       ancien pont ferroviaire
@@ -1914,7 +1866,7 @@ export default function Trip({ lang }: any) {
                         borderRadius: "50px",
                         px: "2",
                         py: "1",
-                        bg: "green.100",
+                        bg: "highlight.bike",
                       }}
                     >
                       Jour 6 (Newburry - Merrimack)
@@ -1954,7 +1906,7 @@ export default function Trip({ lang }: any) {
                         borderRadius: "50px",
                         px: "2",
                         py: "1",
-                        bg: "green.100",
+                        bg: "highlight.bike",
                       }}
                     >
                       la ville la plus polluée au monde.
@@ -1977,7 +1929,7 @@ export default function Trip({ lang }: any) {
                         borderRadius: "50px",
                         px: "2",
                         py: "1",
-                        bg: "green.100",
+                        bg: "highlight.bike",
                       }}
                     >
                       une pancarte présageant un danger
@@ -1995,7 +1947,7 @@ export default function Trip({ lang }: any) {
                         borderRadius: "50px",
                         px: "2",
                         py: "1",
-                        bg: "green.100",
+                        bg: "highlight.bike",
                       }}
                     >
                       un magnifique parc régional
@@ -2044,7 +1996,7 @@ export default function Trip({ lang }: any) {
                         borderRadius: "50px",
                         px: "2",
                         py: "1",
-                        bg: "green.100",
+                        bg: "highlight.bike",
                       }}
                     >
                       Jour 7 (Merrimack - Boston)
@@ -2068,7 +2020,7 @@ export default function Trip({ lang }: any) {
                         borderRadius: "50px",
                         px: "2",
                         py: "1",
-                        bg: "green.100",
+                        bg: "highlight.bike",
                       }}
                     >
                       les zones industrielles
@@ -2091,7 +2043,7 @@ export default function Trip({ lang }: any) {
                         borderRadius: "50px",
                         px: "2",
                         py: "1",
-                        bg: "green.100",
+                        bg: "highlight.bike",
                       }}
                     >
                       nous devons mettre le pied à terre,
@@ -2121,7 +2073,7 @@ export default function Trip({ lang }: any) {
                         borderRadius: "50px",
                         px: "2",
                         py: "1",
-                        bg: "green.100",
+                        bg: "highlight.bike",
                       }}
                     >
                       les bâtiments grandissent
@@ -2141,7 +2093,7 @@ export default function Trip({ lang }: any) {
           <Box marginTop={30}>
             <Center mb={10}>
               {" "}
-              <Heading size="xl">Rétrospectives</Heading>
+              <Heading as="h2" fontWeight={800} fontSize={{ base: "32px", md: "44px" }}>Rétrospectives</Heading>
             </Center>
             <Text
               my={10}

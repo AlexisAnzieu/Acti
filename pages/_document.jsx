@@ -5,7 +5,7 @@ import theme from "../theme";
 export default class Document extends NextDocument {
     render() {
         return (
-            <Html lang="en">
+            <Html lang={this.props.locale ?? "fr"}>
                 <Head>
                     <link rel="shortcut icon" href="/favicon.png" />
                     <link

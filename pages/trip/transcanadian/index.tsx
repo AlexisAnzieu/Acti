@@ -2,7 +2,6 @@
 import {
   Avatar,
   Box,
-  Button,
   Container,
   Divider,
   Heading,
@@ -11,14 +10,13 @@ import {
 import { useMediaQuery } from "@chakra-ui/react";
 import { GetStaticPropsContext } from "next";
 import Head from "next/head";
-import Link from "next/link";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useEffect, useState } from "react";
-import { FaArrowLeft } from "react-icons/fa";
 import { Tooltip } from "react-tooltip";
 
 import { Locale } from "../../../component/NavbarComponent";
+import StoryHero from "../../../component/StoryHero";
 import LazyTooltipImage from "../../../components/LazyTooltipImage";
 import { getTransCanadianContent } from "../../../content/trip/transcanadian/";
 
@@ -89,7 +87,7 @@ As for the experience itself, I can only recommend it—at least once in a lifet
   ];
 
   return (
-    <Box width="100%" maxWidth="100%" overflowX="hidden">
+    <Box className="story story--train" width="100%" maxWidth="100%" overflowX="hidden">
       <Head>
         <title>{currentContent.title}</title>
         <meta name="description" content={currentContent.subtitle} />
@@ -118,35 +116,16 @@ As for the experience itself, I can only recommend it—at least once in a lifet
           content={lang === "fr" ? "fr_FR" : "en_US"}
         />
       </Head>
-      {/* Back to trips button */}
-      <Box maxWidth="800px" mt="2rem" textAlign="left" width="auto">
-        <Link href="/trip" passHref legacyBehavior>
-          <Button
-            as="a"
-            colorScheme="teal"
-            variant="outline"
-            mb={6}
-            ml="1rem"
-            leftIcon={<FaArrowLeft />}
-            width="auto"
-            minW={0}
-          >
-            {t("trips.transcanadian.backToTrips")}
-          </Button>
-        </Link>
-      </Box>
-
-      {/* Big Title and Subtitle */}
-      <Box marginTop={30} marginBottom={30} textAlign={"center"}>
-        <Heading fontFamily={"autography"} fontSize={85} mb={10}>
-          {lang === "fr" ? "D’un océan à l’autre" : "Coast to Coast"}
-        </Heading>
-        <Heading fontStyle={"italic"} size="l">
-          {lang === "fr"
+      <StoryHero
+        tone="train"
+        eyebrow={t("tripsMeta.transcanadian")}
+        title={lang === "fr" ? "D’un océan à l’autre" : "Coast to Coast"}
+        subtitle={
+          lang === "fr"
             ? "Récit d’une traversée ferroviaire à travers le Canada."
-            : "A story of a railway crossing across Canada."}
-        </Heading>
-      </Box>
+            : "A story of a railway crossing across Canada."
+        }
+      />
 
       {isClient && (
         <Tooltip
@@ -192,7 +171,7 @@ As for the experience itself, I can only recommend it—at least once in a lifet
         />
       )}
 
-      <Container maxW={1000} mb={100}>
+      <Container maxW={1000} mb={100} mt={12}>
         {/* Timeline Section */}
         <Box className="timeline">
           <Box className="outer">
@@ -213,7 +192,7 @@ As for the experience itself, I can only recommend it—at least once in a lifet
         px={5}
       >
         <Box textAlign="center" mb={10}>
-          <Heading size="xl">
+          <Heading as="h2" fontWeight={800} fontSize={{ base: "32px", md: "44px" }}>
             {lang === "fr" ? "Rétrospectives" : "Reflections"}
           </Heading>
         </Box>

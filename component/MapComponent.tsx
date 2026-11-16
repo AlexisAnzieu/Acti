@@ -1,8 +1,9 @@
-import { ExternalLinkIcon } from "@chakra-ui/icons";
-import { Box, Flex, Link as ChakraLink } from "@chakra-ui/react";
-import L from "leaflet";
 import "leaflet-fullscreen";
 import "leaflet-fullscreen/dist/leaflet.fullscreen.css";
+
+import { Box, Flex, Link as ChakraLink } from "@chakra-ui/react";
+import L from "leaflet";
+import NextLink from "next/link";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { useEffect } from "react";
@@ -15,11 +16,10 @@ import {
   useMapEvents,
 } from "react-leaflet";
 
-import CarbonIconComponent from "../component/CarbonIconComponent";
-import PriceIconComponent from "../component/PriceIconComponent";
 import type { definitions } from "../type/supabase";
+import { CarbonLabel, PriceLabel } from "./ActivityCard";
 import type { Locale } from "./NavbarComponent";
-import SocialMediaComponent from "./SocialMediaComponent";
+import { type Season, isSeason, SEASON_COLORS, SEASONS } from "./seasons";
 
 const MONTREAL_LOCATION = { lat: 45.524184, lng: -73.581435 };
 
@@ -121,80 +121,72 @@ const FitBounds = ({
   return null;
 };
 
-const Markers = ({ activities, locale }: MapProps) => {
+const markerIcon = (season: Season) =>
+  L.divIcon({
+    className: "acti-marker",
+    html: `<span style="background:${SEASON_COLORS[season].bg}"></span>`,
+    iconSize: [24, 24],
+    iconAnchor: [12, 12],
+    popupAnchor: [0, -14],
+  });
+
+const MARKER_ICONS = SEASONS.reduce(
+  (icons, season) => ({ ...icons, [season]: markerIcon(season) }),
+  {} as Record<Season, L.DivIcon>,
+);
+
+// Colour each pin with the season being filtered, or the activity's first season.
+const markerSeason = (
+  activity: definitions["activity"],
+  preferred?: Season,
+): Season => {
+  if (preferred && activity.seasons?.includes(preferred)) return preferred;
+  return activity.seasons?.find(isSeason) ?? "winter";
+};
+
+const Markers = ({ activities, locale, season }: MapProps & { season?: Season }) => {
   const { t } = useTranslation("common");
   return (
     <>
       {activities.map((activity: definitions["activity"]) => (
         <Marker
-          key={`marker-${activity.name?.en}`}
+          key={`marker-${activity.id ?? activity.slug}`}
           position={(activity.location as any) || MONTREAL_LOCATION}
+          icon={MARKER_ICONS[markerSeason(activity, season)]}
+          title={activity.name?.[locale]}
         >
           <Popup>
-            <Box textAlign="center" lineHeight="normal" fontSize="20px">
-              {activity.name?.[locale]}
-              <Box fontSize="15px">
-                {t("by")}{" "}
-                <ChakraLink href={activity.website} isExternal color="teal">
-                  {activity.compagny} <ExternalLinkIcon mx="2px" />
-                </ChakraLink>
+            <Flex direction="column" gap={2} minW="220px" maxW="260px" color="ink">
+              <Box
+                fontFamily="heading"
+                fontWeight={800}
+                fontSize="19px"
+                lineHeight={1.15}
+                letterSpacing="-0.02em"
+              >
+                {activity.name?.[locale]}
               </Box>
-            </Box>
-            <Box mt="10px" fontSize="sm">
-              {activity.description?.[locale]}
-              <Flex mt="20px">
-                <Box textAlign="center" w="50%">
-                  <PriceIconComponent price={activity.price} fontSize="20px" />
-                </Box>
-                <Box textAlign="center" w="50%">
-                  <CarbonIconComponent
-                    carbon_footprint={activity.carbon_footprint}
-                    fontSize="20px"
-                  />
-                </Box>
+              <Box fontSize="13px" color="muted">
+                {[activity.compagny, activity.city].filter(Boolean).join(" · ")}
+              </Box>
+              <Flex wrap="wrap" gap="6px 14px" fontSize="13px" fontWeight={600}>
+                <PriceLabel price={activity.price} />
+                <CarbonLabel carbon={activity.carbon_footprint} />
               </Flex>
-            </Box>
-            <Box
-              fontSize="15px"
-              w="100%"
-              textAlign="center"
-              lineHeight="normal"
-              pt="15px"
-            >
-              {activity.email && (
-                <Box>
-                  <ChakraLink
-                    href={"mailto:" + activity.email}
-                    isExternal
-                    color="teal"
-                  >
-                    {activity.email}
-                  </ChakraLink>
-                  <br />
-                  <br />
-                </Box>
-              )}
-              {activity.phone && (
-                <Box>
-                  <ChakraLink href={"tel:" + activity.phone} color="teal">
-                    {activity.phone}
-                  </ChakraLink>
-                  <br />
-                  <br />
-                </Box>
-              )}
-              {activity.address}
-              <br />
-              {activity.postal_code}
-              <br />
-              {activity.city}
-            </Box>
-            <Box w="100%" textAlign="center">
-              <SocialMediaComponent
-                social_media={activity.social_media}
-                boxSize={7}
-              />
-            </Box>
+              <ChakraLink
+                as={NextLink}
+                href={`/activities/${activity.slug}`}
+                alignSelf="flex-start"
+                mt={1}
+                fontWeight={700}
+                fontSize="14px"
+                color="ink"
+                textDecoration="underline"
+                textUnderlineOffset="3px"
+              >
+                {t("activityPage.seeDetails")}
+              </ChakraLink>
+            </Flex>
           </Popup>
         </Marker>
       ))}
@@ -265,7 +257,11 @@ const MapComponent = (props: MapComponentProps) => {
     >
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
       <FullscreenControl />
-      <Markers activities={props.activities} locale={router.locale as Locale} />
+      <Markers
+        activities={props.activities}
+        locale={router.locale as Locale}
+        season={isSeason(router.query.season) ? router.query.season : undefined}
+      />
       {props.onBoundsChange && (
         <MapEventsHandler onBoundsChange={props.onBoundsChange} />
       )}

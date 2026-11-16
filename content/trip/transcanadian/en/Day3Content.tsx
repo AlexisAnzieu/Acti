@@ -21,7 +21,7 @@ export const Day3Content = () => (
               borderRadius: "50px",
               px: "2",
               py: "1",
-              bg: "orange.100",
+              bg: "highlight.train",
               textDecoration: "underline",
               cursor: "pointer",
             }}
@@ -41,7 +41,7 @@ export const Day3Content = () => (
               borderRadius: "50px",
               px: "2",
               py: "1",
-              bg: "orange.100",
+              bg: "highlight.train",
               textDecoration: "underline",
               cursor: "pointer",
             }}
@@ -69,7 +69,7 @@ export const Day3Content = () => (
           <Highlight
             query="bingo"
             styles={{
-              background: "orange.100",
+              background: "highlight.train",
               textDecoration: "underline",
               cursor: "pointer",
             }}
@@ -85,7 +85,7 @@ export const Day3Content = () => (
           <Highlight
             query="wine tasting"
             styles={{
-              background: "orange.100",
+              background: "highlight.train",
               textDecoration: "underline",
               cursor: "pointer",
             }}

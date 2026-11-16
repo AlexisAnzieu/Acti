@@ -31,7 +31,7 @@ export const Day1Content = () => (
               borderRadius: "50px",
               px: "2",
               py: "1",
-              bg: "orange.100",
+              bg: "highlight.train",
               textDecoration: "underline",
               cursor: "pointer",
             }}
@@ -55,7 +55,7 @@ export const Day1Content = () => (
               borderRadius: "50px",
               px: "2",
               py: "1",
-              bg: "orange.100",
+              bg: "highlight.train",
               textDecoration: "underline",
               cursor: "pointer",
             }}
@@ -74,7 +74,7 @@ export const Day1Content = () => (
               borderRadius: "50px",
               px: "2",
               py: "1",
-              bg: "orange.100",
+              bg: "highlight.train",
               textDecoration: "underline",
               cursor: "pointer",
             }}
@@ -102,7 +102,7 @@ export const Day1Content = () => (
               borderRadius: "50px",
               px: "2",
               py: "1",
-              bg: "orange.100",
+              bg: "highlight.train",
               textDecoration: "underline",
               cursor: "pointer",
             }}
@@ -137,7 +137,7 @@ export const Day1Content = () => (
               borderRadius: "50px",
               px: "2",
               py: "1",
-              bg: "orange.100",
+              bg: "highlight.train",
               textDecoration: "underline",
               cursor: "pointer",
             }}
@@ -153,7 +153,7 @@ export const Day1Content = () => (
           <Highlight
             query="laisser place à un lit"
             styles={{
-              background: "orange.100",
+              background: "highlight.train",
               textDecoration: "underline",
               cursor: "pointer",
             }}
@@ -187,7 +187,7 @@ export const Day1Content = () => (
           <Highlight
             query="voiture-restaurant"
             styles={{
-              background: "orange.100",
+              background: "highlight.train",
               textDecoration: "underline",
               cursor: "pointer",
             }}
@@ -224,7 +224,7 @@ export const Day1Content = () => (
               borderRadius: "50px",
               px: "2",
               py: "1",
-              bg: "orange.100",
+              bg: "highlight.train",
               textDecoration: "underline",
               cursor: "pointer",
             }}
@@ -253,7 +253,7 @@ export const Day1Content = () => (
           <Highlight
             query="Tous étudient"
             styles={{
-              background: "orange.100",
+              background: "highlight.train",
               textDecoration: "underline",
               cursor: "pointer",
             }}
@@ -280,7 +280,7 @@ export const Day1Content = () => (
               borderRadius: "50px",
               px: "2",
               py: "1",
-              bg: "orange.100",
+              bg: "highlight.train",
               textDecoration: "underline",
               cursor: "pointer",
             }}
@@ -300,7 +300,7 @@ export const Day1Content = () => (
               borderRadius: "50px",
               px: "2",
               py: "1",
-              bg: "orange.100",
+              bg: "highlight.train",
               textDecoration: "underline",
               cursor: "pointer",
             }}

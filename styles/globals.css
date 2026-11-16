@@ -2,8 +2,6 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
 @font-face {
@@ -16,10 +14,6 @@ a {
   text-decoration: none;
 }
 
-a:hover {
-  text-decoration: none !important;
-}
-
 * {
   box-sizing: border-box;
 }
@@ -29,142 +23,35 @@ a:hover {
   height: 95vh;
 }
 
-.filter-header {
-  margin: 0 24px;
-  transition: all 0.2s ease;
-  border: 1px solid rgba(0, 128, 128, 0.1);
-  position: relative;
-  z-index: 2;
-}
-
-.filter-header:hover {
-  border-color: teal;
-  transform: translateY(-1px);
-}
-
-.filters {
-  display: flex !important;
-  flex-wrap: wrap;
-  gap: 36px;
-  padding: 24px;
-  background: linear-gradient(to right bottom, rgba(0, 128, 128, 0.05), rgba(0, 128, 128, 0.02));
-  border-radius: 20px;
-  margin: 0 24px;
-  align-items: flex-start;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-  border: 1px solid rgba(0, 128, 128, 0.1);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  transform-origin: top;
-  visibility: visible;
-  transition: all 0.3s ease, padding 0.3s ease, margin 0.3s ease;
-}
-
-.filters[style*="height: 0"] {
-  margin: 0;
-  padding-top: 0;
-  padding-bottom: 0;
-  visibility: hidden;
-  opacity: 0;
-  pointer-events: none;
-  border-color: transparent;
-}
-
-.sliderFilter {
-  width: 220px;
-  transition: all 0.3s ease;
-  padding: 12px 0;
-  margin-top: 4px;
-}
-
-.activity-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 24px;
-  padding: 0 24px 24px 24px;
-  width: 100%;
-  grid-auto-rows: 1fr;
-}
-
-.activity-grid > * {
-  height: 100%;
-}
-
-.activity-list {
-  padding: 8px 24px 24px;
-  min-height: 100vh;
-  background: #fafafa;
-  width: 100%;
-}
-
-.filter-label {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: rgb(74, 85, 104);
-  margin-bottom: 14px;
-  text-transform: uppercase;
-  letter-spacing: 0.07em;
-  position: relative;
-  display: inline-block;
-  padding-bottom: 6px;
-}
-
-.filter-label::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 24px;
-  height: 2px;
-  background-color: teal;
-  border-radius: 2px;
-}
-
-.filter-group {
-  display: flex;
-  flex-direction: column;
-  min-width: 220px;
-  position: relative;
-}
-
-.filter-group badge {
-  transition: all 0.2s ease;
-}
-
-.filter-group badge:hover {
-  transform: translateY(-1px);
-}
-
+/* Full-screen map page: button back to the home page */
 .floating-button {
   cursor: pointer;
   position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 60px;
-  height: 60px;
-  font-size: 30px;
-  background-color: teal;
-  color: #fff;
+  bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+  right: calc(20px + env(safe-area-inset-right, 0px));
+  width: 56px;
+  height: 56px;
+  font-size: 24px;
+  background-color: #0F2E2D;
+  color: #F4F6F5;
   border-radius: 50%;
-  text-align: center;
-  box-shadow: 0 4px 12px rgba(0, 128, 128, 0.3);
+  box-shadow: 0 4px 12px rgba(15, 46, 45, 0.3);
   z-index: 100;
-  transition: all 0.3s ease;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.floating-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0, 128, 128, 0.4);
+/* Activity page: map in its own frame */
+.detail-map {
+  height: 100% !important;
+  width: 100%;
 }
 
-/* ===== Split-screen Airbnb layout ===== */
-
+/* Activities list with the map on the side */
 .split-layout {
   display: flex;
-  height: calc(100vh - 65px);
+  height: 100%;
   overflow: hidden;
 }
 
@@ -172,15 +59,13 @@ a:hover {
   flex: 1;
   overflow-y: auto;
   min-height: 0;
-  background: #fafafa;
-  padding-top: 8px;
 }
 
 .split-map-panel {
-  width: 50%;
+  width: 45%;
   flex-shrink: 0;
   position: relative;
-  border-left: 1px solid #e2e8f0;
+  border-left: 1px solid #DCE3E1;
 }
 
 .split-map-panel .leaflet-container {
@@ -194,55 +79,8 @@ a:hover {
   width: 100%;
 }
 
-.activity-grid--split {
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)) !important;
-  gap: 16px !important;
-  padding: 0 16px 16px 16px !important;
-}
-
-/* Search bar container */
-.search-bar-container {
-  box-shadow: none;
-}
-
-.help-button-desktop {
-  display: block !important;
-}
-
-.help-button-mobile {
-  display: none !important;
-}
-
-.activity-flex {
-  display: flex;
-  flex-direction: row;
-}
-
-@media screen and (max-width: 1000px) {
-  .activity-flex {
-    flex-direction: column-reverse;
-  }
-  
-  .activity-flex > div:last-child {
-    height: 100px;
-  }
-  
-  .activity-flex > div:last-child .leaflet-container {
-    height: 100px;
-  }
-  
-  .floating-button {
-    width: 50px;
-    height: 50px;
-    font-size: 24px;
-  }
-
-  .filter-header {
-    margin: 0 16px;
-    font-size: 14px;
-  }
-
-  /* Split layout: stack vertically on mobile */
+/* Same breakpoint as Chakra's "lg" */
+@media screen and (max-width: 61.99em) {
   .split-layout {
     flex-direction: column-reverse;
     height: auto;
@@ -258,49 +96,37 @@ a:hover {
     width: 100%;
     height: 40vh;
     border-left: none;
-    border-bottom: 1px solid #e2e8f0;
-  }
-
-  .activity-grid--split {
-    grid-template-columns: minmax(0, 1fr) !important;
-  }
-
-  .filters {
-    flex-direction: column;
-    align-items: stretch;
-    padding: 20px;
-    gap: 24px;
-  }
-
-  .filter-group {
-    width: 100%;
-  }
-
-  .sliderFilter {
-    width: 100%;
-  }
-
-  .activity-grid {
-    padding: 16px;
-    gap: 16px;
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .activity-list {
-    padding: 16px;
+    border-bottom: 1px solid #DCE3E1;
   }
 }
 
-@media screen and (max-width: 600px) {
-  .help-button-desktop {
-    display: none !important;
-  }
-
-  .help-button-mobile {
-    display: block !important;
-  }
+/* Map pins: one colour per season, like the logo */
+.acti-marker span {
+  display: block;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 3px solid #0F2E2D;
+  box-shadow: 0 2px 0 rgba(15, 46, 45, 0.3);
 }
 
+.leaflet-popup-content-wrapper {
+  border-radius: 14px;
+  font-family: var(--font-body), system-ui, sans-serif;
+}
+
+.leaflet-popup-content {
+  margin: 16px 18px;
+}
+
+/* Trip stories: serpentine timeline, coloured like the trip card */
+.story {
+  --story-accent: #E1F65A;
+}
+
+.story--train {
+  --story-accent: #DB93D4;
+}
 
 .timeline {
   font-size: 18px;
@@ -324,15 +150,15 @@ a:hover {
   content: "";
   position: absolute;
   width: 50%;
-  border: solid rgb(18, 139, 125);
+  border: solid #0F2E2D;
 }
 
 /* Setting the border of top, bottom, left */
 .card:nth-child(odd)::before {
   left: 0px;
-  top: -5px;
-  bottom: -5px;
-  border-width: 5px 0 5px 5px;
+  top: -3px;
+  bottom: -3px;
+  border-width: 3px 0 3px 3px;
   border-radius: 50px 0 0 50px;
 }
 
@@ -341,7 +167,7 @@ a:hover {
   right: 0;
   top: 0;
   bottom: 0;
-  border-width: 5px 5px 5px 0;
+  border-width: 3px 3px 3px 0;
   border-radius: 0 50px 50px 0;
 }
 
@@ -366,31 +192,38 @@ a:hover {
 /* Information about the timeline */
 .info {
   text-align: justify;
-  background: #e6fff1c9;
-  color: rgb(73, 73, 73);
-  border-radius: 10px;
-  padding: 10px;
+  background: #FFFFFF;
+  color: #2A3B3A;
+  border: 1px solid #DCE3E1;
+  border-radius: 14px;
+  padding: 20px 24px;
   z-index: 0;
-  line-height: 30px;
+  line-height: 1.7;
 }
 
 /* Title of the card */
 .title {
   margin-bottom: 15px;
-  color: rgb(21, 62, 9);
+  color: #0F2E2D;
   position: relative;
-  font-weight: bold;
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 22px;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  text-align: left;
 }
 
 /* Timeline dot  */
 .title::before {
   content: "";
   position: absolute;
-  width: 10px;
-  height: 10px;
-  background: white;
+  top: 4px;
+  width: 20px;
+  height: 20px;
+  background: var(--story-accent);
   border-radius: 999px;
-  border: 3px solid rgb(16, 90, 61);
+  border: 3px solid #0F2E2D;
 }
 
 /* text right if the card is even  */
@@ -398,12 +231,26 @@ a:hover {
   text-align: right;
 }
 
-/* setting dot to the left if the card is odd */
+/* setting dot to the left if the card is odd (card 30px + info 24px - half border) */
 .card:nth-child(odd) > .info > .title::before {
-  left: -45px;
+  left: -64px;
 }
 
 /* setting dot to the right if the card is odd */
 .card:nth-child(even) > .info > .title::before {
-  right: -45px;
+  right: -64px;
+}
+
+@media screen and (max-width: 600px) {
+  .info {
+    padding: 16px 18px;
+  }
+
+  .card:nth-child(odd) > .info > .title::before {
+    left: -58px;
+  }
+
+  .card:nth-child(even) > .info > .title::before {
+    right: -58px;
+  }
 }

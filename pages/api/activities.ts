@@ -1,6 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
 
+import { normalizeActivity } from "../../helpers/activities";
 import { supabase } from "../../helpers/supabaseClient";
 import { definitions } from "../../type/supabase";
 
@@ -128,18 +129,4 @@ const filterActivities = async (
 const sendReponse = (res: NextApiResponse<any>, result: any) => {
   res.setHeader("Content-Type", "application/json");
   res.end(JSON.stringify(result));
-};
-
-const normalizeActivity = (activity: any) => {
-  if (activity.new_location) {
-    activity.location = {
-      lat: activity.new_location.coordinates[1],
-      lng: activity.new_location.coordinates[0],
-    };
-  }
-
-  if (activity.new_picture_url) {
-    activity.picture_url = `https://acti.anzieu.com/assets/${activity.new_picture_url}`;
-  }
-  return activity;
 };

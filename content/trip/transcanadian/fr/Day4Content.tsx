@@ -16,7 +16,7 @@ export const Day4Content = () => (
           <Highlight
             query="montagnes s'érigeant à la verticale"
             styles={{
-              background: "orange.100",
+              background: "highlight.train",
               textDecoration: "underline",
               cursor: "pointer",
             }}
@@ -36,7 +36,7 @@ export const Day4Content = () => (
               borderRadius: "50px",
               px: "2",
               py: "1",
-              bg: "orange.100",
+              bg: "highlight.train",
               textDecoration: "underline",
               cursor: "pointer",
             }}
@@ -62,7 +62,7 @@ export const Day4Content = () => (
               borderRadius: "50px",
               px: "2",
               py: "1",
-              bg: "orange.100",
+              bg: "highlight.train",
               textDecoration: "underline",
               cursor: "pointer",
             }}
@@ -80,7 +80,7 @@ export const Day4Content = () => (
           <Highlight
             query="lavage des vitres"
             styles={{
-              background: "orange.100",
+              background: "highlight.train",
               textDecoration: "underline",
               cursor: "pointer",
             }}
@@ -101,7 +101,7 @@ export const Day4Content = () => (
               borderRadius: "50px",
               px: "2",
               py: "1",
-              bg: "orange.100",
+              bg: "highlight.train",
               textDecoration: "underline",
               cursor: "pointer",
             }}
@@ -127,7 +127,7 @@ export const Day4Content = () => (
               borderRadius: "50px",
               px: "2",
               py: "1",
-              bg: "orange.100",
+              bg: "highlight.train",
               textDecoration: "underline",
               cursor: "pointer",
             }}
@@ -153,7 +153,7 @@ export const Day4Content = () => (
           <Highlight
             query="lacs immenses"
             styles={{
-              background: "orange.100",
+              background: "highlight.train",
               textDecoration: "underline",
               cursor: "pointer",
             }}

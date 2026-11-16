@@ -265,6 +265,7 @@ export interface definitions {
     review?: Translations;
     seasons: string[];
     slug: string;
+    children_accessible?: boolean;
   };
 }
 

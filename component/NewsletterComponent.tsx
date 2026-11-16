@@ -1,5 +1,6 @@
 import {
     Button,
+    Flex,
     FormControl,
     FormErrorMessage,
     FormLabel,
@@ -29,7 +30,13 @@ const subscribeNewsletter = async (email: string): Promise<boolean> => {
         .catch(() => false);
 };
 
-const NewsletterComponent = () => {
+type Props = {
+    label?: string;
+    size?: "lg" | "md";
+    id?: string;
+};
+
+const NewsletterComponent = ({ label, size = "lg", id = "email" }: Props) => {
     const { t } = useTranslation("common");
     const toast = useToast();
 
@@ -60,7 +67,7 @@ const NewsletterComponent = () => {
                 }
             }}
         >
-            {() => (
+            {({ isSubmitting }) => (
                 <Form>
                     <Field name="email" validate={validateEmail}>
                         {({ field, form }: any) => (
@@ -69,24 +76,52 @@ const NewsletterComponent = () => {
                                     form.errors.email && form.touched.email
                                 }
                             >
-                                <FormLabel htmlFor="email">
-                                    {t("newsletter.email")}
+                                <FormLabel
+                                    htmlFor={id}
+                                    fontFamily={size === "lg" ? "heading" : "body"}
+                                    fontWeight={size === "lg" ? 800 : 600}
+                                    fontSize={size === "lg" ? "26px" : "md"}
+                                    letterSpacing={size === "lg" ? "-0.02em" : 0}
+                                    lineHeight={1.15}
+                                    mb={3}
+                                >
+                                    {label ?? t("newsletter.email")}
                                 </FormLabel>
-                                <Input
-                                    {...field}
-                                    size="lg"
-                                    id="email"
-                                    placeholder="contact@h2t.club"
-                                />
+                                <Flex wrap="wrap" gap="10px">
+                                    <Input
+                                        {...field}
+                                        id={id}
+                                        type="email"
+                                        flex="1 1 220px"
+                                        minW={0}
+                                        h="48px"
+                                        bg="white"
+                                        color="ink"
+                                        border="1.5px solid"
+                                        borderColor="lineStrong"
+                                        borderRadius="10px"
+                                        placeholder={t("newsletter.email")}
+                                    />
+                                    <Button
+                                        type="submit"
+                                        isLoading={isSubmitting}
+                                        h="48px"
+                                        px={6}
+                                        bg="ink"
+                                        color="paper"
+                                        borderRadius="10px"
+                                        _hover={{ bg: "#1E4A48" }}
+                                        _active={{ bg: "#1E4A48" }}
+                                    >
+                                        {t("newsletter.submit")}
+                                    </Button>
+                                </Flex>
                                 <FormErrorMessage>
                                     {form.errors.email}
                                 </FormErrorMessage>
                             </FormControl>
                         )}
                     </Field>
-                    <Button mt={4} colorScheme="teal" type="submit">
-                        {t("newsletter.submit")}
-                    </Button>
                 </Form>
             )}
         </Formik>

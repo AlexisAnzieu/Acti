@@ -15,7 +15,7 @@ export const Day4Content = () => (
           <Highlight
             query="mountains rising vertically"
             styles={{
-              background: "orange.100",
+              background: "highlight.train",
               textDecoration: "underline",
               cursor: "pointer",
             }}
@@ -35,7 +35,7 @@ export const Day4Content = () => (
               borderRadius: "50px",
               px: "2",
               py: "1",
-              bg: "orange.100",
+              bg: "highlight.train",
               textDecoration: "underline",
               cursor: "pointer",
             }}
@@ -60,7 +60,7 @@ export const Day4Content = () => (
               borderRadius: "50px",
               px: "2",
               py: "1",
-              bg: "orange.100",
+              bg: "highlight.train",
               textDecoration: "underline",
               cursor: "pointer",
             }}
@@ -83,7 +83,7 @@ export const Day4Content = () => (
               borderRadius: "50px",
               px: "2",
               py: "1",
-              bg: "orange.100",
+              bg: "highlight.train",
               textDecoration: "underline",
               cursor: "pointer",
             }}
@@ -109,7 +109,7 @@ export const Day4Content = () => (
               borderRadius: "50px",
               px: "2",
               py: "1",
-              bg: "orange.100",
+              bg: "highlight.train",
               textDecoration: "underline",
               cursor: "pointer",
             }}

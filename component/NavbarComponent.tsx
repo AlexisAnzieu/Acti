@@ -1,11 +1,9 @@
-import { InfoIcon } from "@chakra-ui/icons";
 import {
   Avatar,
   Box,
   Button,
-  Center,
   Flex,
-  IconButton,
+  Link as ChakraLink,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -13,25 +11,50 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-  Spacer,
   useDisclosure,
 } from "@chakra-ui/react";
-import NextImage from "next/legacy/image";
-import Link from "next/link";
+import NextLink from "next/link";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
-import { useState } from "react";
+
+import { SEASON_COLORS, SEASONS } from "./seasons";
 
 export type Locale = "en" | "fr";
 
+const LOCALES: Locale[] = ["fr", "en"];
+
+const NAV_LINKS = [
+  { href: "/activities", label: "nav.activities" },
+  { href: "/trip", label: "nav.trips" },
+  { href: "/map", label: "nav.map" },
+];
+
+export const LogoMark = ({ size = 12 }: { size?: number }) => (
+  <Box
+    aria-hidden="true"
+    display="grid"
+    gridTemplateColumns={`repeat(2, ${size}px)`}
+    gap="3px"
+  >
+    {SEASONS.map((season) => (
+      <Box
+        key={season}
+        w={`${size}px`}
+        h={`${size}px`}
+        borderRadius="full"
+        bg={SEASON_COLORS[season].bg}
+      />
+    ))}
+  </Box>
+);
+
 const NavbarComponent = () => {
   const router = useRouter();
-  const [locale, setLocale] = useState(router.locale as Locale);
+  const locale = (router.locale as Locale) ?? "fr";
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { t } = useTranslation("common");
 
   const changeLocale = (value: Locale) => {
-    setLocale(value);
     router.push(
       {
         pathname: router.pathname,
@@ -41,119 +64,159 @@ const NavbarComponent = () => {
       {
         locale: value,
         scroll: false,
-      }
+      },
     );
   };
 
   return (
-    <Flex
-      backgroundColor="white"
-      position="sticky"
-      boxShadow="md"
-      w="100%"
-      top="0"
-      zIndex="100"
-      h="60px"
-    >
-      <Center p="10px">
-        <Box w="100%" h="100%">
-          <Link href="/" aria-label="back to acti homepage" passHref>
-            <Box
-              width="125px"
-              height="100%"
-              position="relative"
-              cursor="pointer"
-            >
-              <NextImage layout="fill" alt="logo acti" src="/logo.png" />
-            </Box>
-          </Link>
-        </Box>
-      </Center>
-      <Spacer />
-      <Center>
-        {!router.pathname.includes("trip") && (
-          <>
-            <Button
-              className="help-button-desktop"
-              colorScheme="teal"
-              variant="ghost"
-              onClick={onOpen}
-            >
-              {t("whoAreWe")}
-            </Button>
-
-            <IconButton
-              p="0px 15px 5px 0px"
-              className="help-button-mobile"
-              onClick={onOpen}
-              fontSize="30px"
-              variant="ghost"
-              colorScheme="teal"
-              aria-label="get info"
-              icon={<InfoIcon />}
-            />
-          </>
-        )}
-        <Modal size="lg" isOpen={isOpen} onClose={onClose}>
-          <ModalOverlay />
-          <ModalContent>
-            <ModalHeader>{t("whoAreWeModal.welcome")}</ModalHeader>
-            <ModalCloseButton />
-            <ModalBody whiteSpace="pre-line">
-              <Flex mb="20px">
-                <Center w="50%">
-                  <a
-                    href="https://www.linkedin.com/in/carla-fabregas/"
-                    title="linkedin carla fabregas"
-                  >
-                    <Avatar
-                      size="2xl"
-                      name="Carla Fabregas"
-                      src="https://acti.anzieu.com/assets/e4848cd3-25a6-47c0-9b87-38ba696358f8"
-                    />
-                  </a>
-                </Center>
-                <Center w="50%">
-                  <a
-                    href="https://www.linkedin.com/in/alexis-anzieu/"
-                    title="linkedin alexis anzieu"
-                  >
-                    <Avatar
-                      size="2xl"
-                      name="Alexis Anzieu"
-                      src="https://acti.anzieu.com/assets/ebaed129-92c2-499f-bcaa-f1f6a1c18765"
-                    />
-                  </a>
-                </Center>
-              </Flex>
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: t("whoAreWeModal.text"),
-                }}
-              />
-            </ModalBody>
-            <ModalFooter>
-              <Button onClick={onClose} variant="ghost">
-                {t("whoAreWeModal.endText")}
-              </Button>
-            </ModalFooter>
-          </ModalContent>
-        </Modal>
-      </Center>
-      <Center cursor="pointer" mr="10px">
-        {(["en", "fr"] as Locale[]).map((language: Locale) => (
-          <Button
-            key={language}
-            ml="5px"
-            onClick={() => changeLocale(language)}
-            colorScheme="teal"
-            variant={locale === language ? "solid" : "outline"}
+    <Box as="header" borderBottom="1px solid" borderColor="line" bg="paper">
+      <Flex
+        maxW="1280px"
+        mx="auto"
+        px={{ base: 4, md: 12 }}
+        py={{ base: 3, lg: 0 }}
+        minH={{ lg: "72px" }}
+        align="center"
+        wrap="wrap"
+        gap={{ base: "8px 24px", md: "8px 40px" }}
+      >
+        <ChakraLink
+          as={NextLink}
+          href="/"
+          aria-label={t("nav.home")}
+          display="flex"
+          alignItems="center"
+          gap={3}
+          _hover={{ textDecoration: "none" }}
+        >
+          <LogoMark />
+          <Box
+            as="span"
+            fontFamily="heading"
+            fontWeight={800}
+            fontSize="26px"
+            letterSpacing="-0.02em"
+            color="season.winter"
           >
-            {language.toUpperCase()}
-          </Button>
-        ))}
-      </Center>
-    </Flex>
+            actï
+          </Box>
+        </ChakraLink>
+
+        <Flex
+          as="nav"
+          aria-label={t("nav.main")}
+          wrap="wrap"
+          gap={{ base: "0 20px", md: "0 28px" }}
+          fontWeight={600}
+          fontSize="15px"
+          flex="1 1 auto"
+          order={{ base: 3, md: 0 }}
+          w={{ base: "100%", md: "auto" }}
+        >
+          {NAV_LINKS.map(({ href, label }) => {
+            const isCurrent = router.pathname.startsWith(href);
+            return (
+              <ChakraLink
+                as={NextLink}
+                key={href}
+                href={href}
+                aria-current={isCurrent ? "page" : undefined}
+                py="10px"
+                textDecoration={isCurrent ? "underline" : "none"}
+                textUnderlineOffset="6px"
+                textDecorationThickness="2px"
+              >
+                {t(label)}
+              </ChakraLink>
+            );
+          })}
+          <ChakraLink
+            as="button"
+            type="button"
+            onClick={onOpen}
+            py="10px"
+            fontWeight={600}
+          >
+            {t("whoAreWe")}
+          </ChakraLink>
+        </Flex>
+
+        <Flex
+          role="group"
+          aria-label={t("nav.language")}
+          ml={{ base: "auto", md: 0 }}
+          border="1.5px solid"
+          borderColor="ink"
+          borderRadius="full"
+          overflow="hidden"
+          fontWeight={700}
+          fontSize="13px"
+        >
+          {LOCALES.map((language) => {
+            const isActive = locale === language;
+            return (
+              <Box
+                as="button"
+                type="button"
+                key={language}
+                aria-pressed={isActive}
+                onClick={() => !isActive && changeLocale(language)}
+                bg={isActive ? "ink" : "transparent"}
+                color={isActive ? "paper" : "ink"}
+                px={4}
+                minH="40px"
+              >
+                {language.toUpperCase()}
+              </Box>
+            );
+          })}
+        </Flex>
+      </Flex>
+
+      <Modal size="lg" isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent bg="paper" borderRadius="20px">
+          <ModalHeader fontFamily="heading" fontWeight={800} fontSize="2xl">
+            {t("whoAreWeModal.welcome")}
+          </ModalHeader>
+          <ModalCloseButton />
+          <ModalBody whiteSpace="pre-line">
+            <Flex mb="20px" justify="space-around">
+              <a
+                href="https://www.linkedin.com/in/carla-fabregas/"
+                title="linkedin carla fabregas"
+              >
+                <Avatar
+                  size="2xl"
+                  name="Carla Fabregas"
+                  src="https://acti.anzieu.com/assets/e4848cd3-25a6-47c0-9b87-38ba696358f8"
+                />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/alexis-anzieu/"
+                title="linkedin alexis anzieu"
+              >
+                <Avatar
+                  size="2xl"
+                  name="Alexis Anzieu"
+                  src="https://acti.anzieu.com/assets/ebaed129-92c2-499f-bcaa-f1f6a1c18765"
+                />
+              </a>
+            </Flex>
+            <div
+              dangerouslySetInnerHTML={{
+                __html: t("whoAreWeModal.text"),
+              }}
+            />
+          </ModalBody>
+          <ModalFooter>
+            <Button onClick={onClose} variant="ghost">
+              {t("whoAreWeModal.endText")}
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+    </Box>
   );
 };
 
